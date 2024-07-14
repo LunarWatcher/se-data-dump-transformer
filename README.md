@@ -77,6 +77,31 @@ Once you've downloaded the data dumps, you may want to transform it into a more 
 
 #### Requirements
 * C++20 compiler
+* CMake 3.10 or newer
+
+Binary dependencies (stc, libarchive, spdlog, and pugixml) are automatically handled by CMake using FetchContent.
+
+
+#### Running
+TL;DR:
+```
+cd transformer
+mkdir build
+cd build
+# Option 1: debug:
+cmake .. -DCMAKE_BUILD_Type=Debug 
+# Option 2: release mode; strongly recommended for anything that needs the performance:
+cmake .. -DCMAKE_BUILD_Type=Release
+# ---
+# Replace 8 with the number of cores/threads you have
+cmake --build . -j 8
+
+# *UNIX:
+# Note: this only works after running the Python downloader
+# For early testing, I've been populating this folder with 
+# files from the old archive.org data dump.
+./sedd-transformer ../../downloads
+```
 
 ## Language rationale
 
