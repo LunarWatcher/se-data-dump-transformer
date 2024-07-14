@@ -27,9 +27,10 @@ Here's what's happening:
 
 This is an opinionated summary of the reason why; SE wants to capitalise on AI companies that need training data, and have decided that the community doesn't matter in that process. The current process, while not nearly as restricting as rev. 1 and 2, is a symptom of precisely one thing; Stack Exchange doesn't care about its users, but rather cares about finding new ways to profit off user data.
 
-This is an active threat to the platform's user-generated and [permissively-licensed content](https://stackoverflow.com/help/licensing) that the community has spent countless hours creating precisely _because_ the data is public.
+**Stack Exchange, Inc. is now the single biggest threat to the community**, and to the platform's user-generated and [permissively-licensed content](https://stackoverflow.com/help/licensing) that the community has spent countless hours creating precisely _because_ the data is public.
 
 That is why this project exists; this is meant to automate the data dump download process. Stack Exchange will likely try to take another stab at further data dump restrictions at some point in the future, which is why it's more important now than ever to make sure there's decentralised archives of as much of the data as possible.
+
 
 ## Using the downloader
 
