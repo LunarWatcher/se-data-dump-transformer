@@ -1,0 +1,7 @@
+{
+    "email": "The email you use to log into SE",
+    "password": "The password you use to log into SE",
+    "notifications": {
+        "provider": "string, any of: native,. Can be null, which disables notifications"
+    }
+}
