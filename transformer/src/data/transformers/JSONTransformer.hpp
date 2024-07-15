@@ -1,12 +1,14 @@
 #pragma once
 
-#include <pugixml.hpp>
-#include "ArchiveParser.hpp"
+#include "data/Transformer.hpp"
+#include <filesystem>
 
 namespace sedd {
 
-class Transformer {
+class JSONTransformer : public Transformer {
 public:
+    JSONTransformer();
+
     virtual void parseLine(const pugi::xml_node& row, const ParserContext& ctx) = 0;
 };
 

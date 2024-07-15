@@ -109,10 +109,12 @@ cmake --build . -j 8
 # files from the old archive.org data dump.
 # The last argument is the path to the downloaded data
 # *UNIX:
-./sedd-transformer ../../downloads
+./sedd-transformer -i ../../downloads -t [formatter type]
 # Windows
-.\sedd-transformer.exe ..\..\downloads
+.\sedd-transformer.exe -i ..\..\downloads -t [formatter type]
 ```
+
+Pass `--help` to see the available formatters for your current version of the data dump transformer.
 
 ## Language rationale
 

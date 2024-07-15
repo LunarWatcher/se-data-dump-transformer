@@ -8,8 +8,38 @@
 #include <stdexcept>
 #include <stc/StringUtil.hpp>
 #include <cassert>
+#include <unordered_map>
 
 namespace sedd {
+
+DataDumpFileType::DataDumpFileType DataDumpFileType::strToFiletype(const std::string& tag) {
+    static std::unordered_map<std::string, DataDumpFileType> map = {
+        {"badges", DataDumpFileType::BADGES},
+        {"comments", DataDumpFileType::COMMENTS},
+        {"posthistory", DataDumpFileType::POST_HISTORY},
+        {"postlinks", DataDumpFileType::POST_LINKS},
+        {"posts", DataDumpFileType::POSTS},
+        {"tags", DataDumpFileType::TAGS},
+        {"users", DataDumpFileType::USERS},
+        {"votes", DataDumpFileType::VOTES},
+    };
+
+    return map.at(tag);
+}
+std::string DataDumpFileType::filetypeToStr(DataDumpFileType type) {
+    static std::unordered_map<DataDumpFileType, std::string> map = {
+        {DataDumpFileType::BADGES, "badges"},
+        {DataDumpFileType::COMMENTS, "comments"},
+        {DataDumpFileType::POST_HISTORY, "posthistory"},
+        {DataDumpFileType::POST_LINKS, "postlinks"},
+        {DataDumpFileType::POSTS, "posts"},
+        {DataDumpFileType::TAGS, "tags"},
+        {DataDumpFileType::USERS, "users"},
+        {DataDumpFileType::VOTES, "votes"},
+    };
+
+    return map.at(type);
+}
 
 ArchiveParser::ArchiveParser(const std::filesystem::path& path) 
     : archivePath(path), outputPath(
@@ -35,16 +65,21 @@ ArchiveParser::~ArchiveParser() {
 void ArchiveParser::read() {
     archive_entry *entry;
 
+    ParserContext ctx {
+        .site = this->archivePath.filename().replace_extension(),
+    };
 
     while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
         std::string entryName = archive_entry_pathname(entry);
-        std::cout << "Extracting " << entryName << std::endl;
+        std::cout << "Extracting " << ctx.site << "/" << entryName << std::endl;
+
+        ctx.currType = DataDumpFileType::_UNKNOWN;
+        ctx.currTypeStr = "";
 
         size_t readSize;
         la_int64_t offset;
 
         const void* buff;
-        std::string openingTag = "";
 
         std::string incompleteBlock = "";
         // Incrementally read the data
@@ -84,7 +119,7 @@ void ArchiveParser::read() {
                     continue;
                 }
                 if (line.substr(openIdx).starts_with("<row")) {
-                    if (openingTag == "") {
+                    if (ctx.currType == DataDumpFileType::_UNKNOWN) {
                         std::cerr << "Failed to parse opening tag" << std::endl;
                         throw std::runtime_error("Failed to find opening tag before row content");
                     }
@@ -101,13 +136,24 @@ void ArchiveParser::read() {
                     }
 
                     // TODO: forward to transformer
-                } else if (openingTag == "") {
-                    for (const auto& tag : KNOWN_TAGS) {
-                        if (line == "<" + tag + ">") {
-                            openingTag = tag;
-                            spdlog::debug("Found opening tag {}", tag);
-                            break;
-                        }
+                } else if (ctx.currType == DataDumpFileType::_UNKNOWN) {
+                    //for (const auto& tag : KNOWN_TAGS) {
+                        //if (line == "<" + tag + ">") {
+                            //openingTag = tag;
+                            //spdlog::debug("Found opening tag {}", tag);
+                            //break;
+                        //}
+                    //}
+                    // Filter out XML start headers
+                    if (line.ends_with("?>")) {
+                        continue;
+                    }
+                    if (line.starts_with("<") && line.ends_with(">")) {
+                        std::string word = line.substr(1, line.size() - 2);
+                        auto filetype = DataDumpFileType::strToFiletype(word);
+
+                        ctx.currType = filetype;
+                        ctx.currTypeStr = std::move(word);
                     }
                 } else {
                     spdlog::warn("Unknown line: {}", line);

@@ -29,7 +29,14 @@ FetchContent_Declare(pugixml
     GIT_REPOSITORY https://github.com/zeux/pugixml
     GIT_TAG v1.14
 )
+FetchContent_Declare(
+    cli11
+    QUIET
+    GIT_REPOSITORY https://github.com/CLIUtils/CLI11.git
+    GIT_TAG v2.4.2
+)
 
+FetchContent_MakeAvailable(cli11)
 FetchContent_MakeAvailable(spdlog)
 FetchContent_MakeAvailable(stc)
 FetchContent_MakeAvailable(archive)
@@ -43,4 +50,5 @@ PUBLIC
     stc 
     spdlog::spdlog
     pugixml::static
+    CLI11::CLI11
 )
