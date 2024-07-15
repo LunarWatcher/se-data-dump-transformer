@@ -6,7 +6,7 @@
 
 ## Background
 
-This section contains background on why this project exists. If you know and/or don't care, skip to the next section.
+This section contains background on why this project exists. If you know and/or don't care, feel free to skip to the next section.
 
 In June 2023, Stack Exchange [briefly cancelled the data dump](https://meta.stackexchange.com/q/389922/332043), and backpedalled after a significant amount of backlash from the community. The status-quo of uploads to archive.org was restored. In the slightly more than a year between June 2023 and July 2024, it looked like they were staying off that path. Notably, they made a [logical shift to the _exact_ dates involved in the upload](https://meta.stackexchange.com/q/398279/) to deal with archive.org being slow. In December 2023, they [announced a delay in the upload](https://meta.stackexchange.com/q/395197/) likely to avoid speculation that another cancellation was happening. 
 
@@ -29,8 +29,13 @@ This is an opinionated summary of the reason why; SE wants to capitalise on AI c
 
 **Stack Exchange, Inc. is now the single biggest threat to the community**, and to the platform's user-generated and [permissively-licensed content](https://stackoverflow.com/help/licensing) that the community has spent countless hours creating precisely _because_ the data is public.
 
-That is why this project exists; this is meant to automate the data dump download process. Stack Exchange will likely try to take another stab at further data dump restrictions at some point in the future, which is why it's more important now than ever to make sure there's decentralised archives of as much of the data as possible.
+That is why this project exists; this is meant to automate the data dump download process for non-commercial license-compliant use, since Stack Exchange, Inc. couldn't be bothered adding a "download all" button from day 1. 
 
+As an added bonus, since this project already exists, there's an accompanying system to automatically convert the data dump to other formats. In my experience, the vast majority of applications building on the data dump do not work directly with the XML. Other, more convenient data formats are often created as an intermediate.  Aside using it as an intermediate for various forms of analysis, there are a couple major examples of other distribution forms:
+* Brent Ozar's [MSSQL version](https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/)
+* Jason Punyon's [SQLite version](https://seqlite.puny.engineering/)
+
+While these are preprocessed distributions of the data dump, this project is also meant to help converting to these various formats. While unlikely to replace the source code for either of these two examples, I hope the transformer system here can get rid of boilerplate for other projects. 
 
 ## Using the downloader
 
@@ -52,7 +57,7 @@ Note that it's stongly encouraged that you use a venv. To set one up, run `pytho
 
 #### Captchas and other misc. barriers
 
-This software is designed around Selenium, a browser automation tool. This does, however, mean that the program can be stopped by various bot defenses. This would happen even if you downloaded all the [~182 data dumps](https://stackexchange.com/sites#questionsperday) fully by hand, because it's a _lot_ of repeated operations. 
+This software is designed around Selenium, a browser automation tool. This does, however, mean that the program can be stopped by various bot defenses. This would happen even if you downloaded all the [~183 data dumps](https://stackexchange.com/sites#questionsperday) fully by hand, because it's a _lot_ of repeated operations. 
 
 This is where notification systems come in; expecting you to sit and watch for potentially a significant number of hours is not a good use of time. If anything happens, you'll be notified, so you don't have to continuously watch the program. Currently, only a native desktop notifier is supported, but support for other notifiers may be added in the future.
 
