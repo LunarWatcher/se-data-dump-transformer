@@ -67,7 +67,7 @@ ArchiveParser::ArchiveParser(const std::filesystem::path& path)
     archive_read_support_format_7zip(a);
     archive_read_support_filter_all(a);
     
-    int r = archive_read_open_filename(a, path.c_str(), BLOCK_SIZE);
+    int r = archive_read_open_filename(a, path.string().c_str(), BLOCK_SIZE);
     if (r != ARCHIVE_OK) {
         std::cerr << "Failed to read archive with error code = " << r << ": " << archive_error_string(a) << std::endl;
         throw std::runtime_error("Failed to read archive");
@@ -83,7 +83,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
     archive_entry *entry;
 
     ParserContext ctx {
-        .site = this->archivePath.filename().replace_extension(),
+        .site = this->archivePath.filename().replace_extension().string(),
         .archivePath = this->archivePath,
         .conf = conf
     };
