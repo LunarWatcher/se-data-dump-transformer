@@ -20,7 +20,7 @@ ArchiveWriter::ArchiveWriter(const std::filesystem::path& basePath) : archiveNam
     archive_write_set_format_option(a, "7zip", "compression", "lzma2");
     archive_write_set_format_option(a, "7zip", "compression-level", "9");
     
-    r = archive_write_open_filename(a, archiveName.c_str());
+    r = archive_write_open_filename(a, archiveName.string().c_str());
     if (r != ARCHIVE_OK) {
         std::cerr << archive_error_string(a) << std::endl;
     }

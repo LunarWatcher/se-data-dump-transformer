@@ -1,5 +1,7 @@
 # Stack Exchange data dump downloader and transformer
 
+[![Data dump transformer build](https://github.com/LunarWatcher/se-data-dump-transformer/actions/workflows/transformer.yml/badge.svg)](https://github.com/LunarWatcher/se-data-dump-transformer/actions/workflows/transformer.yml)
+
 **NOTE:** This repo does not yet gather the data dump, as it has not yet been released in the new format. It currently contains the scaffolding required to deal with some of SE's bullshit, to make sure it can be quickly adapted to actually download the data dump parts when they become available.
 
 **Disclaimer:** This project is not affiliated with Stack Exchange, Inc.
