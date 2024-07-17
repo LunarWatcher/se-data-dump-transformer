@@ -9,6 +9,9 @@ add_executable(sedd-transformer
     src/Main.cpp
 
     src/data/ArchiveParser.cpp
+    src/data/ArchiveWriter.cpp
+
+    src/data/transformers/JSONTransformer.cpp
 )
 
 include(FetchContent)

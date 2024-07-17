@@ -44,6 +44,7 @@ Note that it's stongly encouraged that you use a venv. To set one up, run `pytho
 ### Requirements
 
 * `pip3 install -r requirements.txt`
+* Lots of storage. The 2024Q1 data dump was 92GB
 
 
 ### Config, running, and what to expect
@@ -67,7 +68,13 @@ As of Q1 2024, the data dump was a casual 93GB in compressed size. If you have y
 
 However, if you use the built-in transformer pipeline, you'll need to expect a _lot_ more data use. 
 
-The output, by default, is compressed back into 7z if dealing with a file-based transformer. Due to this, an intermediate file write is performed prior to compressing back into a .7z
+The output, by default, is compressed back into 7z if dealing with a file-based transformer. Due to this, an intermediate file write is performed prior to compressing back into a .7z. At runtime, you need:
+
+* The compressed data dump; at least 92GB and increasing with each dump
+* The compressed converted data dump; depending on compression rates for the specific format, this anywhere from a little less than the original size to significantly larger
+* A significant amount of space for intermediate files. While these will be deleted as soon as they're done and compressed, they'll take up a significant amount of space on the disk in the meanwhile
+
+Note that the transformer pipeline is executed separately; see the transformer section below.
 
 #### Execution time 
 

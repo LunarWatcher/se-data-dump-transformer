@@ -1,15 +1,21 @@
 #pragma once
 
+#include "data/ArchiveWriter.hpp"
 #include "data/Transformer.hpp"
 #include <filesystem>
 
 namespace sedd {
 
 class JSONTransformer : public Transformer {
+private:
+    std::shared_ptr<ArchiveWriter> writer;
 public:
-    JSONTransformer();
+    void endFile() override;
+    void beginFile(const ParserContext& ctx) override;
+    void beginArchive(const ParserContext& ctx) override;
+    void endArchive(const ParserContext& ctx) override;
 
-    virtual void parseLine(const pugi::xml_node& row, const ParserContext& ctx) = 0;
+    void parseLine(const pugi::xml_node& row, const ParserContext& ctx) override;
 };
 
 }

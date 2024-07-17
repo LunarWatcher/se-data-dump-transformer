@@ -3,6 +3,7 @@ compile_commands.json
 
 # Contains the downloaded data dump
 /downloads/
+/out/
 
 # Source: https://github.com/github/gitignore/blob/main/Python.gitignore {{{
 # Byte-compiled / optimized / DLL files

@@ -1,6 +1,9 @@
 #include "ArchiveParser.hpp"
+#include "data/GlobalContext.hpp"
 #include "spdlog/spdlog.h"
 #include <pugixml.hpp>
+
+#include "Transformer.hpp"
 
 #include <archive.h>
 #include <archive_entry.h>
@@ -41,10 +44,24 @@ std::string DataDumpFileType::filetypeToStr(DataDumpFileType type) {
     return map.at(type);
 }
 
+std::string DataDumpFileType::toFilename(DataDumpFileType type) {
+    // TODO: the redundancy with filetypeToStr is stupid. Figure out a better system
+    static std::unordered_map<DataDumpFileType, std::string> map = {
+        {DataDumpFileType::BADGES, "Badges"},
+        {DataDumpFileType::COMMENTS, "Comments"},
+        {DataDumpFileType::POST_HISTORY, "PostHistory"},
+        {DataDumpFileType::POST_LINKS, "PostLinks"},
+        {DataDumpFileType::POSTS, "Posts"},
+        {DataDumpFileType::TAGS, "Tags"},
+        {DataDumpFileType::USERS, "Users"},
+        {DataDumpFileType::VOTES, "Votes"},
+    };
+
+    return map.at(type);
+}
+
 ArchiveParser::ArchiveParser(const std::filesystem::path& path) 
-    : archivePath(path), outputPath(
-        archivePath.parent_path() / "output"
-    ),
+    : archivePath(path),
     a(archive_read_new())
 {
     archive_read_support_format_7zip(a);
@@ -62,19 +79,26 @@ ArchiveParser::~ArchiveParser() {
     archive_read_free(a);
 }
 
-void ArchiveParser::read() {
+void ArchiveParser::read(const GlobalContext& conf) {
     archive_entry *entry;
 
     ParserContext ctx {
         .site = this->archivePath.filename().replace_extension(),
+        .archivePath = this->archivePath,
+        .conf = conf
     };
+
+    if (conf.transformer) {
+        conf.transformer->beginArchive(ctx);
+    }
 
     while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
         std::string entryName = archive_entry_pathname(entry);
-        std::cout << "Extracting " << ctx.site << "/" << entryName << std::endl;
+        spdlog::info("Extracting {}/{}", ctx.site, entryName);
 
         ctx.currType = DataDumpFileType::_UNKNOWN;
         ctx.currTypeStr = "";
+
 
         size_t readSize;
         la_int64_t offset;
@@ -131,11 +155,13 @@ void ArchiveParser::read() {
                         throw std::runtime_error("Failed to parse line as XML");
                     }
                     const auto& node = doc.first_child();
-                    for (pugi::xml_attribute attr : node.attributes()) {
-                        spdlog::debug("{} = {}", attr.name(), attr.value());
-                    }
+                    //for (pugi::xml_attribute attr : node.attributes()) {
+                        //spdlog::debug("{} = {}", attr.name(), attr.value());
+                    //}
 
-                    // TODO: forward to transformer
+                    if (conf.transformer) {
+                        conf.transformer->parseLine(node, ctx);
+                    }
                 } else if (ctx.currType == DataDumpFileType::_UNKNOWN) {
                     //for (const auto& tag : KNOWN_TAGS) {
                         //if (line == "<" + tag + ">") {
@@ -154,6 +180,10 @@ void ArchiveParser::read() {
 
                         ctx.currType = filetype;
                         ctx.currTypeStr = std::move(word);
+
+                        if (conf.transformer) {
+                            conf.transformer->beginFile(ctx);
+                        }
                     }
                 } else {
                     spdlog::warn("Unknown line: {}", line);
@@ -166,7 +196,14 @@ void ArchiveParser::read() {
             std::cerr << "Failed to fully parse file; found trailing block past EOF: " << incompleteBlock << std::endl;
             throw std::runtime_error("Failed to fully parse file");
         }
+        if (conf.transformer) {
+            conf.transformer->endFile();
+        }
 
+    }
+
+    if (conf.transformer) {
+        conf.transformer->endArchive(ctx);
     }
 }
 
