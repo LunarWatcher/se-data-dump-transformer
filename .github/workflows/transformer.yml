@@ -28,3 +28,9 @@ jobs:
           mkdir build && cd build
           cmake ..
           cmake --build . -j 2
+      - name: Debug binaries
+        shell: bash
+        run:  |
+          cd build
+          ls -la bin
+          ls -la lib
