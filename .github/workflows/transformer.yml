@@ -28,10 +28,3 @@ jobs:
           mkdir build && cd build
           cmake ..
           cmake --build . -j 2
-      - name: Debug binaries
-        if: ${{ failure() && matrix.os == 'windows-latest' }}
-        shell: bash
-        run:  |
-          cd build
-          ls -la bin/Debug
-          ls -la lib/Debug
