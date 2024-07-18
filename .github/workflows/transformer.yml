@@ -29,9 +29,9 @@ jobs:
           cmake ..
           cmake --build . -j 2
       - name: Debug binaries
-        if: 'failure()'
+        if: 'failure() && ${{ matrox.os }} == "windows-latest"'
         shell: bash
         run:  |
           cd build
-          ls -la bin
-          ls -la lib
+          ls -la bin/Debug
+          ls -la lib/Debug
