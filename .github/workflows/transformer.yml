@@ -29,6 +29,7 @@ jobs:
           cmake ..
           cmake --build . -j 2
       - name: Debug binaries
+        if: 'failed()'
         shell: bash
         run:  |
           cd build
