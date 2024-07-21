@@ -10,14 +10,9 @@ set (CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 set (ENABLE_TEST OFF CACHE STRING "" FORCE)
 
-add_executable(sedd-transformer
-    src/Main.cpp
-
-    src/data/ArchiveParser.cpp
-    src/data/ArchiveWriter.cpp
-
-    src/data/transformers/JSONTransformer.cpp
-)
+if (UNIX)
+    set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=undefined")
+endif()
 
 include(FetchContent)
 FetchContent_Declare(
@@ -43,20 +38,48 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/CLIUtils/CLI11.git
     GIT_TAG v2.4.2
 )
+FetchContent_Declare(
+    yyjson
+    GIT_REPOSITORY https://github.com/ibireme/yyjson
+    GIT_TAG 0.10.0
+)
 
+FetchContent_MakeAvailable(yyjson)
 FetchContent_MakeAvailable(cli11)
 FetchContent_MakeAvailable(spdlog)
 FetchContent_MakeAvailable(stc)
 FetchContent_MakeAvailable(archive)
 FetchContent_MakeAvailable(pugixml)
 
-target_include_directories(sedd-transformer PUBLIC src)
-target_link_Libraries(
-    sedd-transformer 
-PUBLIC 
+add_executable(sedd-transformer
+    src/Main.cpp
+
+)
+add_library(sedd-src STATIC
+    src/data/ArchiveParser.cpp
+    src/data/ArchiveWriter.cpp
+
+    src/data/transformers/JSONTransformer.cpp
+)
+target_include_directories(sedd-src PUBLIC src)
+target_link_libraries(
+    sedd-src
+PUBLIC
     archive 
     stc 
     spdlog::spdlog
     pugixml
     CLI11::CLI11
+    yyjson
 )
+target_link_libraries(
+    sedd-transformer 
+PUBLIC 
+    sedd-src
+)
+
+add_subdirectory(tests EXCLUDE_FROM_ALL)
+add_custom_target(test
+    COMMAND tests
+    DEPENDS tests
+    COMMENT "Test the data dump transformer ")

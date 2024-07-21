@@ -11,6 +11,7 @@ namespace sedd {
 
 namespace DataDumpFileType {
     enum DataDumpFileType {
+        // If badges stops being first, update the CheckSchema test
         BADGES,
         COMMENTS,
         POST_HISTORY,
@@ -19,6 +20,7 @@ namespace DataDumpFileType {
         TAGS,
         USERS,
         VOTES,
+        // Must always be last; place any other values ahead of this
         _UNKNOWN
     };
 

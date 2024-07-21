@@ -155,9 +155,6 @@ void ArchiveParser::read(const GlobalContext& conf) {
                         throw std::runtime_error("Failed to parse line as XML");
                     }
                     const auto& node = doc.first_child();
-                    //for (pugi::xml_attribute attr : node.attributes()) {
-                        //spdlog::debug("{} = {}", attr.name(), attr.value());
-                    //}
 
                     if (conf.transformer) {
                         conf.transformer->parseLine(node, ctx);
