@@ -27,9 +27,12 @@ std::map<std::string, TransformerType> strToTransformer {
 };
 
 std::shared_ptr<sedd::Transformer> getTransformer(TransformerType type) {
+#define SEDD_TRANSFORMER(type, ret) {TransformerType::type, []() { spdlog::info("Using transformer " #type); return ret; }}
+
     static auto map = std::map<TransformerType, std::function<std::shared_ptr<sedd::Transformer>()>> {
-        {TransformerType::JSON, []() { return std::make_shared<sedd::JSONTransformer>(); }},
-        {TransformerType::DRY_RUN, []() { return nullptr; }},
+        SEDD_TRANSFORMER(JSON, std::make_shared<sedd::JSONTransformer>()),
+
+        SEDD_TRANSFORMER(DRY_RUN, nullptr),
     };
 
     return map.at(type)();
@@ -71,17 +74,15 @@ int main(int argc, char* argv[]) {
     };
 
     std::filesystem::create_directories(ctx.destDir);
+    spdlog::info("Configuration:");
+    spdlog::info("Files: [source = {}, dest = {}]", ctx.sourceDir.string(), ctx.destDir.string());
 
     for (const auto& entry : std::filesystem::directory_iterator(ctx.sourceDir)) {
         spdlog::info("Now processing {}", entry.path().string());
 
         auto parser = sedd::ArchiveParser(entry);
         parser.read(ctx);
-
-        std::this_thread::sleep_for(10s);
-
     }
 
-    std::this_thread::sleep_for(10s);
     return 0;
 }

@@ -10,7 +10,7 @@
 namespace sedd {
 
 ArchiveWriter::ArchiveWriter(const std::filesystem::path& basePath) : archiveName(basePath.string() + ".7z"), tmpOutputDir(basePath) {
-    spdlog::debug("Opening archive {}", archiveName.string());
+    spdlog::debug("Opening output archive: {}", archiveName.string());
     // TODO: figure out if archive_write_new() works
     a = archive_write_new();
     int r = archive_write_set_format_7zip(a);

@@ -1,6 +1,6 @@
 # Stack Exchange data dump downloader and transformer
 
-[![Data dump transformer build](https://github.com/LunarWatcher/se-data-dump-transformer/actions/workflows/transformer.yml/badge.svg)](https://github.com/LunarWatcher/se-data-dump-transformer/actions/workflows/transformer.yml)
+[![Data dump transformer build](https://github.com/LunarWatcher/se-data-dump-transformer/actions/workflows/transformer.yml/badge.svg)](https://github.com/LunarWatcher/se-data-dump-transformer/actions/workflows/transformer.yml) [![Stackapps listing](https://img.shields.io/badge/StackApps%20listing-FF9900)](https://stackapps.com/q/10591/69829)
 
 **NOTE:** This repo does not yet gather the data dump, as it has not yet been released in the new format. It currently contains the scaffolding required to deal with some of SE's bullshit, to make sure it can be quickly adapted to actually download the data dump parts when they become available.
 
@@ -106,9 +106,9 @@ cd transformer
 mkdir build
 cd build
 # Option 1: debug:
-cmake .. -DCMAKE_BUILD_Type=Debug 
+cmake .. -DCMAKE_BUILD_TYPE=Debug 
 # Option 2: release mode; strongly recommended for anything that needs the performance:
-cmake .. -DCMAKE_BUILD_Type=Release
+cmake .. -DCMAKE_BUILD_TYPE=Release
 # ---
 # Replace 8 with the number of cores/threads you have
 cmake --build . -j 8

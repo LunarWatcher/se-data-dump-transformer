@@ -1,0 +1,14 @@
+services:
+  transformer:
+    build: 
+      context: .
+      dockerfile: transformer/Dockerfile
+    environment:
+      - SEDD_OUTPUT_TYPE=${SEDD_OUTPUT_TYPE:-json}
+      - SPDLOG_LEVEL=${SPDLOG_LEVEL}
+    user: "1000"
+    volumes:
+      # Change these paths to use different source directories
+      # for the container
+      - ./downloads/:/app/downloads
+      - ./out/:/app/out
