@@ -31,9 +31,22 @@ namespace DataDumpFileType {
 
 struct ParserContext {
     /**
-     * Site URL, for example stackoverflow.com. Extracted from the source archive
+     * Base domain. Extracted verbatim from the name of the archive.
+     * Example: stackoverflow.com-Votes
      */
-    std::string site;
+    std::string baseDomain;
+
+    /**
+     * Normalised site name without archive type indicators
+     *
+     * Example: stackoverflow.com
+     *
+     * For all sites except stackoverflow.com, baseSiteName == baseDomain,
+     * as English (non-meta) Stack Overflow is the only site with enough data
+     * to warrant splitting across multiple source archives.
+     */
+    std::string baseSiteName;
+
     std::filesystem::path archivePath;
 
     /**

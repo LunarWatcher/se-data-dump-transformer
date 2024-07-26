@@ -17,12 +17,16 @@
 
 enum class TransformerType {
     JSON,
+    SQLITE,
 
     DRY_RUN,
 };
 
+class InvalidTransformer : public sedd::Transformer {};
+
 std::map<std::string, TransformerType> strToTransformer {
     {"json", TransformerType::JSON},
+    {"sqlite", TransformerType::SQLITE},
     {"noop", TransformerType::DRY_RUN},
 };
 

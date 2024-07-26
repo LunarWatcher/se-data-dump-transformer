@@ -82,8 +82,12 @@ ArchiveParser::~ArchiveParser() {
 void ArchiveParser::read(const GlobalContext& conf) {
     archive_entry *entry;
 
+    auto baseDomain = this->archivePath.filename().replace_extension().string();
+    auto baseName = stc::string::split(baseDomain, '-', 1).at(0);
+
     ParserContext ctx {
-        .site = this->archivePath.filename().replace_extension().string(),
+        .baseDomain = baseDomain,
+        .baseSiteName = baseName,
         .archivePath = this->archivePath,
         .conf = conf
     };
@@ -94,7 +98,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
 
     while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
         std::string entryName = archive_entry_pathname(entry);
-        spdlog::info("Extracting {}/{}", ctx.site, entryName);
+        spdlog::info("Extracting {}/{}", ctx.baseDomain, entryName);
 
         ctx.currType = DataDumpFileType::_UNKNOWN;
         ctx.currTypeStr = "";
