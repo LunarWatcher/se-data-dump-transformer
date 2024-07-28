@@ -75,6 +75,16 @@ Note that it's stongly encouraged that you use a venv. To set one up, run `pytho
 3. Open `config.json`, and edit in the values. The values are described within the JSON file itself.
 4. Run the extractor with `python3 -m sedd`. If you're on Windows, you may need to run `python -m sedd` instead. 
 
+##### Download modes (not yet implemented)
+
+There are two download modes:
+* `key TBA`: Starts downloading data dumps as soon as the URLs become available, but at the expense of download performance of individual files. This means up to ~365 concurrent downloads, though that number will go down rather quickly due to the many small data dumps.
+
+    This is both the default **and the (unofficially) recommended way** to download the data dumps.
+
+    If SE wanted to avoid this, they could've [bothered implementing combined main + meta downloads](https://meta.stackexchange.com/questions/401324/announcing-a-change-to-the-data-dump-process?cb=1#comment1340364_401324), or even better, a "download all" button, before pushing this utter crap.
+* `key TBA`: Downloads one data dump at a time, maximising the download speed for each individual data dump. Recommended if you're on an unstable or slow internet connection, or want to start converting the dump progressively as new entries appear.
+
 #### Captchas and other misc. barriers
 
 This software is designed around Selenium, a browser automation tool. This does, however, mean that the program can be stopped by various bot defenses. This would happen even if you downloaded all the [~183 data dumps](https://stackexchange.com/sites#questionsperday) fully by hand, because it's a _lot_ of repeated operations. 

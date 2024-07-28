@@ -23,6 +23,7 @@ public:
 
     void open(const std::string& filename);
     void write(const std::string& entry);
+    void addBinaryFile(const std::string& filename);
     void close();
     void commit();
 

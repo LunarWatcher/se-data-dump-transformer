@@ -51,7 +51,7 @@ void ArchiveWriter::commit() {
         archive_entry_set_filetype(currEntry, AE_IFREG);
         archive_entry_set_perm(currEntry, 0644);
 
-        std::ifstream f(this->tmpOutputDir / file);
+        std::ifstream f(this->tmpOutputDir / file, std::ios_base::binary);
 
         std::streampos bytesStart = f.tellg();
         f.seekg(0, std::ios::end);
@@ -72,43 +72,15 @@ void ArchiveWriter::commit() {
         // while (true) because https://stackoverflow.com/a/59296668/6296561
         // Using while (f) terminates prematurely
         while (true) {
-            std::string tmp;
-            std::stringstream buff;
+            char inbuff[65535];
+            std::string buff;
 
             // TODO: Figure if it's better for performance to write larger chunks at once, or if writing lines directly is equally good
-            bool buffFull = false;
-            while (stc::StdFix::getline(f, tmp)) {
-                buff << tmp;
-#ifdef _WIN32
-                // Windows needs \r\n because std::ofstream (used to write the files) converts \n
-                // to \r\n.
-                // This means that when the file size is read, it's read with twice as many newlines
-                // as what's output if using \n everywhere, which results in a bunch of excess
-                // characters (\<ESC>) at the end of the file, which breaks reading
-                // What a waste of bytes though
-                buff << "\r\n";
-#else
-                // Everywhere else, \n is used even if that isn't the main newline type for
-                // compatibility and portability reasons.
-                // Also, Mac's garbage \r newlines are still just one character, so it doesn't
-                // fuck up the size of the archives
-                buff << "\n";
-#endif
-                if (buff.tellp() > 65535) {
-                    buffFull = true;
-                    break;
-                }
-            }
+            f.read(inbuff, 65535);
 
-            if (buff.tellp() == 0) break;
+            if (f.gcount() == 0) break;
 
-            std::string buffstr = buff.str();
-
-            r = archive_write_data(a, buffstr.data(), buffstr.size());
-
-            if (!buffFull) {
-                break;
-            }
+            r = archive_write_data(a, inbuff, f.gcount());
         }
 
         r = archive_write_finish_entry(a);
@@ -137,6 +109,10 @@ void ArchiveWriter::write(const std::string& entry) {
 
 void ArchiveWriter::close() {
     writer.close();
+}    
+
+void ArchiveWriter::addBinaryFile(const std::string& filename) {
+    this->files.push_back(filename);
 }
 
 }
