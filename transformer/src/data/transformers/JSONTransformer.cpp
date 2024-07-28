@@ -14,7 +14,7 @@ void JSONTransformer::beginFile(const ParserContext& ctx) {
 }
 
 void JSONTransformer::endFile() {
-    this->writer->write("\n]");
+    this->writer->write("\n]\n");
     started = false;
     this->writer->close();
 }

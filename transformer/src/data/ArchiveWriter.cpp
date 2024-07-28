@@ -4,8 +4,11 @@
 #include "spdlog/spdlog.h"
 #include <filesystem>
 #include <ios>
+#include <sstream>
 #include <stdexcept>
 #include <iostream>
+
+#include <stc/StdFix.hpp>
 
 namespace sedd {
 
@@ -55,7 +58,7 @@ void ArchiveWriter::commit() {
         std::streampos bytesEnd = f.tellg();
 
         f.clear();
-        f.seekg(0);
+        f.seekg(0, std::ios::beg);
 
 
         archive_entry_set_size(currEntry, bytesEnd - bytesStart);
@@ -63,22 +66,54 @@ void ArchiveWriter::commit() {
         int r = archive_write_header(a, currEntry);
         if (r != ARCHIVE_OK) {
             std::cerr << archive_error_string(a) << std::endl;
+            throw std::runtime_error("Failed to write header");
         }
 
-        while (f) {
-            std::string buff, tmp;
-            while (f && std::getline(f, tmp)) {
-                buff += tmp + "\n";
-                if (buff.size() > 65535) {
+        // while (true) because https://stackoverflow.com/a/59296668/6296561
+        // Using while (f) terminates prematurely
+        while (true) {
+            std::string tmp;
+            std::stringstream buff;
+
+            bool buffFull = false;
+            while (stc::StdFix::getline(f, tmp)) {
+                buff << tmp;
+#ifdef _WIN32
+                // Windows needs \r\n because std::ofstream (used to write the files) converts \n
+                // to \r\n.
+                // This means that when the file size is read, it's read with twice as many newlines
+                // as what's output if using \n everywhere, which results in a bunch of excess
+                // characters (\<ESC>) at the end of the file, which breaks reading
+                buff << "\r\n";
+#else
+                // Everywhere else, \n is used even if that isn't the main newline type for
+                // compatibility and portability reasons.
+                // Also, Mac's garbage \r newlines are still just one character, so it doesn't
+                // fuck up the size of the archives
+                buff << "\n";
+#endif
+                if (buff.tellp() > 65535) {
+                    buffFull = true;
                     break;
                 }
             }
 
-            if (buff.size() == 0) break;
-            r = archive_write_data(a, buff.data(), buff.size());
+            if (buff.tellp() == 0) break;
+
+            std::string buffstr = buff.str();
+
+            r = archive_write_data(a, buffstr.data(), buffstr.size());
+
+            if (!buffFull) {
+                break;
+            }
         }
 
-
+        r = archive_write_finish_entry(a);
+        if (r != ARCHIVE_OK) {
+            std::cerr << archive_error_string(a) << std::endl;
+            throw std::runtime_error("Failed to finish archive");
+        }
         archive_entry_free(currEntry);
     }
 
