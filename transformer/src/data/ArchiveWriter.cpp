@@ -75,6 +75,7 @@ void ArchiveWriter::commit() {
             std::string tmp;
             std::stringstream buff;
 
+            // TODO: Figure if it's better for performance to write larger chunks at once, or if writing lines directly is equally good
             bool buffFull = false;
             while (stc::StdFix::getline(f, tmp)) {
                 buff << tmp;
@@ -84,6 +85,7 @@ void ArchiveWriter::commit() {
                 // This means that when the file size is read, it's read with twice as many newlines
                 // as what's output if using \n everywhere, which results in a bunch of excess
                 // characters (\<ESC>) at the end of the file, which breaks reading
+                // What a waste of bytes though
                 buff << "\r\n";
 #else
                 // Everywhere else, \n is used even if that isn't the main newline type for
