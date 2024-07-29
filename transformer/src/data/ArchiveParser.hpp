@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <string>
 #include <vector>
+#include "meta/ArchiveMacros.hpp"
 
 namespace sedd {
 

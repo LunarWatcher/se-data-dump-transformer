@@ -64,14 +64,10 @@ ArchiveParser::ArchiveParser(const std::filesystem::path& path)
     : archivePath(path),
     a(archive_read_new())
 {
-    archive_read_support_format_7zip(a);
-    archive_read_support_filter_all(a);
+    SEDDARCHIVE_CHECK_ERROR(a, archive_read_support_format_7zip(a));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_read_support_filter_all(a));
     
-    int r = archive_read_open_filename(a, path.string().c_str(), BLOCK_SIZE);
-    if (r != ARCHIVE_OK) {
-        std::cerr << "Failed to read archive with error code = " << r << ": " << archive_error_string(a) << std::endl;
-        throw std::runtime_error("Failed to read archive");
-    }
+    SEDDARCHIVE_CHECK_ERROR(a, archive_read_open_filename(a, path.string().c_str(), BLOCK_SIZE));
 
 }
 
