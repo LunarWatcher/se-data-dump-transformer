@@ -47,8 +47,10 @@ A [different project](https://communitydatadump.com/index.html) is currently mai
 
 For completeness (well, sort of, none of these lists are exhaustive), this is a list of incomplete archives (archives that limit the number of included tables and/or sites)
 
-* Brent Ozar's [MSSQL version](https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/) (torrent; [open-source converter](https://github.com/BrentOzarULTD/soddi); Stack Overflow only; all tables)
-* Jason Punyon's [SQLite version](https://seqlite.puny.engineering/) (no torrent; closed-source converter[^1]; posts only)
+| Maintainer | Format | Torrent | Converter | Site(s) | Tables | 
+| --- | --- | --- | --- | --- |
+| Brent Ozar | [MSSQL](https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/) | Yes | [MIT-licensed](https://github.com/BrentOzarULTD/soddi) | Stack Overflow only | All tables |
+| Jason Punyon | [SQLite](https://seqlite.puny.engineering/) | No | Closed-source[^1] | All sites | posts only |
 
 [^1]: I've been unable to find the generator code, but I've also been unable to find a statement confirming that it's closed-source. It's possible it is open-source, but if it is, it's hard to find the source
 
