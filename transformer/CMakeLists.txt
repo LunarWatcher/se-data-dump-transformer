@@ -82,6 +82,11 @@ endif()
 
 if (NOT WIN32)
     set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=undefined")
+    set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
+else()
+    set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O3")
+
+    add_definitions(-DNOMINMAX=1)
 endif()
 
 add_executable(sedd-transformer

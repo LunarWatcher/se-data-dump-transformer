@@ -68,7 +68,7 @@ ArchiveWriter::~ArchiveWriter() {
 void ArchiveWriter::commit() {
 
     for (auto& file : this->files) {
-        spdlog::debug("Now committing {} to archive", file);
+        spdlog::info("Now committing {} to archive", file);
         archive_entry* currEntry = archive_entry_new();
         archive_entry_set_pathname(currEntry, file.c_str());
         archive_entry_set_filetype(currEntry, AE_IFREG);
