@@ -93,5 +93,11 @@ int main(int argc, char* argv[]) {
         parser.read(ctx);
     }
 
+#ifdef _WIN32
+    // No errors made me miss a segfault
+    // How people work with this garbage OS without going insane is beyond me
+    spdlog::info("Windows hides certain error categories and just makes the exit look normal and expected (outside MSVS anyway), so this is your confirmation that everything worked fine");
+#endif
+
     return 0;
 }
