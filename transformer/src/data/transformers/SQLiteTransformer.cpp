@@ -4,6 +4,7 @@
 #include "data/ArchiveParser.hpp"
 #include "data/Schema.hpp"
 #include "data/transformers/JSONTransformer.hpp"
+#include "data/util/ArchiveCache.hpp"
 #include "spdlog/fmt/bundled/format.h"
 #include "spdlog/spdlog.h"
 #include <cstddef>
@@ -22,11 +23,13 @@ void SQLiteTransformer::endFile() {
 void SQLiteTransformer::beginFile(const ParserContext& ctx) {
     this->transaction = std::make_shared<SQLite::Transaction>(*db);
     currSchema = Schema::schema.at(ctx.currType);
+    cache.registerType(ctx.baseDomain, ctx.currType);
 }
 
 void SQLiteTransformer::beginArchive(const ParserContext& ctx) {
-    std::string fn = (ctx.conf.destDir / (ctx.baseSiteName + ".sqlite3")).string();
-    spdlog::debug("Opening {}", fn);
+    std::filesystem::path fn = ctx.conf.destDir / (ctx.baseSiteName + ".sqlite3");
+    cache.initArchive(ctx, fn.filename().string());
+    spdlog::debug("Opening {}", fn.string());
     this->db = std::make_shared<SQLite::Database>(
         fn,
         SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE
@@ -34,9 +37,11 @@ void SQLiteTransformer::beginArchive(const ParserContext& ctx) {
     genTables();
 }
 
-void SQLiteTransformer::endArchive(const ParserContext&) {
+void SQLiteTransformer::endArchive(const ParserContext& ctx) {
     this->transaction = nullptr;
     this->db = nullptr;
+
+    cache.checkComplete(ctx.baseDomain);
 }
 
 void SQLiteTransformer::parseLine(const pugi::xml_node& row, const ParserContext& ctx) {
@@ -79,7 +84,7 @@ void SQLiteTransformer::parseLine(const pugi::xml_node& row, const ParserContext
                 rawInputs.push_back(strval);
                 break;
             case Schema::BOOL:
-                rawInputs.push_back((long long) attr.as_bool());
+                rawInputs.push_back(attr.as_bool());
                 break;
             default:
                 throw std::runtime_error("Unknown field type");
@@ -151,8 +156,7 @@ void SQLiteTransformer::genTables() {
                 ss << "DATETIME ";
                 break;
             case Schema::BOOL:
-                // SQLite bools are ints
-                ss << "INTEGER ";
+                ss << "BOOLEAN ";
                 break;
             }
 

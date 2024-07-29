@@ -94,6 +94,8 @@ add_library(sedd-src STATIC
 
     src/data/transformers/JSONTransformer.cpp
     src/data/transformers/SQLiteTransformer.cpp
+
+    src/data/util/ArchiveCache.cpp
 )
 target_compile_options(
     sedd-src

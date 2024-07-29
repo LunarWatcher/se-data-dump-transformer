@@ -1,6 +1,7 @@
 #include "ArchiveWriter.hpp"
 #include "archive.h"
 #include "archive_entry.h"
+#include "data/ArchiveWriter.hpp"
 #include "spdlog/spdlog.h"
 #include <filesystem>
 #include <ios>
@@ -12,7 +13,19 @@
 
 namespace sedd {
 
-ArchiveWriter::ArchiveWriter(const std::filesystem::path& basePath) : archiveName(basePath.string() + ".7z"), tmpOutputDir(basePath) {
+ArchiveWriter::ArchiveWriter(const std::filesystem::path& basePath, bool createTempDir) 
+    : ArchiveWriter(basePath, basePath.string() + "-tmp", createTempDir) {}
+
+// TODO: These paths make no sense. Refactor
+ArchiveWriter::ArchiveWriter(
+    const std::filesystem::path& basePath,
+    const std::filesystem::path& tmpOutputDir,
+    bool createTempDir
+) :
+    archiveName(basePath.string() + ".7z"),
+    tmpOutputDir(tmpOutputDir),
+    createTempDir(createTempDir)
+{
     spdlog::debug("Opening output archive: {}", archiveName.string());
     // TODO: figure out if archive_write_new() works
     a = archive_write_new();
@@ -28,7 +41,9 @@ ArchiveWriter::ArchiveWriter(const std::filesystem::path& basePath) : archiveNam
         std::cerr << archive_error_string(a) << std::endl;
     }
 
-    std::filesystem::create_directories(this->tmpOutputDir);
+    if (createTempDir) {
+        std::filesystem::create_directories(this->tmpOutputDir);
+    }
 }
 
 ArchiveWriter::~ArchiveWriter() {
@@ -39,7 +54,15 @@ ArchiveWriter::~ArchiveWriter() {
         std::cerr << archive_error_string(a) << std::endl;
     }
     archive_write_free(a);
-    std::filesystem::remove_all(this->tmpOutputDir);
+    if (createTempDir) {
+        std::filesystem::remove_all(this->tmpOutputDir);
+    } else {
+        // TODO: This feels sketch
+        for (auto& file : files) { 
+            spdlog::debug("Binary file::Removing {}", (this->tmpOutputDir / file).string());
+            std::filesystem::remove(this->tmpOutputDir / file);
+        }
+    }
 }
 
 void ArchiveWriter::commit() {
@@ -94,6 +117,9 @@ void ArchiveWriter::commit() {
 }
 
 void ArchiveWriter::open(const std::string& filename) {
+    if (!createTempDir) {
+        throw std::runtime_error("Can't open() without a tempDir");
+    }
     spdlog::debug("Opening file {}", filename);
     this->files.push_back(filename);
     writer.open(tmpOutputDir / filename);
@@ -104,10 +130,16 @@ void ArchiveWriter::open(const std::string& filename) {
 }
 
 void ArchiveWriter::write(const std::string& entry) {
+    if (!writer) {
+        throw std::runtime_error("Writer not open");
+    }
     writer << entry;
 }
 
 void ArchiveWriter::close() {
+    if (!writer) {
+        return;
+    }
     writer.close();
 }    
 
