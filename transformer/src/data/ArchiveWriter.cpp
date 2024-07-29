@@ -2,10 +2,10 @@
 #include "archive.h"
 #include "archive_entry.h"
 #include "data/ArchiveWriter.hpp"
+#include "meta/ArchiveMacros.hpp"
 #include "spdlog/spdlog.h"
 #include <filesystem>
 #include <ios>
-#include <sstream>
 #include <stdexcept>
 #include <iostream>
 
@@ -32,10 +32,9 @@ ArchiveWriter::ArchiveWriter(
 
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_7zip(a));
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_option(a, "7zip", "compression", "lzma2"));
-    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_option(a, "7zip", "compression-level", "9"));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_option(a, "7zip", "compression-level", "7"));
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_bytes_per_block(a, BLOCK_SIZE));
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_open_filename(a, archiveName.string().c_str()));
-
 
     if (createTempDir) {
         std::filesystem::create_directories(this->tmpOutputDir);
@@ -89,18 +88,18 @@ void ArchiveWriter::commit() {
         }
 
         // while (true) because https://stackoverflow.com/a/59296668/6296561
-        // Using while (f) terminates prematurely
+        // Using while (f) terminates prematurely under certain conditions
         while (true) {
-            char inbuff[BLOCK_SIZE];
+            std::vector<char> inbuff(BLOCK_SIZE);
 
             std::string buff;
 
             // TODO: Figure if it's better for performance to write larger chunks at once, or if writing lines directly is equally good
-            f.read(inbuff, BLOCK_SIZE);
+            f.read(inbuff.data(), BLOCK_SIZE);
 
             if (f.gcount() == 0) break;
 
-            r = archive_write_data(a, inbuff, f.gcount());
+            r = archive_write_data(a, inbuff.data(), f.gcount());
         }
 
         r = archive_write_finish_entry(a);

@@ -1,10 +1,10 @@
 #include "ArchiveParser.hpp"
 #include "data/GlobalContext.hpp"
+#include "meta/ArchiveMacros.hpp"
 #include "spdlog/spdlog.h"
 #include <pugixml.hpp>
 
 #include "Transformer.hpp"
-
 #include <archive.h>
 #include <archive_entry.h>
 #include <iostream>
@@ -86,7 +86,9 @@ void ArchiveParser::read(const GlobalContext& conf) {
         .baseDomain = baseDomain,
         .baseSiteName = baseName,
         .archivePath = this->archivePath,
-        .conf = conf
+        .currType = DataDumpFileType::_UNKNOWN,
+        .currTypeStr = "",
+        .conf = conf,
     };
 
     if (conf.transformer) {
