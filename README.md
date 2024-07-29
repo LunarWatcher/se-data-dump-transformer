@@ -43,6 +43,15 @@ While these are preprocessed distributions of the data dump, this project is als
 
 A [different project](https://communitydatadump.com/index.html) is currently maintaining a list of both the source data dumps (XML), as well as other distributions. At the time of writing, it only consists of the historical XML dumps, making it identical to [a post on meta.SE](https://meta.stackexchange.com/a/224922/332043). Other distributions will appear as more tools like the transformer in this repo get more and better.
 
+### Other tools
+
+
+| Maintainer | Format | Torrent available | Converter | Site(s) | Tables | 
+| --- | --- | --- | --- | --- | --- | 
+| Maxwell175 | SQLite, Postgres, MSSQL | Partially[^2] | [AGPL-3.0](https://github.com/Maxwell175/StackExchangeDumpConverter) | All sites | All tables |
+
+[^2]: Only Postgres at the time of writing, with more planned
+
 ### Other data dump distributions and conversion conversion tools
 
 For completeness (well, sort of, none of these lists are exhaustive), this is a list of incomplete archives (archives that limit the number of included tables and/or sites)
