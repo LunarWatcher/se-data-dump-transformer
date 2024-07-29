@@ -39,8 +39,6 @@ While these are preprocessed distributions of the data dump, this project is als
 
 ## Known archives of new data dumps
 
-This is meant to be a list of all known archives and transformed versions of the new data dump. If one exists for the latest version already, that means you don't have to use any of these tools in the first place (though using the downloader in particular is encouraged, to make it harder for SE to abuse their PII access to blame individuals).
-
 ### Complete data dump archives
 
 A [different project](https://communitydatadump.com/index.html) is currently maintaining a list of both the source data dumps (XML), as well as other distributions. At the time of writing, it only consists of the historical XML dumps, making it identical to [a post on meta.SE](https://meta.stackexchange.com/a/224922/332043). Other distributions will appear as more tools like the transformer in this repo get more and better.
