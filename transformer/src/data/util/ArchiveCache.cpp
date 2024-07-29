@@ -3,6 +3,7 @@
 #include "data/util/ArchiveCache.hpp"
 #include "data/Schema.hpp"
 #include <spdlog/spdlog.h>
+#include <stdexcept>
 
 namespace sedd {
 
@@ -45,6 +46,9 @@ void ArchiveCache::checkComplete(const std::string& site) {
     // all the types are added
     
     spdlog::info("Committing binary file for {}", site);
+    if (!siteCache.writer) {
+        throw std::runtime_error("Logic error: siteCache.writer is nullptr");
+    }
     siteCache.writer->commit();
     spdlog::info("Committing {} done", site);
 
