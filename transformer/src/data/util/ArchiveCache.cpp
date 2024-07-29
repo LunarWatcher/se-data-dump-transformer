@@ -31,26 +31,25 @@ void ArchiveCache::registerType(const std::string& site, DataDumpFileType::DataD
 }
 
 void ArchiveCache::checkComplete(const std::string& site) {
-    const auto& schema = Schema::schema;
-    const auto& siteCache = siteColumnMaps.at(site);
+    {
+        const auto& schema = Schema::schema;
+        const auto& siteCache = siteColumnMaps.at(site);
 
-    if (schema.size() != siteCache.exhaustedFiletypes.size()) {
-        spdlog::debug("{} is not ready to commit (found {}, need {})",
-                      site,
-                      siteCache.exhaustedFiletypes.size(),
-                      schema.size());
-        return;
-    }
+        if (schema.size() != siteCache.exhaustedFiletypes.size()) {
+            spdlog::debug("{} is not ready to commit (found {}, need {})",
+                          site,
+                          siteCache.exhaustedFiletypes.size(),
+                          schema.size());
+            return;
+        }
 
-    // No point in checking if the values are identical; the set means that if the sizes match,
-    // all the types are added
-    
-    spdlog::info("Committing binary file for {}", site);
-    if (!siteCache.writer) {
-        throw std::runtime_error("Logic error: siteCache.writer is nullptr");
+        // No point in checking if the values are identical; the set means that if the sizes match,
+        // all the types are added
+        
+        spdlog::info("Committing binary file for {}", site);
+        siteCache.writer->commit();
+        spdlog::info("Committing {} done", site);
     }
-    siteCache.writer->commit();
-    spdlog::info("Committing {} done", site);
 
     siteColumnMaps.erase(siteColumnMaps.find(site));
 

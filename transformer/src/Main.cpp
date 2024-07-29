@@ -1,14 +1,15 @@
 #include <archive.h>
+#include <execution>
 #include <filesystem>
-#include <iostream>
 #include <memory>
-#include <thread>
-#include <chrono>
+#include <mutex>
+#include <semaphore>
 #include "CLI/CLI.hpp"
 #include "data/ArchiveParser.hpp"
 #include "data/GlobalContext.hpp"
 #include "data/transformers/SQLiteTransformer.hpp"
 #include "spdlog/cfg/helpers.h"
+#include <stc/StringUtil.hpp>
 
 #include "data/transformers/JSONTransformer.hpp"
 
@@ -57,12 +58,22 @@ int main(int argc, char* argv[]) {
     app.add_option("-o,--output", parseDir, "Path to the directory to dump output files to")
         ->required(false);
 
-    TransformerType transformer;
-    app.add_option("-t,--transformer", transformer, 
+    TransformerType transformerType;
+    app.add_option("-t,--transformer", transformerType, 
                    "The transformer to use. Note that the `noop` transformer is special as it does nothing "
                    "to the input. Should only be used to verify the file parsing without running a parser.")
         ->required()
         ->transform(CLI::CheckedTransformer(strToTransformer, CLI::ignore_case));
+
+    unsigned int threads = 1;
+    app.add_option(
+        "-j,--threads",
+        threads, 
+        "How many threads to use for processing. Note that more threads use more RAM"
+    )
+        ->required(false)
+        ->default_val(1)
+        ->check(CLI::PositiveNumber);
 
     CLI11_PARSE(app, argc, argv);
 
@@ -70,28 +81,67 @@ int main(int argc, char* argv[]) {
 
     spdlog::cfg::helpers::load_levels(level == nullptr ? "info" : level);
 
-    sedd::GlobalContext ctx {
+    sedd::GlobalContext baseCtx {
         .sourceDir = downloadDir,
         .destDir = [&]() -> std::filesystem::path {
             if (parseDir.size()) return parseDir;
             return std::filesystem::path(downloadDir) / "../out";
         }(),
-        .transformer = getTransformer(transformer),
+        .transformer = nullptr,
     };
 
-    std::filesystem::create_directories(ctx.destDir);
+    std::filesystem::create_directories(baseCtx.destDir);
     spdlog::info("Configuration:");
-    spdlog::info("Files: [source = {}, dest = {}]", ctx.sourceDir.string(), ctx.destDir.string());
+    spdlog::info("Files: [source = {}, dest = {}]", baseCtx.sourceDir.string(), baseCtx.destDir.string());
 
-    for (const auto& entry : std::filesystem::directory_iterator(ctx.sourceDir)) {
+    // At least MSVC doesn't like using directory_iterator directly in a parallel for_each because
+    //      Parallel algorithms require forward iterators or stronger.
+    // Which doesn't make sense to me, but it is what it is
+    std::vector<std::filesystem::path> dirIt;
+    for (auto& entry : std::filesystem::directory_iterator(baseCtx.sourceDir)) {
         if (entry.is_directory() || entry.path().extension() != ".7z") {
             continue;
         }
-        spdlog::info("Now processing {}", entry.path().string());
-
-        auto parser = sedd::ArchiveParser(entry);
-        parser.read(ctx);
+        dirIt.push_back(entry.path());
     }
+
+
+    std::counting_semaphore concurrencyGuard(threads);
+
+    std::map<std::string, std::mutex> locks;
+    std::mutex lockGuard;
+
+    std::for_each(
+        std::execution::par,
+        dirIt.begin(), dirIt.end(),
+        [&](const auto& entry) {
+            auto siteID = stc::string::split(entry.filename().replace_extension().string(), '-', 1)[0];
+            spdlog::debug("Preparing to lock {}", siteID);
+            // Acquire the site-specific mutex
+            // Not sure if this is necessary or if mutex acqusition is atomic, but better safe than sorry
+            // Also, this has functionally 0 overhead commpared to the archive processing. Literally hours
+            // to compress a file - sheesh
+            std::unique_lock<std::mutex> mapLock(lockGuard);
+            auto& siteMutex = locks[siteID];
+            mapLock.unlock();
+
+            // Lock the site-specific mutex. For most sites, no threads will be suspended here
+            std::lock_guard l(siteMutex);
+
+            // Limit concurrency to the specified number of threads
+            concurrencyGuard.acquire();
+
+            spdlog::info("Now processing {}", entry.string());
+
+            auto parser = sedd::ArchiveParser(entry);
+            // Dupe the global context and reinit the transformer
+            sedd::GlobalContext ctx = baseCtx;
+            ctx.transformer = getTransformer(transformerType);
+            parser.read(ctx);
+
+            concurrencyGuard.release();
+        }
+    );
 
 #ifdef _WIN32
     // No errors made me miss a segfault
