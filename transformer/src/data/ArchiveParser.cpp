@@ -61,8 +61,9 @@ std::string DataDumpFileType::toFilename(DataDumpFileType type) {
 }
 
 ArchiveParser::ArchiveParser(const std::filesystem::path& path) 
-    : archivePath(path),
-    a(archive_read_new())
+    : 
+        a(archive_read_new()),
+        archivePath(path)
 {
     SEDDARCHIVE_CHECK_ERROR(a, archive_read_support_format_7zip(a));
     SEDDARCHIVE_CHECK_ERROR(a, archive_read_support_filter_all(a));

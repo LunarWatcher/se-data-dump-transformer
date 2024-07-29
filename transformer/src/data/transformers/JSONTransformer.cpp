@@ -27,7 +27,7 @@ void JSONTransformer::beginArchive(const ParserContext& ctx) {
     );
 }
 
-void JSONTransformer::endArchive(const ParserContext& ctx) {
+void JSONTransformer::endArchive(const ParserContext&) {
     this->writer->commit();
     this->writer = nullptr;
 }
