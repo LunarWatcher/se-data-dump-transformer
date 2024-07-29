@@ -12,7 +12,7 @@ namespace sedd {
 class ArchiveWriter {
 private:
     // Approx. 16MB
-    constexpr static auto BLOCK_SIZE = 4194304 * 4;
+    constexpr static auto BLOCK_SIZE = size_t(4194304) * size_t(4);
     std::filesystem::path archiveName;
     std::filesystem::path tmpOutputDir;
 
