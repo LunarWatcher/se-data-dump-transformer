@@ -72,8 +72,10 @@ Note that it's stongly encouraged that you use a venv. To set one up, run `pytho
 ### Requirements
 
 * `pip3 install -r requirements.txt`
-* Lots of storage. The 2024Q1 data dump was 92GB
+* Lots of storage. The 2024Q1 data dump was 92GB compressed, and uncompressed, converted files are cached on disk before being compressed. The Stack Overflow data dump may take several hundred gigabytes of cache storage while the conversion process is happening.
 * A display you can access somehow (physical or virtual, but you need to be able to see it) to be able to solve captchas
+
+The downloader does **not** support Docker due to the display requirement.
 
 
 ### Config, running, and what to expect

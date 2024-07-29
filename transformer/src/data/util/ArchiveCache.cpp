@@ -46,6 +46,7 @@ void ArchiveCache::checkComplete(const std::string& site) {
     
     spdlog::info("Committing binary file for {}", site);
     siteCache.writer->commit();
+    spdlog::info("Committing {} done", site);
 
     siteColumnMaps.erase(siteColumnMaps.find(site));
 

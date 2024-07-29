@@ -35,6 +35,7 @@ ArchiveWriter::ArchiveWriter(
     }
     archive_write_set_format_option(a, "7zip", "compression", "lzma2");
     archive_write_set_format_option(a, "7zip", "compression-level", "9");
+    archive_write_set_bytes_per_block(a, BLOCK_SIZE);
     
     r = archive_write_open_filename(a, archiveName.string().c_str());
     if (r != ARCHIVE_OK) {
@@ -95,11 +96,12 @@ void ArchiveWriter::commit() {
         // while (true) because https://stackoverflow.com/a/59296668/6296561
         // Using while (f) terminates prematurely
         while (true) {
-            char inbuff[65535];
+            char inbuff[BLOCK_SIZE];
+
             std::string buff;
 
             // TODO: Figure if it's better for performance to write larger chunks at once, or if writing lines directly is equally good
-            f.read(inbuff, 65535);
+            f.read(inbuff, BLOCK_SIZE);
 
             if (f.gcount() == 0) break;
 

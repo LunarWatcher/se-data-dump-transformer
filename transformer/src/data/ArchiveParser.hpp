@@ -65,7 +65,8 @@ struct ParserContext {
 class Transformer;
 class ArchiveParser {
 private:
-    constexpr static auto BLOCK_SIZE = 10240;
+    // Approx. 16MB
+    constexpr static auto BLOCK_SIZE = 4194304 * 4;
 
     archive* a;
 
