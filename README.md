@@ -125,7 +125,27 @@ Once you've downloaded the data dumps, you may want to transform it into a more 
 
 ### Docker
 
-Coming Soon:tm:
+This section assumes you have Docker installed, with [docker-compose-v2](https://docs.docker.com/compose/migrate/).
+
+From the root directory, run 
+```bash
+docker compose up
+```
+
+This automatically binds `downloads` and `out` in the current working directory to the docker container. If you want to change these paths, you'll need to edit `docker-compose.yml` manually for now.
+
+Additionally, the following environment variables are defined and forwarded to the build:
+* `SEDD_OUTPUT_TYPE`: Any output type supported by the program. These are: `json`, `sqlite`.
+* `SPDLOG_LEVEL`: Sets the logging level. Usually not necessary unless you want verbose output, or you're trying to debug something.
+
+If you have a UNIX shell (i.e. not cmd or powershell; Windows users can use Git Bash), you can run
+```bash
+SEDD_OUTPUT_TYPE=sqlite docker compose up
+```
+
+If you want to rebuild the container, pass the `--build` flag to the docker command.
+
+If you insist on using cmd or PowerShell instead of a good shell, setting the variables is left as an exercise to the reader.
 
 ### Native
 
@@ -137,7 +157,7 @@ Binary dependencies (stc, libarchive, spdlog, and pugixml) are automatically han
 
 #### Running
 TL;DR:
-```
+```bash
 cd transformer
 mkdir build
 cd build
