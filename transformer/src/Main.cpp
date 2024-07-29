@@ -84,6 +84,9 @@ int main(int argc, char* argv[]) {
     spdlog::info("Files: [source = {}, dest = {}]", ctx.sourceDir.string(), ctx.destDir.string());
 
     for (const auto& entry : std::filesystem::directory_iterator(ctx.sourceDir)) {
+        if (entry.is_directory() || entry.path().extension() != ".7z") {
+            continue;
+        }
         spdlog::info("Now processing {}", entry.path().string());
 
         auto parser = sedd::ArchiveParser(entry);
