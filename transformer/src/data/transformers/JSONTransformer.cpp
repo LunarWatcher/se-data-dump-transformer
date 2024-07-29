@@ -14,13 +14,13 @@ void JSONTransformer::beginFile(const ParserContext& ctx) {
 }
 
 void JSONTransformer::endFile() {
-    this->writer->write("\n]");
+    this->writer->write("\n]\n");
     started = false;
     this->writer->close();
 }
 
 void JSONTransformer::beginArchive(const ParserContext& ctx) {
-    auto outputDir = ctx.conf.destDir / ctx.site;
+    auto outputDir = ctx.conf.destDir / ctx.baseDomain;
     
     this->writer = std::make_shared<ArchiveWriter>(
         outputDir
@@ -50,7 +50,7 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
             continue;
         }
 
-        switch (types.at(attr.name())) {
+        switch (types.at(attr.name()).type) {
         case Schema::LONG:
             yyjson_mut_obj_add_int(*jw, obj, attr.name(), attr.as_llong());
             break;

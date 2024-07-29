@@ -7,6 +7,7 @@
 #include "CLI/CLI.hpp"
 #include "data/ArchiveParser.hpp"
 #include "data/GlobalContext.hpp"
+#include "data/transformers/SQLiteTransformer.hpp"
 #include "spdlog/cfg/helpers.h"
 
 #include "data/transformers/JSONTransformer.hpp"
@@ -17,12 +18,16 @@
 
 enum class TransformerType {
     JSON,
+    SQLITE,
 
     DRY_RUN,
 };
 
+class InvalidTransformer : public sedd::Transformer {};
+
 std::map<std::string, TransformerType> strToTransformer {
     {"json", TransformerType::JSON},
+    {"sqlite", TransformerType::SQLITE},
     {"noop", TransformerType::DRY_RUN},
 };
 
@@ -31,6 +36,7 @@ std::shared_ptr<sedd::Transformer> getTransformer(TransformerType type) {
 
     static auto map = std::map<TransformerType, std::function<std::shared_ptr<sedd::Transformer>()>> {
         SEDD_TRANSFORMER(JSON, std::make_shared<sedd::JSONTransformer>()),
+        SEDD_TRANSFORMER(SQLITE, std::make_shared<sedd::SQLiteTransformer>()),
 
         SEDD_TRANSFORMER(DRY_RUN, nullptr),
     };
