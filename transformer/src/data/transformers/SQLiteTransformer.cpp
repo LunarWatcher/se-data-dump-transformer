@@ -67,7 +67,8 @@ void SQLiteTransformer::parseLine(const pugi::xml_node& row, const ParserContext
 
         ss << name;
 
-        if (strval.size() == 0) {
+        // If the field isn't nullable, fall back to the defaults from the XML parser
+        if (strval.size() == 0 && fieldDescriptor.nullable) {
             rawInputs.push_back(nullptr);
         } else {
             switch (fieldDescriptor.type) {
