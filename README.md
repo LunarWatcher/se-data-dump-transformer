@@ -45,14 +45,15 @@ A [different project](https://communitydatadump.com/index.html) is currently mai
 
 ### Other tools
 
+This list contains converter tools that work on all sites and all tables.
 
-| Maintainer | Format | Torrent available | Converter | Site(s) | Tables | 
-| --- | --- | --- | --- | --- | --- | 
-| Maxwell175 | SQLite, Postgres, MSSQL | Partially[^2] | [AGPL-3.0](https://github.com/Maxwell175/StackExchangeDumpConverter) | All sites | All tables |
+| Maintainer | Format(s) | Torrent available | Converter |
+| --- | --- | --- | --- |
+| Maxwell175 | SQLite, Postgres, MSSQL | Partially[^2] | [AGPL-3.0](https://github.com/Maxwell175/StackExchangeDumpConverter) | 
 
 [^2]: Only Postgres at the time of writing, with more planned
 
-### Other data dump distributions and conversion conversion tools
+### Other data dump distributions and conversion tools
 
 For completeness (well, sort of, none of these lists are exhaustive), this is a list of incomplete archives (archives that limit the number of included tables and/or sites)
 
