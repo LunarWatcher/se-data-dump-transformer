@@ -29,18 +29,13 @@ ArchiveWriter::ArchiveWriter(
     spdlog::debug("Opening output archive: {}", archiveName.string());
     // TODO: figure out if archive_write_new() works
     a = archive_write_new();
-    int r = archive_write_set_format_7zip(a);
-    if (r != ARCHIVE_OK) {
-        std::cerr << archive_error_string(a) << std::endl;
-    }
-    archive_write_set_format_option(a, "7zip", "compression", "lzma2");
-    archive_write_set_format_option(a, "7zip", "compression-level", "9");
-    archive_write_set_bytes_per_block(a, BLOCK_SIZE);
-    
-    r = archive_write_open_filename(a, archiveName.string().c_str());
-    if (r != ARCHIVE_OK) {
-        std::cerr << archive_error_string(a) << std::endl;
-    }
+
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_7zip(a));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_option(a, "7zip", "compression", "lzma2"));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_option(a, "7zip", "compression-level", "9"));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_bytes_per_block(a, BLOCK_SIZE));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_open_filename(a, archiveName.string().c_str()));
+
 
     if (createTempDir) {
         std::filesystem::create_directories(this->tmpOutputDir);
