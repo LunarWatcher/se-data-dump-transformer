@@ -33,6 +33,8 @@ struct ParserContext {
     /**
      * Base domain. Extracted verbatim from the name of the archive.
      * Example: stackoverflow.com-Votes
+     *
+     * TODO: rename this variable, it has confused me _several_ times
      */
     std::string baseDomain;
 

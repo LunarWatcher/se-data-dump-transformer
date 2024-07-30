@@ -23,7 +23,7 @@ void SQLiteTransformer::endFile() {
 void SQLiteTransformer::beginFile(const ParserContext& ctx) {
     this->transaction = std::make_shared<SQLite::Transaction>(*db);
     currSchema = Schema::schema.at(ctx.currType);
-    cache.registerType(ctx.baseDomain, ctx.currType);
+    cache.registerType(ctx.baseSiteName, ctx.currType);
 }
 
 void SQLiteTransformer::beginArchive(const ParserContext& ctx) {
@@ -41,7 +41,7 @@ void SQLiteTransformer::endArchive(const ParserContext& ctx) {
     this->transaction = nullptr;
     this->db = nullptr;
 
-    cache.checkComplete(ctx.baseDomain);
+    cache.checkComplete(ctx.baseSiteName);
 }
 
 void SQLiteTransformer::parseLine(const pugi::xml_node& row, const ParserContext& ctx) {
