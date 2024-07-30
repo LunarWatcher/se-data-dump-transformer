@@ -5,7 +5,7 @@
 #include <set>
 #include <unordered_map>
 #include <string>
-#include <vector>
+#include <mutex>
 
 namespace sedd {
 
@@ -30,6 +30,7 @@ struct SiteCache {
 class ArchiveCache {
 private:
     std::unordered_map<std::string, SiteCache> siteColumnMaps;
+    std::mutex mut;
 public:
 
     /**

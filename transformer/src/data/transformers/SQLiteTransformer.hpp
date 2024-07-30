@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SQLiteCpp/Transaction.h"
-#include "data/ArchiveWriter.hpp"
 #include "data/Schema.hpp"
 #include "data/Transformer.hpp"
 #include "data/util/ArchiveCache.hpp"
@@ -17,7 +16,7 @@ private:
     long long rowCount = 0;
 
     std::map<std::string, Schema::Field> currSchema;
-    ArchiveCache cache;
+    static inline ArchiveCache cache;
 
     void genTables();
 

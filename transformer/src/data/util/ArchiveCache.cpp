@@ -3,11 +3,11 @@
 #include "data/util/ArchiveCache.hpp"
 #include "data/Schema.hpp"
 #include <spdlog/spdlog.h>
-#include <stdexcept>
 
 namespace sedd {
 
 void ArchiveCache::initArchive(const ParserContext& ctx, const std::string& binFile) {
+    std::lock_guard l(mut);
     if (siteColumnMaps.contains(ctx.baseSiteName)) {
         return;
     }
@@ -27,10 +27,12 @@ void ArchiveCache::initArchive(const ParserContext& ctx, const std::string& binF
 }
 
 void ArchiveCache::registerType(const std::string& site, DataDumpFileType::DataDumpFileType type) {
+    std::lock_guard l(mut);
     siteColumnMaps.at(site).exhaustedFiletypes.insert(type);
 }
 
 void ArchiveCache::checkComplete(const std::string& site) {
+    std::lock_guard l(mut);
     {
         const auto& schema = Schema::schema;
         const auto& siteCache = siteColumnMaps.at(site);

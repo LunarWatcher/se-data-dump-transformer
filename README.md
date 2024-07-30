@@ -154,8 +154,9 @@ If you insist on using cmd or PowerShell instead of a good shell, setting the va
 #### Requirements
 * C++20 compiler
 * CMake 3.10 or newer
+* Linux-specific (TEMPORARY): `libtbb-dev`, or equivalent on your favourite distro. Optional, but required for multithreaded support under libstdc++
 
-Binary dependencies (stc, libarchive, spdlog, and pugixml) are automatically handled by CMake using FetchContent. Unlike the downloader, this component can run without a display.
+Other dependencies (stc, libarchive, spdlog, and pugixml) are automatically handled by CMake using FetchContent. Unlike the downloader, this component can run without a display.
 
 #### Running
 TL;DR:

@@ -71,14 +71,7 @@ FetchContent_MakeAvailable(cli11)
 FetchContent_MakeAvailable(spdlog)
 FetchContent_MakeAvailable(stc)
 FetchContent_MakeAvailable(pugixml)
-
-FetchContent_GetProperties(libarchive)
-if(NOT libarchive_POPULATED)
-  FetchContent_Populate(libarchive)
-
-  add_subdirectory(${libarchive_SOURCE_DIR} ${libarchive_BINARY_DIR})
-
-endif()
+FetchContent_MakeAvailable(libarchive)
 
 if (NOT WIN32)
     if (SEDD_SANITISE)
@@ -125,6 +118,24 @@ PUBLIC
     yyjson
     SQLiteCpp
 )
+
+# TODO: Figure out if poolstl is a viable replacement for this intel crap
+if (UNIX)
+    find_package(
+        TBB
+    )
+    if (TBB_FOUND)
+        message(STATUS "Found libtbb -- linking")
+        target_link_libraries(sedd-src PUBLIC TBB::tbb)
+
+        if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+            set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libstdc++")
+        endif()
+    else()
+        message(WARNING "Failed to find tbb. Multithreading is not supported")
+    endif()
+endif()
+
 target_link_libraries(
     sedd-transformer 
 PUBLIC 
@@ -135,4 +146,4 @@ add_subdirectory(tests EXCLUDE_FROM_ALL)
 add_custom_target(test
     COMMAND tests
     DEPENDS tests
-    COMMENT "Test the data dump transformer ")
+    COMMENT "Test the data dump transformer")

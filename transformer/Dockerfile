@@ -3,7 +3,7 @@ FROM ubuntu:latest
 WORKDIR /app
 
 RUN apt-get update && apt-get upgrade -y \
-        && apt-get install -y libssl-dev cmake gcc g++ git
+        && apt-get install -y libssl-dev cmake gcc g++ git libtbb-dev
 
 ARG SEDD_OUTPUT_TYPE=json
 ENV SPDLOG_LEVEL=info
@@ -16,6 +16,6 @@ COPY transformer/dep_provider.cmake /app/dep_provider.cmake
 
 RUN mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release && make -j $(nproc)
 
-
+# TODO: Figure out how to set up multithreading in the dockerfile. Probably need another env variable
 CMD ls -la ./downloads && ls -la ./out \
         && /app/build/bin/sedd-transformer -i /app/downloads -o /app/out -t ${SEDD_OUTPUT_TYPE} || sleep 460000
