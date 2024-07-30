@@ -115,7 +115,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
             if (r == ARCHIVE_EOF) {
                 break;
             } else if (r != ARCHIVE_OK) {
-                std::cerr << "Error reading data: " << archive_error_string(a) << std::endl;
+                std::cerr << "Error reading data: " << archive_error_string(a) << ", r = " << r << std::endl;
                 throw std::runtime_error("Failed to read data");
             }
             std::string block(static_cast<const char*>(buff), readSize);
