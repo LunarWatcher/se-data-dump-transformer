@@ -122,7 +122,11 @@ void ArchiveParser::read(const GlobalContext& conf) {
             std::string blockWithPrevious = incompleteBlock + block;
             incompleteBlock = "";
 
-            bool completeBlock = blockWithPrevious.back() == '\n';
+            bool completeBlock = blockWithPrevious.back() == '\n'
+#ifdef __APPLE__
+                || blockWithPrevious.back() == '\r'
+#endif
+                ;
 
             // For some reason, the archive uses Windows CRLF
             std::vector<std::string> lines = stc::string::split(blockWithPrevious, "\r\n");
