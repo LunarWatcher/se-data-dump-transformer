@@ -112,7 +112,10 @@ int main(int argc, char* argv[]) {
     std::mutex lockGuard;
 
     std::for_each(
+#ifndef __APPLE__
+        // Crapple? No parallel execution for you, because Apple Clang still doesn't support it
         std::execution::par,
+#endif
         dirIt.begin(), dirIt.end(),
         [&](const auto& entry) {
             auto siteID = stc::string::split(entry.filename().replace_extension().string(), '-', 1)[0];
