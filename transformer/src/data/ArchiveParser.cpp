@@ -2,6 +2,7 @@
 #include "data/GlobalContext.hpp"
 #include "meta/ArchiveMacros.hpp"
 #include "spdlog/spdlog.h"
+#include <filesystem>
 #include <pugixml.hpp>
 
 #include "Transformer.hpp"
@@ -92,6 +93,20 @@ void ArchiveParser::read(const GlobalContext& conf) {
     };
 
     if (conf.transformer) {
+        auto path = conf.transformer->getOutputArchivePath(ctx);
+        if (std::filesystem::is_regular_file(path) && std::filesystem::file_size(path) != 0) {
+            spdlog::debug("Output archive for {} ({}) already exists", ctx.baseDomain, path.string());
+            if (conf.recover) {
+                spdlog::info("Recovery mode: skipping {}", ctx.baseDomain);
+                return;
+            } else {
+                spdlog::warn("Recovery mode disabled, but {} already exists. Removing...", path.string());
+                std::filesystem::remove(path);
+            }
+        }
+    }
+
+    if (conf.transformer) {
         conf.transformer->beginArchive(ctx);
     }
 
@@ -115,7 +130,10 @@ void ArchiveParser::read(const GlobalContext& conf) {
             if (r == ARCHIVE_EOF) {
                 break;
             } else if (r != ARCHIVE_OK) {
-                std::cerr << "Error reading data: " << archive_error_string(a) << ", r = " << r << std::endl;
+                std::cerr << "Error reading data: " << archive_error_string(a)
+                    << ", r = " << r
+                    << ", archive = " << ctx.baseDomain
+                    << std::endl;
                 throw std::runtime_error("Failed to read data");
             }
             std::string block(static_cast<const char*>(buff), readSize);

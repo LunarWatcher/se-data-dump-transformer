@@ -1,7 +1,6 @@
 #include "JSONTransformer.hpp"
 #include "data/ArchiveWriter.hpp"
 #include "data/Schema.hpp"
-#include "spdlog/spdlog.h"
 #include "wrappers/yyjson.hpp"
 #include <stdexcept>
 

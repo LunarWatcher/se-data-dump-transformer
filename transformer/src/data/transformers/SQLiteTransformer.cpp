@@ -3,9 +3,7 @@
 #include "SQLiteCpp/Transaction.h"
 #include "data/ArchiveParser.hpp"
 #include "data/Schema.hpp"
-#include "data/transformers/JSONTransformer.hpp"
 #include "data/util/ArchiveCache.hpp"
-#include "spdlog/fmt/bundled/format.h"
 #include "spdlog/spdlog.h"
 #include <cstddef>
 #include <memory>
@@ -49,7 +47,7 @@ void SQLiteTransformer::parseLine(const pugi::xml_node& row, const ParserContext
     std::stringstream ss;
     std::vector<std::variant<int64_t, double, std::string, std::nullptr_t>> rawInputs;
 
-    ss << "INSERT INTO " << ctx.currTypeStr << " (";
+    ss << "INSERT OR IGNORE INTO " << ctx.currTypeStr << " (";
 
     bool prevField = false;
     size_t fieldCount = 0;

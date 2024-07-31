@@ -94,6 +94,7 @@ add_executable(sedd-transformer
 add_library(sedd-src STATIC
     src/data/ArchiveParser.cpp
     src/data/ArchiveWriter.cpp
+    src/data/Transformer.cpp
 
     src/data/transformers/JSONTransformer.cpp
     src/data/transformers/SQLiteTransformer.cpp

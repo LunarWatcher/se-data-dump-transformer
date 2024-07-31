@@ -21,6 +21,7 @@ private:
     void genTables();
 
 public:
+    SQLiteTransformer() : Transformer(true, ".sqlite3") {}
     void endFile() override;
     void beginFile(const ParserContext& ctx) override;
     void beginArchive(const ParserContext& ctx) override;

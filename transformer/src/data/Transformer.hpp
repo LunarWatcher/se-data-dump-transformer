@@ -1,12 +1,19 @@
 #pragma once
 
+#include <filesystem>
 #include <pugixml.hpp>
 #include "ArchiveParser.hpp"
+#include "data/ArchiveParser.hpp"
 
 namespace sedd {
 
 class Transformer {
+protected:
+    bool shouldUnifyInputs;
+    std::string extension = "";
 public:
+    Transformer(bool shouldUnifyInputs, const std::string& extension = "");
+
     /**
      * Signals that the currently processed file is done. This is where you should close and clean up existing stuff.
      *
@@ -33,6 +40,11 @@ public:
     virtual void endArchive(const ParserContext& ctx) = 0;
 
     virtual void parseLine(const pugi::xml_node& row, const ParserContext& ctx) = 0;
+
+    /**
+     * Returns the full path to the output archive. 
+     */
+    virtual std::filesystem::path getOutputArchivePath(const ParserContext& ctx);
 };
 
 }

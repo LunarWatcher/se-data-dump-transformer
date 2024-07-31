@@ -74,6 +74,14 @@ int main(int argc, char* argv[]) {
         ->required(false)
         ->default_val(1)
         ->check(CLI::PositiveNumber);
+    bool recover = true;
+    app.add_option(
+        "-r,--recover",
+        recover,
+        "Whether or not to recover from errors"
+    )
+        ->required(false)
+        ->default_val(recover);
 
     CLI11_PARSE(app, argc, argv);
 
@@ -88,6 +96,7 @@ int main(int argc, char* argv[]) {
             return std::filesystem::path(downloadDir) / "../out";
         }(),
         .transformer = nullptr,
+        .recover = recover
     };
 
     std::filesystem::create_directories(baseCtx.destDir);
