@@ -1,4 +1,5 @@
 #include <archive.h>
+#include <atomic>
 #include <execution>
 #include <filesystem>
 #include <memory>
@@ -120,6 +121,8 @@ int main(int argc, char* argv[]) {
     std::map<std::string, std::mutex> locks;
     std::mutex lockGuard;
 
+    std::atomic<int> processed = 0;
+
     std::for_each(
 #ifndef __APPLE__
         // Crapple? No parallel execution for you, because Apple Clang still doesn't support it
@@ -152,6 +155,8 @@ int main(int argc, char* argv[]) {
             parser.read(ctx);
 
             concurrencyGuard.release();
+
+            spdlog::info("{}/{} done", processed.fetch_add(1), dirIt.size());
         }
     );
 

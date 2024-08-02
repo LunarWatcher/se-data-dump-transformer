@@ -16,6 +16,8 @@ set (CMAKE_POSITION_INDEPENDENT_CODE ON)
 set (BUILD_SHARED_LIBS ON)
 
 list (APPEND CMAKE_FIND_ROOT_PATH "${CMAKE_SOURCE_DIR}/cmake/")
+list (APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/cmake/")
+
 set (ENABLE_TEST OFF CACHE STRING "" FORCE)
 
 set(SQLITECPP_RUN_CPPLINT OFF CACHE STRING "" FORCE)
@@ -28,6 +30,8 @@ set(SQLITECPP_RUN_CPPLINT OFF CACHE STRING "" FORCE)
 # CMAKE_C_FLAGS_DEBUG, but whatever)
 find_package(LibLZMA REQUIRED)
 #set (CMAKE_FIND_DEBUG_MODE FALSE)
+set(ZSTD_BUILD_STATIC ON)
+set(ZSTD_BUILD_SHARED OFF)
 
 include(FetchContent)
 
@@ -65,13 +69,17 @@ FetchContent_Declare(
     GIT_TAG 3.3.1
 )
 
-FetchContent_MakeAvailable(sqlitecpp)
-FetchContent_MakeAvailable(yyjson)
-FetchContent_MakeAvailable(cli11)
-FetchContent_MakeAvailable(spdlog)
-FetchContent_MakeAvailable(stc)
-FetchContent_MakeAvailable(pugixml)
-FetchContent_MakeAvailable(libarchive)
+FetchContent_MakeAvailable(
+    sqlitecpp
+    yyjson
+    cli11
+    spdlog
+    stc
+    pugixml
+    libarchive
+)
+
+
 
 if (NOT WIN32)
     if (SEDD_SANITISE)

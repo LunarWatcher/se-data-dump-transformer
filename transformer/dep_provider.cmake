@@ -14,6 +14,8 @@ macro(sedd_provide_dependency method package_name)
 endmacro()
 
 cmake_language(
-  SET_DEPENDENCY_PROVIDER sedd_provide_dependency
-  SUPPORTED_METHODS FIND_PACKAGE
+SET_DEPENDENCY_PROVIDER
+    sedd_provide_dependency
+SUPPORTED_METHODS 
+    FIND_PACKAGE
 )
