@@ -34,9 +34,8 @@ ArchiveWriter::ArchiveWriter(
     //SEDDARCHIVE_CHECK_ERROR(a, archive_write_add_filter_zstd(a));
     //SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_filter_option(a, "zstd", "compression-level", "12"));
     //SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_filter_option(a, "zstd", "threads", "2"));
-    SEDDARCHIVE_CHECK_ERROR(a, archive_write_add_filter_lzma(a));
-    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_filter_option(a, "lzma", "compression-level", "6"));
-    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_filter_option(a, "lzma", "threads", "4"));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_option(a, "7zip", "compression", "lzma2"))
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_option(a, "7zip", "compression-level", "6"))
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_bytes_per_block(a, BLOCK_SIZE));
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_open_filename(a, archiveName.string().c_str()));
 
@@ -113,6 +112,8 @@ void ArchiveWriter::commit() {
         }
         archive_entry_free(currEntry);
     }
+
+    archive_write_free(a);
 
 }
 
