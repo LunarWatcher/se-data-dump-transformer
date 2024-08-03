@@ -23,13 +23,15 @@ set (ENABLE_TEST OFF CACHE STRING "" FORCE)
 set(SQLITECPP_RUN_CPPLINT OFF CACHE STRING "" FORCE)
 
 #set (CMAKE_FIND_DEBUG_MODE TRUE)
-# For Some Reason, I have to run this here in spite of not directly
-# consuming this here. 
-# If not, the xz configuration fails because some fucking library 
-# introduces -Werror into the global CMAKE_C_FLAGS (possibly just
-# CMAKE_C_FLAGS_DEBUG, but whatever)
+# For some reason, these have to be defined here, or the identical
+# find_packages in libarchive fail to work.
+# Probably a skill issue, but if it works...
 find_package(LibLZMA REQUIRED)
+find_package(ZSTD REQUIRED)
 #set (CMAKE_FIND_DEBUG_MODE FALSE)
+
+# Required to keep zstd from exploding from https://github.com/facebook/zstd/blob/fdfb2aff39dc498372d8c9e5f2330b692fea9794/lib/common/pool.c#L103
+set (ENABLE_WERROR OFF CACHE STRING "" FORCE)
 
 include(FetchContent)
 

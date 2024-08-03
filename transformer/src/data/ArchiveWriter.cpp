@@ -31,8 +31,12 @@ ArchiveWriter::ArchiveWriter(
     a = archive_write_new();
 
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_7zip(a));
-    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_option(a, "7zip", "compression", "lzma2"));
-    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_format_option(a, "7zip", "compression-level", "7"));
+    //SEDDARCHIVE_CHECK_ERROR(a, archive_write_add_filter_zstd(a));
+    //SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_filter_option(a, "zstd", "compression-level", "12"));
+    //SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_filter_option(a, "zstd", "threads", "2"));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_add_filter_lzma(a));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_filter_option(a, "lzma", "compression-level", "6"));
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_filter_option(a, "lzma", "threads", "4"));
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_set_bytes_per_block(a, BLOCK_SIZE));
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_open_filename(a, archiveName.string().c_str()));
 

@@ -16,4 +16,10 @@ FetchContent_MakeAvailable(
 
 set (ZSTD_FOUND ON)
 set (ZSTD_INCLUDE_DIR ${zstd_ext_SOURCE_DIR}/lib)
-set (ZSTD_LIBARY libzstd_shared)
+set (ZSTD_LIBRARY libzstd_static)
+
+# Required to make check_function_exists work
+# on the bright side, no new nasty hacks like cmake/FindPackageHandleStandardArgs.cmake required to make
+# that function cooperate
+set (HAVE_LIBZSTD 1 CACHE STRING "Have function ZSTD_decompressStream " FORCE)
+set (HAVE_ZSTD_compressStream 1 CACHE STRING "Have function ZSTD_compressStream" FORCE)
