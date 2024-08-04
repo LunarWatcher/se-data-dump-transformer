@@ -110,6 +110,8 @@ void ArchiveParser::read(const GlobalContext& conf) {
         conf.transformer->beginArchive(ctx);
     }
 
+    bool isInLicenseBlock = false;
+
     while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
         std::string entryName = archive_entry_pathname(entry);
         spdlog::info("Extracting {}/{}", ctx.baseDomain, entryName);
@@ -160,7 +162,19 @@ void ArchiveParser::read(const GlobalContext& conf) {
             }
 
             for (const auto& line : lines) {
+
                 if (line.size() == 0) {
+                    continue;
+                }
+                // Workaround for https://meta.stackexchange.com/a/401889/332043
+                // in the August 2024 data dump, and in new data dumps after those.
+                if (!isInLicenseBlock && line.starts_with("<!--")) {
+                    isInLicenseBlock = true;
+                    continue;
+                } else if (isInLicenseBlock) {
+                    if (line.starts_with("-->")) {
+                        isInLicenseBlock = false;
+                    }
                     continue;
                 }
                 auto openIdx = line.find('<');

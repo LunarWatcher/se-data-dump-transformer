@@ -157,7 +157,7 @@ int main(int argc, char* argv[]) {
 
             concurrencyGuard.release();
 
-            spdlog::info("Progress: {}/{} conversions done", processed.fetch_add(1) + 1, dirIt.size());
+            spdlog::info("Progress: {}/{} conversions done", ++processed, dirIt.size());
         }
     );
 
