@@ -70,7 +70,8 @@ int main(int argc, char* argv[]) {
     app.add_option(
         "-j,--threads",
         threads, 
-        "How many threads to use for processing. Note that more threads use more RAM"
+        "How many threads to use for processing. Note that more threads use more RAM. Also note  that it isn't possible to use more threads"
+        " than the hardware allows"
     )
         ->required(false)
         ->default_val(1)

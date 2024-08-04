@@ -128,9 +128,6 @@ void ArchiveWriter::commit() {
 
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_finish_entry(a));
     archive_entry_free(currEntry);
-
-    archive_write_free(a);
-
 }
 
 void ArchiveWriter::open(const std::string& filename) {
