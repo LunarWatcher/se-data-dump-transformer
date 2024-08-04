@@ -47,7 +47,7 @@ A [different project](https://communitydatadump.com/index.html) is currently mai
 
 This list contains converter tools that work on all sites and all tables.
 
-| Maintainer | Format(s) | Torrent available | Converter |
+| Maintainer | Format(s) | First-party torrent available | Converter |
 | --- | --- | --- | --- |
 | Maxwell175 | SQLite, Postgres, MSSQL | Partially[^2] | [AGPL-3.0](https://github.com/Maxwell175/StackExchangeDumpConverter) | 
 

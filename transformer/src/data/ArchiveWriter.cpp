@@ -3,6 +3,7 @@
 #include "archive_entry.h"
 #include "data/ArchiveWriter.hpp"
 #include "meta/ArchiveMacros.hpp"
+#include "meta/License.hpp"
 #include "spdlog/spdlog.h"
 #include <filesystem>
 #include <ios>
@@ -66,7 +67,7 @@ ArchiveWriter::~ArchiveWriter() {
 void ArchiveWriter::commit() {
 
     for (auto& file : this->files) {
-        spdlog::info("Now committing {} to archive", file);
+        spdlog::info("Now committing {} to archive {}", file, this->archiveName.filename().string());
         archive_entry* currEntry = archive_entry_new();
         archive_entry_set_pathname(currEntry, file.c_str());
         archive_entry_set_filetype(currEntry, AE_IFREG);
@@ -112,6 +113,21 @@ void ArchiveWriter::commit() {
         }
         archive_entry_free(currEntry);
     }
+
+    spdlog::info("Committing LICENSE to {}", archiveName.filename().string());
+    archive_entry* currEntry = archive_entry_new();
+    archive_entry_set_pathname(currEntry, "LICENSE");
+    archive_entry_set_filetype(currEntry, AE_IFREG);
+    archive_entry_set_perm(currEntry, 0644);
+    archive_entry_set_size(currEntry, License::dataDumpLicense.size());
+
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_header(a, currEntry));
+
+
+    archive_write_data(a, License::dataDumpLicense.data(), License::dataDumpLicense.size());
+
+    SEDDARCHIVE_CHECK_ERROR(a, archive_write_finish_entry(a));
+    archive_entry_free(currEntry);
 
     archive_write_free(a);
 
