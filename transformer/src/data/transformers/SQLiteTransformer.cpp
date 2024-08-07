@@ -66,7 +66,7 @@ void SQLiteTransformer::parseLine(const pugi::xml_node& row, const ParserContext
         ss << name;
 
         // If the field isn't nullable, fall back to the defaults from the XML parser
-        if (strval.size() == 0 && fieldDescriptor.nullable) {
+        if (strval.empty() && fieldDescriptor.nullable) {
             rawInputs.emplace_back(nullptr);
         } else {
             switch (fieldDescriptor.type) {
@@ -158,8 +158,12 @@ void SQLiteTransformer::genTables() {
                 break;
             }
 
-            if (!spec.nullable) ss << "NOT NULL ";
-            if (spec.pk) ss << "PRIMARY KEY ";
+            if (!spec.nullable) {
+                ss << "NOT NULL ";
+            }
+            if (spec.pk) {
+                ss << "PRIMARY KEY ";
+            }
         }
 
         ss << "\n)";

@@ -21,7 +21,7 @@ namespace DataDumpFileType {
         USERS,
         VOTES,
         // Must always be last; place any other values ahead of this
-        _UNKNOWN
+        UNKNOWN
     };
 
     extern DataDumpFileType strToFiletype(const std::string&);
@@ -54,7 +54,7 @@ struct ParserContext {
     /**
      * The type of the file being parsed and passed onto the transformer
      */
-    DataDumpFileType::DataDumpFileType currType = DataDumpFileType::_UNKNOWN;
+    DataDumpFileType::DataDumpFileType currType = DataDumpFileType::UNKNOWN;
 
     /**
      * Same as currType, but as a string

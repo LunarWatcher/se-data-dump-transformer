@@ -22,7 +22,7 @@ void ArchiveCache::initArchive(const ParserContext& ctx, const std::string& binF
 
     cache.writer->addBinaryFile(binFile);
 
-    siteColumnMaps[ctx.baseSiteName] = cache;
+    siteColumnMaps[ctx.baseSiteName] = std::move(cache);
 }
 
 void ArchiveCache::registerType(const std::string& site, DataDumpFileType::DataDumpFileType type) {

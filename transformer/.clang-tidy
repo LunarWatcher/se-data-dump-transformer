@@ -1,21 +1,33 @@
+# Notes:
+# - clang-analyzer-optin.core.EnumCastOutOfRange: Useful, complains about std::filesystem::file_size for no fucking reason
+# - clang-analyzer-cplusplus.NewDeleteLeaks: borked (https://github.com/llvm/llvm-project/issues/55219)
 Checks: >
   -*,
-
   bugprone-*,
   clang-*,
   misc-*,
   performance-*,
   portability-*,
   readability-*,
-
+  modernize-deprecated-headers,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-exception-escape,
+  -clang-analyzer-optin.core.EnumCastOutOfRange,
+  -misc-non-private-*,
+  -misc-const-correctness,
+  -misc-include-cleaner,
+  -performance-avoid-endl,
+  -performance-enum-size,
+  -readability-function-cognitive-complexity,
+  -readability-make-member-function-const,
+  -readability-named-parameter,
+  -readability-inconsistent-declaration-parameter-name,
   -readability-magic-numbers,
   -readability-identifier-length,
-  -modernize-pass-by-value,
-  -bugprone-easily-swappable-parameters,
-  -misc-non-private-member-variables-in-classes,
-  -readability-make-member-function-const,
-  -readability-named-parameter
+  -readability-else-after-return,
+  -clang-analyzer-cplusplus.NewDeleteLeaks
 
 HeaderFileExtensions: ["hpp"]
 ImplementationFileExtensions: ["cpp"]
+# Windows does not like to cooperate with the correct type of path slashes
 HeaderFilterRegex: ".*transformer.src.*"

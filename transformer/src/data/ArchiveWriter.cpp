@@ -62,8 +62,6 @@ ArchiveWriter::~ArchiveWriter() {
             std::filesystem::remove(this->tmpOutputDir / file);
         }
     }
-    ArchiveWriter* x = nullptr;
-    x->commit();
 }
 
 void ArchiveWriter::commit() {
@@ -98,21 +96,18 @@ void ArchiveWriter::commit() {
         while (true) {
             std::vector<char> inbuff(BLOCK_SIZE);
 
-            std::string buff;
-
             // TODO: Figure if it's better for performance to write larger chunks at once, or if writing lines directly is equally good
             f.read(inbuff.data(), BLOCK_SIZE);
 
-            if (f.gcount() == 0) break;
+            if (f.gcount() == 0) {
+                break;
+            }
 
-            r = archive_write_data(a, inbuff.data(), f.gcount());
+            SEDDARCHIVE_CHECK_ERROR(a, archive_write_data(a, inbuff.data(), f.gcount()));
         }
 
-        r = archive_write_finish_entry(a);
-        if (r != ARCHIVE_OK) {
-            std::cerr << archive_error_string(a) << std::endl;
-            throw std::runtime_error("Failed to finish archive");
-        }
+        SEDDARCHIVE_CHECK_ERROR(a, archive_write_finish_entry(a));
+
         archive_entry_free(currEntry);
     }
 
@@ -121,7 +116,7 @@ void ArchiveWriter::commit() {
     archive_entry_set_pathname(currEntry, "LICENSE");
     archive_entry_set_filetype(currEntry, AE_IFREG);
     archive_entry_set_perm(currEntry, 0644);
-    archive_entry_set_size(currEntry, MetaFiles::dataDumpLicense.size());
+    archive_entry_set_size(currEntry, (int64_t) MetaFiles::dataDumpLicense.size());
 
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_header(a, currEntry));
 

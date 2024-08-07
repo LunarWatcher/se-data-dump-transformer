@@ -10,7 +10,7 @@ namespace sedd {
 class Transformer {
 protected:
     bool shouldUnifyInputs;
-    std::string extension = "";
+    std::string extension;
 public:
     Transformer(bool shouldUnifyInputs, const std::string& extension = "");
 

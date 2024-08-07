@@ -36,4 +36,31 @@ jobs:
         run: |
           cd build
           cmake --build . -j 2 --target test
-
+  clang-tidy:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    defaults:
+      run:
+        working-directory: ./transformer/
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install clang-tidy
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-tidy
+      - name: Prepare compile_commands.json
+        run: |
+          mkdir build 
+          cd build
+          cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -LINT=ON -LINT_WARNINGS_ARE_ERRORS=ON 
+      - name: Create results directory
+        run: |
+          mkdir clang-tidy-result
+      - name: Run clang-tidy-pr-comments action
+        uses: platisd/clang-tidy-pr-comments@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          clang_tidy_fixes: build/clang-tidy-result/fixes.yml
+          suggestions_per_comment: 10
