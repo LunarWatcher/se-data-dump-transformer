@@ -60,4 +60,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           clang_tidy_fixes: transformer/build/fixes.yml
+          request_changes: true
           suggestions_per_comment: 10
