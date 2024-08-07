@@ -1,0 +1,21 @@
+Checks: >
+  -*,
+
+  bugprone-*,
+  clang-*,
+  misc-*,
+  performance-*,
+  portability-*,
+  readability-*,
+
+  -readability-magic-numbers,
+  -readability-identifier-length,
+  -modernize-pass-by-value,
+  -bugprone-easily-swappable-parameters,
+  -misc-non-private-member-variables-in-classes,
+  -readability-make-member-function-const,
+  -readability-named-parameter
+
+HeaderFileExtensions: ["hpp"]
+ImplementationFileExtensions: ["cpp"]
+HeaderFilterRegex: ".*transformer.src.*"

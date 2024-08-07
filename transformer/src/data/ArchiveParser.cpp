@@ -237,7 +237,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
         }
 
     }
-    auto err = archive_error_string(a);
+    const auto* err = archive_error_string(a);
     if (err != nullptr) {
         spdlog::critical("{}", err);
         throw std::runtime_error(err);

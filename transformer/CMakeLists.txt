@@ -15,6 +15,10 @@ set (CMAKE_CXX_STANDARD 20)
 set (CMAKE_POSITION_INDEPENDENT_CODE ON)
 set (BUILD_SHARED_LIBS ON)
 
+option (SEDD_SANITISE "Whether or not to enable -fsanitize" OFF)
+option (LINT "Whether or not to enable clang-tidy checks" OFF)
+option (LINT_WARNINGS_ARE_ERRORS "Whether or not to set -warnings-as-errors" OFF)
+
 list (APPEND CMAKE_FIND_ROOT_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 list (APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 
@@ -143,6 +147,21 @@ if (UNIX)
     else()
         message(WARNING "Failed to find tbb. Multithreading is not supported")
     endif()
+endif()
+
+if (LINT)
+    find_program(
+        CLANGTIDY
+        NAMES "clang-tidy" "clang-tidy.exe"
+        REQUIRED
+    )
+
+    set (CLANG_TIDY_COMMAND "${CLANGTIDY}")
+    if (LINT_WARNINGS_ARE_ERRORS)
+        set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "-warnings-as-errors='*'")
+    endif()
+
+    set_target_properties(sedd-src PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 endif()
 
 target_link_libraries(

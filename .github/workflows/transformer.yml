@@ -2,8 +2,12 @@ name: Data dump transformer build
 on:
   push:
     branches: [ master ]
+    paths:
+      - transformer/*
   pull_request:
     branches: [ master ]
+    paths:
+      - transformer/*
 jobs:
   build:
     strategy:
@@ -32,3 +36,4 @@ jobs:
         run: |
           cd build
           cmake --build . -j 2 --target test
+

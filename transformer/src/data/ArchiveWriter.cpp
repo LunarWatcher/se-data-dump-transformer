@@ -3,7 +3,7 @@
 #include "archive_entry.h"
 #include "data/ArchiveWriter.hpp"
 #include "meta/ArchiveMacros.hpp"
-#include "meta/License.hpp"
+#include "meta/MetaFiles.hpp"
 #include "spdlog/spdlog.h"
 #include <filesystem>
 #include <ios>
@@ -62,6 +62,8 @@ ArchiveWriter::~ArchiveWriter() {
             std::filesystem::remove(this->tmpOutputDir / file);
         }
     }
+    ArchiveWriter* x = nullptr;
+    x->commit();
 }
 
 void ArchiveWriter::commit() {
@@ -119,12 +121,12 @@ void ArchiveWriter::commit() {
     archive_entry_set_pathname(currEntry, "LICENSE");
     archive_entry_set_filetype(currEntry, AE_IFREG);
     archive_entry_set_perm(currEntry, 0644);
-    archive_entry_set_size(currEntry, License::dataDumpLicense.size());
+    archive_entry_set_size(currEntry, MetaFiles::dataDumpLicense.size());
 
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_header(a, currEntry));
 
 
-    archive_write_data(a, License::dataDumpLicense.data(), License::dataDumpLicense.size());
+    archive_write_data(a, MetaFiles::dataDumpLicense.data(), MetaFiles::dataDumpLicense.size());
 
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_finish_entry(a));
     archive_entry_free(currEntry);

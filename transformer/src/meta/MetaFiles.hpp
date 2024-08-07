@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace sedd::License {
+namespace sedd::MetaFiles {
 
 /**
  * This string is dumped into a dedicated file inside each output archive. 
@@ -39,6 +39,14 @@ archive, any errors in the data are also errors in the source material.
 
 There are _many_ such errors in the source material, and it isn't possible to list or find them
 all. 
+
+Note that this data dump is not affiliated with Stack Overflow, Inc., and is not the official data dump.
+)";
+
+static inline std::string readme = R"(# Stack Exchange data dump - {}-formatted formatted version
+
+*This data dump is not affiliated with Stack Overflow, Inc., and is not the official data dump.*
+
 )";
 
 }
