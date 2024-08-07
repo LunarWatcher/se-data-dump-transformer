@@ -95,6 +95,7 @@ else()
         set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /fsanitize=address")
     endif()
     set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O3")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
 
     add_definitions(-DNOMINMAX=1)
 endif()
@@ -159,6 +160,10 @@ if (LINT)
     set (CLANG_TIDY_COMMAND "${CLANGTIDY}")
     if (LINT_WARNINGS_ARE_ERRORS)
         set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "-warnings-as-errors='*'")
+    endif()
+
+    if (WIN32)
+        set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--extra-arg=/EHsc")
     endif()
 
     set_target_properties(sedd-src PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
