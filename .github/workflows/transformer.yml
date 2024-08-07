@@ -54,13 +54,10 @@ jobs:
         run: |
           mkdir build 
           cd build
-          cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -LINT=ON -LINT_WARNINGS_ARE_ERRORS=ON 
-      - name: Create results directory
-        run: |
-          mkdir clang-tidy-result
+          cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DLINT=ON -DLINT_EXPORT=ON
       - name: Run clang-tidy-pr-comments action
         uses: platisd/clang-tidy-pr-comments@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          clang_tidy_fixes: build/clang-tidy-result/fixes.yml
+          clang_tidy_fixes: build/fixes.yml
           suggestions_per_comment: 10

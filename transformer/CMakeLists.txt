@@ -163,14 +163,16 @@ if (LINT)
         set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--warnings-as-errors='*'")
     endif()
     if (LINT_EXPORT)
-        set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--export-fixes=clang-tidy-result/fixes.yml")
+        set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--export-fixes=${CMAKE_CURRENT_BINARY_DIR}/fixes.yml")
     endif()
 
     if (WIN32)
         set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--extra-arg=/EHsc")
     endif()
 
+    message(STATUS "Using CLANG_TIDY_COMMAND=${CLANG_TIDY_COMMAND}")
     set_target_properties(sedd-src PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
+    set_target_properties(sedd-transformer PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 endif()
 
 target_link_libraries(
