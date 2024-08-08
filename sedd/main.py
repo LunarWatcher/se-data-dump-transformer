@@ -142,7 +142,7 @@ def download_data_dump(browser: WebDriver, site: str):
         sleep(4)
 
     browser.get(f"{site}/users/data-dump-access/current")
-    _exec_download(browser):
+    _exec_download(browser)
 
     if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
         # https://regex101.com/r/kG6nTN/1
