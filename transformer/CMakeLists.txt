@@ -172,7 +172,6 @@ if (LINT)
 
     message(STATUS "Using CLANG_TIDY_COMMAND=${CLANG_TIDY_COMMAND}")
     set_target_properties(sedd-src PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
-    set_target_properties(sedd-transformer PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 endif()
 
 target_link_libraries(
