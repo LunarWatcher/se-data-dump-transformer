@@ -14,7 +14,7 @@ jobs:
       - name: Install clang-tidy
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang-tidy
+          sudo apt-get install -y clang-tidy-18
       - name: Generate fixes.yml
         run: |
           cd transformer
