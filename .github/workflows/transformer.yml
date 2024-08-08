@@ -39,5 +39,7 @@ jobs:
       - name: Check clang-tidy
         if: matrix.os == 'ubuntu-latest'
         run: |
+          mkdir build-lint
+          cd build-lint
           cmake .. -DCMAKE_BUILD_TYPE=Release -DLINT=ON -DLINT_WARNINGS_ARE_ERRORS=ON
           cmake --build . -j 2
