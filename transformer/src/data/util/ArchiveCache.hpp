@@ -41,7 +41,7 @@ public:
     /**
      * Called when a new entry is added to the binary.
      */
-    void registerType(const std::string& normalisedSiteID, const DataDumpFileType::DataDumpFileType ft);
+    void registerType(const std::string& normalisedSiteID, DataDumpFileType::DataDumpFileType ft);
 
     /**
      * Checks if the archive is completed, and compresses the file and removes the source file if it is.

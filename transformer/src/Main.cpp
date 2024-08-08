@@ -15,7 +15,6 @@
 #include "data/transformers/JSONTransformer.hpp"
 
 #include <spdlog/spdlog.h>
-#include <CLI/CLI.hpp>
 #include <map>
 
 enum class TransformerType {
@@ -87,14 +86,16 @@ int main(int argc, char* argv[]) {
 
     CLI11_PARSE(app, argc, argv);
 
-    auto level = std::getenv("SPDLOG_LEVEL");
+    auto* level = std::getenv("SPDLOG_LEVEL");
 
     spdlog::cfg::helpers::load_levels(level == nullptr ? "info" : level);
 
     sedd::GlobalContext baseCtx {
         .sourceDir = downloadDir,
         .destDir = [&]() -> std::filesystem::path {
-            if (parseDir.size()) return parseDir;
+            if (!parseDir.empty()) {
+                return parseDir;
+            }
             return std::filesystem::path(downloadDir) / "../out";
         }(),
         .transformer = nullptr,
@@ -109,7 +110,7 @@ int main(int argc, char* argv[]) {
     //      Parallel algorithms require forward iterators or stronger.
     // Which doesn't make sense to me, but it is what it is
     std::vector<std::filesystem::path> dirIt;
-    for (auto& entry : std::filesystem::directory_iterator(baseCtx.sourceDir)) {
+    for (const auto& entry : std::filesystem::directory_iterator(baseCtx.sourceDir)) {
         if (entry.is_directory() || entry.path().extension() != ".7z") {
             continue;
         }

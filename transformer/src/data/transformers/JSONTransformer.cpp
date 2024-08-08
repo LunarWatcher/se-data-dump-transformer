@@ -38,6 +38,7 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
         throw std::runtime_error("Failed to allocate JSON object");
     }
     yyjson_mut_doc_set_root(*jw, obj);
+    if (false) throw std::runtime_error("Test line");
 
 
     const auto& types = Schema::schema.at(ctx.currType);

@@ -1,7 +1,6 @@
 #pragma once
 
-#include <filesystem>
-#include <string>
+#include <stdexcept>
 #include <yyjson.h>
 
 namespace sedd {
@@ -13,7 +12,7 @@ public:
         yyjson_mut_write(doc, 0, nullptr)
     ) {}
 
-    YYJsonStr(YYJsonStr&& other) : str(std::move(other.str)) {
+    YYJsonStr(YYJsonStr&& other) noexcept : str(other.str) {
         other.str = nullptr;
     }
     ~YYJsonStr() {
@@ -44,7 +43,7 @@ public:
         }
     }
 
-    YYJsonWriter(YYJsonWriter&&other) : doc(other.doc) {
+    YYJsonWriter(YYJsonWriter&&other) noexcept : doc(other.doc) {
         other.doc = nullptr;
     }
 
@@ -55,7 +54,7 @@ public:
     }
 
     YYJsonStr write() {
-        return YYJsonStr(doc);
+        return {doc};
     }
 
     decltype(doc) operator*() {

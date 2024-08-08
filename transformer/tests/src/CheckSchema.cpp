@@ -4,7 +4,7 @@
 
 TEST_CASE("Check filetype type integrity", "[SanityCheck]") {
 
-    for (int i = sedd::DataDumpFileType::BADGES; i != sedd::DataDumpFileType::_UNKNOWN; ++i) {
+    for (int i = sedd::DataDumpFileType::BADGES; i != sedd::DataDumpFileType::UNKNOWN; ++i) {
         auto f = static_cast<sedd::DataDumpFileType::DataDumpFileType>(i);
 
         // Check if both string conversion functions have all the types
