@@ -163,7 +163,7 @@ if (LINT)
         set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--warnings-as-errors='*'")
     endif()
     if (LINT_EXPORT)
-        set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--export-fixes=${CMAKE_CURRENT_BINARY_DIR}/fixes.yml")
+        set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--export-fixes=fixes.yml")
     endif()
 
     if (WIN32)
