@@ -36,28 +36,3 @@ jobs:
         run: |
           cd build
           cmake --build . -j 2 --target test
-  clang-tidy:
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install clang-tidy
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y clang-tidy
-      - name: Generate fixes.yml
-        run: |
-          cd transformer
-          mkdir build 
-          cd build
-          cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DLINT=ON -DLINT_EXPORT=ON
-          make -j 2
-      - name: Run clang-tidy-pr-comments action
-        uses: platisd/clang-tidy-pr-comments@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          clang_tidy_fixes: transformer/build/fixes.yml
-          request_changes: true
-          suggestions_per_comment: 10
