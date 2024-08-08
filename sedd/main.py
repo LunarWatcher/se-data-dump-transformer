@@ -134,19 +134,15 @@ def download_data_dump(browser: WebDriver, site: str):
             raise RuntimeError(f"Bad site: {site}")
 
         if args.dry_run:
-            return True
+            return
 
         checkbox.click()
         sleep(1)
         btn.click()
         sleep(4)
 
-        return True
-
     browser.get(f"{site}/users/data-dump-access/current")
-    # Assumes access has not been granted yet
-    if not _exec_download(browser):
-        return
+    _exec_download(browser):
 
     if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
         # https://regex101.com/r/kG6nTN/1
