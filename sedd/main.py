@@ -25,7 +25,13 @@ parser.add_argument(
     required=False,
     dest="output_dir",
     default=os.path.join(os.getcwd(), "downloads")
-
+)
+parser.add_argument(
+    "--dry-run",
+    required=False,
+    default=False,
+    action="store_true",
+    dest="dry_run"
 )
 
 args = parser.parse_args()
@@ -125,8 +131,10 @@ def download_data_dump(browser: WebDriver, site: str):
             checkbox = browser.find_element(By.ID, "datadump-agree-checkbox")
             btn = browser.find_element(By.ID, "datadump-download-button")
         except selenium.common.exceptions.NoSuchElementException:
-            print(f"Missing page elements; assuming 404. This will be removed when the feature goes GA")
-            return False
+            raise RuntimeError(f"Bad site: {site}")
+
+        if args.dry_run:
+            return True
 
         checkbox.click()
         sleep(1)
@@ -140,7 +148,7 @@ def download_data_dump(browser: WebDriver, site: str):
     if not _exec_download(browser):
         return
 
-    if site != "https://meta.stackexchange.com":
+    if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
         # https://regex101.com/r/kG6nTN/1
         meta_url = re.sub(r"(https://(?:[^.]+\.(?=stackexchange))?)", r"\1meta.", site)
         print(meta_url)
