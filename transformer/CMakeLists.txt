@@ -160,14 +160,14 @@ if (LINT)
 
     set (CLANG_TIDY_COMMAND "${CLANGTIDY}" "--config-file=${CMAKE_CURRENT_SOURCE_DIR}/.clang-tidy")
     if (LINT_WARNINGS_ARE_ERRORS)
-        set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--warnings-as-errors='*'")
+        list (APPEND CLANG_TIDY_COMMAND  "--warnings-as-errors='*'")
     endif()
     if (LINT_EXPORT)
-        set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--export-fixes=fixes.yml")
+        list (APPEND CLANG_TIDY_COMMAND --export-fixes=fixes.yml)
     endif()
 
     if (WIN32)
-        set (CLANG_TIDY_COMMAND ${CLANG_TIDY_COMMAND} "--extra-arg=/EHsc")
+        list (APPEND CLANG_TIDY_COMMAND --extra-arg=/EHsc)
     endif()
 
     message(STATUS "Using CLANG_TIDY_COMMAND=${CLANG_TIDY_COMMAND}")
