@@ -13,11 +13,30 @@ from .meta import notifications
 import re
 import os
 
+import argparse
+
+parser = argparse.ArgumentParser(
+    prog="sedd",
+    description="Automatic (unofficial) SE data dump downloader for the anti-community data dump format",
+)
+
+parser.add_argument(
+    "-o", "--outputDir",
+    required=False,
+    dest="output_dir",
+    default=os.path.join(os.getcwd(), "downloads")
+
+)
+
+args = parser.parse_args()
+
 def get_download_dir():
-    curr_dir = os.getcwd()
-    download_dir = os.path.join(curr_dir, "downloads")
+    download_dir = args.output_dir
+
     if not os.path.exists(download_dir):
-        os.mkdir(download_dir)
+        os.makedirs(download_dir)
+
+    print(download_dir)
 
     return download_dir
 
@@ -49,6 +68,7 @@ password = config["password"]
 def kill_cookie_shit(browser: WebDriver):
     sleep(3)
     browser.execute_script("""let elem = document.getElementById("onetrust-banner-sdk"); if (elem) { elem.parentNode.removeChild(elem); }""")
+    sleep(1)
 
 def is_logged_in(browser: WebDriver, site: str):
     url = f"{site}/users/current"
