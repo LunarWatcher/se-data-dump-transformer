@@ -37,7 +37,7 @@ jobs:
           cd build
           cmake --build . -j 2 --target test
       - name: Check clang-tidy
-        if: ${{matrix.os}} == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-latest'
         run: |
           cmake .. -DCMAKE_BUILD_TYPE=Release -DLINT=ON -DLINT_WARNINGS_ARE_ERRORS=ON
           cmake --build . -j 2
