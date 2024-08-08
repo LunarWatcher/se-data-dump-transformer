@@ -27,7 +27,5 @@ Checks: >
   -readability-else-after-return,
   -clang-analyzer-cplusplus.NewDeleteLeaks
 
-HeaderFileExtensions: ["hpp"]
-ImplementationFileExtensions: ["cpp"]
 # Windows does not like to cooperate with the correct type of path slashes
 HeaderFilterRegex: ".*transformer.src.*"
