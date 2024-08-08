@@ -1,5 +1,6 @@
 /config.json
 compile_commands.json
+*.xpi
 
 # Contains the downloaded data dump
 /downloads/
