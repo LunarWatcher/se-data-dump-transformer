@@ -15,6 +15,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y clang-tidy
+
+          clang-tidy --version
       - name: Generate fixes.yml
         run: |
           cd transformer
@@ -22,10 +24,6 @@ jobs:
           cd build
           cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DLINT=ON -DLINT_EXPORT=ON
           make -j 2
-          ls ..
-          ls 
-          ls bin
-          ls lib
           
       - name: Run clang-tidy-pr-comments action
         uses: platisd/clang-tidy-pr-comments@v1
