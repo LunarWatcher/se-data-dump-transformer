@@ -95,7 +95,7 @@ else()
     if (SEDD_SANITISE)
         set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /fsanitize=address")
     endif()
-    set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O3")
+    set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2")
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
 
     add_definitions(-DNOMINMAX=1)
