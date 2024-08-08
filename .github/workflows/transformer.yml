@@ -41,20 +41,19 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
-    defaults:
-      run:
-        working-directory: ./transformer/
     steps:
       - uses: actions/checkout@v4
       - name: Install clang-tidy
         run: |
           sudo apt-get update
           sudo apt-get install -y clang-tidy
-      - name: Prepare compile_commands.json
+      - name: Generate fixes.yml
         run: |
+          cd transformer
           mkdir build 
           cd build
           cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DLINT=ON -DLINT_EXPORT=ON
+          make -j 2
       - name: Run clang-tidy-pr-comments action
         uses: platisd/clang-tidy-pr-comments@v1
         with:
