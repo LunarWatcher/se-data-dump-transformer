@@ -22,6 +22,7 @@ jobs:
           cd build
           cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DLINT=ON -DLINT_EXPORT=ON
           make -j 2
+          ls
       - name: Run clang-tidy-pr-comments action
         uses: platisd/clang-tidy-pr-comments@v1
         with:
