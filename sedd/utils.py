@@ -20,3 +20,4 @@ def extract_etag(url: str, etags: Dict[str, str]):
 
     etags[filename] = etag
 
+    print(f"ETag for {filename}: {etag}")
