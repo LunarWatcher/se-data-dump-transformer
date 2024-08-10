@@ -62,7 +62,6 @@ For completeness (well, sort of, none of these lists are exhaustive), this is a 
 
 ## Using the downloader
 
-
 Note that it's stongly encouraged that you use a venv. To set one up, run `python3 -m venv env`. After that, you'll need to activate it with one of the activation scripts. Run the appropriate one for your operating system. If you're not sure what the scripts are called, you can find them in `./env/bin`
 
 ### Requirements
@@ -71,11 +70,16 @@ Note that it's stongly encouraged that you use a venv. To set one up, run `pytho
 * `pip3 install -r requirements.txt`
 * Lots of storage. The 2024Q1 data dump was 92GB compressed.
 * A display you can access somehow (physical or virtual, but you need to be able to see it) to be able to solve captchas
-* Email and password login for Stack Exchange - Google, Facebook, GitHub, and other login methods are not supported, and will not be supported
-* Possibly Firefox installed; it's unclear if this is a requirement, or if the automated FF is auto-sourced with Selenium.
+* Email and password login for Stack Exchange - Google, Facebook, GitHub, and other login methods are not supported, and will not be supported.
+    * If you don't have this, see [this meta question](https://meta.stackexchange.com/a/1847/332043) for instructions.
+* Firefox installed
+    * Snap and flatpak users may run into problems; it's strongly recommended to have a non-snap/flatpak installation of Firefox and Geckodriver.
+        * Known errors:
+            * "The geckodriver version may not be compatible with the detected firefox version" - update Firefox and Geckodriver. If this still doesn't work, consider switching to a non-snap installation of Firefox and Geckodriver.
+            * "Your Firefox profile cannot be loaded" - One of Geckodriver or Firefox is Snap-based, while the other is not. [Consider switching to a non-snap installation](https://stackoverflow.com/a/72531719/6296561) of Firefox, or verifying that your PATH is set correctly.
+    * If you need to manaully install Geckodriver (which shouldn't normally be necessary; it's often bundled with Firefox in one way or another), the binaries are on [GitHub](https://github.com/mozilla/geckodriver/releases)
 
 The downloader does **not** support Docker due to the display requirement.
-
 
 ### Config, running, and what to expect
 
