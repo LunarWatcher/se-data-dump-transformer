@@ -1,8 +1,9 @@
-import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.firefox.options import Options
+from selenium.common.exceptions import NoSuchElementException
+from typing import Dict
 
 from sedd.data import sites
 from time import sleep
@@ -14,6 +15,7 @@ import re
 import os
 
 import argparse
+from . import utils
 
 parser = argparse.ArgumentParser(
     prog="sedd",
@@ -47,6 +49,7 @@ def get_download_dir():
     return download_dir
 
 options = Options()
+options.enable_downloads = True
 options.set_preference("browser.download.folderList", 2)
 options.set_preference("browser.download.manager.showWhenStarting", False)
 options.set_preference("browser.download.dir", get_download_dir())
@@ -122,7 +125,7 @@ def login_or_create(browser: WebDriver, site: str):
             break
 
 
-def download_data_dump(browser: WebDriver, site: str):
+def download_data_dump(browser: WebDriver, site: str, etags: Dict[str, str]):
     print(f"Downloading data dump from {site}")
 
     def _exec_download(browser: WebDriver):
@@ -130,16 +133,43 @@ def download_data_dump(browser: WebDriver, site: str):
         try:
             checkbox = browser.find_element(By.ID, "datadump-agree-checkbox")
             btn = browser.find_element(By.ID, "datadump-download-button")
-        except selenium.common.exceptions.NoSuchElementException:
+        except NoSuchElementException:
             raise RuntimeError(f"Bad site: {site}")
 
         if args.dry_run:
             return
 
+        browser.execute_script("""
+        (function() {
+            let oldFetch = window.fetch;
+            window.fetch = (url, opts) => {
+                let promise = oldFetch(url, opts);
+
+                if (url.includes("/link")) {
+                    promise.then(res => {
+                        res.clone().json().then(json => {
+                            window.extractedUrl = json["url"];
+                            console.log(extractedUrl);
+                        });
+                        return res;
+                    });
+                    return new Promise(resolve => setTimeout(resolve, 4000))
+                        .then(_ => promise);
+                }
+                return promise;
+            };
+        })();
+        """)
+
         checkbox.click()
         sleep(1)
         btn.click()
-        sleep(4)
+        sleep(2)
+        url = browser.execute_script("return window.extractedUrl;")
+        utils.extract_etag(url, etags)
+
+        sleep(5);
+
 
     browser.get(f"{site}/users/data-dump-access/current")
     _exec_download(browser)
@@ -151,11 +181,19 @@ def download_data_dump(browser: WebDriver, site: str):
         browser.get(f"{meta_url}/users/data-dump-access/current")
         _exec_download(browser)
 
+etags: Dict[str, str] = {}
+
 for site in sites.sites:
     print(f"Extracting from {site}...")
 
     login_or_create(browser, site)
     download_data_dump(
         browser,
-        site
+        site,
+        etags
     )
+
+# TODO: replace with validation once downloading is verified done
+# (or export for separate, later verification)
+# Though keeping it here, removing files and re-running downloads feels like a better idea
+print(etags)
