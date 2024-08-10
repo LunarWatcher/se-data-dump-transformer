@@ -1,3 +1,2 @@
-selenium==4.22.0
+selenium==4.23.1
 desktop-notifier==5.0.1
-py7zr==0.21.1
