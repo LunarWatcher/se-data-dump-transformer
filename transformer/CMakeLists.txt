@@ -160,7 +160,7 @@ if (LINT)
 
     set (CLANG_TIDY_COMMAND "${CLANGTIDY}" "--config-file=${CMAKE_CURRENT_SOURCE_DIR}/.clang-tidy")
     if (LINT_WARNINGS_ARE_ERRORS)
-        list (APPEND CLANG_TIDY_COMMAND  "--warnings-as-errors='*'")
+        list (APPEND CLANG_TIDY_COMMAND  "-warnings-as-errors='*'")
     endif()
     if (LINT_EXPORT)
         list (APPEND CLANG_TIDY_COMMAND --export-fixes=fixes.yml)
