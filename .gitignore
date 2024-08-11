@@ -1,5 +1,7 @@
 /config.json
 compile_commands.json
+*.xpi
+/stackexchange_*/
 
 # Contains the downloaded data dump
 /downloads/

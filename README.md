@@ -2,8 +2,6 @@
 
 [![Data dump transformer build](https://github.com/LunarWatcher/se-data-dump-transformer/actions/workflows/transformer.yml/badge.svg)](https://github.com/LunarWatcher/se-data-dump-transformer/actions/workflows/transformer.yml) [![Stackapps listing](https://img.shields.io/badge/StackApps%20listing-FF9900)](https://stackapps.com/q/10591/69829)
 
-**NOTE:** This repo does not yet gather the data dump, as it has not yet been released in the new format. It currently contains the scaffolding required to deal with some of SE's bullshit, to make sure it can be quickly adapted to actually download the data dump parts when they become available.
-
 **Disclaimer:** This project is not affiliated with Stack Exchange, Inc.
 
 ## Background
@@ -51,7 +49,6 @@ This list contains converter tools that work on all sites and all tables.
 | --- | --- | --- | --- |
 | Maxwell175 | SQLite, Postgres, MSSQL | Partially[^2] | [AGPL-3.0](https://github.com/Maxwell175/StackExchangeDumpConverter) | 
 
-[^2]: Only Postgres at the time of writing, with more planned
 
 ### Other data dump distributions and conversion tools
 
@@ -62,21 +59,27 @@ For completeness (well, sort of, none of these lists are exhaustive), this is a 
 | Brent Ozar | [MSSQL](https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/) | Yes | [MIT-licensed](https://github.com/BrentOzarULTD/soddi) | Stack Overflow only | All tables |
 | Jason Punyon | [SQLite](https://seqlite.puny.engineering/) | No | Closed-source[^1] | All sites | Posts only |
 
-[^1]: I've been unable to find the generator code, but I've also been unable to find a statement confirming that it's closed-source. It's possible it is open-source, but if it is, it's hard to find the source
 
 ## Using the downloader
-
 
 Note that it's stongly encouraged that you use a venv. To set one up, run `python3 -m venv env`. After that, you'll need to activate it with one of the activation scripts. Run the appropriate one for your operating system. If you're not sure what the scripts are called, you can find them in `./env/bin`
 
 ### Requirements
 
+* Python 3.10 or newer[^3]
 * `pip3 install -r requirements.txt`
-* Lots of storage. The 2024Q1 data dump was 92GB compressed, and uncompressed, converted files are cached on disk before being compressed. The Stack Overflow data dump may take several hundred gigabytes of cache storage while the conversion process is happening.
+* Lots of storage. The 2024Q1 data dump was 92GB compressed.
 * A display you can access somehow (physical or virtual, but you need to be able to see it) to be able to solve captchas
+* Email and password login for Stack Exchange - Google, Facebook, GitHub, and other login methods are not supported, and will not be supported.
+    * If you don't have this, see [this meta question](https://meta.stackexchange.com/a/1847/332043) for instructions.
+* Firefox installed
+    * Snap and flatpak users may run into problems; it's strongly recommended to have a non-snap/flatpak installation of Firefox and Geckodriver.
+        * Known errors:
+            * "The geckodriver version may not be compatible with the detected firefox version" - update Firefox and Geckodriver. If this still doesn't work, consider switching to a non-snap installation of Firefox and Geckodriver.
+            * "Your Firefox profile cannot be loaded" - One of Geckodriver or Firefox is Snap-based, while the other is not. [Consider switching to a non-snap installation](https://stackoverflow.com/a/72531719/6296561) of Firefox, or verifying that your PATH is set correctly.
+    * If you need to manaully install Geckodriver (which shouldn't normally be necessary; it's often bundled with Firefox in one way or another), the binaries are on [GitHub](https://github.com/mozilla/geckodriver/releases)
 
 The downloader does **not** support Docker due to the display requirement.
-
 
 ### Config, running, and what to expect
 
@@ -86,16 +89,6 @@ The downloader does **not** support Docker due to the display requirement.
 2. Copy `config.example.json` to `config.json`
 3. Open `config.json`, and edit in the values. The values are described within the JSON file itself.
 4. Run the extractor with `python3 -m sedd`. If you're on Windows, you may need to run `python -m sedd` instead. 
-
-##### Download modes (not yet implemented)
-
-There are two download modes:
-* `key TBA`: Starts downloading data dumps as soon as the URLs become available, but at the expense of download performance of individual files. This means up to ~365 concurrent downloads, though that number will go down rather quickly due to the many small data dumps.
-
-    This is both the default **and the (unofficially) recommended way** to download the data dumps.
-
-    If SE wanted to avoid this, they could've [bothered implementing combined main + meta downloads](https://meta.stackexchange.com/questions/401324/announcing-a-change-to-the-data-dump-process?cb=1#comment1340364_401324), or even better, a "download all" button, before pushing this utter crap.
-* `key TBA`: Downloads one data dump at a time, maximising the download speed for each individual data dump. Recommended if you're on an unstable or slow internet connection, or want to start converting the dump progressively as new entries appear.
 
 #### Captchas and other misc. barriers
 
@@ -211,4 +204,6 @@ The code is under the MIT license; see the `LICENSE` file.
 
 The data downloaded and produced is under various versions of [CC-By-SA](https://stackoverflow.com/help/licensing), as per Stack Exchange's licensing rules, in addition to whatever extra rules they try to impose on the data dump.
 
-
+[^1]: I've been unable to find the generator code, but I've also been unable to find a statement confirming that it's closed-source. It's possible it is open-source, but if it is, it's hard to find the source
+[^2]: Only Postgres at the time of writing, with more planned
+[^3]: Might work with earlier versions, but these are untested and not supported
