@@ -17,7 +17,6 @@ set (BUILD_SHARED_LIBS ON)
 
 option (SEDD_SANITISE "Whether or not to enable -fsanitize" OFF)
 option (LINT "Whether or not to enable clang-tidy checks" OFF)
-option (LINT_EXPORT "Whether nor not to make clang-tidy export results" ON)
 option (LINT_WARNINGS_ARE_ERRORS "Whether or not to set -warnings-as-errors" OFF)
 
 list (APPEND CMAKE_FIND_ROOT_PATH "${CMAKE_SOURCE_DIR}/cmake/")
@@ -160,10 +159,7 @@ if (LINT)
 
     set (CLANG_TIDY_COMMAND "${CLANGTIDY}" "--config-file=${CMAKE_CURRENT_SOURCE_DIR}/.clang-tidy")
     if (LINT_WARNINGS_ARE_ERRORS)
-        list (APPEND CLANG_TIDY_COMMAND  "-warnings-as-errors='*'")
-    endif()
-    if (LINT_EXPORT)
-        list (APPEND CLANG_TIDY_COMMAND --export-fixes=fixes.yml)
+        list (APPEND CLANG_TIDY_COMMAND  -warnings-as-errors=*)
     endif()
 
     if (WIN32)

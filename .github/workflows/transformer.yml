@@ -36,10 +36,20 @@ jobs:
         run: |
           cd build
           cmake --build . -j 2 --target test
-      - name: Check clang-tidy
-        if: matrix.os == 'ubuntu-latest'
+
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./transformer/
+    steps:
+      - uses: actions/checkout@main
+      - name: Install deps
         run: |
-          mkdir build-lint
-          cd build-lint
+          sudo apt update && sudo apt upgrade -y
+      - name: Check clang-tidy
+        run: |
+          mkdir build
+          cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DLINT=ON -DLINT_WARNINGS_ARE_ERRORS=ON
           cmake --build . -j 2
