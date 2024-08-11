@@ -39,7 +39,6 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
     }
     yyjson_mut_doc_set_root(*jw, obj);
 
-
     const auto& types = Schema::schema.at(ctx.currType);
 
     for (const auto& attr : row.attributes()) {

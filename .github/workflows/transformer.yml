@@ -2,8 +2,12 @@ name: Data dump transformer build
 on:
   push:
     branches: [ master ]
+    paths:
+      - transformer/*
   pull_request:
     branches: [ master ]
+    paths:
+      - transformer/*
 jobs:
   build:
     strategy:
@@ -32,3 +36,20 @@ jobs:
         run: |
           cd build
           cmake --build . -j 2 --target test
+
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./transformer/
+    steps:
+      - uses: actions/checkout@main
+      - name: Install deps
+        run: |
+          sudo apt update && sudo apt upgrade -y
+      - name: Check clang-tidy
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DLINT=ON -DLINT_WARNINGS_ARE_ERRORS=ON
+          cmake --build . -j 2

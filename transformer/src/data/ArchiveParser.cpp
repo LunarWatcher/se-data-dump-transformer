@@ -87,22 +87,21 @@ void ArchiveParser::read(const GlobalContext& conf) {
         .baseDomain = baseDomain,
         .baseSiteName = baseName,
         .archivePath = this->archivePath,
-        .currType = DataDumpFileType::_UNKNOWN,
+        .currType = DataDumpFileType::UNKNOWN,
         .currTypeStr = "",
         .conf = conf,
     };
 
     if (conf.transformer) {
         auto path = conf.transformer->getOutputArchivePath(ctx);
-        if (std::filesystem::is_regular_file(path) && std::filesystem::file_size(path) != 0) {
+        if (std::filesystem::exists(path) && std::filesystem::file_size(path) != 0) {
             spdlog::debug("Output archive for {} ({}) already exists", ctx.baseDomain, path.string());
             if (conf.recover) {
                 spdlog::info("Recovery mode: skipping {}", ctx.baseDomain);
                 return;
-            } else {
-                spdlog::warn("Recovery mode disabled, but {} already exists. Removing...", path.string());
-                std::filesystem::remove(path);
-            }
+            } 
+            spdlog::warn("Recovery mode disabled, but {} already exists. Removing...", path.string());
+            std::filesystem::remove(path);
         }
     }
 
@@ -116,7 +115,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
         std::string entryName = archive_entry_pathname(entry);
         spdlog::info("Extracting {}/{}", ctx.baseDomain, entryName);
 
-        ctx.currType = DataDumpFileType::_UNKNOWN;
+        ctx.currType = DataDumpFileType::UNKNOWN;
         ctx.currTypeStr = "";
 
 
@@ -125,7 +124,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
 
         const void* buff;
 
-        std::string incompleteBlock = "";
+        std::string incompleteBlock;
         // Incrementally read the data
         while (true) {
             int r = archive_read_data_block(a, &buff, &readSize, &offset);
@@ -163,7 +162,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
 
             for (const auto& line : lines) {
 
-                if (line.size() == 0) {
+                if (line.empty()) {
                     continue;
                 }
                 // Workaround for https://meta.stackexchange.com/a/401889/332043
@@ -182,7 +181,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
                     continue;
                 }
                 if (line.substr(openIdx).starts_with("<row")) {
-                    if (ctx.currType == DataDumpFileType::_UNKNOWN) {
+                    if (ctx.currType == DataDumpFileType::UNKNOWN) {
                         std::cerr << "Failed to parse opening tag" << std::endl;
                         throw std::runtime_error("Failed to find opening tag before row content");
                     }
@@ -198,7 +197,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
                     if (conf.transformer) {
                         conf.transformer->parseLine(node, ctx);
                     }
-                } else if (ctx.currType == DataDumpFileType::_UNKNOWN) {
+                } else if (ctx.currType == DataDumpFileType::UNKNOWN) {
                     //for (const auto& tag : KNOWN_TAGS) {
                         //if (line == "<" + tag + ">") {
                             //openingTag = tag;
@@ -228,7 +227,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
 
         }
 
-        if (incompleteBlock != "") {
+        if (!incompleteBlock.empty()) {
             std::cerr << "Failed to fully parse file; found trailing block past EOF: " << incompleteBlock << std::endl;
             throw std::runtime_error("Failed to fully parse file");
         }
@@ -237,7 +236,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
         }
 
     }
-    auto err = archive_error_string(a);
+    const auto* err = archive_error_string(a);
     if (err != nullptr) {
         spdlog::critical("{}", err);
         throw std::runtime_error(err);

@@ -66,24 +66,21 @@ void SQLiteTransformer::parseLine(const pugi::xml_node& row, const ParserContext
         ss << name;
 
         // If the field isn't nullable, fall back to the defaults from the XML parser
-        if (strval.size() == 0 && fieldDescriptor.nullable) {
-            rawInputs.push_back(nullptr);
+        if (strval.empty() && fieldDescriptor.nullable) {
+            rawInputs.emplace_back(nullptr);
         } else {
             switch (fieldDescriptor.type) {
             case Schema::LONG:
-                rawInputs.push_back(attr.as_llong());
+                rawInputs.emplace_back(attr.as_llong());
                 break;
             case Schema::DOUBLE:
-                rawInputs.push_back(attr.as_double());
+                rawInputs.emplace_back(attr.as_double());
                 break;
             case Schema::STRING:
-                rawInputs.push_back(strval);
-                break;
-            case Schema::DATE:
-                rawInputs.push_back(strval);
+                rawInputs.emplace_back(strval);
                 break;
             case Schema::BOOL:
-                rawInputs.push_back(attr.as_bool());
+                rawInputs.emplace_back(attr.as_bool());
                 break;
             default:
                 throw std::runtime_error("Unknown field type");
@@ -95,7 +92,9 @@ void SQLiteTransformer::parseLine(const pugi::xml_node& row, const ParserContext
     for (size_t i = 0; i < fieldCount; ++i) {
         if (!prevField) {
             prevField = true;
-        } else ss << ", ";
+        } else { 
+            ss << ", ";
+        }
         ss << "?";
     }
     ss << ")";
@@ -159,8 +158,12 @@ void SQLiteTransformer::genTables() {
                 break;
             }
 
-            if (!spec.nullable) ss << "NOT NULL ";
-            if (spec.pk) ss << "PRIMARY KEY ";
+            if (!spec.nullable) {
+                ss << "NOT NULL ";
+            }
+            if (spec.pk) {
+                ss << "PRIMARY KEY ";
+            }
         }
 
         ss << "\n)";
