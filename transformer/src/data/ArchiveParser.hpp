@@ -81,6 +81,8 @@ public:
     ~ArchiveParser();
 
     void read(const GlobalContext& conf);
+
+    std::vector<std::filesystem::path> checkExtractSubarchives(const std::filesystem::path& outputDir);
 };
 
 }

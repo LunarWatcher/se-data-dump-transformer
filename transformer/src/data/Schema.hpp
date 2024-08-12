@@ -61,7 +61,7 @@ inline std::map<DataDumpFileType::DataDumpFileType, std::map<std::string, Field>
                     .pk = false,
                     .nullable = false,
                     .type = BOOL,
-                }}       
+                }},
         }
     },
     {DataDumpFileType::COMMENTS,

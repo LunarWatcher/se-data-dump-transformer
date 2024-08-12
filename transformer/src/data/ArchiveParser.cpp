@@ -13,6 +13,7 @@
 #include <stc/StringUtil.hpp>
 #include <cassert>
 #include <unordered_map>
+#include <fstream>
 
 namespace sedd {
 
@@ -245,6 +246,66 @@ void ArchiveParser::read(const GlobalContext& conf) {
     if (conf.transformer) {
         conf.transformer->endArchive(ctx);
     }
+}
+
+std::vector<std::filesystem::path> ArchiveParser::checkExtractSubarchives(const std::filesystem::path& outputDir) {
+    std::vector<std::filesystem::path> out;
+
+    archive_entry *entry;
+    while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
+        std::string entryName = archive_entry_pathname(entry);
+        if (entryName.ends_with(".7z")) {
+            if (out.empty()) {
+                spdlog::info("{} is evil (nested .7z files)", this->archivePath.string());
+            }
+            spdlog::info("Unpacking {}", entryName);
+
+            out.emplace_back(outputDir / entryName);
+
+            if (std::filesystem::exists(out.back())) {
+                spdlog::debug("Skipping {}; already unpacked", out.back().string());
+                continue;
+            }
+
+            std::ofstream o(
+                out.back(),
+                std::ios::binary
+            );
+            int r;
+
+            do {
+                size_t readSize;
+                int64_t offset;
+                const void* buff;
+
+                r = archive_read_data_block(
+                    a,
+                    &buff,
+                    &readSize,
+                    &offset
+                );
+
+                if (readSize == 0) {
+                    break;
+                }
+
+                std::string block(static_cast<const char*>(buff), readSize);
+                o << block;
+                
+            } while (r == ARCHIVE_OK);
+
+            if (r == ARCHIVE_FATAL) {
+                std::cerr << "Failed to extract archive from archive: " << archive_error_string(a) << std::endl;
+                throw std::runtime_error("Failed to read archive");
+            }
+        } else {
+            // Clear archive
+            break;
+        }
+    }
+
+
+    return out;
 }
 
 }

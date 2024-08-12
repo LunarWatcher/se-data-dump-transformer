@@ -77,12 +77,14 @@ void SQLiteTransformer::parseLine(const pugi::xml_node& row, const ParserContext
                 rawInputs.emplace_back(attr.as_double());
                 break;
             case Schema::STRING:
+            case Schema::DATE:
                 rawInputs.emplace_back(strval);
                 break;
             case Schema::BOOL:
                 rawInputs.emplace_back(attr.as_bool());
                 break;
             default:
+                spdlog::error("Invalid field type for {}", name);
                 throw std::runtime_error("Unknown field type");
             }
         }

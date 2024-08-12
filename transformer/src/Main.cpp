@@ -13,6 +13,7 @@
 #include <stc/StringUtil.hpp>
 
 #include "data/transformers/JSONTransformer.hpp"
+#include "util/InputPreprocessor.cpp"
 
 #include <spdlog/spdlog.h>
 #include <map>
@@ -98,25 +99,20 @@ int main(int argc, char* argv[]) {
             }
             return std::filesystem::path(downloadDir) / "../out";
         }(),
+        .subarchiveDir = std::filesystem::path(downloadDir) / "_subarchives",
         .transformer = nullptr,
         .recover = recover
     };
 
     std::filesystem::create_directories(baseCtx.destDir);
+    std::filesystem::create_directories(baseCtx.subarchiveDir);
     spdlog::info("Configuration:");
     spdlog::info("Files: [source = {}, dest = {}]", baseCtx.sourceDir.string(), baseCtx.destDir.string());
 
     // At least MSVC doesn't like using directory_iterator directly in a parallel for_each because
     //      Parallel algorithms require forward iterators or stronger.
     // Which doesn't make sense to me, but it is what it is
-    std::vector<std::filesystem::path> dirIt;
-    for (const auto& entry : std::filesystem::directory_iterator(baseCtx.sourceDir)) {
-        if (entry.is_directory() || entry.path().extension() != ".7z") {
-            continue;
-        }
-        dirIt.push_back(entry.path());
-    }
-
+    std::vector<std::filesystem::path> dirIt = sedd::InputPreprocessor::screenArchives(baseCtx);
 
     std::counting_semaphore concurrencyGuard(threads);
 
