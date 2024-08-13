@@ -2,12 +2,9 @@ name: Data dump transformer build
 on:
   push:
     branches: [ master ]
-    paths:
-      - transformer/*
   pull_request:
     branches: [ master ]
-    paths:
-      - transformer/*
+
 jobs:
   build:
     strategy:
