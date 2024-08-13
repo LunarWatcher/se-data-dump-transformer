@@ -2,6 +2,7 @@
 #include <atomic>
 #include <execution>
 #include <filesystem>
+#include <fstream>
 #include <memory>
 #include <mutex>
 #include <semaphore>
@@ -9,11 +10,13 @@
 #include "data/ArchiveParser.hpp"
 #include "data/GlobalContext.hpp"
 #include "data/transformers/SQLiteTransformer.hpp"
+#include "meta/MetaFiles.hpp"
 #include "spdlog/cfg/helpers.h"
 #include <stc/StringUtil.hpp>
+#include <fmt/format.h>
 
 #include "data/transformers/JSONTransformer.hpp"
-#include "util/InputPreprocessor.cpp"
+#include "util/InputPreprocessor.hpp"
 
 #include <spdlog/spdlog.h>
 #include <map>
@@ -84,6 +87,17 @@ int main(int argc, char* argv[]) {
     )
         ->required(false)
         ->default_val(recover);
+
+    bool includeReadme = true;
+    app.add_option(
+        "--no-readme{false}",
+        includeReadme,
+        "Whether or not to include a README in the output directory. "
+        "To best comply with CC-By-SA, this option does not affect the LICENSE file included "
+        "in each archive"
+    )
+        ->required(false)
+        ->default_val(true);
 
     CLI11_PARSE(app, argc, argv);
 
@@ -157,6 +171,21 @@ int main(int argc, char* argv[]) {
             spdlog::info("Progress: {}/{} conversions done", ++processed, dirIt.size());
         }
     );
+
+    if (includeReadme && transformerType != TransformerType::DRY_RUN) {
+        spdlog::info("Outputting README.md...");
+        std::ofstream o(
+            baseCtx.destDir / "README.md"
+        );
+        o << fmt::format(
+            sedd::MetaFiles::readme,
+            std::find_if(
+                strToTransformer.begin(), strToTransformer.end(),
+                 [&](const auto& p) {
+                     return p.second == transformerType;
+                 })->first
+        ) << std::endl;
+    }
 
 #ifdef _WIN32
     // No errors made me miss a segfault

@@ -1,8 +1,8 @@
-#pragma once
-
 #include "InputPreprocessor.hpp"
+
 #include "data/ArchiveParser.hpp"
 #include "data/GlobalContext.hpp"
+
 namespace sedd {
 
 std::vector<std::filesystem::path> InputPreprocessor::screenArchives(GlobalContext& ctx) {

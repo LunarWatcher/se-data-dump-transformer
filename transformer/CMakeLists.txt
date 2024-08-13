@@ -37,6 +37,8 @@ find_package(ZSTD REQUIRED)
 # Required to keep zstd from exploding from https://github.com/facebook/zstd/blob/fdfb2aff39dc498372d8c9e5f2330b692fea9794/lib/common/pool.c#L103
 set (ENABLE_WERROR OFF CACHE STRING "" FORCE)
 
+set (SPDLOG_FMT_EXTERNAL ON CACHE STRING "" FORCE)
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -73,7 +75,12 @@ FetchContent_Declare(
     GIT_TAG 3.3.1
 )
 
+FetchContent_Declare(fmt 
+    GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+    GIT_TAG 11.0.2)
+
 FetchContent_MakeAvailable(
+    fmt
     sqlitecpp
     yyjson
     cli11
@@ -113,6 +120,8 @@ add_library(sedd-src STATIC
     src/data/transformers/SQLiteTransformer.cpp
 
     src/data/util/ArchiveCache.cpp
+
+    src/util/InputPreprocessor.cpp
 )
 target_compile_options(
     sedd-src
