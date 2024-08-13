@@ -110,7 +110,6 @@ void ArchiveParser::read(const GlobalContext& conf) {
         conf.transformer->beginArchive(ctx);
     }
 
-    bool isInLicenseBlock = false;
 
     while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
         std::string entryName = archive_entry_pathname(entry);
@@ -126,6 +125,8 @@ void ArchiveParser::read(const GlobalContext& conf) {
         const void* buff;
 
         std::string incompleteBlock;
+        bool isInLicenseBlock = false;
+
         // Incrementally read the data
         while (true) {
             int r = archive_read_data_block(a, &buff, &readSize, &offset);
@@ -269,7 +270,7 @@ std::vector<std::filesystem::path> ArchiveParser::checkExtractSubarchives(const 
 
             std::ofstream o(
                 out.back(),
-                std::ios::binary
+                std::ios_base::binary
             );
             int r;
 
