@@ -1,6 +1,7 @@
 #include "JSONTransformer.hpp"
 #include "data/ArchiveWriter.hpp"
 #include "data/Schema.hpp"
+#include "spdlog/spdlog.h"
 #include "wrappers/yyjson.hpp"
 #include <stdexcept>
 
@@ -69,6 +70,7 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
 
     auto json = jw.write();
     if (json.error()) {
+        spdlog::error("JSON write error: {}", json.err.msg);
         throw std::runtime_error("Failed to construct JSON string");
     }
     if (this->started) {

@@ -8,8 +8,10 @@ namespace sedd {
 class YYJsonStr {
 public:
     const char* str;
+    yyjson_write_err err;
+
     YYJsonStr(yyjson_mut_doc* doc) : str(
-        yyjson_mut_write(doc, 0, nullptr)
+        yyjson_mut_write_opts(doc, 0, nullptr, nullptr, &err)
     ) {}
 
     YYJsonStr(YYJsonStr&& other) noexcept : str(other.str) {
