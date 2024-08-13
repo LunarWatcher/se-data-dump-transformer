@@ -103,7 +103,7 @@ void ArchiveWriter::commit() {
                 break;
             }
 
-            SEDDARCHIVE_CHECK_ERROR(a, archive_write_data(a, inbuff.data(), f.gcount()));
+            SEDDARCHIVE_CHECK_ERROR_NEG(a, archive_write_data(a, inbuff.data(), f.gcount()));
         }
 
         SEDDARCHIVE_CHECK_ERROR(a, archive_write_finish_entry(a));
