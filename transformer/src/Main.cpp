@@ -89,8 +89,8 @@ int main(int argc, char* argv[]) {
         ->default_val(recover);
 
     bool includeReadme = true;
-    app.add_option(
-        "--no-readme{false}",
+    app.add_flag(
+        "--readme,!--no-readme",
         includeReadme,
         "Whether or not to include a README in the output directory. "
         "To best comply with CC-By-SA, this option does not affect the LICENSE file included "
