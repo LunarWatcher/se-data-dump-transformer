@@ -2,7 +2,9 @@
 #include "data/ArchiveWriter.hpp"
 #include "data/Schema.hpp"
 #include "spdlog/spdlog.h"
+#include "util/StringSanitiser.hpp"
 #include "wrappers/yyjson.hpp"
+#include <sstream>
 #include <stdexcept>
 
 namespace sedd {
@@ -42,6 +44,10 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
 
     const auto& types = Schema::schema.at(ctx.currType);
 
+    // This read-only container is used to contain the strings from date and string types.
+    // yyjson_mut_obj_add_str does not copy the string, so this is required to keep the strings valid
+    std::vector<std::string> stringLifecycleContainer;
+
     for (const auto& attr : row.attributes()) {
         // TODO: check if the second condition is necessary or not
         if (attr.empty() || attr.value() == nullptr) {
@@ -61,7 +67,10 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
             break;
         case Schema::STRING:
         case Schema::DATE:
-            yyjson_mut_obj_add_str(*jw, obj, attr.name(), attr.as_string());
+            stringLifecycleContainer.emplace_back(
+                StringSanitiser::cleanString(attr.as_string())
+            );
+            yyjson_mut_obj_add_str(*jw, obj, attr.name(), stringLifecycleContainer.back().c_str());
             break;
         default:
             throw std::runtime_error("Invalid type for field " + std::string(attr.name()));
@@ -70,7 +79,13 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
 
     auto json = jw.write();
     if (json.error()) {
-        spdlog::error("JSON write error: {}", json.err.msg);
+        std::stringstream ss;
+        row.print(ss);
+
+        spdlog::error("JSON write error: {}. attr value: {}", json.err.msg, ss.str());
+        for (auto& string : stringLifecycleContainer) {
+            spdlog::debug("String: {}", string);
+        }
         throw std::runtime_error("Failed to construct JSON string");
     }
     if (this->started) {

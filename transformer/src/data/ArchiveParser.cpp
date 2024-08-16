@@ -6,6 +6,7 @@
 #include <pugixml.hpp>
 
 #include "Transformer.hpp"
+#include "util/StringSanitiser.hpp"
 #include <archive.h>
 #include <archive_entry.h>
 #include <iostream>
@@ -189,7 +190,10 @@ void ArchiveParser::read(const GlobalContext& conf) {
                     }
 
                     pugi::xml_document doc;
-                    pugi::xml_parse_result res = doc.load_string(line.c_str());
+                    pugi::xml_parse_result res = doc.load_string(
+                        StringSanitiser::clearNullBytes(line).c_str(),
+                        pugi::parse_default & ~pugi::parse_escapes
+                    );
                     if (!res) {
                         std::cerr << "Failed to parse line as XML: " << line << "\nReason: " << res.description() << std::endl;
                         throw std::runtime_error("Failed to parse line as XML");
