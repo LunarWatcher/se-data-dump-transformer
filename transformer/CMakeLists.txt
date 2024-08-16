@@ -65,11 +65,6 @@ FetchContent_Declare(
     GIT_TAG v2.4.2
 )
 FetchContent_Declare(
-    yyjson
-    GIT_REPOSITORY https://github.com/ibireme/yyjson
-    GIT_TAG 0.10.0
-)
-FetchContent_Declare(
     sqlitecpp
     GIT_REPOSITORY https://github.com/SRombauts/SQLiteCpp
     GIT_TAG 3.3.1
@@ -84,16 +79,21 @@ FetchContent_Declare(utf8
     GIT_TAG d2e35eb8366dae73ed12653b8fef8ec2a26ddc8f
 )
 
+FetchContent_Declare(json
+    GIT_REPOSITORY https://github.com/nlohmann/json
+    GIT_TAG v3.11.3
+)
+
 FetchContent_MakeAvailable(
     fmt
     sqlitecpp
-    yyjson
     cli11
     spdlog
     stc
     pugixml
     libarchive
     utf8
+    json
 )
 
 add_library(utf8h INTERFACE)
@@ -141,12 +141,12 @@ target_include_directories(sedd-src PUBLIC src)
 target_link_libraries(
     sedd-src
 PUBLIC
+    nlohmann_json::nlohmann_json
     archive 
     stc 
     spdlog::spdlog
     pugixml
     CLI11::CLI11
-    yyjson
     SQLiteCpp
     utf8h
 )
