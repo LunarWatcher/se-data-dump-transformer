@@ -192,7 +192,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
                     pugi::xml_document doc;
                     pugi::xml_parse_result res = doc.load_string(
                         StringSanitiser::clearNullBytes(line).c_str(),
-                        pugi::parse_default & ~pugi::parse_escapes
+                        (pugi::parse_default | pugi::encoding_utf8 | pugi::parse_ws_pcdata_single) & ~pugi::parse_escapes
                     );
                     if (!res) {
                         std::cerr << "Failed to parse line as XML: " << line << "\nReason: " << res.description() << std::endl;
@@ -201,7 +201,17 @@ void ArchiveParser::read(const GlobalContext& conf) {
                     const auto& node = doc.first_child();
 
                     if (conf.transformer) {
-                        conf.transformer->parseLine(node, ctx);
+                        try {
+                            conf.transformer->parseLine(node, ctx);
+                        } catch (...) {
+                            std::cout << "Raw bytes: ";
+                            for (int b : line) { // NOLINT
+                                std::cout << std::hex << b << " ";
+                            }
+                            std::cout << std::endl;
+
+                            throw;
+                        }
                     }
                 } else if (ctx.currType == DataDumpFileType::UNKNOWN) {
                     //for (const auto& tag : KNOWN_TAGS) {
