@@ -48,8 +48,13 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
     // This read-only container is used to contain the strings from date and string types.
     // yyjson_mut_obj_add_str does not copy the string, so this is required to keep the strings valid
     std::vector<std::string> stringLifecycleContainer;
+    stringLifecycleContainer.reserve(std::distance(row.attributes().begin(), row.attributes().end()));
 
+    bool b = false;
     for (const auto& attr : row.attributes()) {
+        if (attr.name() == std::string("Id") && attr.value() == std::string("336405")) {
+            b = true;
+        }
         // TODO: check if the second condition is necessary or not
         if (attr.empty() || attr.value() == nullptr) {
             yyjson_mut_obj_add_null(*jw, obj, attr.name());
@@ -68,10 +73,19 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
             break;
         case Schema::STRING:
         case Schema::DATE:
-            stringLifecycleContainer.emplace_back(
+            stringLifecycleContainer.push_back(
                 StringSanitiser::cleanString(attr.as_string())
             );
-            yyjson_mut_obj_add_str(*jw, obj, attr.name(), stringLifecycleContainer.back().c_str());
+            if (b) {
+                std::cout << "hi" << std::endl;
+                b = false;
+            }
+            yyjson_mut_obj_add_str(
+                *jw,
+                obj, 
+                attr.name(),
+                stringLifecycleContainer.back().c_str()
+            );
             break;
         [[unlikely]] default:
             throw std::runtime_error("Invalid type for field " + std::string(attr.name()));
