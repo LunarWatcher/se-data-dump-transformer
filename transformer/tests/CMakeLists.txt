@@ -2,6 +2,7 @@ add_executable(tests
     Runner.cpp
 
     src/CheckSchema.cpp
+    src/TestUnicodeManagement.cpp
 )
 
 Include(FetchContent)

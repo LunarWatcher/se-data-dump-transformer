@@ -24,7 +24,7 @@ list (APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 
 set (ENABLE_TEST OFF CACHE STRING "" FORCE)
 
-set(SQLITECPP_RUN_CPPLINT OFF CACHE STRING "" FORCE)
+set (SQLITECPP_RUN_CPPLINT OFF CACHE STRING "" FORCE)
 
 #set (CMAKE_FIND_DEBUG_MODE TRUE)
 # For some reason, these have to be defined here, or the identical
@@ -56,7 +56,7 @@ FetchContent_Declare(spdlog
 )
 FetchContent_Declare(pugixml
     GIT_REPOSITORY https://github.com/zeux/pugixml
-    GIT_TAG v1.14
+    GIT_TAG 30cc354fe37114ec7a0a4ed2192951690357c2ed
 )
 FetchContent_Declare(
     cli11
@@ -79,6 +79,11 @@ FetchContent_Declare(fmt
     GIT_REPOSITORY https://github.com/fmtlib/fmt.git
     GIT_TAG 11.0.2)
 
+FetchContent_Declare(utf8
+    GIT_REPOSITORY https://github.com/sheredom/utf8.h
+    GIT_TAG d2e35eb8366dae73ed12653b8fef8ec2a26ddc8f
+)
+
 FetchContent_MakeAvailable(
     fmt
     sqlitecpp
@@ -88,9 +93,11 @@ FetchContent_MakeAvailable(
     stc
     pugixml
     libarchive
+    utf8
 )
 
-
+add_library(utf8h INTERFACE)
+target_include_directories(utf8h INTERFACE ${utf8_SOURCE_DIR})
 
 if (NOT WIN32)
     if (SEDD_SANITISE)
@@ -122,6 +129,7 @@ add_library(sedd-src STATIC
     src/data/util/ArchiveCache.cpp
 
     src/util/InputPreprocessor.cpp
+    src/util/StringSanitiser.cpp
 )
 target_compile_options(
     sedd-src
@@ -140,6 +148,7 @@ PUBLIC
     CLI11::CLI11
     yyjson
     SQLiteCpp
+    utf8h
 )
 
 # TODO: Figure out if poolstl is a viable replacement for this intel crap

@@ -2,7 +2,10 @@
 #include "data/ArchiveWriter.hpp"
 #include "data/Schema.hpp"
 #include "spdlog/spdlog.h"
+#include "util/StringSanitiser.hpp"
 #include "wrappers/yyjson.hpp"
+#include <iostream>
+#include <sstream>
 #include <stdexcept>
 
 namespace sedd {
@@ -42,7 +45,16 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
 
     const auto& types = Schema::schema.at(ctx.currType);
 
+    // This read-only container is used to contain the strings from date and string types.
+    // yyjson_mut_obj_add_str does not copy the string, so this is required to keep the strings valid
+    std::vector<std::string> stringLifecycleContainer;
+    stringLifecycleContainer.reserve(std::distance(row.attributes().begin(), row.attributes().end()));
+
+    bool b = false;
     for (const auto& attr : row.attributes()) {
+        if (attr.name() == std::string("Id") && attr.value() == std::string("336405")) {
+            b = true;
+        }
         // TODO: check if the second condition is necessary or not
         if (attr.empty() || attr.value() == nullptr) {
             yyjson_mut_obj_add_null(*jw, obj, attr.name());
@@ -61,16 +73,39 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
             break;
         case Schema::STRING:
         case Schema::DATE:
-            yyjson_mut_obj_add_str(*jw, obj, attr.name(), attr.as_string());
+            stringLifecycleContainer.push_back(
+                StringSanitiser::cleanString(attr.as_string())
+            );
+            if (b) {
+                std::cout << "hi" << std::endl;
+                b = false;
+            }
+            yyjson_mut_obj_add_str(
+                *jw,
+                obj, 
+                attr.name(),
+                stringLifecycleContainer.back().c_str()
+            );
             break;
-        default:
+        [[unlikely]] default:
             throw std::runtime_error("Invalid type for field " + std::string(attr.name()));
         }
     }
 
     auto json = jw.write();
     if (json.error()) {
-        spdlog::error("JSON write error: {}", json.err.msg);
+        std::stringstream ss;
+        row.print(ss);
+
+        spdlog::error("JSON write error: {}. attr value: {}", json.err.msg, ss.str());
+        for (auto& string : stringLifecycleContainer) {
+            spdlog::debug("String: {}", string);
+            std::cerr << "Bytes: ";
+            for (int c : string) { // NOLINT 
+                std::cerr << std::hex << c << " ";
+            }
+            std::cerr << std::endl;
+        }
         throw std::runtime_error("Failed to construct JSON string");
     }
     if (this->started) {
@@ -78,7 +113,7 @@ void JSONTransformer::parseLine(const pugi::xml_node& row, const ParserContext& 
     } else {
         this->started = true;
     }
-    this->writer->write(json.str);
+    this->writer->write(std::string(json.str, json.len));
 }
 
 }

@@ -1,5 +1,6 @@
 /build/
 compile_commands.json
+/build-*/
 
 # Prerequisites
 *.d
