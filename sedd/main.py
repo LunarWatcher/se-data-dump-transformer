@@ -5,6 +5,8 @@ from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from typing import Dict
 
+from .watcher.observer import register_pending_downloads_observer, Observer
+
 from sedd.data import sites
 from time import sleep
 import json
@@ -13,6 +15,8 @@ import urllib.request
 from .meta import notifications
 import re
 import os
+import sys
+from traceback import print_exception
 
 import argparse
 from . import utils
@@ -138,29 +142,6 @@ def login_or_create(browser: WebDriver, site: str):
             break
 
 
-def check_file(file_name: str):
-    try:
-        res = os.stat(os.path.join(args.output_dir, file_name))
-        return res.st_size > 0
-    except FileNotFoundError:
-        return False
-
-
-def is_file_downloaded(site_or_url: str):
-    file_name = f"{re.sub(r'https://', '', site_or_url)}.7z"
-
-    file_name = re.sub(r'^alcohol', 'beer', file_name)
-    file_name = re.sub(r'^mattermodeling', 'materials', file_name)
-    file_name = re.sub(r'^communitybuilding', 'moderators', file_name)
-    file_name = re.sub(r'^medicalsciences', 'health', file_name)
-    file_name = re.sub(r'^psychology', 'cogsci', file_name)
-    file_name = re.sub(r'^writing', 'writers', file_name)
-    file_name = re.sub(r'^video', 'avp', file_name)
-    file_name = re.sub(r'^meta\.(es|ja|pt|ru)\.', r'\1.meta.', file_name)
-
-    return check_file(file_name)
-
-
 def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict[str, str]):
     print(f"Downloading data dump from {site}")
 
@@ -206,27 +187,30 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
 
         sleep(5)
 
-    main_loaded = is_file_downloaded(site)
-    meta_loaded = is_file_downloaded(meta_url)
+    main_loaded = utils.is_file_downloaded(args.output_dir, site)
+    meta_loaded = utils.is_file_downloaded(args.output_dir, meta_url)
 
     if not args.skip_loaded or not main_loaded or not meta_loaded:
         if args.skip_loaded and main_loaded:
-            print(f"Already downloaded main for site {site}")
+            pass
         else:
             browser.get(f"{site}/users/data-dump-access/current")
+            utils.remove_old_file(args.output_dir, site)
             _exec_download(browser)
 
         if args.skip_loaded and meta_loaded:
-            print(f"Already downloaded meta for site {site}")
+            pass
         else:
-            print(meta_url)
             browser.get(f"{meta_url}/users/data-dump-access/current")
+            utils.remove_old_file(args.output_dir, meta_url)
             _exec_download(browser)
 
 
 etags: Dict[str, str] = {}
 
 try:
+    state, observer = register_pending_downloads_observer(args.output_dir)
+
     for site in sites.sites:
         print(f"Extracting from {site}...")
 
@@ -235,8 +219,11 @@ try:
             meta_url = re.sub(
                 r"(https://(?:[^.]+\.(?=stackexchange))?)", r"\1meta.", site)
 
-        if args.skip_loaded and is_file_downloaded(site) and is_file_downloaded(meta_url):
-            print(f"Already downloaded main & meta for site {site}")
+        main_loaded = utils.is_file_downloaded(args.output_dir, site)
+        meta_loaded = utils.is_file_downloaded(args.output_dir, meta_url)
+
+        if args.skip_loaded and main_loaded and meta_loaded:
+            pass
         else:
             login_or_create(browser, site)
             download_data_dump(
@@ -245,10 +232,31 @@ try:
                 meta_url,
                 etags
             )
-finally:
-    browser.quit()
 
-# TODO: replace with validation once downloading is verified done
-# (or export for separate, later verification)
-# Though keeping it here, removing files and re-running downloads feels like a better idea
-print(etags)
+    if observer:
+        pending = state.size()
+
+        print(f"Waiting for {pending} download{'s'[:pending^1]} to complete")
+
+        while True:
+            if state.empty():
+                observer.stop()
+                browser.quit()
+                break
+            else:
+                sleep(1)
+
+except:
+    exception = sys.exc_info()
+
+    try:
+        print_exception(exception)
+    except:
+        print(exception)
+
+    browser.quit()
+finally:
+    # TODO: replace with validation once downloading is verified done
+    # (or export for separate, later verification)
+    # Though keeping it here, removing files and re-running downloads feels like a better idea
+    print(etags)

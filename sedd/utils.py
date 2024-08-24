@@ -4,6 +4,9 @@ from urllib.parse import urlparse
 import os.path
 import re
 
+from .data.files_map import files_map, inverse_files_map
+from .data.sites import sites
+
 
 def extract_etag(url: str, etags: Dict[str, str]):
     res = r.get(
@@ -25,22 +28,29 @@ def extract_etag(url: str, etags: Dict[str, str]):
     print(f"ETag for {filename}: {etag}")
 
 
-def get_file_name(site_or_url: str):
-    file_name = f"{re.sub(r'https://', '', site_or_url)}.7z"
+def get_file_name(site_or_url: str) -> str:
+    domain = re.sub(r'https://', '', site_or_url)
 
-    file_name = re.sub(r'^alcohol', 'beer', file_name)
-    file_name = re.sub(r'^mattermodeling', 'materials', file_name)
-    file_name = re.sub(r'^communitybuilding', 'moderators', file_name)
-    file_name = re.sub(r'^medicalsciences', 'health', file_name)
-    file_name = re.sub(r'^psychology', 'cogsci', file_name)
-    file_name = re.sub(r'^writing', 'writers', file_name)
-    file_name = re.sub(r'^video', 'avp', file_name)
-    file_name = re.sub(r'^meta\.(es|ja|pt|ru)\.', r'\1.meta.', file_name)
-
-    return file_name
+    try:
+        file_name = files_map[domain]
+        return f'{file_name}.7z'
+    except KeyError:
+        return f'{domain}.7z'
 
 
-def check_file(base_path: str, file_name: str):
+def is_dump_file(file_name: str) -> bool:
+    file_name = re.sub(r'\.7z$', '', file_name)
+
+    try:
+        inverse_files_map[file_name]
+    except KeyError:
+        origin = f'https://{file_name}'
+        return origin in sites
+
+    return True
+
+
+def check_file(base_path: str, file_name: str) -> bool:
     try:
         res = os.stat(os.path.join(base_path, file_name))
         return res.st_size > 0
@@ -48,7 +58,7 @@ def check_file(base_path: str, file_name: str):
         return False
 
 
-def remove_old_file(base_path: str, site_or_url: str):
+def remove_old_file(base_path: str, site_or_url: str) -> None:
     try:
         file_name = get_file_name(site_or_url)
         os.remove(os.path.join(base_path, file_name))
@@ -56,6 +66,6 @@ def remove_old_file(base_path: str, site_or_url: str):
         pass
 
 
-def is_file_downloaded(base_path: str, site_or_url: str):
+def is_file_downloaded(base_path: str, site_or_url: str) -> bool:
     file_name = get_file_name(site_or_url)
     return check_file(base_path, file_name)
