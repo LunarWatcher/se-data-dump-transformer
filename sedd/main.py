@@ -241,3 +241,5 @@ for site in sites.sites:
 # (or export for separate, later verification)
 # Though keeping it here, removing files and re-running downloads feels like a better idea
 print(etags)
+
+browser.quit()
