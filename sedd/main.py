@@ -138,6 +138,14 @@ def login_or_create(browser: WebDriver, site: str):
             break
 
 
+def check_file(file_name: str):
+    try:
+        res = os.stat(os.path.join(args.output_dir, file_name))
+        return res.st_size > 0
+    except FileNotFoundError:
+        return False
+
+
 def is_file_downloaded(site_or_url: str):
     file_name = f"{re.sub(r'https://', '', site_or_url)}.7z"
 
@@ -150,7 +158,7 @@ def is_file_downloaded(site_or_url: str):
     file_name = re.sub(r'^video', 'avp', file_name)
     file_name = re.sub(r'^meta\.(es|ja|pt|ru)\.', r'\1.meta.', file_name)
 
-    return os.path.isfile(os.path.join(args.output_dir, file_name))
+    return check_file(file_name)
 
 
 def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict[str, str]):
