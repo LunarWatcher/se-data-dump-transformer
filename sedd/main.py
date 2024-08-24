@@ -218,28 +218,29 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
 
 etags: Dict[str, str] = {}
 
-for site in sites.sites:
-    print(f"Extracting from {site}...")
+try:
+    for site in sites.sites:
+        print(f"Extracting from {site}...")
 
-    if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
-        # https://regex101.com/r/kG6nTN/1
-        meta_url = re.sub(
-            r"(https://(?:[^.]+\.(?=stackexchange))?)", r"\1meta.", site)
+        if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
+            # https://regex101.com/r/kG6nTN/1
+            meta_url = re.sub(
+                r"(https://(?:[^.]+\.(?=stackexchange))?)", r"\1meta.", site)
 
-    if args.skip_loaded and is_file_downloaded(site) and is_file_downloaded(meta_url):
-        print(f"Already downloaded main & meta for site {site}")
-    else:
-        login_or_create(browser, site)
-        download_data_dump(
-            browser,
-            site,
-            meta_url,
-            etags
-        )
+        if args.skip_loaded and is_file_downloaded(site) and is_file_downloaded(meta_url):
+            print(f"Already downloaded main & meta for site {site}")
+        else:
+            login_or_create(browser, site)
+            download_data_dump(
+                browser,
+                site,
+                meta_url,
+                etags
+            )
+finally:
+    browser.quit()
 
 # TODO: replace with validation once downloading is verified done
 # (or export for separate, later verification)
 # Though keeping it here, removing files and re-running downloads feels like a better idea
 print(etags)
-
-browser.quit()
