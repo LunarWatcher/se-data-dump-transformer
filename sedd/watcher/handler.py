@@ -1,20 +1,10 @@
-from .state import DownloadState
-from ..utils import is_dump_file
-
 import os
-
-# watchdog has trouble with new Python versions not having MutableSet
-import collections
-from sys import version_info
-
-if version_info.major == 3 and version_info.minor >= 10:
-    from collections.abc import MutableSet
-    collections.MutableSet = collections.abc.MutableSet
-else:
-    from collections import MutableSet
 
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+
+from .state import DownloadState
+from ..utils import is_dump_file
 
 
 class CleanupHandler(FileSystemEventHandler):
