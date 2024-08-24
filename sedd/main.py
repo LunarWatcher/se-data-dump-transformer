@@ -254,6 +254,9 @@ try:
             else:
                 sleep(1)
 
+except KeyboardInterrupt:
+    pass
+
 except:
     exception = sys.exc_info()
 
