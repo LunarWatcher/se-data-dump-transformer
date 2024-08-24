@@ -195,14 +195,20 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
             pass
         else:
             browser.get(f"{site}/users/data-dump-access/current")
-            utils.remove_old_file(args.output_dir, site)
+
+            if not args.dry_run:
+                utils.archive_file(args.output_dir, site)
+
             _exec_download(browser)
 
         if args.skip_loaded and meta_loaded:
             pass
         else:
             browser.get(f"{meta_url}/users/data-dump-access/current")
-            utils.remove_old_file(args.output_dir, meta_url)
+
+            if not args.dry_run:
+                utils.archive_file(args.output_dir, meta_url)
+
             _exec_download(browser)
 
 
@@ -242,6 +248,8 @@ try:
             if state.empty():
                 observer.stop()
                 browser.quit()
+
+                utils.cleanup_archive(args.output_dir)
                 break
             else:
                 sleep(1)

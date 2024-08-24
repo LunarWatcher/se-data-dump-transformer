@@ -3,6 +3,7 @@ import requests as r
 from urllib.parse import urlparse
 import os.path
 import re
+import sys
 
 from .data.files_map import files_map, inverse_files_map
 from .data.sites import sites
@@ -58,12 +59,25 @@ def check_file(base_path: str, file_name: str) -> bool:
         return False
 
 
-def remove_old_file(base_path: str, site_or_url: str) -> None:
+def archive_file(base_path: str, site_or_url: str) -> None:
     try:
         file_name = get_file_name(site_or_url)
-        os.remove(os.path.join(base_path, file_name))
+        file_path = os.path.join(base_path, file_name)
+        os.rename(file_path, f"{file_path}.old")
     except FileNotFoundError:
         pass
+
+
+def cleanup_archive(base_path: str) -> None:
+    try:
+        file_entries = os.listdir(base_path)
+
+        for entry in file_entries:
+            if entry.endswith('.old'):
+                entry_path = os.path.join(base_path, entry)
+                os.remove(entry_path)
+    except:
+        print(sys.exc_info())
 
 
 def is_file_downloaded(base_path: str, site_or_url: str) -> bool:
