@@ -1,6 +1,6 @@
 import os
 
-from watchdog.observers import Observer
+from watchdog.observers.api import BaseObserverSubclassCallable
 from watchdog.events import FileSystemEventHandler
 
 from .state import DownloadState
@@ -9,9 +9,9 @@ from ..utils import is_dump_file
 
 class CleanupHandler(FileSystemEventHandler):
     download_state: DownloadState
-    observer: Observer
+    observer: BaseObserverSubclassCallable
 
-    def __init__(self, observer: Observer, state: DownloadState):
+    def __init__(self, observer: BaseObserverSubclassCallable, state: DownloadState):
         super()
 
         self.download_state = state
