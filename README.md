@@ -8,7 +8,7 @@
 
 This section contains background on why this project exists. If you know and/or don't care, feel free to skip to the next section.
 
-In June 2023, Stack Exchange [briefly cancelled the data dump](https://meta.stackexchange.com/q/389922/332043), and backpedalled after a significant amount of backlash from the community. The status-quo of uploads to archive.org was restored. In the slightly more than a year between June 2023 and July 2024, it looked like they were staying off that path. Notably, they made a [logical shift to the _exact_ dates involved in the upload](https://meta.stackexchange.com/q/398279/) to deal with archive.org being slow. In December 2023, they [announced a delay in the upload](https://meta.stackexchange.com/q/395197/) likely to avoid speculation that another cancellation was happening. 
+In June 2023, Stack Exchange [briefly cancelled the data dump](https://meta.stackexchange.com/q/389922/332043), and backpedalled after a significant amount of backlash from the community. The status-quo of uploads to archive.org was restored. In the slightly more than a year between June 2023 and July 2024, it looked like they were staying off that path. Notably, they made a [logical shift to the _exact_ dates involved in the upload](https://meta.stackexchange.com/q/398279/) to deal with archive.org being slow. In December 2023, they [announced a delay in the upload](https://meta.stackexchange.com/q/395197/) likely to avoid speculation that another cancellation was happening.
 
 We appeared to be out of the woods. But this repo wouldn't exist if that was the case now, would it?
 
@@ -20,20 +20,20 @@ The current revision can be read [here](https://meta.stackexchange.com/q/401324/
 
 Here's what's happening:
 
-* SE is moving the data dump from archive.org to their own infrastructure
-* They're discontinuing the archive.org dump, which makes it significantly harder to archive the data if SE, for example, were to go out of business 
-    * In addition to discontinuing the archive.org dump, they're imposing significant restrictions on the data dump
-* They're doing the first revision **without the possibility to download the entire data dump** in one click, a drastic QOL reduction from the current situation.
+- SE is moving the data dump from archive.org to their own infrastructure
+- They're discontinuing the archive.org dump, which makes it significantly harder to archive the data if SE, for example, were to go out of business
+  - In addition to discontinuing the archive.org dump, they're imposing significant restrictions on the data dump
+- They're doing the first revision **without the possibility to download the entire data dump** in one click, a drastic QOL reduction from the current situation.
 
 This is an opinionated summary of the reason why; SE wants to capitalise on AI companies that need training data, and have decided that the community doesn't matter in that process. The current process, while not nearly as restricting as rev. 1 and 2, is a symptom of precisely one thing; Stack Exchange doesn't care about its users, but rather cares about finding new ways to profit off user data.
 
 **Stack Exchange, Inc. is now the single biggest threat to the community**, and to the platform's user-generated and [permissively-licensed content](https://stackoverflow.com/help/licensing) that the community has spent countless hours creating precisely _because_ the data is public.
 
-That is why this project exists; this is meant to automate the data dump download process for non-commercial license-compliant use, since Stack Exchange, Inc. couldn't be bothered adding a "download all" button from day 1. 
+That is why this project exists; this is meant to automate the data dump download process for non-commercial license-compliant use, since Stack Exchange, Inc. couldn't be bothered adding a "download all" button from day 1.
 
-As an added bonus, since this project already exists, there's an accompanying system to automatically convert the data dump to other formats. In my experience, the vast majority of applications building on the data dump do not work directly with the XML. Other, more convenient data formats are often created as an intermediate.  Aside using it as an intermediate for various forms of analysis, there are a couple major examples of other distribution forms that are listed later in this README.
+As an added bonus, since this project already exists, there's an accompanying system to automatically convert the data dump to other formats. In my experience, the vast majority of applications building on the data dump do not work directly with the XML. Other, more convenient data formats are often created as an intermediate. Aside using it as an intermediate for various forms of analysis, there are a couple major examples of other distribution forms that are listed later in this README.
 
-While these are preprocessed distributions of the data dump, this project is also meant to help converting to these various formats. While unlikely to replace the source code for either of these two examples, I hope the transformer system here can get rid of boilerplate for other projects. 
+While these are preprocessed distributions of the data dump, this project is also meant to help converting to these various formats. While unlikely to replace the source code for either of these two examples, I hope the transformer system here can get rid of boilerplate for other projects.
 
 ## Known archives of new data dumps
 
@@ -45,20 +45,18 @@ A [different project](https://communitydatadump.com/index.html) is currently mai
 
 This list contains converter tools that work on all sites and all tables.
 
-| Maintainer | Format(s) | First-party torrent available | Converter |
-| --- | --- | --- | --- |
-| Maxwell175 | SQLite, Postgres, MSSQL | Partially[^2] | [AGPL-3.0](https://github.com/Maxwell175/StackExchangeDumpConverter) | 
-
+| Maintainer | Format(s)               | First-party torrent available | Converter                                                            |
+| ---------- | ----------------------- | ----------------------------- | -------------------------------------------------------------------- |
+| Maxwell175 | SQLite, Postgres, MSSQL | Partially[^2]                 | [AGPL-3.0](https://github.com/Maxwell175/StackExchangeDumpConverter) |
 
 ### Other data dump distributions and conversion tools
 
 For completeness (well, sort of, none of these lists are exhaustive), this is a list of incomplete archives (archives that limit the number of included tables and/or sites)
 
-| Maintainer | Format | Torrent available | Converter | Site(s) | Tables | 
-| --- | --- | --- | --- | --- | --- | 
-| Brent Ozar | [MSSQL](https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/) | Yes | [MIT-licensed](https://github.com/BrentOzarULTD/soddi) | Stack Overflow only | All tables |
-| Jason Punyon | [SQLite](https://seqlite.puny.engineering/) | No | Closed-source[^1] | All sites | Posts only |
-
+| Maintainer   | Format                                                                                                         | Torrent available | Converter                                              | Site(s)             | Tables     |
+| ------------ | -------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------ | ------------------- | ---------- |
+| Brent Ozar   | [MSSQL](https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/) | Yes               | [MIT-licensed](https://github.com/BrentOzarULTD/soddi) | Stack Overflow only | All tables |
+| Jason Punyon | [SQLite](https://seqlite.puny.engineering/)                                                                    | No                | Closed-source[^1]                                      | All sites           | Posts only |
 
 ## Using the downloader
 
@@ -66,18 +64,18 @@ Note that it's stongly encouraged that you use a venv. To set one up, run `pytho
 
 ### Requirements
 
-* Python 3.10 or newer[^3]
-* `pip3 install -r requirements.txt`
-* Lots of storage. The 2024Q1 data dump was 92GB compressed.
-* A display you can access somehow (physical or virtual, but you need to be able to see it) to be able to solve captchas
-* Email and password login for Stack Exchange - Google, Facebook, GitHub, and other login methods are not supported, and will not be supported.
-    * If you don't have this, see [this meta question](https://meta.stackexchange.com/a/1847/332043) for instructions.
-* Firefox installed
-    * Snap and flatpak users may run into problems; it's strongly recommended to have a non-snap/flatpak installation of Firefox and Geckodriver.
-        * Known errors:
-            * "The geckodriver version may not be compatible with the detected firefox version" - update Firefox and Geckodriver. If this still doesn't work, consider switching to a non-snap installation of Firefox and Geckodriver.
-            * "Your Firefox profile cannot be loaded" - One of Geckodriver or Firefox is Snap-based, while the other is not. [Consider switching to a non-snap installation](https://stackoverflow.com/a/72531719/6296561) of Firefox, or verifying that your PATH is set correctly.
-    * If you need to manaully install Geckodriver (which shouldn't normally be necessary; it's often bundled with Firefox in one way or another), the binaries are on [GitHub](https://github.com/mozilla/geckodriver/releases)
+- Python 3.10 or newer[^3]
+- `pip3 install -r requirements.txt`
+- Lots of storage. The 2024Q1 data dump was 92GB compressed.
+- A display you can access somehow (physical or virtual, but you need to be able to see it) to be able to solve captchas
+- Email and password login for Stack Exchange - Google, Facebook, GitHub, and other login methods are not supported, and will not be supported.
+  - If you don't have this, see [this meta question](https://meta.stackexchange.com/a/1847/332043) for instructions.
+- Firefox installed
+  - Snap and flatpak users may run into problems; it's strongly recommended to have a non-snap/flatpak installation of Firefox and Geckodriver.
+    - Known errors:
+      - "The geckodriver version may not be compatible with the detected firefox version" - update Firefox and Geckodriver. If this still doesn't work, consider switching to a non-snap installation of Firefox and Geckodriver.
+      - "Your Firefox profile cannot be loaded" - One of Geckodriver or Firefox is Snap-based, while the other is not. [Consider switching to a non-snap installation](https://stackoverflow.com/a/72531719/6296561) of Firefox, or verifying that your PATH is set correctly.
+  - If you need to manaully install Geckodriver (which shouldn't normally be necessary; it's often bundled with Firefox in one way or another), the binaries are on [GitHub](https://github.com/mozilla/geckodriver/releases)
 
 The downloader does **not** support Docker due to the display requirement.
 
@@ -88,11 +86,21 @@ The downloader does **not** support Docker due to the display requirement.
 1. Make sure you have all the requirements from the Requirements section.
 2. Copy `config.example.json` to `config.json`
 3. Open `config.json`, and edit in the values. The values are described within the JSON file itself.
-4. Run the extractor with `python3 -m sedd`. If you're on Windows, you may need to run `python -m sedd` instead. 
+4. Run the extractor with `python3 -m sedd`. If you're on Windows, you may need to run `python -m sedd` instead.
+
+#### CLI options
+
+Exractor CLI supports the following configuration options:
+
+| Short | Long                   | Type     | Default           | Description                                                                                                                                                                |
+| ----- | ---------------------- | -------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-o`  | `--outputDir <path>`   | Optional | `<cwd>/downloads` | Specifies the directory to download the archives to.                                                                                                                       |
+| `-s`  | `--skip-loaded <path>` | Optional | -                 | Whether to skip over archives that have already been downloaded. An archive is considered to be downloaded if the output directory has one already & the file is not empty. |
+| -     | `--dry-run`            | Optional | -                 | Whether to actually download the archives. If set, only traverses the network's sites.                                                                                     |
 
 #### Captchas and other misc. barriers
 
-This software is designed around Selenium, a browser automation tool. This does, however, mean that the program can be stopped by various bot defenses. This would happen even if you downloaded all the [~183 data dumps](https://stackexchange.com/sites#questionsperday) fully by hand, because it's a _lot_ of repeated operations. 
+This software is designed around Selenium, a browser automation tool. This does, however, mean that the program can be stopped by various bot defenses. This would happen even if you downloaded all the [~183 data dumps](https://stackexchange.com/sites#questionsperday) fully by hand, because it's a _lot_ of repeated operations.
 
 This is where notification systems come in; expecting you to sit and watch for potentially a significant number of hours is not a good use of time. If anything happens, you'll be notified, so you don't have to continuously watch the program. Currently, only a native desktop notifier is supported, but support for other notifiers may be added in the future.
 
@@ -100,17 +108,17 @@ This is where notification systems come in; expecting you to sit and watch for p
 
 As of Q1 2024, the data dump was a casual 93GB in compressed size. If you have your own system to transform the data dump after downloading, you only need to worry about the raw size of the data dump.
 
-However, if you use the built-in transformer pipeline, you'll need to expect a _lot_ more data use. 
+However, if you use the built-in transformer pipeline, you'll need to expect a _lot_ more data use.
 
 The output, by default, is compressed back into 7z if dealing with a file-based transformer. Due to this, an intermediate file write is performed prior to compressing back into a .7z. At runtime, you need:
 
-* The compressed data dump; at least 92GB and increasing with each dump
-* The compressed converted data dump; depending on compression rates for the specific format, this anywhere from a little less than the original size to significantly larger
-* A significant amount of space for intermediate files. While these will be deleted as soon as they're done and compressed, they'll take up a significant amount of space on the disk in the meanwhile
+- The compressed data dump; at least 92GB and increasing with each dump
+- The compressed converted data dump; depending on compression rates for the specific format, this anywhere from a little less than the original size to significantly larger
+- A significant amount of space for intermediate files. While these will be deleted as soon as they're done and compressed, they'll take up a significant amount of space on the disk in the meanwhile
 
 Note that the transformer pipeline is executed separately; see the transformer section below.
 
-#### Execution time 
+#### Execution time
 
 One of the major downsides with the way this project functions is that it's subject to Cloudflare bullshit. This means that the total time to download is `(combined size of data dumps) / (internet speed) + (rate limiting) + (navigation overhead) + (time to solve captchas)`. While navigation overhead and rate limiting (hopefully) doesn't account for a significant share of time, it can potentially be significant. It's certainly a slower option than archive.org's torrent.
 
@@ -122,7 +130,8 @@ Once you've downloaded the data dumps, you may want to transform it into a more 
 
 This section assumes you have Docker installed, with [docker-compose-v2](https://docs.docker.com/compose/migrate/).
 
-From the root directory, run 
+From the root directory, run
+
 ```bash
 docker compose up
 ```
@@ -130,10 +139,12 @@ docker compose up
 This automatically binds `downloads` and `out` in the current working directory to the docker container. If you want to change these paths, you'll need to edit `docker-compose.yml` manually for now.
 
 Additionally, the following environment variables are defined and forwarded to the build:
-* `SEDD_OUTPUT_TYPE`: Any output type supported by the program. These are: `json`, `sqlite`.
-* `SPDLOG_LEVEL`: Sets the logging level. Usually not necessary unless you want verbose output, or you're trying to debug something.
+
+- `SEDD_OUTPUT_TYPE`: Any output type supported by the program. These are: `json`, `sqlite`.
+- `SPDLOG_LEVEL`: Sets the logging level. Usually not necessary unless you want verbose output, or you're trying to debug something.
 
 If you have a UNIX shell (i.e. not cmd or powershell; Windows users can use Git Bash), you can run
+
 ```bash
 SEDD_OUTPUT_TYPE=sqlite docker compose up
 ```
@@ -145,20 +156,23 @@ If you insist on using cmd or PowerShell instead of a good shell, setting the va
 ### Native
 
 #### Requirements
-* C++20 compiler
-* CMake 3.10 or newer
-* Linux-specific (TEMPORARY): `libtbb-dev`, or equivalent on your favourite distro. Optional, but required for multithreaded support under libstdc++
+
+- C++20 compiler
+- CMake 3.10 or newer
+- Linux-specific (TEMPORARY): `libtbb-dev`, or equivalent on your favourite distro. Optional, but required for multithreaded support under libstdc++
 
 Other dependencies (stc, libarchive, spdlog, and pugixml) are automatically handled by CMake using FetchContent. Unlike the downloader, this component can run without a display.
 
 #### Running
+
 TL;DR:
+
 ```bash
 cd transformer
 mkdir build
 cd build
 # Option 1: debug:
-cmake .. -DCMAKE_BUILD_TYPE=Debug 
+cmake .. -DCMAKE_BUILD_TYPE=Debug
 # Option 2: release mode; strongly recommended for anything that needs the performance:
 cmake .. -DCMAKE_BUILD_TYPE=Release
 # ---
@@ -166,7 +180,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build . -j 8
 
 # Note: this only works after running the Python downloader
-# For early testing, I've been populating this folder with 
+# For early testing, I've been populating this folder with
 # files from the old archive.org data dump.
 # The last argument is the path to the downloaded data
 # *UNIX:
@@ -180,9 +194,10 @@ Pass `--help` to see the available formatters for your current version of the da
 ### Supported transformers
 
 Currently, the following transformers are supported:
-* `json`
-* `sqlite`
-    * Note: All data related to a site is merged into a single database
+
+- `json`
+- `sqlite`
+  - Note: All data related to a site is merged into a single database
 
 ## Language rationale
 
@@ -192,7 +207,7 @@ C++ does not really support Selenium, which is effectively a requirement for the
 
 Python, on the other hand, infuriatingly doesn't support 7z streaming, at least not in a convenient format. There's the `libarchive` package, but it refuses to build. `python-libarchive` allegedly does, but [Windows support is flaky](https://github.com/smartfile/python-libarchive/issues/38), so the transformer might've had to be separated from the downloader anyway. There's py7zr, which does work everywhere, but it [doesn't support 7z streaming](https://github.com/miurahr/py7zr/issues/579).
 
-7z and XML streaming are both _critical_ for the processing pipeline. If you plan to convert the entire data dump, you'll eventually run into `stackoverflow.com-PostHistory.7z`, which is 39GB compressed, and **181GB uncompressed** in the 2024 Q1 data dump. As time passes, this will likely continue to grow, and the absurd amounts of RAM required to just tank the full size [is barely supported on modern and _very_ high-end hardware](https://www.reddit.com/r/buildapc/comments/17hqk3k/what_happened_to_256gb_ram_capacity_motherboards/). Finding someone able to tank that is going to be difficult for the vast majority of people. 
+7z and XML streaming are both _critical_ for the processing pipeline. If you plan to convert the entire data dump, you'll eventually run into `stackoverflow.com-PostHistory.7z`, which is 39GB compressed, and **181GB uncompressed** in the 2024 Q1 data dump. As time passes, this will likely continue to grow, and the absurd amounts of RAM required to just tank the full size [is barely supported on modern and _very_ high-end hardware](https://www.reddit.com/r/buildapc/comments/17hqk3k/what_happened_to_256gb_ram_capacity_motherboards/). Finding someone able to tank that is going to be difficult for the vast majority of people.
 
 Consequently, direct `libarchive` support is beneficial, and rather than writing an entire new python wrapper (or taking over an existing one), it's easier to just write that part in C++. Also, since it might be easier to run this particular part in a Docker container to avoid downloading build tools on certain systems, having it be fully headless is an advantage.
 
@@ -200,7 +215,7 @@ On the bright side, this should mean faster processing compared to Python.
 
 ## License
 
-The code is under the MIT license; see the `LICENSE` file. 
+The code is under the MIT license; see the `LICENSE` file.
 
 The data downloaded and produced is under various versions of [CC-By-SA](https://stackoverflow.com/help/licensing), as per Stack Exchange's licensing rules, in addition to whatever extra rules they try to impose on the data dump.
 
