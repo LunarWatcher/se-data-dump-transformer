@@ -92,10 +92,11 @@ The downloader does **not** support Docker due to the display requirement.
 
 Exractor CLI supports the following configuration options:
 
-| Short | Long                 | Type     | Default           | Description                                                                            |
-| ----- | -------------------- | -------- | ----------------- | -------------------------------------------------------------------------------------- |
-| `-o`  | `--outputDir <path>` | Optional | `<cwd>/downloads` | Specifies the directory to download the archives to.                                   |
-| -     | `--dry-run`          | Optional | -                 | Whether to actually download the archives. If set, only traverses the network's sites. |
+| Short | Long                   | Type     | Default           | Description                                                                                                                                                                |
+| ----- | ---------------------- | -------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-o`  | `--outputDir <path>`   | Optional | `<cwd>/downloads` | Specifies the directory to download the archives to.                                                                                                                       |
+| `-s`  | `--skip-loaded <path>` | Optional | -                 | Whether to skip over archives that have already been downloaded. An archive is considered to be downloaded if the output directory has one already & the file is not empty. |
+| -     | `--dry-run`            | Optional | -                 | Whether to actually download the archives. If set, only traverses the network's sites.                                                                                     |
 
 #### Captchas and other misc. barriers
 

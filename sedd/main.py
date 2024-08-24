@@ -21,7 +21,13 @@ parser = argparse.ArgumentParser(
     prog="sedd",
     description="Automatic (unofficial) SE data dump downloader for the anti-community data dump format",
 )
-
+parser.add_argument(
+    "-s", "--skip-loaded",
+    required=False,
+    default=False,
+    action="store_true",
+    dest="skip_loaded"
+)
 parser.add_argument(
     "-o", "--outputDir",
     required=False,
@@ -38,6 +44,7 @@ parser.add_argument(
 
 args = parser.parse_args()
 
+
 def get_download_dir():
     download_dir = args.output_dir
 
@@ -48,15 +55,17 @@ def get_download_dir():
 
     return download_dir
 
+
 options = Options()
 options.enable_downloads = True
 options.set_preference("browser.download.folderList", 2)
 options.set_preference("browser.download.manager.showWhenStarting", False)
 options.set_preference("browser.download.dir", get_download_dir())
-options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/x-gzip")
+options.set_preference(
+    "browser.helperApps.neverAsk.saveToDisk", "application/x-gzip")
 
 browser = webdriver.Firefox(
-    options = options
+    options=options
 )
 if not os.path.exists("ubo.xpi"):
     print("Downloading uBO")
@@ -74,10 +83,13 @@ with open("config.json", "r") as f:
 email = config["email"]
 password = config["password"]
 
+
 def kill_cookie_shit(browser: WebDriver):
     sleep(3)
-    browser.execute_script("""let elem = document.getElementById("onetrust-banner-sdk"); if (elem) { elem.parentNode.removeChild(elem); }""")
+    browser.execute_script(
+        """let elem = document.getElementById("onetrust-banner-sdk"); if (elem) { elem.parentNode.removeChild(elem); }""")
     sleep(1)
+
 
 def is_logged_in(browser: WebDriver, site: str):
     url = f"{site}/users/current"
@@ -85,6 +97,7 @@ def is_logged_in(browser: WebDriver, site: str):
     sleep(1)
 
     return "/users/" in browser.current_url
+
 
 def login_or_create(browser: WebDriver, site: str):
     if is_logged_in(browser, site):
@@ -125,7 +138,22 @@ def login_or_create(browser: WebDriver, site: str):
             break
 
 
-def download_data_dump(browser: WebDriver, site: str, etags: Dict[str, str]):
+def is_file_downloaded(site_or_url: str):
+    file_name = f"{re.sub(r'https://', '', site_or_url)}.7z"
+
+    file_name = re.sub(r'^alcohol', 'beer', file_name)
+    file_name = re.sub(r'^mattermodeling', 'materials', file_name)
+    file_name = re.sub(r'^communitybuilding', 'moderators', file_name)
+    file_name = re.sub(r'^medicalsciences', 'health', file_name)
+    file_name = re.sub(r'^psychology', 'cogsci', file_name)
+    file_name = re.sub(r'^writing', 'writers', file_name)
+    file_name = re.sub(r'^video', 'avp', file_name)
+    file_name = re.sub(r'^meta\.(es|ja|pt|ru)\.', r'\1.meta.', file_name)
+
+    return os.path.isfile(os.path.join(args.output_dir, file_name))
+
+
+def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict[str, str]):
     print(f"Downloading data dump from {site}")
 
     def _exec_download(browser: WebDriver):
@@ -168,30 +196,46 @@ def download_data_dump(browser: WebDriver, site: str, etags: Dict[str, str]):
         url = browser.execute_script("return window.extractedUrl;")
         utils.extract_etag(url, etags)
 
-        sleep(5);
+        sleep(5)
 
+    main_loaded = is_file_downloaded(site)
+    meta_loaded = is_file_downloaded(meta_url)
 
-    browser.get(f"{site}/users/data-dump-access/current")
-    _exec_download(browser)
+    if not args.skip_loaded or not main_loaded or not meta_loaded:
+        if args.skip_loaded and main_loaded:
+            print(f"Already downloaded main for site {site}")
+        else:
+            browser.get(f"{site}/users/data-dump-access/current")
+            _exec_download(browser)
 
-    if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
-        # https://regex101.com/r/kG6nTN/1
-        meta_url = re.sub(r"(https://(?:[^.]+\.(?=stackexchange))?)", r"\1meta.", site)
-        print(meta_url)
-        browser.get(f"{meta_url}/users/data-dump-access/current")
-        _exec_download(browser)
+        if args.skip_loaded and meta_loaded:
+            print(f"Already downloaded meta for site {site}")
+        else:
+            print(meta_url)
+            browser.get(f"{meta_url}/users/data-dump-access/current")
+            _exec_download(browser)
+
 
 etags: Dict[str, str] = {}
 
 for site in sites.sites:
     print(f"Extracting from {site}...")
 
-    login_or_create(browser, site)
-    download_data_dump(
-        browser,
-        site,
-        etags
-    )
+    if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
+        # https://regex101.com/r/kG6nTN/1
+        meta_url = re.sub(
+            r"(https://(?:[^.]+\.(?=stackexchange))?)", r"\1meta.", site)
+
+    if args.skip_loaded and is_file_downloaded(site) and is_file_downloaded(meta_url):
+        print(f"Already downloaded main & meta for site {site}")
+    else:
+        login_or_create(browser, site)
+        download_data_dump(
+            browser,
+            site,
+            meta_url,
+            etags
+        )
 
 # TODO: replace with validation once downloading is verified done
 # (or export for separate, later verification)
