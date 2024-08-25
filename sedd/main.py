@@ -5,20 +5,22 @@ from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from typing import Dict
 
-from .watcher.observer import register_pending_downloads_observer, Observer
 
-from sedd.data import sites
 from time import sleep
-import json
 import urllib.request
 
-from .meta import notifications
 import re
 import os
 import sys
 from traceback import print_exception
 
 import argparse
+
+
+from .config import load_sedd_config
+from .data import sites
+from .meta import notifications
+from .watcher.observer import register_pending_downloads_observer
 from . import utils
 
 parser = argparse.ArgumentParser(
@@ -71,21 +73,17 @@ options.set_preference(
 browser = webdriver.Firefox(
     options=options
 )
+
+sedd_config = load_sedd_config()
+
+ubo_download_url = sedd_config.get_ubo_download_url()
+
 if not os.path.exists("ubo.xpi"):
-    print("Downloading uBO")
-    urllib.request.urlretrieve(
-        "https://github.com/gorhill/uBlock/releases/download/1.59.0/uBlock0_1.59.0.firefox.signed.xpi",
-        "ubo.xpi"
-    )
+    print(f"Downloading uBO from: {ubo_download_url}")
+    urllib.request.urlretrieve(ubo_download_url, "ubo.xpi")
 
 
 ubo_id = browser.install_addon("ubo.xpi", temporary=True)
-
-with open("config.json", "r") as f:
-    config = json.load(f)
-
-email = config["email"]
-password = config["password"]
 
 
 def kill_cookie_shit(browser: WebDriver):
@@ -117,8 +115,8 @@ def login_or_create(browser: WebDriver, site: str):
 
             email_elem = browser.find_element(By.ID, "email")
             password_elem = browser.find_element(By.ID, "password")
-            email_elem.send_keys(email)
-            password_elem.send_keys(password)
+            email_elem.send_keys(sedd_config.email)
+            password_elem.send_keys(sedd_config.password)
 
             curr_url = browser.current_url
             browser.find_element(By.ID, "submit-button").click()
@@ -130,7 +128,10 @@ def login_or_create(browser: WebDriver, site: str):
                 if not captcha_walled:
                     captcha_walled = True
 
-                notifications.notify("Captcha wall hit during login", config)
+                notifications.notify(
+                    "Captcha wall hit during login", sedd_config
+                )
+
                 sleep(10)
 
             if captcha_walled:
@@ -238,6 +239,9 @@ try:
                 meta_url,
                 etags
             )
+
+    while True is True:
+        sleep(1)
 
     if observer:
         pending = state.size()
