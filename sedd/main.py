@@ -240,9 +240,6 @@ try:
                 etags
             )
 
-    while True is True:
-        sleep(1)
-
     if observer:
         pending = state.size()
 

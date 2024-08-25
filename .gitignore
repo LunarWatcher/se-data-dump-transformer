@@ -1,4 +1,6 @@
-/config.json
+# configuration files
+*config.json
+
 compile_commands.json
 *.xpi
 /stackexchange_*/
