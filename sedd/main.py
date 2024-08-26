@@ -1,13 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from typing import Dict
 
 
 from time import sleep
-import urllib.request
 
 import re
 import os
@@ -22,6 +19,8 @@ from .data import sites
 from .meta import notifications
 from .watcher.observer import register_pending_downloads_observer
 from . import utils
+
+from .driver import init_output_dir, init_firefox_driver
 
 parser = argparse.ArgumentParser(
     prog="sedd",
@@ -51,39 +50,11 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-def get_download_dir():
-    download_dir = args.output_dir
-
-    if not os.path.exists(download_dir):
-        os.makedirs(download_dir)
-
-    print(download_dir)
-
-    return download_dir
-
-
-options = Options()
-options.enable_downloads = True
-options.set_preference("browser.download.folderList", 2)
-options.set_preference("browser.download.manager.showWhenStarting", False)
-options.set_preference("browser.download.dir", get_download_dir())
-options.set_preference(
-    "browser.helperApps.neverAsk.saveToDisk", "application/x-gzip")
-
-browser = webdriver.Firefox(
-    options=options
-)
-
 sedd_config = load_sedd_config()
 
-ubo_download_url = sedd_config.get_ubo_download_url()
+output_dir = init_output_dir(args.output_dir)
 
-if not os.path.exists("ubo.xpi"):
-    print(f"Downloading uBO from: {ubo_download_url}")
-    urllib.request.urlretrieve(ubo_download_url, "ubo.xpi")
-
-
-ubo_id = browser.install_addon("ubo.xpi", temporary=True)
+browser, ubo_id = init_firefox_driver(sedd_config, output_dir)
 
 
 def kill_cookie_shit(browser: WebDriver):
