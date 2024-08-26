@@ -1,7 +1,42 @@
 {
-    "email": "The email you use to log into SE",
-    "password": "The password you use to log into SE",
-    "notifications": {
-        "provider": "string, any of: native,. Can be null, which disables notifications"
+  "email": "The email you use to log into SE",
+  "password": "The password you use to log into SE",
+  "notifications": {
+    "provider": "string, any of: native,. Can be null, which disables notifications"
+  },
+  "ubo": {
+    "download_url": "https://github.com/gorhill/uBlock/releases/download/1.59.0/uBlock0_1.59.0.firefox.signed.xpi",
+    "settings": {
+      "userSettings": {
+        "advancedUserEnabled": true
+      },
+      "hiddenSettings": {},
+      "selectedFilterLists": [
+        "user-filters",
+        "ublock-filters",
+        "ublock-badware",
+        "ublock-privacy",
+        "ublock-unbreak",
+        "ublock-quick-fixes",
+        "easylist",
+        "easyprivacy",
+        "urlhaus-1",
+        "plowe-0",
+        "fanboy-cookiemonster",
+        "ublock-cookies-easylist",
+        "adguard-cookies",
+        "ublock-cookies-adguard"
+      ],
+      "whitelist": ["chrome-extension-scheme", "moz-extension-scheme"],
+      "dynamicFilters": {
+        "toAdd": [],
+        "toRemove": []
+      },
+      "userFilters": {
+        "enabled": true,
+        "trusted": true,
+        "toOverwrite": []
+      }
     }
+  }
 }

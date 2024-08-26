@@ -1,91 +1,32 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from typing import Dict
 
-from .watcher.observer import register_pending_downloads_observer, Observer
 
-from sedd.data import sites
 from time import sleep
-import json
-import urllib.request
 
-from .meta import notifications
 import re
-import os
 import sys
 from traceback import print_exception
 
-import argparse
+
+from .cli import parse_cli_args
+from .config import load_sedd_config
+from .data import sites
+from .meta import notifications
+from .watcher.observer import register_pending_downloads_observer
 from . import utils
 
-parser = argparse.ArgumentParser(
-    prog="sedd",
-    description="Automatic (unofficial) SE data dump downloader for the anti-community data dump format",
-)
-parser.add_argument(
-    "-s", "--skip-loaded",
-    required=False,
-    default=False,
-    action="store_true",
-    dest="skip_loaded"
-)
-parser.add_argument(
-    "-o", "--outputDir",
-    required=False,
-    dest="output_dir",
-    default=os.path.join(os.getcwd(), "downloads")
-)
-parser.add_argument(
-    "--dry-run",
-    required=False,
-    default=False,
-    action="store_true",
-    dest="dry_run"
-)
+from .driver import init_output_dir, init_firefox_driver
 
-args = parser.parse_args()
+args = parse_cli_args()
 
+sedd_config = load_sedd_config()
 
-def get_download_dir():
-    download_dir = args.output_dir
+output_dir = init_output_dir(args.output_dir)
 
-    if not os.path.exists(download_dir):
-        os.makedirs(download_dir)
-
-    print(download_dir)
-
-    return download_dir
-
-
-options = Options()
-options.enable_downloads = True
-options.set_preference("browser.download.folderList", 2)
-options.set_preference("browser.download.manager.showWhenStarting", False)
-options.set_preference("browser.download.dir", get_download_dir())
-options.set_preference(
-    "browser.helperApps.neverAsk.saveToDisk", "application/x-gzip")
-
-browser = webdriver.Firefox(
-    options=options
-)
-if not os.path.exists("ubo.xpi"):
-    print("Downloading uBO")
-    urllib.request.urlretrieve(
-        "https://github.com/gorhill/uBlock/releases/download/1.59.0/uBlock0_1.59.0.firefox.signed.xpi",
-        "ubo.xpi"
-    )
-
-
-ubo_id = browser.install_addon("ubo.xpi", temporary=True)
-
-with open("config.json", "r") as f:
-    config = json.load(f)
-
-email = config["email"]
-password = config["password"]
+browser, ubo_id = init_firefox_driver(sedd_config, output_dir)
 
 
 def kill_cookie_shit(browser: WebDriver):
@@ -117,8 +58,8 @@ def login_or_create(browser: WebDriver, site: str):
 
             email_elem = browser.find_element(By.ID, "email")
             password_elem = browser.find_element(By.ID, "password")
-            email_elem.send_keys(email)
-            password_elem.send_keys(password)
+            email_elem.send_keys(sedd_config.email)
+            password_elem.send_keys(sedd_config.password)
 
             curr_url = browser.current_url
             browser.find_element(By.ID, "submit-button").click()
@@ -130,7 +71,10 @@ def login_or_create(browser: WebDriver, site: str):
                 if not captcha_walled:
                     captcha_walled = True
 
-                notifications.notify("Captcha wall hit during login", config)
+                notifications.notify(
+                    "Captcha wall hit during login", sedd_config
+                )
+
                 sleep(10)
 
             if captcha_walled:
@@ -146,7 +90,11 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
     print(f"Downloading data dump from {site}")
 
     def _exec_download(browser: WebDriver):
-        kill_cookie_shit(browser)
+        if args.keep_consent:
+            print('Consent dialog will not be auto-removed')
+        else:
+            kill_cookie_shit(browser)
+
         try:
             checkbox = browser.find_element(By.ID, "datadump-agree-checkbox")
             btn = browser.find_element(By.ID, "datadump-download-button")
@@ -218,8 +166,6 @@ try:
     state, observer = register_pending_downloads_observer(args.output_dir)
 
     for site in sites.sites:
-        print(f"Extracting from {site}...")
-
         if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
             # https://regex101.com/r/kG6nTN/1
             meta_url = re.sub(
@@ -231,6 +177,8 @@ try:
         if args.skip_loaded and main_loaded and meta_loaded:
             pass
         else:
+            print(f"Extracting from {site}...")
+
             login_or_create(browser, site)
             download_data_dump(
                 browser,
