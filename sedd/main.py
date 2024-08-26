@@ -90,7 +90,11 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
     print(f"Downloading data dump from {site}")
 
     def _exec_download(browser: WebDriver):
-        kill_cookie_shit(browser)
+        if args.keep_consent:
+            print('Consent dialog will not be auto-removed')
+        else:
+            kill_cookie_shit(browser)
+
         try:
             checkbox = browser.find_element(By.ID, "datadump-agree-checkbox")
             btn = browser.find_element(By.ID, "datadump-download-button")

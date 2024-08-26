@@ -45,6 +45,6 @@ def init_firefox_driver(config: SEDDConfig, output_dir: str):
 
     ubo_id = browser.install_addon("ubo.xpi", temporary=True)
 
-    ubo_status = init_ubo_settings(browser, config, ubo_internal_uuid)
+    init_ubo_settings(browser, config, ubo_internal_uuid)
 
-    return browser, ubo_id, ubo_status
+    return browser, ubo_id
