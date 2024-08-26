@@ -1,10 +1,13 @@
 from os import path, makedirs
 from urllib import request
+from json import dumps
+from uuid import uuid4
 
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
 from .config import SEDDConfig
+from .ubo import init_ubo_settings
 
 
 def init_output_dir(output_dir: str):
@@ -23,7 +26,14 @@ def init_firefox_driver(config: SEDDConfig, output_dir: str):
     options.set_preference("browser.download.manager.showWhenStarting", False)
     options.set_preference("browser.download.dir", output_dir)
     options.set_preference(
-        "browser.helperApps.neverAsk.saveToDisk", "application/x-gzip")
+        "browser.helperApps.neverAsk.saveToDisk", "application/x-gzip"
+    )
+
+    # our own uuid for uBO so as we don't need to do the dance of inspecing internals
+    ubo_internal_uuid = f"{uuid4()}"
+
+    options.set_preference("extensions.webextensions.uuids", dumps(
+        {"uBlock0@raymondhill.net": ubo_internal_uuid}))
 
     browser = webdriver.Firefox(options=options)
 
@@ -35,4 +45,6 @@ def init_firefox_driver(config: SEDDConfig, output_dir: str):
 
     ubo_id = browser.install_addon("ubo.xpi", temporary=True)
 
-    return browser, ubo_id
+    ubo_status = init_ubo_settings(browser, config, ubo_internal_uuid)
+
+    return browser, ubo_id, ubo_status

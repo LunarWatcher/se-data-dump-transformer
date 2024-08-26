@@ -162,8 +162,6 @@ try:
     state, observer = register_pending_downloads_observer(args.output_dir)
 
     for site in sites.sites:
-        print(f"Extracting from {site}...")
-
         if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
             # https://regex101.com/r/kG6nTN/1
             meta_url = re.sub(
@@ -175,6 +173,8 @@ try:
         if args.skip_loaded and main_loaded and meta_loaded:
             pass
         else:
+            print(f"Extracting from {site}...")
+
             login_or_create(browser, site)
             download_data_dump(
                 browser,

@@ -1,26 +1,10 @@
-from typing import TypedDict, Literal
+from typing import Literal
 
 from json import load
 from os import path, getcwd
 
-
-class SEDDNotificationsConfig(TypedDict):
-    provider: Literal['native'] | None
-
-
-class SEDDUboConfig(TypedDict):
-    download_url: str
-
-
-default_ubo_url = "https://github.com/gorhill/uBlock/releases/download/1.59.0/uBlock0_1.59.0.firefox.signed.xpi"
-
-default_notifications_config: SEDDNotificationsConfig = {
-    'provider': None
-}
-
-default_ubo_config: SEDDUboConfig = {
-    "download_url": default_ubo_url
-}
+from .defaults import default_ubo_url, default_ubo_settings, default_notifications_config, default_ubo_config
+from .typings import SEDDNotificationsConfig, SEDDUboConfig, SEDDUboSettings
 
 
 class SEDDConfig:
@@ -37,11 +21,15 @@ class SEDDConfig:
 
     def get_notifications_provider(self) -> Literal['native'] | None:
         notifications_config = self.notifications
-        return notifications_config['provider'] if hasattr(notifications_config, 'provider') else None
+        return notifications_config['provider'] if 'provider' in notifications_config else None
 
     def get_ubo_download_url(self) -> str:
         ubo_config = self.ubo
-        return ubo_config["download_url"] if hasattr(ubo_config, 'download_url') else default_ubo_url
+        return ubo_config['download_url'] if 'download_url' in ubo_config else default_ubo_url
+
+    def get_ubo_settings(self) -> SEDDUboSettings:
+        ubo_config = self.ubo
+        return ubo_config['settings'] if 'settings' in ubo_config else default_ubo_settings
 
 
 def load_sedd_config() -> SEDDConfig:
@@ -55,10 +43,9 @@ def load_sedd_config() -> SEDDConfig:
         email = config["email"]
         password = config["password"]
 
-        notifications = config['notifications'] if hasattr(
-            config, 'notifications') else default_notifications_config
+        notifications = config['notifications'] if 'notifications' in config else default_notifications_config
 
-        ubo = config['ubo'] if hasattr(config, 'ubo') else default_ubo_config
+        ubo = config['ubo'] if 'ubo' in config else default_ubo_config
 
         config = SEDDConfig(email, password, notifications, ubo)
 
