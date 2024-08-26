@@ -7,13 +7,11 @@ from typing import Dict
 from time import sleep
 
 import re
-import os
 import sys
 from traceback import print_exception
 
-import argparse
 
-
+from .cli import parse_cli_args
 from .config import load_sedd_config
 from .data import sites
 from .meta import notifications
@@ -22,33 +20,7 @@ from . import utils
 
 from .driver import init_output_dir, init_firefox_driver
 
-parser = argparse.ArgumentParser(
-    prog="sedd",
-    description="Automatic (unofficial) SE data dump downloader for the anti-community data dump format",
-)
-parser.add_argument(
-    "-s", "--skip-loaded",
-    required=False,
-    default=False,
-    action="store_true",
-    dest="skip_loaded"
-)
-parser.add_argument(
-    "-o", "--outputDir",
-    required=False,
-    dest="output_dir",
-    default=os.path.join(os.getcwd(), "downloads")
-)
-parser.add_argument(
-    "--dry-run",
-    required=False,
-    default=False,
-    action="store_true",
-    dest="dry_run"
-)
-
-args = parser.parse_args()
-
+args = parse_cli_args()
 
 sedd_config = load_sedd_config()
 

@@ -25,9 +25,7 @@ def init_firefox_driver(config: SEDDConfig, output_dir: str):
     options.set_preference(
         "browser.helperApps.neverAsk.saveToDisk", "application/x-gzip")
 
-    browser = webdriver.Firefox(
-        options=options
-    )
+    browser = webdriver.Firefox(options=options)
 
     ubo_download_url = config.get_ubo_download_url()
 
