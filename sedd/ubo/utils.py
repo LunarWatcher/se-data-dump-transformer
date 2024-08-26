@@ -82,3 +82,13 @@ def ubo_set_user_filters(browser: Firefox, settings: SEDDUboSettings) -> None:
             content: toOverwrite.join('\\n')
         })
     """, settings['userFilters'])
+
+
+def ubo_reload_all_filters(browser: Firefox) -> None:
+    browser.execute_async_script("""
+        const done = arguments[0]
+
+        globalThis.vAPI.messaging.send('dashboard', {
+            what: 'reloadAllFilters',
+        }).then(done)
+    """)
