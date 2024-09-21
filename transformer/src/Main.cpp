@@ -99,6 +99,17 @@ int main(int argc, char* argv[]) {
         ->required(false)
         ->default_val(true);
 
+    bool checkNesting = true;
+    app.add_flag(
+        "--check-nesting,!--no-check-nesting",
+        checkNesting,
+        "Whether or not to check for nested .7zs. DO NOT SET TO FALSE UNLESS YOU KNOW THE ARCHIVE IS GOOD! "
+        "Setting this to false when there is nesting will have unintended consequences. All this option does is "
+        "save a few seconds during setup. Unless you know what you're doing, leave this at the default value."
+    )
+        ->required(false)
+        ->default_val(checkNesting);
+
     CLI11_PARSE(app, argc, argv);
 
     auto* level = std::getenv("SPDLOG_LEVEL");
@@ -115,18 +126,23 @@ int main(int argc, char* argv[]) {
         }(),
         .subarchiveDir = std::filesystem::path(downloadDir) / "_subarchives",
         .transformer = nullptr,
-        .recover = recover
+        .recover = recover,
+        .checkNesting = checkNesting,
     };
 
     std::filesystem::create_directories(baseCtx.destDir);
     std::filesystem::create_directories(baseCtx.subarchiveDir);
     spdlog::info("Configuration:");
     spdlog::info("Files: [source = {}, dest = {}]", baseCtx.sourceDir.string(), baseCtx.destDir.string());
+    spdlog::info("Running on {} thread(s)", threads);
+    spdlog::info("Checking for .7z nesting? {}", checkNesting);
 
     // At least MSVC doesn't like using directory_iterator directly in a parallel for_each because
     //      Parallel algorithms require forward iterators or stronger.
     // Which doesn't make sense to me, but it is what it is
+    spdlog::info("Preparing archive list...");
     std::vector<std::filesystem::path> dirIt = sedd::InputPreprocessor::screenArchives(baseCtx);
+    spdlog::info("Archives ready.");
 
     std::counting_semaphore concurrencyGuard(threads);
 

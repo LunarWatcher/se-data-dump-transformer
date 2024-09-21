@@ -114,6 +114,10 @@ void ArchiveParser::read(const GlobalContext& conf) {
 
     while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
         std::string entryName = archive_entry_pathname(entry);
+        if (!entryName.ends_with(".xml")) {
+            spdlog::info("Skipping {}/{}: not XML", ctx.baseDomain, entryName);
+            continue;
+        }
         spdlog::info("Extracting {}/{}", ctx.baseDomain, entryName);
 
         ctx.currType = DataDumpFileType::UNKNOWN;
@@ -174,7 +178,11 @@ void ArchiveParser::read(const GlobalContext& conf) {
                     isInLicenseBlock = true;
                     continue;
                 } else if (isInLicenseBlock) {
-                    if (line.starts_with("-->")) {
+                    // Fucking SE and their arbitrary and inconsistent spacing. The end comment char in the revised
+                    // 2024-06-30 data dump is aligned to the content rather than the start of the line
+                    //
+                    // Beware of similar breakage in the future
+                    if (line.find("-->") != std::string::npos) {
                         isInLicenseBlock = false;
                     }
                     continue;
@@ -248,6 +256,11 @@ void ArchiveParser::read(const GlobalContext& conf) {
             throw std::runtime_error("Failed to fully parse file");
         }
         if (conf.transformer) {
+            if (ctx.currType == DataDumpFileType::UNKNOWN) {
+                throw std::runtime_error("Critical: failed to extract filetype");
+            } else if (isInLicenseBlock) {
+                throw std::runtime_error("Critical: Comment parsing failed; can't find end comment.");
+            }
             conf.transformer->endFile();
         }
 

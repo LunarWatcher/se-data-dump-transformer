@@ -11,12 +11,17 @@
 namespace sedd {
 
 void JSONTransformer::beginFile(const ParserContext& ctx) {
-    this->writer->open(DataDumpFileType::toFilename(ctx.currType) + ".json");
+    auto filename = DataDumpFileType::toFilename(ctx.currType) + ".json";
+    spdlog::debug("Starting new file: {}", filename);
+    this->writer->open(filename);
     this->writer->write("[\n");
     started = false;
 }
 
 void JSONTransformer::endFile() {
+    if (writer == nullptr) {
+        throw std::runtime_error("Lifecycle error: writer was killed before endFile()");
+    }
     this->writer->write("\n]\n");
     started = false;
     this->writer->close();

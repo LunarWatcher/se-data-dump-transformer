@@ -16,23 +16,26 @@ std::vector<std::filesystem::path> InputPreprocessor::screenArchives(GlobalConte
 
     std::vector<std::filesystem::path> filteredDirs;
     for (const auto& entry : dirIt) {
-        ArchiveParser p(entry);
-        auto newArchives = p.checkExtractSubarchives(
-            ctx.subarchiveDir
-        );
 
-        if (!newArchives.empty()) {
-            // The archive has subarchives
-            filteredDirs.insert(
-                filteredDirs.end(),
-                newArchives.begin(),
-                newArchives.end()
+        if (ctx.checkNesting) {
+            ArchiveParser p(entry);
+
+            auto newArchives = p.checkExtractSubarchives(
+                ctx.subarchiveDir
             );
-        } else {
-            filteredDirs.emplace_back(entry);
+
+            if (!newArchives.empty()) {
+                // The archive has subarchives
+                filteredDirs.insert(
+                    filteredDirs.end(),
+                    newArchives.begin(),
+                    newArchives.end()
+                );
+                continue;
+            }
         }
 
-
+        filteredDirs.emplace_back(entry);
     }
 
     return filteredDirs;

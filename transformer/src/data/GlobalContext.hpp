@@ -11,6 +11,7 @@ struct GlobalContext {
     std::filesystem::path subarchiveDir;
     std::shared_ptr<Transformer> transformer;
     bool recover;
+    bool checkNesting;
 };
 
 }

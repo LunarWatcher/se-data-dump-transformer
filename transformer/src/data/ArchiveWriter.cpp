@@ -133,6 +133,8 @@ void ArchiveWriter::open(const std::string& filename) {
     }
     spdlog::debug("Opening file {}", filename);
     this->files.push_back(filename);
+
+    writer.clear();
     writer.open(tmpOutputDir / filename);
     if (!writer) {
         spdlog::error("Failed to open {}", filename);
@@ -142,6 +144,7 @@ void ArchiveWriter::open(const std::string& filename) {
 
 void ArchiveWriter::write(const std::string& entry) {
     if (!writer) {
+        spdlog::debug("Tried to write {}", entry);
         throw std::runtime_error("Writer not open");
     }
     writer << entry;
@@ -151,6 +154,7 @@ void ArchiveWriter::close() {
     if (!writer) {
         return;
     }
+    spdlog::debug("Closed writer for {}", this->archiveName.string());
     writer.close();
 }    
 
