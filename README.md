@@ -43,7 +43,7 @@ A [different project](https://communitydatadump.com/index.html) is currently mai
 
 Note that since someone is uploading an unofficial version to archive.org, you may not need to use the downloader at all. However, to make sure this access continues, I strongly encourage you to download directly from SE anyway if you can -- this helps decrease the chance the uploader is identified and blocked by SE, which will turn into a problem for archival efforts in the long term. It may also decrease the chances SE points to low usage numbers as an excuse to axe the data dump entirely.[^4]
 
-[^4]: There's no guarantee the data dump will continue existing anymore - removing as many justifications to axe the data dump as possible may become increasingly important at some point. Unfortunately, if it is, we won't find out until it's too late, an dthe data dump is axed.
+[^4]: There's no guarantee the data dump will continue existing anymore - removing as many justifications to axe the data dump as possible may become increasingly important at some point. Unfortunately, if it is, we won't find out until it's too late by seeing the data dump get axed.
 
 ### Other tools
 
