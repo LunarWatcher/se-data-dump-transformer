@@ -101,7 +101,7 @@ int main(int argc, char* argv[]) {
 
     bool checkNesting = true;
     app.add_flag(
-        "--check-nesting,!--no-check-nesting",
+        "--check-nesting,!--no-nesting",
         checkNesting,
         "Whether or not to check for nested .7zs. DO NOT SET TO FALSE UNLESS YOU KNOW THE ARCHIVE IS GOOD! "
         "Setting this to false when there is nesting will have unintended consequences. All this option does is "

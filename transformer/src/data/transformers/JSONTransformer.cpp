@@ -13,7 +13,9 @@ namespace sedd {
 void JSONTransformer::beginFile(const ParserContext& ctx) {
     auto filename = DataDumpFileType::toFilename(ctx.currType) + ".json";
     spdlog::debug("Starting new file: {}", filename);
-    this->writer->open(filename);
+    this->writer->open(filename, FileAttr { 
+        ctx.lastModified
+    });
     this->writer->write("[\n");
     started = false;
 }

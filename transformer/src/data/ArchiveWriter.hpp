@@ -3,11 +3,16 @@
 #include "archive.h"
 #include "archive_entry.h"
 #include <filesystem>
+#include <map>
 #include <string>
 #include <vector>
 #include <fstream>
 
 namespace sedd {
+
+struct FileAttr {
+    time_t lastModified;
+};
 
 class ArchiveWriter {
 private:
@@ -16,7 +21,7 @@ private:
     std::filesystem::path archiveName;
     std::filesystem::path tmpOutputDir;
 
-    std::vector<std::string> files;
+    std::map<std::string, FileAttr> files;
     archive* a;
     std::ofstream writer;
 
@@ -38,7 +43,7 @@ public:
      * Opens a managed text file for writing. Use write() to write to it, and call
      * close() when writing is completed.
      */
-    void open(const std::string& filename);
+    void open(const std::string& filename, const FileAttr& attr);
 
     /**
      * Writes to the current open()ed file
@@ -56,7 +61,7 @@ public:
      * It's entirely the responsibility of the invoking transformer to create the file.
      * The file will be opened and written to the archive when commit() is called.
      */
-    void addBinaryFile(const std::string& filename);
+    void addBinaryFile(const std::string& filename, const FileAttr& attr);
 
     /**
      * Commits the saved files (either added with `addBinaryFile`, or managed text

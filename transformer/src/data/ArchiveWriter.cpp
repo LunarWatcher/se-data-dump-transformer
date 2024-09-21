@@ -57,7 +57,7 @@ ArchiveWriter::~ArchiveWriter() {
         std::filesystem::remove_all(this->tmpOutputDir);
     } else {
         // TODO: This feels sketch
-        for (auto& file : files) { 
+        for (auto& [file, _] : files) { 
             spdlog::debug("Binary file::Removing {}", (this->tmpOutputDir / file).string());
             std::filesystem::remove(this->tmpOutputDir / file);
         }
@@ -66,12 +66,13 @@ ArchiveWriter::~ArchiveWriter() {
 
 void ArchiveWriter::commit() {
 
-    for (auto& file : this->files) {
+    for (auto& [file, attr] : this->files) {
         spdlog::info("Now committing {} to archive {}", file, this->archiveName.filename().string());
         archive_entry* currEntry = archive_entry_new();
         archive_entry_set_pathname(currEntry, file.c_str());
         archive_entry_set_filetype(currEntry, AE_IFREG);
         archive_entry_set_perm(currEntry, 0644);
+        archive_entry_set_mtime(currEntry, attr.lastModified, 0L);
 
         std::ifstream f(this->tmpOutputDir / file, std::ios_base::binary);
 
@@ -113,10 +114,11 @@ void ArchiveWriter::commit() {
 
     spdlog::info("Committing LICENSE to {}", archiveName.filename().string());
     archive_entry* currEntry = archive_entry_new();
-    archive_entry_set_pathname(currEntry, "LICENSE");
+    archive_entry_set_pathname(currEntry, "LICENSE.txt");
     archive_entry_set_filetype(currEntry, AE_IFREG);
     archive_entry_set_perm(currEntry, 0644);
     archive_entry_set_size(currEntry, (int64_t) MetaFiles::dataDumpLicense.size());
+    archive_entry_set_mtime(currEntry, std::time(nullptr), 0);
 
     SEDDARCHIVE_CHECK_ERROR(a, archive_write_header(a, currEntry));
 
@@ -127,12 +129,12 @@ void ArchiveWriter::commit() {
     archive_entry_free(currEntry);
 }
 
-void ArchiveWriter::open(const std::string& filename) {
+void ArchiveWriter::open(const std::string& filename, const FileAttr& attr) {
     if (!createTempDir) {
         throw std::runtime_error("Can't open() without a tempDir");
     }
     spdlog::debug("Opening file {}", filename);
-    this->files.push_back(filename);
+    this->files[filename] = attr;
 
     writer.clear();
     writer.open(tmpOutputDir / filename);
@@ -158,8 +160,8 @@ void ArchiveWriter::close() {
     writer.close();
 }    
 
-void ArchiveWriter::addBinaryFile(const std::string& filename) {
-    this->files.push_back(filename);
+void ArchiveWriter::addBinaryFile(const std::string& filename, const FileAttr& attr) {
+    this->files[filename] = attr;
 }
 
 }

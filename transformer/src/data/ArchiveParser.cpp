@@ -119,6 +119,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
             continue;
         }
         spdlog::info("Extracting {}/{}", ctx.baseDomain, entryName);
+        ctx.lastModified = archive_entry_mtime(entry);
 
         ctx.currType = DataDumpFileType::UNKNOWN;
         ctx.currTypeStr = "";

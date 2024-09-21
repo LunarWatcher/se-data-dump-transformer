@@ -1,5 +1,6 @@
 #include "ArchiveCache.hpp"
 #include "data/ArchiveParser.hpp"
+#include "data/ArchiveWriter.hpp"
 #include "data/util/ArchiveCache.hpp"
 #include "data/Schema.hpp"
 #include <spdlog/spdlog.h>
@@ -20,7 +21,9 @@ void ArchiveCache::initArchive(const ParserContext& ctx, const std::string& binF
         .exhaustedFiletypes = {}
     };
 
-    cache.writer->addBinaryFile(binFile);
+    cache.writer->addBinaryFile(binFile, FileAttr {
+        ctx.lastModified
+    });
 
     siteColumnMaps[ctx.baseSiteName] = std::move(cache);
 }

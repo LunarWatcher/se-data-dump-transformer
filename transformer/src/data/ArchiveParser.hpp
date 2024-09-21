@@ -3,6 +3,7 @@
 #include "data/GlobalContext.hpp"
 #include <archive.h>
 
+#include <ctime>
 #include <filesystem>
 #include <string>
 #include <vector>
@@ -60,6 +61,11 @@ struct ParserContext {
      * Same as currType, but as a string
      */
     std::string currTypeStr;
+
+    /**
+     * The lastModified time of the archive. Used to preserve timestamps
+     */
+    time_t lastModified;
     
     const GlobalContext& conf;
 };
