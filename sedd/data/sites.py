@@ -1,6 +1,7 @@
 # Beta sites don't have data dumps. They're included in this comment for the record:
 # https://cs50.stackexchange.com
 sites = [
+    "https://stackoverflow.com",
     "https://3dprinting.stackexchange.com",
     "https://academia.stackexchange.com",
     "https://ai.stackexchange.com",
@@ -159,7 +160,6 @@ sites = [
     "https://sports.stackexchange.com",
     "https://sqa.stackexchange.com",
     "https://stackapps.com",
-    "https://stackoverflow.com",
     "https://stats.stackexchange.com",
     "https://stellar.stackexchange.com",
     "https://substrate.stackexchange.com",
