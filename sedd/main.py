@@ -60,11 +60,23 @@ def login_or_create(browser: WebDriver, site: str):
             password_elem = browser.find_element(By.ID, "password")
             email_elem.send_keys(sedd_config.email)
             password_elem.send_keys(sedd_config.password)
+            retryLogin = False
 
             curr_url = browser.current_url
             browser.find_element(By.ID, "submit-button").click()
+            
+            try:
+                elem = browser.find_element(By.CSS_SELECTOR, "#login-form > .js-error-message")
+                if elem is not None:
+                    print("Login failed quietly. Retrying")
+                    continue
+            except:
+                # No error element
+                pass
+
             while browser.current_url == curr_url:
                 sleep(3)
+
 
             captcha_walled = False
             while "/nocaptcha" in browser.current_url:
@@ -77,7 +89,7 @@ def login_or_create(browser: WebDriver, site: str):
 
                 sleep(10)
 
-            if captcha_walled:
+            if captcha_walled or retryLogin:
                 continue
 
             if not is_logged_in(browser, site):

@@ -26,4 +26,4 @@ def notify(message: str, config: SEDDConfig):
         print(message)
         return
 
-    notification_providers[provider](message, config["notifications"])
+    notification_providers[provider](message, config.notifications)
