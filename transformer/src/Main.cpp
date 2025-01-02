@@ -235,13 +235,29 @@ int main(int argc, char* argv[]) {
         std::stringstream filterSummary;
 
         if (filters.size() == 0) {
-            filterSummary << "No (intentional) changes to the data have been made by the processing system.";
+            filterSummary << "No (intentional) changes to the data have been made by the processing system. "
+                << "Shy of bugs, the biggest changes may be to the underlying data types, depending on the destination "
+                << "format. ";
         } else {
             filterSummary << "Some changes have been made to the data:\n";
             for (const auto& filter : filters) {
                 filterSummary << "- " << filter->getSummary() << "\n";
             }
+
+            filterSummary << "\n"
+                << "Additionally, due to the general conversion process, the exact representation of the data may have "
+                << "changed, depending on the destination format. ";
         }
+        filterSummary
+            << "However, this process should not modify the underlying data regardless of the final "
+            << "representation. If you discover any inconsistencies, please open a bug report in the repository "
+            << "for the underlying converter: "
+            << "https://github.com/LunarWatcher/se-data-dump-transformer\n\n"
+            << "Any changes not explicitly described here are most likely bugs, or potentially introduced by whoever "
+            << "created this version of the data dump.\n\n"
+            << "It's also important to note that Stack Overflow, Inc. has a history of introducing problems in the "
+            << "source data dump itself; these problems may propagate to converted data dumps, though the converter "
+            << "does make some attempts to correct certain issues as a necessity to allow parsing in the first place";
 
         spdlog::info("Outputting README.md...");
         std::ofstream o(
