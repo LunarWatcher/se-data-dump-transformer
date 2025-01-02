@@ -5,13 +5,20 @@
 #include <filesystem>
 #include <map>
 #include <string>
-#include <vector>
 #include <fstream>
 
 namespace sedd {
 
 struct FileAttr {
     time_t lastModified;
+};
+
+enum class OutputCompressionFormat {
+    SEVENZIP
+};
+
+inline std::map<std::string, OutputCompressionFormat> strToCompFormat {
+    {"7z", OutputCompressionFormat::SEVENZIP}
 };
 
 class ArchiveWriter {

@@ -3,6 +3,7 @@ add_executable(tests
 
     src/CheckSchema.cpp
     src/TestUnicodeManagement.cpp
+    src/FilterTests.cpp
 )
 
 Include(FetchContent)

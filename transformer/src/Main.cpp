@@ -8,14 +8,19 @@
 #include <semaphore>
 #include "CLI/CLI.hpp"
 #include "data/ArchiveParser.hpp"
+#include "data/ArchiveWriter.hpp"
 #include "data/GlobalContext.hpp"
+#include "data/filter/AnswerBotFilter.hpp"
+#include "data/filter/Filter.hpp"
 #include "data/transformers/SQLiteTransformer.hpp"
+#include "data/transformers/XMLTransformer.hpp"
 #include "meta/MetaFiles.hpp"
-#include "spdlog/cfg/helpers.h"
 #include <stc/StringUtil.hpp>
 #include <fmt/format.h>
 
 #include "data/transformers/JSONTransformer.hpp"
+#include "spdlog/cfg/helpers-inl.h"
+#include "spdlog/common.h"
 #include "util/InputPreprocessor.hpp"
 
 #include <spdlog/spdlog.h>
@@ -24,15 +29,15 @@
 enum class TransformerType {
     JSON,
     SQLITE,
+    XML,
 
     DRY_RUN,
 };
 
-class InvalidTransformer : public sedd::Transformer {};
-
 std::map<std::string, TransformerType> strToTransformer {
     {"json", TransformerType::JSON},
     {"sqlite", TransformerType::SQLITE},
+    {"xml", TransformerType::XML},
     {"noop", TransformerType::DRY_RUN},
 };
 
@@ -42,6 +47,7 @@ std::shared_ptr<sedd::Transformer> getTransformer(TransformerType type) {
     static auto map = std::map<TransformerType, std::function<std::shared_ptr<sedd::Transformer>()>> {
         SEDD_TRANSFORMER(JSON, std::make_shared<sedd::JSONTransformer>()),
         SEDD_TRANSFORMER(SQLITE, std::make_shared<sedd::SQLiteTransformer>()),
+        SEDD_TRANSFORMER(XML, std::make_shared<sedd::XMLTransformer>()),
 
         SEDD_TRANSFORMER(DRY_RUN, nullptr),
     };
@@ -63,7 +69,8 @@ int main(int argc, char* argv[]) {
         ->required(false);
 
     TransformerType transformerType;
-    app.add_option("-t,--transformer", transformerType, 
+    app.add_option("-t,--transformer", 
+                   transformerType, 
                    "The transformer to use. Note that the `noop` transformer is special as it does nothing "
                    "to the input. Should only be used to verify the file parsing without running a parser.")
         ->required()
@@ -110,11 +117,46 @@ int main(int argc, char* argv[]) {
         ->required(false)
         ->default_val(checkNesting);
 
+    std::string logLevel;
+    app.add_option(
+        "-l,--log-level",
+        logLevel,
+        "The level to use for logging. Defaults to info."
+    )
+        ->required(false)
+        ->default_val("info")
+        ->check(
+            CLI::IsMember(
+                {"critical", "debug", "info", "warning", "error"},
+                CLI::ignore_case, CLI::ignore_space
+            )
+        );
+
+    sedd::OutputCompressionFormat outFormat;
+    app.add_option(
+        "-f,--output-format",
+        outFormat,
+        "The output format to use for compression. Currently unused as only .7z is supported"
+    )
+        ->required(false)
+        ->default_val(sedd::OutputCompressionFormat::SEVENZIP)
+        ->transform(CLI::CheckedTransformer(sedd::strToCompFormat, CLI::ignore_case));
+
+    std::vector<std::shared_ptr<sedd::Filter>> filters = {
+        std::make_shared<sedd::AnswerBotFilter>()
+    };
+
+    for (auto& filter : filters) {
+        filter->init(app);
+    }
+
     CLI11_PARSE(app, argc, argv);
+    spdlog::cfg::helpers::load_levels(logLevel);
 
-    auto* level = std::getenv("SPDLOG_LEVEL");
-
-    spdlog::cfg::helpers::load_levels(level == nullptr ? "info" : level);
+    std::erase_if(filters, [](const auto& filter) {
+        return !filter->isEnabled();
+    });
+    spdlog::info("{} filters are enabled", filters.size());
 
     sedd::GlobalContext baseCtx {
         .sourceDir = downloadDir,
@@ -128,6 +170,7 @@ int main(int argc, char* argv[]) {
         .transformer = nullptr,
         .recover = recover,
         .checkNesting = checkNesting,
+        .enabledFilters = filters
     };
 
     std::filesystem::create_directories(baseCtx.destDir);
@@ -189,6 +232,17 @@ int main(int argc, char* argv[]) {
     );
 
     if (includeReadme && transformerType != TransformerType::DRY_RUN) {
+        std::stringstream filterSummary;
+
+        if (filters.size() == 0) {
+            filterSummary << "No (intentional) changes to the data have been made by the processing system.";
+        } else {
+            filterSummary << "Some changes have been made to the data:\n";
+            for (const auto& filter : filters) {
+                filterSummary << "- " << filter->getSummary() << "\n";
+            }
+        }
+
         spdlog::info("Outputting README.md...");
         std::ofstream o(
             baseCtx.destDir / "README.md"
@@ -199,7 +253,9 @@ int main(int argc, char* argv[]) {
                 strToTransformer.begin(), strToTransformer.end(),
                  [&](const auto& p) {
                      return p.second == transformerType;
-                 })->first
+                 })->first,
+            getTransformer(transformerType)->getDescription(),
+            filterSummary.str()
         ) << std::endl;
     }
 

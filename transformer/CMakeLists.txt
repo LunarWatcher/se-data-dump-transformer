@@ -123,13 +123,18 @@ add_library(sedd-src STATIC
     src/data/ArchiveWriter.cpp
     src/data/Transformer.cpp
 
+    src/data/filter/Filter.cpp
+    src/data/filter/AnswerBotFilter.cpp
+
     src/data/transformers/JSONTransformer.cpp
     src/data/transformers/SQLiteTransformer.cpp
+    src/data/transformers/XMLTransformer.cpp
 
     src/data/util/ArchiveCache.cpp
 
     src/util/InputPreprocessor.cpp
     src/util/StringSanitiser.cpp
+
 )
 target_compile_options(
     sedd-src
