@@ -8,7 +8,6 @@ services:
       - SPDLOG_LEVEL=${SPDLOG_LEVEL}
     user: "1000"
     volumes:
-      # Change these paths to use different source directories
-      # for the container
+      # Change these paths to use different directories for the container
       - ./downloads/:/app/downloads
       - ./out/:/app/out
