@@ -41,7 +41,8 @@ archive, any errors in the data are also errors in the source material.
 There are _many_ such errors in the source material, and it isn't possible to list or find them
 all. 
 
-Note that this data dump is not affiliated with Stack Overflow, Inc., and is not the official data dump.
+Note that this data dump is not affiliated with Stack Overflow, Inc., and is not the official data dump. It has been
+generated from the official data dump, however.
 )";
 
 static inline constexpr std::string_view readme = R"(# Stack Exchange data dump - {}-formatted version
@@ -62,6 +63,12 @@ The content is licensed under various versions of CC-By-SA. These are:
 * CC-By-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
 
 As per: https://stackoverflow.com/help/licensing
+            
+## About this format
+{}
+
+## Data alterations
+{}
 )";
 
 }

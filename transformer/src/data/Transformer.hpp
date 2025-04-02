@@ -45,6 +45,10 @@ public:
      * Returns the full path to the output archive. 
      */
     virtual std::filesystem::path getOutputArchivePath(const ParserContext& ctx);
+
+    virtual std::string getDescription() {
+        return "No special notes were specified about this format";
+    }
 };
 
 }

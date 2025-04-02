@@ -175,3 +175,11 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 # }}}
+
+# env files
+*.env
+!*.example.env
+
+# Docker
+docker-compose*.yml
+!docker-compose.yml

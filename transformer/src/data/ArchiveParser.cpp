@@ -91,6 +91,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
         .archivePath = this->archivePath,
         .currType = DataDumpFileType::UNKNOWN,
         .currTypeStr = "",
+        .lastModified{},
         .conf = conf,
     };
 
@@ -207,9 +208,14 @@ void ArchiveParser::read(const GlobalContext& conf) {
                         std::cerr << "Failed to parse line as XML: " << line << "\nReason: " << res.description() << std::endl;
                         throw std::runtime_error("Failed to parse line as XML");
                     }
-                    const auto& node = doc.first_child();
+                    auto node = doc.first_child();
 
                     if (conf.transformer) {
+                        for (const auto& parser : conf.enabledFilters) {
+                            if (parser->process(node)) {
+                                goto skip;
+                            }
+                        }
                         try {
                             conf.transformer->parseLine(node, ctx);
                         } catch (...) {
@@ -221,6 +227,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
 
                             throw;
                         }
+skip:;
                     }
                 } else if (ctx.currType == DataDumpFileType::UNKNOWN) {
                     //for (const auto& tag : KNOWN_TAGS) {

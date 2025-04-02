@@ -135,20 +135,24 @@ Once you've downloaded the data dumps, you may want to transform it into a more 
 
 This section assumes you have Docker installed, with [docker-compose-v2](https://docs.docker.com/compose/migrate/).
 
-From the root directory, run
+A [default compose file](./docker-compose.yml) is provided for convenience. If you want to use a different one, set the `COMPOSE_FILE` environment variable in a custom `.env` file in the project's root directory, or provide it on the command line. To start the container (and build it if not done already), run:
 
 ```bash
 docker compose up
 ```
 
-This automatically binds `downloads` and `out` in the current working directory to the docker container. If you want to change these paths, you'll need to edit `docker-compose.yml` manually for now.
+By default, this binds `downloads` and `out` in the current working directory to the container. If you want to change these paths, update the `volumes` attribute mapping of the `transformer` service in your compose file (or the default docker-compose.yml file if not using a custom one).
 
-Additionally, the following environment variables are defined and forwarded to the build:
+#### Environment variables
 
-- `SEDD_OUTPUT_TYPE`: Any output type supported by the program. These are: `json`, `sqlite`.
-- `SPDLOG_LEVEL`: Sets the logging level. Usually not necessary unless you want verbose output, or you're trying to debug something.
+The following environment variables are used:
 
-If you have a UNIX shell (i.e. not cmd or powershell; Windows users can use Git Bash), you can run
+| Name               | Values         | Default | Description               |
+| ------------------ | -------------- | ------- | ------------------------- |
+| `SEDD_OUTPUT_TYPE` | `json\|sqlite` | `json`  | Any upported output type. |
+| `SPDLOG_LEVEL`     | log level      | `info`  | Sets the logging level.   |
+
+If you want to override the defaults, either set them in a custom `.env` file in the project's root directory, or, if you have a UNIX shell (i.e. not cmd or PowerShell; Windows users can use Git Bash), you can explicitly provide them on the command line:
 
 ```bash
 SEDD_OUTPUT_TYPE=sqlite docker compose up

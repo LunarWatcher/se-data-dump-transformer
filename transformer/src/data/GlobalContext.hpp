@@ -1,5 +1,6 @@
 #pragma once
 
+#include "data/filter/Filter.hpp"
 #include <filesystem>
 
 namespace sedd {
@@ -12,6 +13,8 @@ struct GlobalContext {
     std::shared_ptr<Transformer> transformer;
     bool recover;
     bool checkNesting;
+
+    std::vector<std::shared_ptr<Filter>> enabledFilters;
 };
 
 }
