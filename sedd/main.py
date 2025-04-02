@@ -35,11 +35,27 @@ def kill_cookie_shit(browser: WebDriver):
         """let elem = document.getElementById("onetrust-banner-sdk"); if (elem) { elem.parentNode.removeChild(elem); }""")
     sleep(1)
 
+def check_cloudflare_intercept(browser: WebDriver):
+    if browser.title == "Just a moment...":
+        print("CF verification hit. Trying soft workaround")
+        sleep(15)
+
+        if (browser.title == "Just a moment..."):
+            print("Irrecoverable state suspected; captcha solving likely required")
+            notifications.notify("CloudFlare verification hit; auto-verification failed. Please complete the captcha", sedd_config)
+        else:
+            print("Auto-recovered from CF wall")
+            return
+
+        while browser.title == "Just a moment...":
+            print("Still stuck on CF verification. Waiting for 10 seconds")
+            sleep(10)
 
 def is_logged_in(browser: WebDriver, site: str):
     url = f"{site}/users/current"
     browser.get(url)
     sleep(1)
+    check_cloudflare_intercept(browser)
 
     return "/users/" in browser.current_url
 
@@ -51,6 +67,7 @@ def login_or_create(browser: WebDriver, site: str):
         print("Not logged in and/or not registered. Logging in now")
         while True:
             browser.get(f"{site}/users/login")
+            check_cloudflare_intercept(browser)
 
             if "?newreg" in browser.current_url:
                 print(f"Auto-created {site} without login needed")
@@ -64,7 +81,7 @@ def login_or_create(browser: WebDriver, site: str):
 
             curr_url = browser.current_url
             browser.find_element(By.ID, "submit-button").click()
-            
+
             try:
                 elem = browser.find_element(By.CSS_SELECTOR, "#login-form > .js-error-message")
                 if elem is not None:
@@ -73,6 +90,8 @@ def login_or_create(browser: WebDriver, site: str):
             except:
                 # No error element
                 pass
+
+            check_cloudflare_intercept(browser)
 
             while browser.current_url == curr_url:
                 sleep(3)
@@ -141,6 +160,7 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
         checkbox.click()
         sleep(1)
         btn.click()
+        check_cloudflare_intercept(browser)
         sleep(2)
         url = browser.execute_script("return window.extractedUrl;")
         utils.extract_etag(url, etags)
@@ -155,6 +175,7 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
             pass
         else:
             browser.get(f"{site}/users/data-dump-access/current")
+            check_cloudflare_intercept(browser)
 
             if not args.dry_run:
                 utils.archive_file(args.output_dir, site)
@@ -165,6 +186,7 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
             pass
         else:
             browser.get(f"{meta_url}/users/data-dump-access/current")
+            check_cloudflare_intercept(browser)
 
             if not args.dry_run:
                 utils.archive_file(args.output_dir, meta_url)
