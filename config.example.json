@@ -2,7 +2,7 @@
   "email": "The email you use to log into SE",
   "password": "The password you use to log into SE",
   "notifications": {
-    "provider": "string, any of: native,. Can be null, which disables notifications"
+    "provider": "native"
   },
   "ubo": {
     "download_url": "https://github.com/gorhill/uBlock/releases/download/1.59.0/uBlock0_1.59.0.firefox.signed.xpi",

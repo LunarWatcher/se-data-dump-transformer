@@ -89,8 +89,15 @@ The downloader does **not** support Docker due to the display requirement.
 
 1. Make sure you have all the requirements from the Requirements section.
 2. Copy `config.example.json` to `config.json`
-3. Open `config.json`, and edit in the values. The values are described within the JSON file itself.
+3. Open `config.json`, and edit in the values.
 4. Run the extractor with `python3 -m sedd`. If you're on Windows, you may need to run `python -m sedd` instead.
+
+##### Config option values
+
+###### `notifications.provider`
+Supported values:
+* `"native"`: Uses your operating system's native notification method
+* `null`: Disables notifications 
 
 #### CLI options
 
