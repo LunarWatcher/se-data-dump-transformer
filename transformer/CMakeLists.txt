@@ -1,3 +1,6 @@
+# Not sure if this needs to be set prior to everything else, but putting it here for good measure
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+
 cmake_minimum_required(VERSION 3.24 FATAL_ERROR)
 
 set(CMAKE_PROJECT_TOP_LEVEL_INCLUDES "${CMAKE_CURRENT_SOURCE_DIR}/dep_provider.cmake")
