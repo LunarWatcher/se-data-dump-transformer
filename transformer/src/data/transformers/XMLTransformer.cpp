@@ -35,6 +35,7 @@ License URLs:
 }
 
 void XMLTransformer::endFile() {
+    assert(ft.has_value());
     this->writer->write(fmt::format("</{}>\n", DataDumpFileType::filetypeToStr(ft.value())));
     this->writer->close();
 

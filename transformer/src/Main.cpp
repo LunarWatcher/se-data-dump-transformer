@@ -1,6 +1,6 @@
 #include <archive.h>
 #include <atomic>
-#include <execution>
+#include <poolstl/poolstl.hpp>
 #include <filesystem>
 #include <fstream>
 #include <memory>
@@ -195,10 +195,7 @@ int main(int argc, char* argv[]) {
     std::atomic<int> processed = 0;
 
     std::for_each(
-#ifndef __APPLE__
-        // Crapple? No parallel execution for you, because Apple Clang still doesn't support it
-        std::execution::par,
-#endif
+        poolstl::par,
         dirIt.begin(), dirIt.end(),
         [&](const auto& entry) {
             auto siteID = stc::string::split(entry.filename().replace_extension().string(), '-', 1)[0];

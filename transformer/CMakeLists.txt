@@ -86,8 +86,15 @@ FetchContent_Declare(utf8
     GIT_REPOSITORY https://github.com/sheredom/utf8.h
     GIT_TAG d2e35eb8366dae73ed12653b8fef8ec2a26ddc8f
 )
+FetchContent_Declare(
+        poolSTL
+        GIT_REPOSITORY https://github.com/alugowski/poolSTL
+        GIT_TAG main
+        GIT_SHALLOW TRUE
+)
 
 FetchContent_MakeAvailable(
+    poolSTL
     fmt
     sqlitecpp
     yyjson
@@ -157,24 +164,8 @@ PUBLIC
     yyjson
     SQLiteCpp
     utf8h
+    poolSTL::poolSTL
 )
-
-# TODO: Figure out if poolstl is a viable replacement for this intel crap
-if (UNIX)
-    find_package(
-        TBB
-    )
-    if (TBB_FOUND)
-        message(STATUS "Found libtbb -- linking")
-        target_link_libraries(sedd-src PUBLIC TBB::tbb)
-
-        if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-            set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libstdc++")
-        endif()
-    else()
-        message(WARNING "Failed to find tbb. Multithreading is not supported")
-    endif()
-endif()
 
 if (LINT)
     find_program(

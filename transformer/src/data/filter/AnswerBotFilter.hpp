@@ -5,7 +5,7 @@ namespace sedd {
 
 class AnswerBotFilter : public Filter {
 private:
-    inline static constexpr int AIBOT_UID = -2;
+    static constexpr int AIBOT_UID = -2;
 public:
     AnswerBotFilter() : Filter("--no-aibot", "Whether or not to strip AI bot answers from the data dump") {}
 

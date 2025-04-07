@@ -15,7 +15,8 @@ bool AnswerBotFilter::process(pugi::xml_node& row) {
         if (!attr.empty() && attr.as_int() == AIBOT_UID) {
             return true;
         }
-    } catch (...) {
+    } catch (...) { // NOLINT
+        
     }
 
     return false;
