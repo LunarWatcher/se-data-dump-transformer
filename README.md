@@ -66,6 +66,35 @@ For completeness (well, sort of, none of these lists are exhaustive), this is a 
 
 Note that it's stongly encouraged that you use a venv. To set one up, run `python3 -m venv env`. After that, you'll need to activate it with one of the activation scripts. Run the appropriate one for your operating system. If you're not sure what the scripts are called, you can find them in `./env/bin`
 
+### Warnings
+
+#### Cloudflare loops
+
+> TL;DR: If you get a full-page Cloudflare block that loops back to itself after completing the capcha, connect to a VPN, or download the data dump from unofficial community reuploads
+
+If you get a full-page Cloudflare block, and solving the captcha redirects you right back to the cloudflar eblock page even if you complete it correctly, you have to switch to a VPN in another country. For reasons beyond me, SE hard-blocks automated browsers _from specific countries only_. One of the verified blocked countries used for this test was Singapore. 
+
+If you get slapped with a Cloudflare loop, the only option for now is to use a VPN in another country. Switzerland and Norway have both been verified to work at the time of writing. Fascinatingly, using a VPN makes no difference on the looping; it's purely country-based, not anti-VPN-based. The loop has been verified on both a residential IP and a datacenter IP (VPN).
+
+I unfortunately do not (and cannot) write a complete list of countries affected by this bullshit, so you have to test this manually. If you do not have access to a VPN, check https://communitydatadump.com/ or https://academictorrents.com/collection/stack-exchange-data-dumps for archived (unofficial) versions uploaded by the community. They're usually uploaded within a few days to a couple weeks, and unless you're downloading directly from the archive.org version, is significantly faster and more stable than downloading from SE themselves.
+
+>[!NOTE]
+> The technical reason for this happening is that Cloudflare detects Selenium as a bot. This is by design in Geckodriver and Chrome, due to a standard that says automated browsers must identify themselves as automated. Thanks to increasingly aggressive anti-bot changes (particularly from SE), this means that this perfectly valid use of Selenium gets slapped to death by Cloudflare.
+> 
+> Attempts have been made to bypass these checks (see the bot-stealth-mode branch on GitHub), but these have not worked against Cloudflare. Likely, the only fix is to patch Geckodriver to remove `navigator.webdriver` and other identifiers at the lowest level possible. Normal, non-automated Firefox is not even presented with the Cloudflare screen of death, so it's only if the automation environment is detected. Fixing this, however, is a massive problem that goes far outside the bounds of this project, so unless workarounds are required for the downloader to work, it'll be left as a wontfix.
+>
+> If you've worked with these problems before, and have an idea how to fix them, pull requests are very much welcome. Note that switching to chromium for undetected-chromium is not an option due to heavy use of ublock origin to block several elements that cover significant parts of the screen.
+
+#### Download instability, particularly of `stackoverflow.com.7z`
+
+> TL;DR: If `stackoverflow.com.7z` fails to download:
+> 1. You're on a good connection: consider connecting to a VPN before retrying.
+> 2. You're on a bad connection: consider downloading via the unofficial community torrent instead. It's significantly more resistant to problems caused by bad internet connections.
+
+If you keep running into the download of `stackoverflow.com.7z` failing, you may need to connect to a VPN. For reasons that are not clear (but that are likely down to SE being horrible at implementing things that work), `stackoverflow.com.7z` can just randomly fail. This assumes your device has a stable internet connection for the duration of the download, but arbitrarily fails anyway.
+
+For some reason, connecting with a VPN offers just enough extra stability to avoid whatever causes the failures. This is especially the case if you're on a relatively slow (100Mbps) network, as longer download times increases the chance of failure. If you're on a generally unstable network, a VPN may help, but if it doesn't, it will be significantly easier to download the unofficial community reuploads, as these are always available as torrents. Torrents are generally more resistant to full failure on bad network connections, and can download single missing pieces rather than forcing you to redownload the entire 68+GB thing. 
+
 ### Requirements
 
 - Python 3.10 or newer[^3]
