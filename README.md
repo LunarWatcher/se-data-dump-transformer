@@ -39,7 +39,7 @@ While these are preprocessed distributions of the data dump, this project is als
 
 ### Complete data dump archives
 
-A [different project](https://communitydatadump.com/index.html) is currently maintaining a list of both the source data dumps (XML), as well as other distributions. It includes both historical versions of the data dump, as well as new versions uploaded under the new anti-community scheme.
+A [different project](https://communitydatadump.com/index.html) is currently maintaining a list of both the source data dumps (XML), as well as other distributions. It includes both historical versions of the data dump, as well as new versions uploaded under the new anti-community scheme. In addition, the later data dumps (though exclusively the SE-uploaded ones; not generated variants) [have been uploaded to Academic Torrents](https://academictorrents.com/collection/stack-exchange-data-dumps), which serves as a secondary list.
 
 Note that since someone is uploading an unofficial version to archive.org, you may not need to use the downloader at all. However, to make sure this access continues, I strongly encourage you to download directly from SE anyway if you can -- this helps decrease the chance the uploader is identified and blocked by SE, which will turn into a problem for archival efforts in the long term. It may also decrease the chances SE points to low usage numbers as an excuse to axe the data dump entirely.[^4]
 
