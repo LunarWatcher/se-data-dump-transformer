@@ -28,7 +28,6 @@ output_dir = init_output_dir(args.output_dir)
 
 browser, ubo_id = init_firefox_driver(sedd_config, output_dir)
 
-
 def kill_cookie_shit(browser: WebDriver):
     sleep(3)
     browser.execute_script(

@@ -1,3 +1,4 @@
-selenium==4.23.1
+selenium==4.31.0
 desktop-notifier==5.0.1
 watchdog==4.0.2
+selenium-wire-2==0.2.1

@@ -3,8 +3,10 @@ from urllib import request
 from json import dumps
 from uuid import uuid4
 
-from selenium import webdriver
+from seleniumwire2 import SeleniumWireOptions, webdriver
 from selenium.webdriver.firefox.options import Options
+
+from sedd import countermeasures
 
 from .config import SEDDConfig
 from .ubo import init_ubo_settings
@@ -28,6 +30,7 @@ def init_firefox_driver(config: SEDDConfig, output_dir: str):
     options.set_preference(
         "browser.helperApps.neverAsk.saveToDisk", "application/x-gzip"
     )
+    options.set_preference("marionette.enabled", False)
 
     # our own uuid for uBO so as we don't need to do the dance of inspecing internals
     ubo_internal_uuid = f"{uuid4()}"
@@ -35,7 +38,12 @@ def init_firefox_driver(config: SEDDConfig, output_dir: str):
     options.set_preference("extensions.webextensions.uuids", dumps(
         {"uBlock0@raymondhill.net": ubo_internal_uuid}))
 
-    browser = webdriver.Firefox(options=options)
+    browser = webdriver.Firefox(
+        options=options
+    )
+    browser.response_interceptor = countermeasures.bot_cloak
+    # Used to force gzip to make bot_cloak easier to write
+    # browser.header_overrides = {'Accept-Encoding': 'gzip'}
 
     ubo_download_url = config.get_ubo_download_url()
 
