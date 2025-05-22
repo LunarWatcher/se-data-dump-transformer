@@ -1,3 +1,5 @@
-selenium==4.23.1
+selenium==4.32.0
+undetected-geckodriver-lw>=2.1.0
 desktop-notifier==5.0.1
 watchdog==4.0.2
+requests

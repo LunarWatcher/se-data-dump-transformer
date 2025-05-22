@@ -19,14 +19,22 @@ from .watcher.observer import register_pending_downloads_observer
 from . import utils
 
 from .driver import init_output_dir, init_firefox_driver
+import logging
 
 args = parse_cli_args()
+
+if args.verbose:
+    logging.basicConfig(level=logging.DEBUG)
 
 sedd_config = load_sedd_config()
 
 output_dir = init_output_dir(args.output_dir)
 
-browser, ubo_id = init_firefox_driver(sedd_config, output_dir)
+browser, ubo_id = init_firefox_driver(
+    sedd_config,
+    args.disable_undetected,
+    output_dir
+)
 
 
 def kill_cookie_shit(browser: WebDriver):

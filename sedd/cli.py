@@ -9,6 +9,8 @@ class SEDDCLIArgs(argparse.Namespace):
     keep_consent: bool
     output_dir: str
     dry_run: bool
+    disable_undetected: bool
+    verbose: bool
 
 
 parser = argparse.ArgumentParser(
@@ -40,11 +42,26 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    "-g", "--disable-undetected-geckodriver",
+    required=False,
+    dest="disable_undetected",
+    action="store_true",
+    default=False
+)
+
+parser.add_argument(
     "--dry-run",
     required=False,
     default=False,
     action="store_true",
     dest="dry_run"
+)
+parser.add_argument(
+    "-v",
+    required=False,
+    default=False,
+    action="store_true",
+    dest="verbose"
 )
 
 
