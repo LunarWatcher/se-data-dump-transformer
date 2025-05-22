@@ -161,7 +161,7 @@ This can be disabled via the `-g`/`--disable-undetected-geckodriver` flag, **but
 <summary>
 Technical explanation (and a stab at Stack Exchange, Inc.)
 </summary>
-As of 2.0.0, [undetected-geckodriver-lw](https://github.com/LunarWatcher/undetected_geckodriver/) is used. As described, it's functionally identical to the standard Selenium Firefox driver, except it disables `navigator.webdriver`. In the future, additional anti-anti-bot measures may be implemented as well, depending on how much needs to be done low-level to avoid detection.
+As of 2.0.0, <a href="https://github.com/LunarWatcher/undetected_geckodriver/">undetected-geckodriver-lw</a> is used. As described, it's functionally identical to the standard Selenium Firefox driver, except it disables <code>navigator.webdriver</code>. In the future, additional anti-anti-bot measures may be implemented as well, depending on how much needs to be done low-level to avoid detection.
 
 All this does, however, is identify the browser as most likely human. It can and still will run into captcha walls whenever Cloudflare feels like it. But all the obvious, hard, self-announced "hey, I'm a bot" identifiers in the browser are now gone. This is a full nuclear response to SE's nuclear anti-bot actions, that also took down the data dump downloader in several major countries.
 
