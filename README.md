@@ -24,6 +24,8 @@ Here's what's happening:
 - They're discontinuing the archive.org dump, which makes it significantly harder to archive the data if SE, for example, were to go out of business
   - In addition to discontinuing the archive.org dump, they're imposing significant restrictions on the data dump
 - They're doing the first revision **without the possibility to download the entire data dump** in one click, a drastic QOL reduction from the current situation.
+- Later in 2024 and in at least the first half of 2025, they've continued scaling up **unreasonably aggressive anti-bot measures**, that also affect the data dump downloader when used in certain countries - even when the browser has full human oversight, and the captchas are solved by a human.
+- At the initial time of the release in 2024, Stack Exchange promised to give download links to the entire data dump to anyone who requests it. A network moderator requested it immediately after release. As of May 22nd, 2025, they're _still_ waiting for SE to actually offer the download. This is in spite of several reminders and SE employees claiming they're going to get on it, and upwards of weekly reminders over a period of at least 4-5 months, after which I personally lost track of the frequency as I resigned as moderator on Stack Overflow. **SE has no interest in providing bulk downloads to the community, regardless of the legitimacy of the request**, and the future of data dump archival rests purely on the community's ability to make tooling that combats SE's ridiculous decisions.
 
 This is an opinionated summary of the reason why; SE wants to capitalise on AI companies that need training data, and have decided that the community doesn't matter in that process. The current process, while not nearly as restricting as rev. 1 and 2, is a symptom of precisely one thing; Stack Exchange doesn't care about its users, but rather cares about finding new ways to profit off user data.
 
@@ -70,6 +72,13 @@ Note that it's stongly encouraged that you use a venv. To set one up, run `pytho
 
 #### Cloudflare loops
 
+> [!NOTE]
+> You should be running into this less as long as you don't provide the `-g`/`--disable-undetected-geckodriver` flag. See "Captchas and other misc. barriers" for details. If you haven't disabled it (i.e. you haven't specified either of the two flags) and still run into this problem, continue reading this section.
+>
+> If you're a macOS user, leaving undetected-geckodriver enabled will not help. Switch to Windows or Linux (physically or in a VM) and try again there.
+
+---
+
 > TL;DR: If you get a full-page Cloudflare block that loops back to itself after completing the capcha, connect to a VPN, or download the data dump from unofficial community reuploads
 
 If you get a full-page Cloudflare block, and solving the captcha redirects you right back to the cloudflar eblock page even if you complete it correctly, you have to switch to a VPN in another country. For reasons beyond me, SE hard-blocks automated browsers _from specific countries only_. One of the verified blocked countries used for this test was Singapore. 
@@ -77,13 +86,6 @@ If you get a full-page Cloudflare block, and solving the captcha redirects you r
 If you get slapped with a Cloudflare loop, the only option for now is to use a VPN in another country. Switzerland and Norway have both been verified to work at the time of writing. Fascinatingly, using a VPN makes no difference on the looping; it's purely country-based, not anti-VPN-based. The loop has been verified on both a residential IP and a datacenter IP (VPN).
 
 I unfortunately do not (and cannot) write a complete list of countries affected by this bullshit, so you have to test this manually. If you do not have access to a VPN, check https://communitydatadump.com/ or https://academictorrents.com/collection/stack-exchange-data-dumps for archived (unofficial) versions uploaded by the community. They're usually uploaded within a few days to a couple weeks, and unless you're downloading directly from the archive.org version, is significantly faster and more stable than downloading from SE themselves.
-
->[!NOTE]
-> The technical reason for this happening is that Cloudflare detects Selenium as a bot. This is by design in Geckodriver and Chrome, due to a standard that says automated browsers must identify themselves as automated. Thanks to increasingly aggressive anti-bot changes (particularly from SE), this means that this perfectly valid use of Selenium gets slapped to death by Cloudflare.
-> 
-> Attempts have been made to bypass these checks (see the bot-stealth-mode branch on GitHub), but these have not worked against Cloudflare. Likely, the only fix is to patch Geckodriver to remove `navigator.webdriver` and other identifiers at the lowest level possible. Normal, non-automated Firefox is not even presented with the Cloudflare screen of death, so it's only if the automation environment is detected. Fixing this, however, is a massive problem that goes far outside the bounds of this project, so unless workarounds are required for the downloader to work, it'll be left as a wontfix.
->
-> If you've worked with these problems before, and have an idea how to fix them, pull requests are very much welcome. Note that switching to chromium for undetected-chromium is not an option due to heavy use of ublock origin to block several elements that cover significant parts of the screen.
 
 #### Download instability, particularly of `stackoverflow.com.7z`
 
@@ -121,6 +123,10 @@ The downloader does **not** support Docker due to the display requirement.
 3. Open `config.json`, and edit in the values.
 4. Run the extractor with `python3 -m sedd`. If you're on Windows, you may need to run `python -m sedd` instead.
 
+> [!TIP]
+>
+> If you haven't recently updated, it's recommended that you `git pull && pip3 install -r requirements.txt` first. This is not required if this is the first time you're running the tool, as everything will be up-to-date. This goes from being optional to a very good idea or outright required if you run into hard Cloudflare blocks you can't get around. 
+
 ##### Config option values
 
 ###### `notifications.provider`
@@ -138,6 +144,8 @@ Exractor CLI supports the following configuration options:
 | `-k`  | `--keep-consent`       | Optional | `false`           | Whether to keep OneTrust's consent dialog. If set, you are responsible for getting rid of it yourself (uBlock can handle that for you too).                                 |
 | `-s`  | `--skip-loaded <path>` | Optional | -                 | Whether to skip over archives that have already been downloaded. An archive is considered to be downloaded if the output directory has one already & the file is not empty. |
 | -     | `--dry-run`            | Optional | -                 | Whether to actually download the archives. If set, only traverses the network's sites.                                                                                      |
+| `-g` | `--disable-undetected-geckodriver` | Optional | `false` | Whether or not to disable the anti-anti-bot detection webdriver, and use a fully standard Firefox instead. See "Captchas and other misc. barriers" for more information. Has no effect on macOS. |
+| `-v` | - | Optional | `false` | Whether or not to enable verbose logging. You do not want to enable this unless you're diagnosing a problem with sedd - the verbose logging includes low-level Selenium output. |
 
 #### Captchas and other misc. barriers
 
@@ -145,11 +153,28 @@ This software is designed around Selenium, a browser automation tool. This does,
 
 This is where notification systems come in; expecting you to sit and watch for potentially a significant number of hours is not a good use of time. If anything happens, you'll be notified, so you don't have to continuously watch the program. Currently, only a native desktop notifier is supported, but support for other notifiers may be added in the future.
 
+Unfortunately, since the initial release of sedd, Stack Exchange, Inc. has bumped their bot blocking to outright unreasonable levels, which has affected sedd from certain countries. As of 2.0.0, non-macOS users automatically use a non-standard version of Firefox. The only modification done is that the `navigator.webdriver` property is disabled, which is enough to downgrade infinite captcha loops to a single captcha, or no blocking at all.
+
+This can be disabled via the `-g`/`--disable-undetected-geckodriver` flag, **but leaving it on is strongly encouraged**. The alternate webdriver used disables one of the obvious browser-level bot detection flags that Cloudflare uses to send the browser in an infinite captcha loop. Disabling this, depending on how aggressive Stack Exchange's bot blocking has got since this was written, may mean you cannot download the data dump without a VPN into another country (see [Cloudflare loops](#cloudflare-loops))
+
+<details>
+<summary>
+Technical explanation (and a stab at Stack Exchange, Inc.)
+</summary>
+As of 2.0.0, [undetected-geckodriver-lw](https://github.com/LunarWatcher/undetected_geckodriver/) is used. As described, it's functionally identical to the standard Selenium Firefox driver, except it disables `navigator.webdriver`. In the future, additional anti-anti-bot measures may be implemented as well, depending on how much needs to be done low-level to avoid detection.
+
+All this does, however, is identify the browser as most likely human. It can and still will run into captcha walls whenever Cloudflare feels like it. But all the obvious, hard, self-announced "hey, I'm a bot" identifiers in the browser are now gone. This is a full nuclear response to SE's nuclear anti-bot actions, that also took down the data dump downloader in several major countries.
+
+Your move, Stack Exchange. I have several contingencies planned if necessary - you will not kill the data dump downloader in any other way than outright killing the data dump itself.
+</details>
+
+If you don't run into Cloudflare loops, but instead run into hard blocks or other rate limiting, please [open an issue](https://github.com/LunarWatcher/undetected_geckodriver/issues). These blocks are a threat to archival, and I will happily continue to fight against them as far as necessary to ensure access to the data dumps.
+
 #### Storage space
 
 As of Q1 2024, the data dump was a casual 93GB in compressed size. If you have your own system to transform the data dump after downloading, you only need to worry about the raw size of the data dump.
 
-However, if you use the built-in transformer pipeline, you'll need to expect a _lot_ more data use.
+However, if you use the built-in transformer pipeline, you'll need to expect a _lot_ more data use. Depending on how much concurrent processing you do, you may need up to 3-700GB of storage space. It's recommended you have around 1TB **free** on disk to avoid running out, especially if  you're converting to SQLite. JSON or other formats that don't merge `stackoverflow.7z` into a single output file can probably get away with around 500GB. 
 
 The output, by default, is compressed back into 7z if dealing with a file-based transformer. Due to this, an intermediate file write is performed prior to compressing back into a .7z. At runtime, you need:
 
@@ -159,9 +184,12 @@ The output, by default, is compressed back into 7z if dealing with a file-based 
 
 Note that the transformer pipeline is executed separately; see the transformer section below.
 
+No other formats than .7z are supported at this time, but are planned for some point in the future. 
+
 #### Execution time
 
 One of the major downsides with the way this project functions is that it's subject to Cloudflare bullshit. This means that the total time to download is `(combined size of data dumps) / (internet speed) + (rate limiting) + (navigation overhead) + (time to solve captchas)`. While navigation overhead and rate limiting (hopefully) doesn't account for a significant share of time, it can potentially be significant. It's certainly a slower option than archive.org's torrent.
+
 
 ## Using the transformer
 
