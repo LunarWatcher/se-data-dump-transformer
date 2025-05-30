@@ -27,12 +27,12 @@ jobs:
       - name: Run build
         run: |
           mkdir build && cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITIZE=ON
-          cmake --build . -j 2
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=ON
+          cmake --build . -j 4
       - name: Run test
         run: |
           cd build
-          cmake --build . -j 2 --target test
+          cmake --build . -j 4 --target test
 
   lint:
     runs-on: ubuntu-latest
@@ -49,4 +49,4 @@ jobs:
           mkdir build
           cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DLINT=ON -DLINT_WARNINGS_ARE_ERRORS=ON
-          cmake --build . -j 2
+          cmake --build . -j $(nproc)

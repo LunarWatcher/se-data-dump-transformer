@@ -57,7 +57,7 @@ jobs:
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=OFF -DBUILD_SHARED_LIBS=OFF
           # --config Release is required for windows, because fuck you I guess
-          cmake --build . -j 2 --config Release
+          cmake --build . -j 4 --config Release
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
