@@ -34,7 +34,7 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            file: build/bin/Debug/sedd-transformer.exe
+            file: build/bin/Release/sedd-transformer.exe
             artefact-identifier: windows-x64.exe
           - os: ubuntu-latest
             file: build/bin/sedd-transformer
@@ -56,7 +56,8 @@ jobs:
         run: |
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=OFF -DBUILD_SHARED_LIBS=OFF
-          cmake --build . -j 2
+          # --config Release is required for windows, because fuck you I guess
+          cmake --build . -j 2 --config Release
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
