@@ -2,7 +2,7 @@
 #include "data/ArchiveParser.hpp"
 #include "data/Transformer.hpp"
 #include "spdlog/spdlog.h"
-#include <fmt/format.h>
+#include <format>
 
 namespace sedd {
 
@@ -29,13 +29,13 @@ License URLs:
   CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/
   CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
 -->)");
-    this->writer->write(fmt::format("\n<{}>\n", DataDumpFileType::filetypeToStr(ctx.currType)));
+    this->writer->write(std::format("\n<{}>\n", DataDumpFileType::filetypeToStr(ctx.currType)));
 
     ft = ctx.currType;
 }
 
 void XMLTransformer::endFile() {
-    this->writer->write(fmt::format("</{}>\n", DataDumpFileType::filetypeToStr(ft.value()))); // NOLINT
+    this->writer->write(std::format("</{}>\n", DataDumpFileType::filetypeToStr(ft.value()))); // NOLINT
     this->writer->close();
 
     ft.reset();
@@ -50,7 +50,7 @@ void XMLTransformer::parseLine(const pugi::xml_node& row, const ParserContext&) 
     std::stringstream ss;
     row.print(ss, "  ");
 
-    this->writer->write(fmt::format("  {}", ss.str()));
+    this->writer->write(std::format("  {}", ss.str()));
 }
 
 }

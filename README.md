@@ -107,12 +107,31 @@ For some reason, connecting with a VPN offers just enough extra stability to avo
   - If you don't have this, see [this meta question](https://meta.stackexchange.com/a/1847/332043) for instructions.
 - Firefox installed
   - Snap and flatpak users may run into problems; it's strongly recommended to have a non-snap/flatpak installation of Firefox and Geckodriver.
+    - **Note:** Some (all?) snap-related problems can be mitigated with `export SE_GECKODRIVER=/snap/bin/geckodriver`. 
     - Known errors:
       - "The geckodriver version may not be compatible with the detected firefox version" - update Firefox and Geckodriver. If this still doesn't work, consider switching to a non-snap installation of Firefox and Geckodriver.
       - "Your Firefox profile cannot be loaded" - One of Geckodriver or Firefox is Snap-based, while the other is not. [Consider switching to a non-snap installation](https://stackoverflow.com/a/72531719/6296561) of Firefox, or verifying that your PATH is set correctly.
   - If you need to manaully install Geckodriver (which shouldn't normally be necessary; it's often bundled with Firefox in one way or another), the binaries are on [GitHub](https://github.com/mozilla/geckodriver/releases)
 
 The downloader does **not** support Docker due to the display requirement.
+
+#### Alternate download: pypi
+
+As of 2.1.0, the downloader has a [pypi package](https://pypi.org/project/sedd). Many of the steps in this README still applies, but anything related to dependency installation don't. You still need to make sure you have Firefox and a `config.json`, as outlined both in this README, and in `README-python.md`. The `config.example.json` template needs to be downloaded manually if you use the pypi download.
+
+```bash
+# Optional: set up a venv
+python3 -m venv env
+# Change appropriately for your operating system
+source ./env/bin/activate
+
+# Download the package
+python3 -m pip install sedd
+
+# Before running the package, make sure you have Firefox installed, and a `config.json`.
+# Running the pypi version is identical to running the Git version:
+python3 -m sedd 
+```
 
 ### Config, running, and what to expect
 
@@ -132,7 +151,7 @@ The downloader does **not** support Docker due to the display requirement.
 ###### `notifications.provider`
 Supported values:
 * `"native"`: Uses your operating system's native notification method
-* `null`: Disables notifications 
+* `null`: Disables notifications. Not recommended, as this will mean any captcha problems requiring your intervention may go unnoticed.
 
 #### CLI options
 

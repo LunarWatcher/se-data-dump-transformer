@@ -50,8 +50,12 @@ The "Warnings" section in the README may contain additional information about ot
 
 With `./config.json` in the current working directory and Firefox installed, you can now run the downloader with:
 ```python3
-sedd 
+python3 -m sedd 
 ```
 
-For command line flags, see `sedd --help`, or [the main readme](https://github.com/LunarWatcher/se-data-dump-transformer/tree/master?tab=readme-ov-file#cli-options).
+For command line flags, see `python3 -m sedd --help`, or [the main readme](https://github.com/LunarWatcher/se-data-dump-transformer/tree/master?tab=readme-ov-file#cli-options).
+
+> [!tip]
+>
+> The `python3 -m sedd` format is required. A binary form is not included as I frankly don't understand pypi binaries work, and I don't care enough to check.
 

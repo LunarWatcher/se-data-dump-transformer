@@ -14,20 +14,21 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-set (CMAKE_CXX_STANDARD 20)
-set (CMAKE_POSITION_INDEPENDENT_CODE ON)
-set (BUILD_SHARED_LIBS ON)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+option(BUILD_SHARED_LIBS "Whether or not to build shared libraries" ON)
+message(STATUS "BUILD_SHARED_LIBS = ${BUILD_SHARED_LIBS}")
 
-option (SEDD_SANITISE "Whether or not to enable -fsanitize" OFF)
-option (LINT "Whether or not to enable clang-tidy checks" OFF)
-option (LINT_WARNINGS_ARE_ERRORS "Whether or not to set -warnings-as-errors" OFF)
+option(SEDD_SANITISE "Whether or not to enable -fsanitize" OFF)
+option(LINT "Whether or not to enable clang-tidy checks" OFF)
+option(LINT_WARNINGS_ARE_ERRORS "Whether or not to set -warnings-as-errors" OFF)
 
-list (APPEND CMAKE_FIND_ROOT_PATH "${CMAKE_SOURCE_DIR}/cmake/")
-list (APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/cmake/")
+list(APPEND CMAKE_FIND_ROOT_PATH "${CMAKE_SOURCE_DIR}/cmake/")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 
-set (ENABLE_TEST OFF CACHE STRING "" FORCE)
+set(ENABLE_TEST OFF CACHE STRING "" FORCE)
 
-set (SQLITECPP_RUN_CPPLINT OFF CACHE STRING "" FORCE)
+set(SQLITECPP_RUN_CPPLINT OFF CACHE STRING "" FORCE)
 
 #set (CMAKE_FIND_DEBUG_MODE TRUE)
 # For some reason, these have to be defined here, or the identical
@@ -38,16 +39,17 @@ find_package(ZSTD REQUIRED)
 #set (CMAKE_FIND_DEBUG_MODE FALSE)
 
 # Required to keep zstd from exploding from https://github.com/facebook/zstd/blob/fdfb2aff39dc498372d8c9e5f2330b692fea9794/lib/common/pool.c#L103
-set (ENABLE_WERROR OFF CACHE STRING "" FORCE)
+set(ENABLE_WERROR OFF CACHE STRING "" FORCE)
 
-set (SPDLOG_FMT_EXTERNAL ON CACHE STRING "" FORCE)
+set(SPDLOG_USE_STD_FORMAT ON CACHE STRING "" FORCE)
 
 include(FetchContent)
 
 FetchContent_Declare(
     libarchive
     GIT_REPOSITORY https://github.com/libarchive/libarchive
-    GIT_TAG v3.7.4
+    GIT_TAG v3.8.0
+    EXCLUDE_FROM_ALL
 )
 FetchContent_Declare(
     stc
@@ -71,16 +73,14 @@ FetchContent_Declare(
     yyjson
     GIT_REPOSITORY https://github.com/ibireme/yyjson
     GIT_TAG 0.10.0
+    EXCLUDE_FROM_ALL
 )
 FetchContent_Declare(
     sqlitecpp
     GIT_REPOSITORY https://github.com/SRombauts/SQLiteCpp
     GIT_TAG 3.3.1
+    EXCLUDE_FROM_ALL
 )
-
-FetchContent_Declare(fmt 
-    GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-    GIT_TAG 11.0.2)
 
 FetchContent_Declare(utf8
     GIT_REPOSITORY https://github.com/sheredom/utf8.h
@@ -95,7 +95,6 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(
     poolSTL
-    fmt
     sqlitecpp
     yyjson
     cli11
@@ -156,7 +155,6 @@ target_include_directories(sedd-src PUBLIC src)
 target_link_libraries(
     sedd-src
 PUBLIC
-    archive 
     stc 
     spdlog::spdlog
     pugixml
@@ -166,6 +164,11 @@ PUBLIC
     utf8h
     poolSTL::poolSTL
 )
+if (BUILD_SHARED_LIBS)
+    target_link_libraries(sedd-src PUBLIC archive)
+else()
+    target_link_libraries(sedd-src PUBLIC archive_static)
+endif()
 
 if (LINT)
     find_program(

@@ -27,3 +27,42 @@ jobs:
         run: python3 -m build
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@v1.12.4
+
+  publish-transformer:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            file: build/bin/Debug/sedd-transformer.exe
+            artefact-identifier: windows-x64.exe
+          - os: ubuntu-latest
+            file: build/bin/transformer
+            artefact: linux-x64
+    runs-on: ${{matrix.os}}
+    defaults:
+      run:
+        working-directory: ./transformer/
+    steps:
+      - uses: actions/checkout@main
+      - name: Install deps (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt update && sudo apt upgrade -y
+      - name: Print environment
+        run: |
+          cmake --version
+      - name: Run build
+        run: |
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=OFF -DBUILD_SHARED_LIBS=OFF \
+            -DCMAKE_INSTALL_PREFIX=./dist/
+          cmake --build . -j 2
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{matrix.file}}
+          asset_name: sedd-transformer-${{github.ref}}-${{matrix.artefact-identifier}}
+          tag: ${{ github.ref }}
+          overwrite: true

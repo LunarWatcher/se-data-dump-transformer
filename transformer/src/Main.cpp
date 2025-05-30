@@ -16,7 +16,7 @@
 #include "data/transformers/XMLTransformer.hpp"
 #include "meta/MetaFiles.hpp"
 #include <stc/StringUtil.hpp>
-#include <fmt/format.h>
+#include <format>
 
 #include "data/transformers/JSONTransformer.hpp"
 #include "spdlog/cfg/helpers-inl.h"
@@ -260,7 +260,7 @@ int main(int argc, char* argv[]) {
         std::ofstream o(
             baseCtx.destDir / "README.md"
         );
-        o << fmt::format(
+        o << std::format(
             sedd::MetaFiles::readme,
             std::find_if(
                 strToTransformer.begin(), strToTransformer.end(),
