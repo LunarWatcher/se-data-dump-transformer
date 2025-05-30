@@ -34,10 +34,10 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            file: build/bin/Release/sedd-transformer.exe
+            file: transformer/build/bin/Release/sedd-transformer.exe
             artefact-identifier: windows-x64.exe
           - os: ubuntu-latest
-            file: build/bin/sedd-transformer
+            file: transformer/build/bin/sedd-transformer
             artefact: linux-x64
     runs-on: ${{matrix.os}}
     defaults:
