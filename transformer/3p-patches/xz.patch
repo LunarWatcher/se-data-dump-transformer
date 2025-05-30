@@ -1,0 +1,12 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 32506cdd..14bff0bc 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -607,6 +607,7 @@ add_library(liblzma
+     src/liblzma/common/string_conversion.c
+     src/liblzma/common/vli_size.c
+ )
++add_library(liblzma___external ALIAS liblzma)
+ 
+ target_include_directories(liblzma PRIVATE
+     src/liblzma/api

@@ -14,6 +14,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+set(ENABLE_LIBXML2 OFF CACHE STRING "" FORCE)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 option(BUILD_SHARED_LIBS "Whether or not to build shared libraries" ON)
@@ -49,6 +50,7 @@ FetchContent_Declare(
     libarchive
     GIT_REPOSITORY https://github.com/libarchive/libarchive
     GIT_TAG v3.8.0
+    PATCH_COMMAND git reset --hard && git apply ${CMAKE_CURRENT_SOURCE_DIR}/3p-patches/libarchive.patch
     EXCLUDE_FROM_ALL
 )
 FetchContent_Declare(
@@ -72,7 +74,7 @@ FetchContent_Declare(
 FetchContent_Declare(
     yyjson
     GIT_REPOSITORY https://github.com/ibireme/yyjson
-    GIT_TAG 0.10.0
+    GIT_TAG 0.11.1
     EXCLUDE_FROM_ALL
 )
 FetchContent_Declare(

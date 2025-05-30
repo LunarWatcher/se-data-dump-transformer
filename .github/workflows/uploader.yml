@@ -55,8 +55,7 @@ jobs:
       - name: Run build
         run: |
           mkdir build && cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=OFF -DBUILD_SHARED_LIBS=OFF \
-            -DCMAKE_INSTALL_PREFIX=./dist/
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=OFF -DBUILD_SHARED_LIBS=OFF
           cmake --build . -j 2
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2

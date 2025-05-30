@@ -7,7 +7,7 @@ include(FetchContent)
 FetchContent_Declare(
     zstd_ext
     GIT_REPOSITORY https://github.com/facebook/zstd
-    GIT_TAG v1.5.2
+    GIT_TAG v1.5.7
     SOURCE_SUBDIR build/cmake
     EXCLUDE_FROM_ALL
 )
