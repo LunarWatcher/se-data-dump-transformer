@@ -44,6 +44,9 @@ def init_firefox_driver(config: SEDDConfig, disable_undetected: bool, output_dir
         browser = UFirefox(options = options)
     else:
         print("Warning: using standard geckodriver. Cloudflare may perpetually block you")
+        if is_apple:
+            print("This option is forced on macOS. For undetected_geckodriver, "
+                  "run the downloader in a Linux or Windows environment.")
         browser = webdriver.Firefox(options=options)
 
     ubo_download_url = config.get_ubo_download_url()
