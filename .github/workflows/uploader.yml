@@ -36,6 +36,11 @@ jobs:
         include:
           - os: windows-latest
             artefact-identifier: windows-x64
+            # Required to force OpenSSL to use libcrypto.dll in the system install rather than 
+            # the GH Actions runner's OpenSSL-windows install
+            # Otherwise, it fails to find openssl-1_1-x64.dll, which isn't part of the system
+            # install of openssl
+            cmake-extras: -DCMAKE_PREFIX_PATH="C:/Windows/System32"
           - os: ubuntu-latest
             artefact-identifier: linux-x64
     runs-on: ${{matrix.os}}
@@ -54,7 +59,7 @@ jobs:
       - name: Run build
         run: |
           mkdir build && cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=OFF -DBUILD_SHARED_LIBS=ON
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=OFF -DBUILD_SHARED_LIBS=ON ${{ matrix.cmake-extras }}
           # --config Release is required for windows, because fuck you I guess
           cmake --build . -j 4 --config Release
           cmake --install . --prefix ./dist/
