@@ -65,7 +65,7 @@ jobs:
           command: c
           cwd: ./transformer/build
           files: |
-            ./dist/**/*
+            ./dist
           outPath: transformer-${{github.ref_name}}-{{matrix.artefact-identifier}}.tar.gz
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
