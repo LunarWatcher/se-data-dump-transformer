@@ -35,11 +35,9 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            file: transformer/build/bin/Release/sedd-transformer.exe
-            artefact-identifier: windows-x64.exe
+            artefact-identifier: windows-x64
           - os: ubuntu-latest
-            file: transformer/build/bin/sedd-transformer
-            artefact: linux-x64
+            artefact-identifier: linux-x64
     runs-on: ${{matrix.os}}
     defaults:
       run:
@@ -56,14 +54,24 @@ jobs:
       - name: Run build
         run: |
           mkdir build && cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=OFF -DBUILD_SHARED_LIBS=OFF
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DSEDD_SANITISE=OFF -DBUILD_SHARED_LIBS=ON
           # --config Release is required for windows, because fuck you I guess
-          cmake --build . -j 4 --config Release
+          cmake --build . -j 4
+          cmake --install . --prefix ./dist/
+      - name: Compress distribution
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          cwd: ./transformer/build
+          files: |
+            ./dist/**/*
+          outPath: transformer-${{github.ref_name}}-{{matrix.artefact-identifier}}.tar.gz
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{matrix.file}}
-          asset_name: sedd-transformer-${{github.ref}}-${{matrix.artefact-identifier}}
+          file: transformer-${{github.ref_name}}-{{matrix.artefact-identifier}}.tar.gz
+          asset_name: transformer-${{github.ref_name}}-${{matrix.artefact-identifier}}.tar.gz
           tag: ${{ github.ref }}
           overwrite: true

@@ -268,7 +268,8 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug
 cmake .. -DCMAKE_BUILD_TYPE=Release
 # ---
 # Replace 8 with the number of cores/threads you have
-cmake --build . -j 8
+# Note: only Windows users are required to specify --config Release
+cmake --build . -j 8 --config Release
 
 # Note: this only works after running the Python downloader
 # For early testing, I've been populating this folder with

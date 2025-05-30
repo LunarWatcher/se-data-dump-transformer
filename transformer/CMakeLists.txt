@@ -20,6 +20,8 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 option(BUILD_SHARED_LIBS "Whether or not to build shared libraries" ON)
 message(STATUS "BUILD_SHARED_LIBS = ${BUILD_SHARED_LIBS}")
 
+list(APPEND CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
+
 option(SEDD_SANITISE "Whether or not to enable -fsanitize" OFF)
 option(LINT "Whether or not to enable clang-tidy checks" OFF)
 option(LINT_WARNINGS_ARE_ERRORS "Whether or not to set -warnings-as-errors" OFF)
@@ -64,6 +66,7 @@ FetchContent_Declare(spdlog
 FetchContent_Declare(pugixml
     GIT_REPOSITORY https://github.com/zeux/pugixml
     GIT_TAG 30cc354fe37114ec7a0a4ed2192951690357c2ed
+    EXCLUDE_FROM_ALL
 )
 FetchContent_Declare(
     cli11
@@ -88,11 +91,11 @@ FetchContent_Declare(utf8
     GIT_REPOSITORY https://github.com/sheredom/utf8.h
     GIT_TAG d2e35eb8366dae73ed12653b8fef8ec2a26ddc8f
 )
-FetchContent_Declare(
-        poolSTL
-        GIT_REPOSITORY https://github.com/alugowski/poolSTL
-        GIT_TAG main
-        GIT_SHALLOW TRUE
+FetchContent_Declare(poolSTL
+    GIT_REPOSITORY https://github.com/alugowski/poolSTL
+    GIT_TAG main
+    GIT_SHALLOW TRUE
+    EXCLUDE_FROM_ALL
 )
 
 FetchContent_MakeAvailable(
@@ -203,3 +206,27 @@ add_custom_target(test
     COMMAND tests
     DEPENDS tests
     COMMENT "Test the data dump transformer")
+
+if (BUILD_SHARED_LIBS)
+    install(TARGETS
+        spdlog
+        pugixml-shared
+        CLI11
+        yyjson
+        sqlite3
+        SQLiteCpp
+        liblzma
+        archive
+    )
+endif()
+install(
+    TARGETS
+        sedd-transformer
+)
+install(
+    FILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/LICENSES.md
+    DESTINATION
+        .
+)
+
