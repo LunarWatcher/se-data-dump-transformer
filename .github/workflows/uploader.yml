@@ -5,6 +5,8 @@ on:
     types: [published]
   workflow_dispatch:
 
+permissions:
+  id-token: write
 
 jobs:
   publish-downloader:
@@ -25,5 +27,3 @@ jobs:
         run: python3 -m build
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@v1.12.4
-        permissions:
-          id-token: write
