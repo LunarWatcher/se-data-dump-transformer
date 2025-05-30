@@ -2,8 +2,8 @@
 requires = ["setuptools >= 77.0.3", "wheel", "setuptools-git-versioning>=2.0,<3"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-packages = ["sedd"]
+[tool.setuptools.packages.find]
+include = ["sedd*"]
 
 [tool.setuptools-git-versioning]
 enabled = true
@@ -44,7 +44,7 @@ classifiers = [
 ]
 keywords = [
     "Stack Exchange", "data dump", "Stack Exchange data dump",
-    "downloader"
+    "downloader", "archival", "internet archiving", "preservation"
 ]
 
 [project.urls]
