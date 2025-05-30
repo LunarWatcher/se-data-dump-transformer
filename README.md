@@ -254,6 +254,20 @@ If you insist on using cmd or PowerShell instead of a good shell, setting the va
 
 Other dependencies (stc, libarchive, spdlog, and pugixml) are automatically handled by CMake using FetchContent. Unlike the downloader, this component can run without a display.
 
+##### Alternative install: pre-built binaries (Linux only)
+
+For Linux users, there's a pre-provider binary distribution available per-release: https://github.com/LunarWatcher/se-data-dump-transformer/releases
+
+For nightly versions, you still have to build it yourself. Additional binary distributions may be made available in the future, but C++ is hard to package. Note that this has the following additional native dependency requirements:
+
+* `libcrypto`
+* `libexpat`
+* `libz`
+* `libm`
+* `libgcc_s`
+
+Unless you're running an extremely minimal distro, you almost certainly have these preinstalled, or installed by something else. Note that the binaries have only been tested on Linux Mint.
+
 #### Running
 
 TL;DR:
