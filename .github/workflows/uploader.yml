@@ -37,7 +37,7 @@ jobs:
             file: build/bin/Debug/sedd-transformer.exe
             artefact-identifier: windows-x64.exe
           - os: ubuntu-latest
-            file: build/bin/transformer
+            file: build/bin/sedd-transformer
             artefact: linux-x64
     runs-on: ${{matrix.os}}
     defaults:
