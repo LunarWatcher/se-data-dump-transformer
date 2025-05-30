@@ -35,7 +35,14 @@ class SEDDConfig:
 def load_sedd_config() -> SEDDConfig:
     config_path = path.join(getcwd(), 'config.json')
 
-    config: SEDDConfig = None
+    if not path.exists(config_path):
+        print("It appears you haven't made ./config.json")
+        print("For a template, see:")
+        print("\thttps://github.com/LunarWatcher/se-data-dump-transformer/blob/master/config.example.json")
+        print("Please configure it, then try again. For further information, "
+              "see the README in the Git repository.")
+
+        exit(-1)
 
     with open(config_path, "r") as f:
         config = load(f)
