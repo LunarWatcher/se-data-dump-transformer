@@ -29,7 +29,7 @@ authors = [
 description = "Unofficial, community-made tool for downloading the Stack Exchange data dumps"
 requires-python = ">=3.10"
 classifiers = [
-    "Development Status :: 5 - Production/stable",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Developers",
     "Topic :: System :: Archiving",
