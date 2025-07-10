@@ -129,8 +129,9 @@ source ./env/bin/activate
 python3 -m pip install sedd
 
 # Before running the package, make sure you have Firefox installed, and a `config.json`.
-# Running the pypi version is identical to running the Git version:
-python3 -m sedd 
+# Running the pypi version is identical to the git version, but it also offers a
+# script installed in the venv's `bin` folder.
+sedd 
 ```
 
 ### Config, running, and what to expect
@@ -140,7 +141,7 @@ python3 -m sedd
 1. Make sure you have all the requirements from the Requirements section.
 2. Copy `config.example.json` to `config.json`
 3. Open `config.json`, and edit in the values.
-4. Run the extractor with `python3 -m sedd`. If you're on Windows, you may need to run `python -m sedd` instead.
+4. Run the extractor with `sedd` or `python3 -m sedd`.
 
 > [!TIP]
 >

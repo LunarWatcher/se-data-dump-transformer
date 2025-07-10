@@ -47,6 +47,9 @@ keywords = [
     "downloader", "archival", "internet archiving", "preservation"
 ]
 
+[project.scripts]
+sedd = "sedd:pipscript.main"
+
 [project.urls]
 Homepage = "https://github.com/LunarWatcher/se-data-dump-transformer"
 Documentation = "https://github.com/LunarWatcher/se-data-dump-transformer"
