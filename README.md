@@ -166,7 +166,7 @@ Exractor CLI supports the following configuration options:
 | -     | `--dry-run`            | Optional | -                 | Whether to actually download the archives. If set, only traverses the network's sites.                                                                                      |
 | `-g` | `--disable-undetected-geckodriver` | Optional | `false` | Whether or not to disable the anti-anti-bot detection webdriver, and use a fully standard Firefox instead. See "Captchas and other misc. barriers" for more information. Has no effect on macOS. |
 | `-v` | - | Optional | `false` | Whether or not to enable verbose logging. You do not want to enable this unless you're diagnosing a problem with sedd - the verbose logging includes low-level Selenium output. |
-| - | `--detect <last listed upload time>` | Optional | - | Enables a mode where sedd checks for the upload timestamp to change, and only then begins the download. This has several caveats. Please read [docs/Automated downloads](docs/Automated downloads.md) for more information before using this feature. |
+| - | `--detect <last upload date>` | Optional | - | Enables a mode where sedd checks for the upload timestamp to change, and only then begins the download. This has several caveats. Please read [docs/Automated downloads](docs/Automated downloads.md) for more information before using this feature. |
 
 #### Captchas and other misc. barriers
 

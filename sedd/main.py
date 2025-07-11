@@ -8,10 +8,11 @@ from time import sleep
 
 import re
 import sys
+import random
 from traceback import print_exception
 
 
-from .cli import parse_cli_args
+from .cli import parse_cli_args, SEDDCLIArgs
 from .config import load_sedd_config
 from .data import sites
 from .meta import notifications
@@ -20,8 +21,10 @@ from . import utils
 
 from .driver import init_output_dir, init_firefox_driver
 import logging
+from loguru import logger
 
 args = parse_cli_args()
+
 
 if args.verbose:
     logging.basicConfig(level=logging.DEBUG)
@@ -43,20 +46,69 @@ def kill_cookie_shit(browser: WebDriver):
         """let elem = document.getElementById("onetrust-banner-sdk"); if (elem) { elem.parentNode.removeChild(elem); }""")
     sleep(1)
 
+def solve_recaptcha(browser: WebDriver):
+    try:
+        logger.info("Trying to bypass captcha")
+        # Wait for the captcha to load into a checkbox
+        sleep(5)
+        recaptcha_iframe = browser.find_element(
+            By.CSS_SELECTOR,
+            "iframe[title='reCAPTCHA']"
+        )
+        browser.switch_to.frame(
+            recaptcha_iframe
+        )
+        # TODO: will this ever work?
+        sleep(1)
+        browser.find_element(
+            By.ID,
+            "recaptcha-anchor"
+        ).click()
+
+        try:
+            browser.find_element(By.ID, "rc-imageselect")
+        except:
+            logger.info("Successfully bypassed captcha")
+            return
+
+        raise RuntimeError("reCAPTCHA threw in an image selector. Can't solve")
+    except Exception as e:
+        print(e)
+        logger.error(
+            "Looks like the captcha at {} isn't recaptcha. Can't solve",
+            browser.current_url
+        )
+        return
+    finally:
+        browser.switch_to.default_content()
+
+
 def check_cloudflare_intercept(browser: WebDriver):
     if browser.title == "Just a moment...":
-        print("CF verification hit. Trying soft workaround")
+        logger.info("CF verification hit. Trying soft workaround")
         sleep(15)
 
         if (browser.title == "Just a moment..."):
-            print("Irrecoverable state suspected; captcha solving likely required")
+            logger.warning("Waiting did not work. Trying to solve captcha")
+            solve_recaptcha(browser)
+            sleep(4)
+            if browser.title != "Just a moment...":
+                logger.info("Managed to bypass.")
+                return
+            logger.error(
+                "Irrecoverable state suspected; captcha solving likely required"
+            )
+            if sedd_config.unsupervised:
+                raise RuntimeError(
+                    "Can't get past full-screen cloudflare block. Manual intervention needed"
+                )
             notifications.notify("CloudFlare verification hit; auto-verification failed. Please complete the captcha", sedd_config)
         else:
-            print("Auto-recovered from CF wall")
+            logger.info("Auto-recovered from CF wall")
             return
 
         while browser.title == "Just a moment...":
-            print("Still stuck on CF verification. Waiting for 10 seconds")
+            logger.info("Still stuck on CF verification. Waiting for 10 seconds")
             sleep(10)
 
 def is_logged_in(browser: WebDriver, site: str):
@@ -70,15 +122,15 @@ def is_logged_in(browser: WebDriver, site: str):
 
 def login_or_create(browser: WebDriver, site: str):
     if is_logged_in(browser, site):
-        print("Already logged in")
+        logger.debug("Already logged in")
     else:
-        print("Not logged in and/or not registered. Logging in now")
+        logger.info("Not logged in and/or not registered. Logging in now")
         while True:
             browser.get(f"{site}/users/login")
             check_cloudflare_intercept(browser)
 
             if "?newreg" in browser.current_url:
-                print(f"Auto-created {site} without login needed")
+                logger.info(f"Auto-created {site} without login needed")
                 break
 
             email_elem = browser.find_element(By.ID, "email")
@@ -93,7 +145,7 @@ def login_or_create(browser: WebDriver, site: str):
             try:
                 elem = browser.find_element(By.CSS_SELECTOR, "#login-form > .js-error-message")
                 if elem is not None:
-                    print("Login failed quietly. Retrying")
+                    logger.info("Login failed quietly. Retrying")
                     continue
             except:
                 # No error element
@@ -108,8 +160,18 @@ def login_or_create(browser: WebDriver, site: str):
             captcha_walled = False
             while "/nocaptcha" in browser.current_url:
                 if not captcha_walled:
+                    logger.error("Captcha wall hit during login")
+                    solve_recaptcha(browser)
+                    sleep(4)
+                    if "/nocaptcha" not in browser.current_url:
+                        logger.info("Auto-solving worked")
+                        break
                     captcha_walled = True
 
+                if args.unsupervised:
+                    raise RuntimeError(
+                        "Unsolvable captcha wall hit during login"
+                    )
                 notifications.notify(
                     "Captcha wall hit during login", sedd_config
                 )
@@ -126,11 +188,11 @@ def login_or_create(browser: WebDriver, site: str):
 
 
 def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict[str, str]):
-    print(f"Downloading data dump from {site}")
+    logger.info(f"Downloading data dump from {site}")
 
     def _exec_download(browser: WebDriver):
         if args.keep_consent:
-            print('Consent dialog will not be auto-removed')
+            logger.debug('Consent dialog will not be auto-removed')
         else:
             kill_cookie_shit(browser)
 
@@ -201,11 +263,76 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
 
             _exec_download(browser)
 
+def await_date_change(args: SEDDCLIArgs, driver):
+    site = "https://stackoverflow.com"
+
+    failed: bool = False
+    while True:
+        browser.get(f"{site}/users/data-dump-access/current")
+        if "page not found" in browser.title.lower():
+            if failed:
+                raise RuntimeError("Looks like login failed")
+            login_or_create(driver, site)
+            check_cloudflare_intercept(driver)
+            failed = True
+            continue
+
+        failed = False
+
+        try:
+            info_elem = driver.find_elements(
+                By.XPATH,
+                "//*[contains(text(), 'Last uploaded: ')]"
+            )
+            if len(info_elem) != 1:
+                raise RuntimeError("XPath returned with elements, but not just one")
+
+            elem_content = info_elem[0].text.replace("Last uploaded: ", "")
+            logger.debug("Found date {}", elem_content)
+            if len(elem_content) == 0 or "<" in elem_content:
+                raise RuntimeError("The date is no longer in plain text")
+            elif not re.match(r'^[a-zA-Z]+ \d{1,2}, \d{1,4}$', elem_content):
+                raise RuntimeError("The date format has changed")
+
+            
+            if args.detect in elem_content:
+                logger.debug("Still not ready. Sleeping for approximately 6 hours")
+
+                seconds_in_hour = 60 * 60
+                sleep(
+                    # 6 hours
+                    seconds_in_hour * 6
+                    # + some jitter
+                    + random.randint(
+                        -seconds_in_hour // 2,
+                        seconds_in_hour // 2
+                    )
+                )
+            else:
+                logger.info("Data dump update found!")
+                notifications.notify(
+                    "The data dump has been updated to {} and will be downloaded".format(
+                        elem_content
+                    ),
+                    sedd_config
+                )
+                break
+
+        except:
+            logger.error(
+                "Looks like the data dump page markup has changed. This will "
+                "likely require changes to sedd to fix. "
+                "Please open an issue: https://github.com/LunarWatcher/se-data-dump-transformer/"
+            )
+            raise
+        
 
 etags: Dict[str, str] = {}
 
 try:
     state, observer = register_pending_downloads_observer(args.output_dir)
+    if args.detect is not None:
+        await_date_change(args, browser)
 
     for site in sites.sites:
         if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
@@ -219,7 +346,7 @@ try:
         if args.skip_loaded and main_loaded and meta_loaded:
             pass
         else:
-            print(f"Extracting from {site}...")
+            logger.info(f"Extracting from {site}...")
 
             login_or_create(browser, site)
             download_data_dump(
@@ -232,7 +359,7 @@ try:
     if observer:
         pending = state.size()
 
-        print(f"Waiting for {pending} download{'s'[:pending^1]} to complete")
+        logger.info(f"Waiting for {pending} download{'s'[:pending^1]} to complete")
 
         while True:
             if state.empty():
@@ -244,6 +371,10 @@ try:
             else:
                 sleep(1)
 
+    notifications.notify(
+        "Data dump download done!",
+        sedd_config
+    )
 except KeyboardInterrupt:
     pass
 
@@ -253,7 +384,7 @@ except:
     try:
         print_exception(exception)
     except:
-        print(exception)
+        logger.error(exception)
 
     browser.quit()
 finally:

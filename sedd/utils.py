@@ -8,6 +8,7 @@ import sys
 from .data.files_map import files_map, inverse_files_map
 from .data.sites import sites
 
+from loguru import logger
 
 def extract_etag(url: str, etags: Dict[str, str]):
     res = r.get(
@@ -26,7 +27,7 @@ def extract_etag(url: str, etags: Dict[str, str]):
 
     etags[filename] = etag
 
-    print(f"ETag for {filename}: {etag}")
+    logger.info(f"ETag for {filename}: {etag}")
 
 
 def get_file_name(site_or_url: str) -> str:
