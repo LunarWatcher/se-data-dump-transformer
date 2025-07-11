@@ -2,6 +2,8 @@ from desktop_notifier import DesktopNotifier
 import asyncio
 
 from ..config import SEDDConfig
+import requests
+from loguru import logger
 
 
 def native(message: str, _):
@@ -12,9 +14,20 @@ def native(message: str, _):
         )
     )
 
+def ntfy(message: str, config):
+    requests.post(
+        config["url"],
+        headers={
+            "Authorization": f"Bearer {config['bearer']}",
+            "Title": "Sedd update"
+        },
+        data=message,
+
+    )
 
 notification_providers = {
-    "native": native
+    "native": native,
+    "ntfy": ntfy
 }
 
 
@@ -23,7 +36,7 @@ def notify(message: str, config: SEDDConfig):
     provider = config.get_notifications_provider()
 
     if provider is None:
-        print(message)
+        logger.info(message)
         return
 
     notification_providers[provider](message, config.notifications)

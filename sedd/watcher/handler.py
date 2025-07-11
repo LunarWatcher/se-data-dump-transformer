@@ -6,6 +6,7 @@ from watchdog.events import FileSystemEventHandler
 from .state import DownloadState
 from ..utils import is_dump_file
 
+from loguru import logger
 
 class CleanupHandler(FileSystemEventHandler):
     download_state: DownloadState
@@ -25,7 +26,7 @@ class CleanupHandler(FileSystemEventHandler):
             return
 
         if is_dump_file(file_name):
-            print(f"Download started: {file_name}")
+            logger.info(f"Download started: {file_name}")
             self.download_state.add(file_name)
 
     def on_moved(self, event):
@@ -36,5 +37,5 @@ class CleanupHandler(FileSystemEventHandler):
             return
 
         if is_dump_file(file_name):
-            print(f"Download finished: {file_name}")
+            logger.info(f"Download finished: {file_name}")
             self.download_state.remove(file_name)

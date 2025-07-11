@@ -11,12 +11,13 @@ from undetected_geckodriver import Firefox as UFirefox
 from .config import SEDDConfig
 from .ubo import init_ubo_settings
 
+from loguru import logger
 
 def init_output_dir(output_dir: str):
     if not path.exists(output_dir):
         makedirs(output_dir)
 
-    print(output_dir)
+    logger.info("Using {} for downloads", output_dir)
 
     return output_dir
 
@@ -40,19 +41,23 @@ def init_firefox_driver(config: SEDDConfig, disable_undetected: bool, output_dir
     is_apple = platform.system() == "Darwin"
     use_undetected = not disable_undetected and not is_apple
     if use_undetected:
-        print("Using undetected-geckodriver")
+        logger.info("Using undetected-geckodriver")
         browser = UFirefox(options = options)
     else:
-        print("Warning: using standard geckodriver. Cloudflare may perpetually block you")
+        logger.warning("Warning: using standard geckodriver. Cloudflare may perpetually block you")
         if is_apple:
-            print("This option is forced on macOS. For undetected_geckodriver, "
-                  "run the downloader in a Linux or Windows environment.")
+            logger.warning(
+                "This option is forced on macOS. For undetected_geckodriver, "
+                "run the downloader in a Linux or Windows environment. "
+                "(or, if you have time to kill, make a pull request to "
+                "LunarWatcher/undetected_geckodriver)"
+            )
         browser = webdriver.Firefox(options=options)
 
     ubo_download_url = config.get_ubo_download_url()
 
     if not path.exists("ubo.xpi"):
-        print(f"Downloading uBO from: {ubo_download_url}")
+        logger.debug(f"Downloading uBO from: {ubo_download_url}")
         request.urlretrieve(ubo_download_url, "ubo.xpi")
 
     ubo_id = browser.install_addon("ubo.xpi", temporary=True)

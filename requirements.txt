@@ -3,3 +3,4 @@ undetected-geckodriver-lw>=2.1.0
 desktop-notifier==5.0.1
 watchdog==4.0.2
 requests
+loguru>=0.7.3

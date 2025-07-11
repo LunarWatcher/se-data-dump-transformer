@@ -8,6 +8,7 @@ from .utils import ubo_set_user_settings, \
     ubo_set_whitelist, ubo_set_dynamic_rules, ubo_set_user_filters, \
     ubo_reload_all_filters
 
+from loguru import logger
 
 def init_ubo_settings(browser: Firefox, config: SEDDConfig, ubo_id: str) -> bool:
     try:
@@ -30,5 +31,5 @@ def init_ubo_settings(browser: Firefox, config: SEDDConfig, ubo_id: str) -> bool
 
         ubo_reload_all_filters(browser)
     except:
-        print('Failed to set uBLock config, using defaults')
-        print(exc_info())
+        logger.error('Failed to set uBlock config, using defaults')
+        logger.error(exc_info())
