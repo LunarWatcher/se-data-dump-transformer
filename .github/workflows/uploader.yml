@@ -57,7 +57,7 @@ jobs:
           cmake --build . -j 4 --config Release
           cmake --install . --prefix ./dist/
       - name: Compress distribution
-        uses: a7ul/tar-action@v1.1.0
+        uses: a7ul/tar-action@v1.2.0
         id: compress
         with:
           command: c
