@@ -102,7 +102,12 @@ def check_cloudflare_intercept(browser: WebDriver):
                 raise RuntimeError(
                     "Can't get past full-screen cloudflare block. Manual intervention needed"
                 )
-            notifications.notify("CloudFlare verification hit; auto-verification failed. Please complete the captcha", sedd_config)
+
+            notifications.notify(
+                "CloudFlare verification hit; auto-verification failed. "
+                    "Please complete the captcha",
+                sedd_config
+            )
         else:
             logger.info("Auto-recovered from CF wall")
             return
@@ -167,15 +172,13 @@ def login_or_create(browser: WebDriver, site: str):
                         logger.info("Auto-solving worked")
                         break
                     captcha_walled = True
-
-                if args.unsupervised:
-                    raise RuntimeError(
-                        "Unsolvable captcha wall hit during login"
+                    if args.unsupervised:
+                        raise RuntimeError(
+                            "Unsolvable captcha wall hit during login"
+                        )
+                    notifications.notify(
+                        "Captcha wall hit during login", sedd_config
                     )
-                notifications.notify(
-                    "Captcha wall hit during login", sedd_config
-                )
-
                 sleep(10)
 
             if captcha_walled or retryLogin:

@@ -21,4 +21,6 @@ This option primarily exists to remove the need for separate notification system
 The update also comes with an extra flag:
 * `--unsupervised`, a boolean flag that disables notifications asking you to deal with cloudflare. If you're blocked by Cloudflare and automatic resolution fails, the download will be considered failed.
 
-The goal of `--detect` and `--unsupervised` is to further reduce the manual work required, but not to fully automate it for all eternity. `--detect` does not track future changes; it's only good for one data dump release. In general, you shouldn't run `--detect` for months; SE has a lot of dials they could fuck around with that increase the chance sedd gets fully blocked to the point of being unusable.
+The goal of `--detect` and `--unsupervised` is to further reduce the manual work required, but not to fully automate it for all eternity. It's also to provide an alternative system for notifying you about new data dumps, as `curl`-based scripts are becoming increasingly fragile due to not being able to run JavaScript.
+
+`--detect` does not track future changes; it's only good for one data dump release. In general, you shouldn't run `--detect` for months; SE has a lot of dials they could fuck around with that increase the chance sedd gets fully blocked to the point of being unusable.

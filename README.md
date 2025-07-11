@@ -21,7 +21,7 @@ The current revision can be read [here](https://meta.stackexchange.com/q/401324/
 Here's what's happening:
 
 - SE is moving the data dump from archive.org to their own infrastructure
-- They're discontinuing the archive.org dump, which makes it significantly harder to archive the data if SE, for example, were to go out of business
+- They're discontinuing the archive.org dump, which makes it significantly harder to archive the data if SE, for example, were to go out of business, a threat that's increasing by the day due to SE's continued insistence on ignoring the needs of the community.
   - In addition to discontinuing the archive.org dump, they're imposing significant restrictions on the data dump
 - They're doing the first revision **without the possibility to download the entire data dump** in one click, a drastic QOL reduction from the current situation.
 - Later in 2024 and in at least the first half of 2025, they've continued scaling up **unreasonably aggressive anti-bot measures**, that also affect the data dump downloader when used in certain countries - even when the browser has full human oversight, and the captchas are solved by a human.
@@ -152,6 +152,7 @@ sedd
 ###### `notifications.provider`
 Supported values:
 * `"native"`: Uses your operating system's native notification method
+* `"ntfy"`: Uses ntfy. Requires additional configuration options; see `docs/Notifications.md`
 * `null`: Disables notifications. Not recommended, as this will mean any captcha problems requiring your intervention may go unnoticed.
 
 #### CLI options
@@ -167,6 +168,7 @@ Exractor CLI supports the following configuration options:
 | `-g` | `--disable-undetected-geckodriver` | Optional | `false` | Whether or not to disable the anti-anti-bot detection webdriver, and use a fully standard Firefox instead. See "Captchas and other misc. barriers" for more information. Has no effect on macOS. |
 | `-v` | - | Optional | `false` | Whether or not to enable verbose logging. You do not want to enable this unless you're diagnosing a problem with sedd - the verbose logging includes low-level Selenium output. |
 | - | `--detect <last upload date>` | Optional | - | Enables a mode where sedd checks for the upload timestamp to change, and only then begins the download. This has several caveats. Please read [docs/Automated downloads](docs/Automated downloads.md) for more information before using this feature. |
+| `-u` | `--unsupervised` | Optional | false | Rather than notify you about failures and asking you to resolve them, hard failures that would require manual supervision throw an exception instead. |
 
 #### Captchas and other misc. barriers
 
@@ -305,7 +307,7 @@ Currently, the following transformers are supported:
 
 - `json`
 - `sqlite`
-  - Note: All data related to a site is merged into a single database
+  - Note: All data related to a site is merged into a single database. This results in some really fucking big SQLite files on big sites, with Stack Overflow's SQLite file being in excess of 200GB
 
 ## Language rationale
 

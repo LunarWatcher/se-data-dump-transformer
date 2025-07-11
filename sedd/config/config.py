@@ -6,6 +6,7 @@ from os import path, getcwd
 from .defaults import default_ubo_url, default_ubo_settings, default_notifications_config, default_ubo_config
 from .typings import SEDDNotificationsConfig, SEDDUboConfig, SEDDUboSettings
 
+from loguru import logger
 
 class SEDDConfig:
     email: str
@@ -36,11 +37,11 @@ def load_sedd_config() -> SEDDConfig:
     config_path = path.join(getcwd(), 'config.json')
 
     if not path.exists(config_path):
-        print("It appears you haven't made ./config.json")
-        print("For a template, see:")
-        print("\thttps://github.com/LunarWatcher/se-data-dump-transformer/blob/master/config.example.json")
-        print("Please configure it, then try again. For further information, "
-              "see the README in the Git repository.")
+        logger.error("It appears you haven't made ./config.json. "
+            "For a template, see: "
+            "\thttps://github.com/LunarWatcher/se-data-dump-transformer/blob/master/config.example.json\n"
+            "Please configure it, then try again. For further information, "
+            "see the README in the Git repository.")
 
         exit(-1)
 

@@ -12,3 +12,6 @@ Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, 
 * Extremely elementary captchca solver. All it does is try to click the checkbox. 
 * Loguru for logging. A lot of places still use print statements, and these will be refactored Later:tm:
 
+### Fixed
+* Login captcha wall resulting in a notification loop
+
