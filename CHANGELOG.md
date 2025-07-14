@@ -2,6 +2,11 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.2.1 (2025-07-15)
+
+### Fixed
+* `--detect` mode crash when the data dump download page inexplicably 500s
+
 ## 2.2.0 (2025-07-11)
 
 ### Added

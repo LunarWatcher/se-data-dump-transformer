@@ -270,6 +270,7 @@ def await_date_change(args: SEDDCLIArgs, driver):
     site = "https://stackoverflow.com"
 
     failed: bool = False
+    seconds_in_hour = 60 * 60
     while True:
         browser.get(f"{site}/users/data-dump-access/current")
         if "page not found" in browser.title.lower():
@@ -278,6 +279,22 @@ def await_date_change(args: SEDDCLIArgs, driver):
             login_or_create(driver, site)
             check_cloudflare_intercept(driver)
             failed = True
+            continue
+
+        if browser.current_url.endswith("/error"):
+            logger.error(
+                "Redirected to /error; SE fucked something up. Update failed, "
+                "trying again in 3 hours"
+            )
+            sleep(
+                # 3 hours
+                seconds_in_hour * 3
+                # + some jitter
+                + random.randint(
+                    -seconds_in_hour,
+                    seconds_in_hour
+                )
+            )
             continue
 
         failed = False
@@ -390,6 +407,7 @@ except:
         logger.error(exception)
 
     browser.quit()
+    exit(-1)
 finally:
     # TODO: replace with validation once downloading is verified done
     # (or export for separate, later verification)
