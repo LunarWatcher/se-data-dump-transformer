@@ -2,6 +2,11 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.2.2 (2025-07-16)
+
+### Fixed
+* `exc_info()` returns a tuple, so the `print_exception()` in `main.py` was always a noop. Though `exc_info()` does contain the right thing to pass to `print_exception()`, python 3.11 has `sys.exception()`. The three places using error logging now use `traceback.print_exception(sys.exception())` so the error is actually properly logged. This also bumps the requirement from 3.10 to 3.11
+
 ## 2.2.1 (2025-07-15)
 
 ### Fixed
