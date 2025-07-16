@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 import os.path
 import re
 import sys
+import traceback
 
 from .data.files_map import files_map, inverse_files_map
 from .data.sites import sites
@@ -78,7 +79,7 @@ def cleanup_archive(base_path: str) -> None:
                 entry_path = os.path.join(base_path, entry)
                 os.remove(entry_path)
     except:
-        print(sys.exc_info())
+        traceback.print_exception(sys.exception())
 
 
 def is_file_downloaded(base_path: str, site_or_url: str) -> bool:

@@ -1,6 +1,7 @@
 from selenium.webdriver import Firefox
-from sys import exc_info
 from time import sleep
+import traceback
+import sys
 
 from ..config import SEDDConfig
 from .utils import ubo_set_user_settings, \
@@ -32,4 +33,4 @@ def init_ubo_settings(browser: Firefox, config: SEDDConfig, ubo_id: str) -> bool
         ubo_reload_all_filters(browser)
     except:
         logger.error('Failed to set uBlock config, using defaults')
-        logger.error(exc_info())
+        traceback.print_exception(sys.exception())

@@ -399,13 +399,7 @@ except KeyboardInterrupt:
     pass
 
 except:
-    exception = sys.exc_info()
-
-    try:
-        print_exception(exception)
-    except:
-        logger.error(exception)
-
+    print_exception(sys.exception())
     browser.quit()
     exit(-1)
 finally:

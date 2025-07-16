@@ -99,7 +99,7 @@ For some reason, connecting with a VPN offers just enough extra stability to avo
 
 ### Requirements
 
-- Python 3.10 or newer[^3]
+- Python 3.11 or newer
 - `pip3 install -r requirements.txt`
 - Lots of storage. The 2024Q1 data dump was 92GB compressed.
 - A display you can access somehow (physical or virtual, but you need to be able to see it) to be able to solve captchas
@@ -331,4 +331,3 @@ The data downloaded and produced is under various versions of [CC-By-SA](https:/
 
 [^1]: I've been unable to find the generator code, but I've also been unable to find a statement confirming that it's closed-source. It's possible it is open-source, but if it is, it's hard to find the source
 [^2]: Only Postgres at the time of writing, with more planned
-[^3]: Might work with earlier versions, but these are untested and not supported
