@@ -2,752 +2,2618 @@
 
 This document contains the hashes for the new data dump format. This document exists as [SE misunderstood a request to implement an automatic checksum feature](https://meta.stackexchange.com/q/402017), and later [failed to adequately separate revisions](https://meta.stackexchange.com/posts/411485/revisions), making it harder to tell what applies to what version.
 
+<!-- Template:
 <details>
-    <summary>2025 data dumps</summary>
-    <details>
-    <summary>2025-06-30 rev2</summary>
-    Note: officially confirmed: https://meta.stackexchange.com/revisions/411485/1
-    <pre>
-    <code>
-    38ef461889a5ecd94c97d71c7ba4486d72191baa40e0333b5e8a3ad2e94bd9fd  3dprinting.meta.stackexchange.com.7z
-    be05c60c3b23390863cf211a6749d4d73a47ffa5a9dde2d3ceb994e5a75e522a  3dprinting.stackexchange.com.7z
-    72e30e638b2d28e8729c01d5b5b9be0a051a4d75d3cc7a59546a9022932d6a68  academia.meta.stackexchange.com.7z
-    367a58701fd9fea8617f79007b07f6360f78d068bc36c42eb1e3ae3b28c1796a  academia.stackexchange.com.7z
-    094b86d5b8044c7a4e2e81a3a600e54ce7a500e1d5e129d2f2f265c93044d165  ai.meta.stackexchange.com.7z
-    7b3b3eb2351772078b3438b0d1fcb0c388349b6ca24aaa4e12a43a36d38a06b5  ai.stackexchange.com.7z
-    9c5998434fa322dfaede18317961af9fa26b79cfb493421d71a8cef2651a5f9c  android.meta.stackexchange.com.7z
-    318968e7450c3a61b7b6d90833bba4d39960ad5901913bc6802baa7c68325c34  android.stackexchange.com.7z
-    20334a2ea5172d69bf1e531a502a4bbbcf272ac7a4acba5c8b88fa71e26ce861  anime.meta.stackexchange.com.7z
-    d9065e4779d6045e6ab02fbb333e7e214b1dbc7665515b7622573b682b443911  anime.stackexchange.com.7z
-    28762ab6111b014ece179c1d23227db1a4c54f9d76a0fc88b35e07d9302284e8  apple.meta.stackexchange.com.7z
-    ef0122615a5197542574bdb8ad05839b2931e6be7d2f03b62392d7d7557fe11f  apple.stackexchange.com.7z
-    32284d818bc5cbd3deef39c80c7c180fe1c06d3ec871be60845cfa3dc021ae4c  arduino.meta.stackexchange.com.7z
-    4e813ebcac0b7d08ca1df9434902ead08019d2c89ed490d595e5ca618a13c5db  arduino.stackexchange.com.7z
-    6ec403808badb2251d86dbbb53aaec46b37b019ae683a08a0fa87d618a045502  askubuntu.com.7z
-    fac4cf67287363d8f1ffd147633916cdb48bb61a8ae2c9f492e8b64cad3aa190  astronomy.meta.stackexchange.com.7z
-    1312a9ae8987626ca9715d7630d31f6ff4e6a350224167f3b3e29941bdb2386c  astronomy.stackexchange.com.7z
-    00a5e4c40c0f4ba4670a831c186f150e017e05d80d055dc21dbd38441f14ff34  aviation.meta.stackexchange.com.7z
-    c325ab892b2b8951ba7aae15d02d9366b880d1c16d6025e3246bf11481c7f38e  aviation.stackexchange.com.7z
-    952e741da4c94aae7b20d2c1c107904db6fcfd5a462133b599406ac0fcf56d98  avp.meta.stackexchange.com.7z
-    da2d96c57b6ea4b5ef5f9d812269d63629cd56694487bbd0dbb535cb184e79ee  avp.stackexchange.com.7z
-    919507aca09b967d910a033a12a1534b409f55324afedd3ee8942a78ec6ecc22  beer.meta.stackexchange.com.7z
-    ccd9e964f0a9af5d229c3d10297f5dee8b80710caf245cd392045b1abe840a5b  beer.stackexchange.com.7z
-    f44667dd010ee5c22d14319f3d9ddccc1d18b1ab8ff9207aef9c143586921ab1  bicycles.meta.stackexchange.com.7z
-    12a8a7290628730e18cd2296a2fa2350adc696a4f348a46d95c71aa575bfeedf  bicycles.stackexchange.com.7z
-    c88291aa35e79ec476941ae8732b14288a1ae7bc7d217dfbb5646d227d533feb  bioacoustics.meta.stackexchange.com.7z
-    01855b68eab3ceb51aa83d5ca563669439f1161fa4ce1239374b73ddde45cf87  bioacoustics.stackexchange.com.7z
-    71d0989ac425c9d18ff9a8e89e7bdeb79145ad49bd3045e3a06133832d79716b  bioinformatics.meta.stackexchange.com.7z
-    552fa474c20d491ec346a70253dbd2929a1c42450aeed96fa8fbf6d7eab67bd5  bioinformatics.stackexchange.com.7z
-    01f85d192eee666dda9b578287bdf9d4a575a42d36e1c513e45fff3561f3dd62  biology.meta.stackexchange.com.7z
-    4a494893ea7afdd5ecdbb1ca59193b20a3720d4ceeab7bcb1ea4349caec12364  biology.stackexchange.com.7z
-    436fd4316149b734f874b92034a02309198715bd40de74a6a307075eff239597  bitcoin.meta.stackexchange.com.7z
-    bd41f48a1d09b6c91747b0b5898bdd41e0342511f47bfaae2c40d24118fd3fff  bitcoin.stackexchange.com.7z
-    470c7065df2bc1634f22e9f43daa3751ad2a84467986f1c4e024fb8fcafb75ae  blender.meta.stackexchange.com.7z
-    4b88b54986ca56c930378921c91459ba7b9d4a67ee7b5f2363b1364a388c6044  blender.stackexchange.com.7z
-    f591ee84a8537543bbfc0644de0c51f44fae31b7988b6a99913a89de42f5f1e1  boardgames.meta.stackexchange.com.7z
-    ba1f566441624e9f545bf0b06b6eaca50695d2abfd1e98d2b1b30d9758091af3  boardgames.stackexchange.com.7z
-    dcedabddc842da0b2a10961512c42bb5647ebe8294fbe13cfe8a76a9a8c680dd  bricks.meta.stackexchange.com.7z
-    1435837733197bfbe52cd9d5d99665384732d6a85de217a21e7a099843a68cdc  bricks.stackexchange.com.7z
-    a3f2d3f17890c1ab0f0dbf01d92818a5b31b4e99ed2e7e81f773af7599ce6a50  buddhism.meta.stackexchange.com.7z
-    7023ca4cff2bcb0baf0e4fc869206bf33c3ed6e911741fb48302a9933e1ea230  buddhism.stackexchange.com.7z
-    99929904d9a5bedad5848ea07d093d6bccb9042e90af6ed82e8fa8944f0e77bd  cardano.meta.stackexchange.com.7z
-    7702bd4488b78121fc916dc48cdd1516a72c254a9c266bbcf91d19245a68f782  cardano.stackexchange.com.7z
-    cbe72aa8005c5ee5b1a12c4fc35127c139539c978a59a36abcbdc6c71dd71c2a  chemistry.meta.stackexchange.com.7z
-    9985659bfea3b7935132af05e3484ca923eda7e4cb80b5356d80c75b7f517726  chemistry.stackexchange.com.7z
-    ecdf7c39bdc7b604342e94b4e8128aef061690f1a26c3e75eda700ca023f46fa  chess.meta.stackexchange.com.7z
-    9b865a815e024698dfaee464d1d019fc28be7645c5773697010d30dd699bc430  chess.stackexchange.com.7z
-    1bc1c6b49eb726e4889aebb61384c7365d1a9a46e0eb5982fbf54c160f584b65  chinese.meta.stackexchange.com.7z
-    a72c5b456dd1a67619ad3a044dc99f3ccb9819f9ec7f3e3a3434f36418173836  chinese.stackexchange.com.7z
-    0f8de11a3a13e60e72a4de5600e752c688ef9d117fbe77c20c4f86a6c5e22f73  christianity.meta.stackexchange.com.7z
-    02c993325366d4e3a46b5f71e86d8124f5a598f79e7e75a877e6104f7ea834eb  christianity.stackexchange.com.7z
-    7fdabd17005bec6fcde4c618dde433c8ac6e451ef87e5f01f8a76384f4d7a833  civicrm.meta.stackexchange.com.7z
-    46497988515cd1d6b220bccfa4fb7080081134518e39acae3d8a07761a91655f  civicrm.stackexchange.com.7z
-    9f03f3cf9e41f33d138e134ecdd5276861a72a3a643f8bf79f7a553ace4bd031  codegolf.meta.stackexchange.com.7z
-    c5701dbbaa16f2c9466770470a7d811435411e6f566591c55ddb95575725a80f  codegolf.stackexchange.com.7z
-    60f0c5d6bfac5207c189f0c5fbea67a6ae82a1b53aee5d0b51ecb86146a3bb2e  codereview.meta.stackexchange.com.7z
-    8857393cb71ae8fdff0380689a29fc7a952a449f0aebfbc55619583c6cb10635  codereview.stackexchange.com.7z
-    4b8dceb564b972a2a112808a4af39be338cb9b619d47153ddbd175161db94426  coffee.meta.stackexchange.com.7z
-    2efdc89e3531b31f484f9b37567b276b3d9a47cc1b44bb4a924f259764495b91  coffee.stackexchange.com.7z
-    da130ad6a71553deb6810e6f1fa21bd8ce067a446447e9d7484ad4e7c89a4497  cogsci.meta.stackexchange.com.7z
-    04d21197d9f9049a379b9b18f1a451498020f93c2ebc800da5ddef8e317dae10  cogsci.stackexchange.com.7z
-    36a6a1ddda42e5d2fb03c24a59683e782256db47d3bfb62f779bd5f25d73526a  computergraphics.meta.stackexchange.com.7z
-    ca314202ab42db87825528c26b009a580e9961ff3c05c92313e0748288071fe7  computergraphics.stackexchange.com.7z
-    8826308a67ea2e2a1ebe1d18a44ae19847cbbb18514fa7bf498fce8257b90bf0  conlang.meta.stackexchange.com.7z
-    07319f4fc7ac26616b953921367436f5b45927a8ed70866d9ec79d1c9e2005b0  conlang.stackexchange.com.7z
-    9dd30f4caa2286afe5e5138d46fa431c82447ba157d5c162146cd2bafcb00d0c  cooking.meta.stackexchange.com.7z
-    4dfa53b0c11807591e152e4dd6e9d222c20f45ba7517419ff495b9607915dbe7  cooking.stackexchange.com.7z
-    e1dcb01ef4528115f07a890533e8c66d03cfc68f9d186c6f45d0fe9e84bafd8a  craftcms.meta.stackexchange.com.7z
-    9f211033bb235aa306d86ccd4f994d15a3fe4d277496d9aa9c20a221377955dd  craftcms.stackexchange.com.7z
-    b530ce317f555bb6f4c88191141634f76367f231fa0111cbfcfa2807bb5aa9d8  crafts.meta.stackexchange.com.7z
-    85494af09dd9eb5863f885d0e0d0879a639a3503615587c9296098984e79527f  crafts.stackexchange.com.7z
-    9e364b09ea26864b43796f71df8bffb2c4074e5350c2eb2b4d0d6c7ea7cffd9e  crypto.meta.stackexchange.com.7z
-    43cff7b0ad4fb9a21facafe35c50ec0494e38e57dd55064929dfd8393908cc4f  crypto.stackexchange.com.7z
-    3bc7739da3d879ad9fc4b121b59b209e71be5f8c4634e6fd68f71ac6bf63154c  cs.meta.stackexchange.com.7z
-    c2bc5b1cc4e235c20682a89d47bf016432cd823ed1e52fe8ddcf27656a36c88d  cs.stackexchange.com.7z
-    181c639b6f5378941e476dcb377b5218a3ea2c20adc31005d1e00a6936d14107  cseducators.meta.stackexchange.com.7z
-    4878c104ea9408d989966ef9988e0f3a1e4e00a6aafd9fd09ba86113900e0eba  cseducators.stackexchange.com.7z
-    042e5a9734187bafe852f5bd5ed1a9b27f46dee90cb272f6fd7607eab40856a7  cstheory.meta.stackexchange.com.7z
-    9b067528b66f6fb67badf6d045fb60e521723649a4b29403a0b19a4b05a5a28a  cstheory.stackexchange.com.7z
-    a7b1ced92b4257044d4b81fed9d57c2919beb6215f978ac33daf1dcc866ac509  datascience.meta.stackexchange.com.7z
-    6b71cd84e633a7498d13135279cd33caf9e863c4ff250bbf310f25e961cb32ea  datascience.stackexchange.com.7z
-    68d5f3136807d9950c0af5deb11dc0b4282c372b16740b128dfdddce2123ba9d  dba.meta.stackexchange.com.7z
-    19cbc221504103ebf05ae072c2fd845e563a4546070513fcf68954ef5db14352  dba.stackexchange.com.7z
-    2acbcd3ca8742c4eab96fbc7aed5fbe59da0062c89f2d3439d3f8634ae992cac  devops.meta.stackexchange.com.7z
-    a62a85ff5e65cc3f2331ff3f364360fb893c73a987aa8b03d75886d156e5cf6f  devops.stackexchange.com.7z
-    61633f5f40ed083bef045c93cfe9a3bec45d3d1754cfce81e5a173fca6ce713a  diy.meta.stackexchange.com.7z
-    e1fb808ae22f145cac27b91db2a3e259862510f5e96616ea0d3510225f0a84b7  diy.stackexchange.com.7z
-    b76ec9309136f11a8640d79128b84d350ca5c876642798c0c817c09fc784b12f  drones.meta.stackexchange.com.7z
-    2b87b6149bab188ae9c88b46c0f0891291f0087ca2faaa2bad39dd2ab53804c2  drones.stackexchange.com.7z
-    a3f0e08e356429a73a9cec97da05d07cf6545561fa71f73f4926eff1f19d46fb  drupal.meta.stackexchange.com.7z
-    ab8ca52a51c4f5cd584a68e6b9976aa774fafbe7036012178decd5eeedda8494  drupal.stackexchange.com.7z
-    1a8690dbdd5749fa8a4bd8c21d7813d2a5dc2142f5d822b33fe29bba3290dbe7  dsp.meta.stackexchange.com.7z
-    0ef7c426106500d562a7c5d77a7af995befc99f90aa99eaea43b6ebb1f1d6691  dsp.stackexchange.com.7z
-    185f576437df6c7c96878fe223488a610aafa380ab053dc6b74185c927b76c5f  earthscience.meta.stackexchange.com.7z
-    c6aceb9474c378904a3976db416e4af1eb739ed44f1177e57e193d1b762e8de6  earthscience.stackexchange.com.7z
-    b670f31c96fcc8a67d8744ea272adb7dbeefb47470381f2be8fc39fb16a01165  ebooks.meta.stackexchange.com.7z
-    29adb2a6ff78961a7cfb332a343ecd03746e1fe95aea4a6cd48ff9df254e711a  ebooks.stackexchange.com.7z
-    739019171cfdf8845f90ceb792d0b10ebd8010bbead214937e1bc23e81b822e2  economics.meta.stackexchange.com.7z
-    bf495fb606be76ce78533d7fc65dd46379fc121af4a3f3a2ed8a1547a6a47185  economics.stackexchange.com.7z
-    203a1691b652604d33ee402466152fc6dca3765113ae4392e8a92623838c5c30  electronics.meta.stackexchange.com.7z
-    2f022c8b0431762e637093ef0f0dac40c574454a3ff19f69a5d3a3ff6109d015  electronics.stackexchange.com.7z
-    800398c2b6f02c656046a8787209796382b14a66c27d4a4a4865dec24950eb21  elementaryos.meta.stackexchange.com.7z
-    b71a1a75d5be94ee47f19524ec731fd818418349ffe1de09758ce673b4d911ce  elementaryos.stackexchange.com.7z
-    214cef9df2f09d83c87187c2ab3e36425acf49bee9c0ea23b0b9de2e52f2257f  ell.meta.stackexchange.com.7z
-    aa8f2d0ccd560ef4942ff71d5b85ec9b0f75ceff1930c3e05abc38bf41fd4c4d  ell.stackexchange.com.7z
-    fe0e31f438ef7171f82f49bf27759298b3714efc79f4635f4ec6cfe2790b39aa  emacs.meta.stackexchange.com.7z
-    c308b96bb5fb2f7684cf128a2d6ef22a595edfcd12fc9d358a155bd55b348b76  emacs.stackexchange.com.7z
-    93a2a64c093753f4b3acb21c72d2c0c8d724520f020c9fa29980d09be3b808a4  engineering.meta.stackexchange.com.7z
-    ab7322dd61ff620d226d78d38215f26c103b1afbff14331c30c09ed9779bc51d  engineering.stackexchange.com.7z
-    2bfa6e278f1d2466dd1afb33f9863cea9831c0765e8b6f77455114ec54010453  english.meta.stackexchange.com.7z
-    0ec582f386e312487f34a0e83c262bae56132139ab8f7e833fe5395b16dfae80  english.stackexchange.com.7z
-    5643f165b08677d8ae0a3084296d39805daf5e08448c27c2cc53d853b1149b30  eosio.meta.stackexchange.com.7z
-    f23b6ba536aace39d6b76198cd0a0b375286268d9ed5a5046f2789cdf08ecd49  eosio.stackexchange.com.7z
-    db011b84430651d8f1bd045043b135e00802c3c32791e83bed6847fd1680fc7a  es.meta.stackoverflow.com.7z
-    c1962f25686b81c90ec253ddebb4facd67645a60341deb51d8a727b9dca7d1b1  es.stackoverflow.com.7z
-    6e290b551d645eb1e313049f5f172333855d78b72470bda9991852b551ddc08c  esperanto.meta.stackexchange.com.7z
-    d44dee2956f64cf8932c36a07b9e19e9c34a4363214e1e0db3749ed4decef6fa  esperanto.stackexchange.com.7z
-    14d458dcf65078593cee20d1ded40d36e8457b39a7dc0c344b7357b095e3ed11  ethereum.meta.stackexchange.com.7z
-    120f7b4780045df3b6920699f182d3562f0e07c1cb539700e2c7003190f05dad  ethereum.stackexchange.com.7z
-    63561f76323a79601d49afd91485ea372c79e16e27be969aa7acde1d21cceafb  expatriates.meta.stackexchange.com.7z
-    70e2fee57f5e98ca7c6193f09b8d1cdf61b3f4a99e83e4dd407f98ff3a2adf72  expatriates.stackexchange.com.7z
-    0275a1fb146852c0bab65743d7d4445a0e7e04b95b33085820348fb332e41009  expressionengine.meta.stackexchange.com.7z
-    78e383eb82daf9f682634d0bd4dfd9630d72db7a32842b01401aaeb37baf33f5  expressionengine.stackexchange.com.7z
-    4ed5c620a16bdb3683dd3db3672c1e4e0596a0e6b5af8d6bca60d8fd7ecb6b09  fitness.meta.stackexchange.com.7z
-    b822f8898b01004da4e730a806598ae9b2f2529b5376209c63c0cc224f668aa2  fitness.stackexchange.com.7z
-    6711c14ac6cf29b3972b770f264de32dcaf5547cfb60f06aabd98c1f89f90ded  freelancing.meta.stackexchange.com.7z
-    b06f1e3ba1883d96ac7ddc8cddb5b268c9d736677f958f0b89926489bc15e811  freelancing.stackexchange.com.7z
-    b769c238e009171fe1a8eab5f7f34b7b13fd78fe873d634926c95e79b31aef4d  french.meta.stackexchange.com.7z
-    47f31c6131087216af271d3d083a30d1c0f6d99ef93bdad699f73564a967e63d  french.stackexchange.com.7z
-    90b22266d25dcfc3591aac613a240a45819f518c360ade195176bf1b9ea33895  gamedev.meta.stackexchange.com.7z
-    3493c9ce4ce13ce2a245c4a1049b04fc825ae1758aae022ffa836da0d0ab6ab1  gamedev.stackexchange.com.7z
-    7565861ff5bd4c8117b873e8986a52d37f65480bd64db7d4dfc23e2899452469  gaming.meta.stackexchange.com.7z
-    a2fd1cdaaacdb3312c98ff37bd524597a7524039b63f16450e43ba0c08c23b78  gaming.stackexchange.com.7z
-    6b228a05f4ccc7f06a341988824536ddd0851abd88c9b0a8df50fdf508a7a082  gardening.meta.stackexchange.com.7z
-    93b1f0390e080334e5117581b830e24769ebbbfafeed43b9b3e64213e62773cc  gardening.stackexchange.com.7z
-    2d1f8bfb47feeaefb719e9784421c208792248f05f1de2b7b153942244899af3  genai.meta.stackexchange.com.7z
-    09fef918333015cf9765a06b141d5f25dd16cda89ac3b20afd6026b0ad2b21e6  genai.stackexchange.com.7z
-    21feac3e7a92f1bab97d903c13c597d7f507e74f059e99c8c7db72ce2bff3dd8  genealogy.meta.stackexchange.com.7z
-    ee96d7883390d552ec0b198c846787de36d5f67a0b8d572f7368ee8f2f0200d8  genealogy.stackexchange.com.7z
-    943fbbc8bb5e287a592097b763ab95c634f2d170f58f191acfb439c12325ba8e  german.meta.stackexchange.com.7z
-    54a52485ccae3b8b7de0315e4a2a2f13e0089deaba3b48b3b42b4a1c3b81971a  german.stackexchange.com.7z
-    0e9ef749b506fd630a1f2033a2e6c120d7b1bed3c9c583901bd0fdee6b70e8d6  gis.meta.stackexchange.com.7z
-    7fe1cc6fd5422ac26709d83e1fc6fe4c7a9a843a7729fefcdcff8b6381b9d377  gis.stackexchange.com.7z
-    a281b8203b94c8da0a570909cc4d33f8de3e726e668749bf5662db7599690178  graphicdesign.meta.stackexchange.com.7z
-    c56f831d2101313f2a46bd210d751120774406879b7015226486c580e8cc9278  graphicdesign.stackexchange.com.7z
-    f60d399c69764443019b195011aa2e509398073476089b2307599dcc668263ac  ham.meta.stackexchange.com.7z
-    eece46c66b8caf713312ed66a0a4e1fca635546eef4bca5befd8e31d91ec751a  ham.stackexchange.com.7z
-    4ff5deda354a2db70c356e6e3e2eff762820e7e5290f56a65efc493375bb9937  hardwarerecs.meta.stackexchange.com.7z
-    ee1fdb4de3e32ef0a0a0fb837dec63f7a431d9f18ec26497054e1654941f1806  hardwarerecs.stackexchange.com.7z
-    edf78239dff8d8d5f768c4c5879229909ef35ad124aca7bd125446ed554a1d92  health.meta.stackexchange.com.7z
-    762e0d9b12f8aaf92d7232832148e69edf43e09891b2c910adcb707e32ad1fd1  health.stackexchange.com.7z
-    3bc5ba0a81fc6c18d432e6a7d184be08194cb6ee02126e68a2f1f4f022dc3871  hermeneutics.meta.stackexchange.com.7z
-    bf4b3f5582b456ccaddca5fa812d67d20293db60c6f46a52f02ec4ae9b2d051a  hermeneutics.stackexchange.com.7z
-    4ab9fb1269e57b6023f07440f71cd807a986b8ddde0fe692eb32cec1e4773d28  hinduism.meta.stackexchange.com.7z
-    8d5f67ba88dfc60b4e98d24f460ce1e43f4959b81dde6bf7ada50bac09b32af4  hinduism.stackexchange.com.7z
-    e730cee3d33a2616c9eeb514db27274b35be6d341df2dd63d01b93bd2ac3d450  history.meta.stackexchange.com.7z
-    90358d8fc9a86a808dda66a47910deffb3fd9a9b95f5abf40aedda0ecb1587bf  history.stackexchange.com.7z
-    067205e81f6d8758893eb5ac3805c650e4b0e954cc3af58e43042dfcee018e6b  homebrew.meta.stackexchange.com.7z
-    20827a513493527d58c6283678f0365f378c46595b2aac5161cf77749b4b393a  homebrew.stackexchange.com.7z
-    89f15ed889b6db911567cc1300fb7333e92b24ba361fad3f5bfa752318727f29  hsm.meta.stackexchange.com.7z
-    b8bbeb2d5636c33d568b831e9c869912a46ae4b6425dd7740cd9b32a07fca8fe  hsm.stackexchange.com.7z
-    bc0d2ca08892ff19e5b93759a5487655ac0651e40f9dca28a818afdebf5580be  interpersonal.meta.stackexchange.com.7z
-    de22618226ee3a330e0535dbe7fd5d9ddb3bc593c481294923a51c54e638cef6  interpersonal.stackexchange.com.7z
-    d69176151147b02a3c572664787b52f45e819ec94a77f178e2aacad3dbfaf783  iot.meta.stackexchange.com.7z
-    7dbf7f216afa3b6868c1740973df4508b54c942c2c9b550af0d5e73314bc8db6  iot.stackexchange.com.7z
-    cf8a683f9eb58df31ca8b9b8fbb8f00caaa3f10de89fa07636c0998e09363130  iota.meta.stackexchange.com.7z
-    a16c460bbf7b0ea7b209678d1786bd6f5d8ca2f1a1cc2ee018edbe15f5bc8c4f  iota.stackexchange.com.7z
-    a256d1f2a4937e05754c7f8f6393939a8df2043be7706fbf0f00890ce4a12b87  islam.meta.stackexchange.com.7z
-    ffd197941871971a387d4cbf9013948a05dfb618e3c7a313627f98e3686723c9  islam.stackexchange.com.7z
-    7c494cb0e9f0266dbc2b7946189610b30ed699ea7b19a1fdc53d68a6c0c9b835  italian.meta.stackexchange.com.7z
-    efcee7c7cd81e595a79aa46c78ac7699210e0a7a41567fc7fcfe05fe273a397c  italian.stackexchange.com.7z
-    c0f82cbf87e1e40a9f369b1c05128afba59e830bd8252c431eaeb13144a94b59  ja.meta.stackoverflow.com.7z
-    4bcb927c9567d4a6403e9ef163aacaa0ad85f87946306726fd9d25913b747fae  ja.stackoverflow.com.7z
-    b27e2c22a6dcb4466c57073499990a64e3c7c028005bd00aee0e3b74a94641ec  japanese.meta.stackexchange.com.7z
-    188bfcfdaee7e8e65e25102a29c8b8f5ad267f33e7016cab16544a9db6cb260f  japanese.stackexchange.com.7z
-    d5a82b387fbb764c8802f909102c465e33524ba11244838afd71df7683295067  joomla.meta.stackexchange.com.7z
-    d92df9d6ad815bac05fc5dc0db4d9fe76b1a0ed47abec9b703a68fed9c832883  joomla.stackexchange.com.7z
-    cd43f084e04e2bc376ccc74d73049147945f37f802c4ca7102bffa5e03017234  judaism.meta.stackexchange.com.7z
-    b2eab3f172daaf89ee5011969a19bd57744517bf62a65c265139376aed2c53c3  judaism.stackexchange.com.7z
-    6454bdeb922bb43f23f810496304fd45afb69847850d2e272496acd627765823  korean.meta.stackexchange.com.7z
-    a30cdc2960bf971bfb3afea1b12e9fb58781fa8e9cffe4089df3f9613ee7d5d6  korean.stackexchange.com.7z
-    44a086b7d1c7bf87a8653ed0d5bf6b536a439093749118b81780257d7db90aaf  langdev.meta.stackexchange.com.7z
-    f5450c3abfc7cd1249bbbe8410bff72938928037b9d4971acac7dd8745246bdb  langdev.stackexchange.com.7z
-    8e495f3de718002c9a6f3871ec19706c94be5b470c3fcc8bed9e31939fd8103d  languagelearning.meta.stackexchange.com.7z
-    f8b68a2430924f93bb43ffbda4b0f67995caf46291c8b9377d19c2e5fbbce0f9  languagelearning.stackexchange.com.7z
-    c80ae20691a89e0e2a0a1817f14c1f3345637c078b0267c5bb5bc135ce07f587  latin.meta.stackexchange.com.7z
-    265114c284be272f32ed6dc60523cc61bbeea5590d8c5b7b8b4f608004d9727f  latin.stackexchange.com.7z
-    5faf86b35193b33f9225d7c3fdab6b8c05e529aeca13bead8c6e1d86a40f5d36  law.meta.stackexchange.com.7z
-    7d3fb83b923fb52da4a5a94c8dcc9fe237d3f0351c6dcf808756f93845a1bae0  law.stackexchange.com.7z
-    277721001bc230dabcd4925dfb6d30a419e15989b0ac0ddbb0f9177dfde97301  lifehacks.meta.stackexchange.com.7z
-    2732ea433ec771f0d125073ff72cdce93ed46c280474b24344cf9c9b5f1ab82b  lifehacks.stackexchange.com.7z
-    7afae6249b0679c98128ca34ce158b827859fdf8ab38e305105e1edeeaa40e75  linguistics.meta.stackexchange.com.7z
-    0e0b3538eaccec8c78ef1d45f5abf3881788b424553e6ea29c3115e418401753  linguistics.stackexchange.com.7z
-    54f21181e7c20484f1752b2b2e8f154800c1e787ba4db2965924483a8542adaa  literature.meta.stackexchange.com.7z
-    3be95f138ff2cca40a835e9cf435b9dbcf1747e4404cfd1f4805bb8f43fa147a  literature.stackexchange.com.7z
-    4b4cabeff00d91d92aaf449890142bd6e2466892da31277b22f08c3cf447a1f6  magento.meta.stackexchange.com.7z
-    b44d33a350488c1c26f56b6315e0fd578fe8a7c3b68058a32f6392a4293b00ed  magento.stackexchange.com.7z
-    ff19f3f7b767ed76f0dc6db899257f77d5e8806af880d393b29d7d0a3fdbf47d  martialarts.meta.stackexchange.com.7z
-    e6bce9ae1eb4e21b71b079d29dbf2eff54c3d3cbf1341a19d5c53e262866d786  martialarts.stackexchange.com.7z
-    73c2f8304a98006e5cd37c70830da3eef0423789ea0e83bd52503b4ab09d3382  materials.meta.stackexchange.com.7z
-    f0bb51a2642970cb29d6adf72e268098b9955d8b560a2b33b495201b65b31dfe  materials.stackexchange.com.7z
-    d7482fdd7c2f425a2337192b1152aedfb7d63d6f5cc2aadc2058defe7042302a  math.meta.stackexchange.com.7z
-    ade6d1a73eee94a97e86de31b987868dfabf0025b8940eb93b1d544b8936dd88  math.stackexchange.com.7z
-    575953580bc1bd0870c37432bfdc492bd24a8ff8e8e0d2ae702c87dd779097da  matheducators.meta.stackexchange.com.7z
-    9b2ed7d086069ec45a51782beb1312d048424323528388f776f5a0d5857dac9c  matheducators.stackexchange.com.7z
-    727e9e93d70d0eeb84927483f60c713069761e261c4eb395db276776a35bf4e6  mathematica.meta.stackexchange.com.7z
-    9badda13af8f8e5acc3ebe1cfa4fc5f9bda0f519cfa2c3071b8e1f7c6527060c  mathematica.stackexchange.com.7z
-    1e9144002ef215ef81a56c49ba278e4ae90d04a30822f46e9cd5c2655b5d64d5  mathoverflow.net.7z
-    e2944675fae92ca7594440c9d218fa36ef791f5cc61f48d94c1bf10df161d4f6  mechanics.meta.stackexchange.com.7z
-    4de3f2441fe04ce2abd01aa4e8896c962cd866ea03437c8021b619a274409bc7  mechanics.stackexchange.com.7z
-    99bbc8e1d908a14ec64268c147de6619be1cf0928b02b634ff5c10d8b39c6161  meta.askubuntu.com.7z
-    f7c43d77836c2084f94a5326f7b7f9b4d925904e666ce9f8d923e53620f52927  meta.mathoverflow.net.7z
-    256827b999427408d858581ba440dc2238ad0c5c3d6aeda0a0550117170648e3  meta.serverfault.com.7z
-    5e24dc9083f71126fc2153a5fd346854515ddf93950b34c9a09dff730ef3110f  meta.stackexchange.com.7z
-    a096e09ac21fff30276099814fe7600e66ac4748ae296f01adcd05195a7fc148  meta.stackoverflow.com.7z
-    ecedbc0cd94a59abfcd875b41f63c6ffd7168b29ec77528a75f4d2fc8da5010e  meta.superuser.com.7z
-    0aa1dc6d0c64fd19d69dff69251311e9a1da31160c4b86fa2b1ee5811e185875  moderators.meta.stackexchange.com.7z
-    9759e8b077505e61e69a5529d626e448a62b1d03fde80081a42b20566c1affa0  moderators.stackexchange.com.7z
-    46b0a2ca6563c22ba02196feaf557dd7fe1cb7caf79554a1009c0bfbf13f3d55  monero.meta.stackexchange.com.7z
-    808d6a61494a1bbe40a88c394156a2152971efbb34645d27a8e2089f4b18eb7f  monero.stackexchange.com.7z
-    41455f23e0219783382e247b63733fb488c26a51e09b1e26b3866946c3686660  money.meta.stackexchange.com.7z
-    3b2ad9b9a7af36d85be30d2a13ccc7f817cca732ffff80c0dcd18e9b43b018df  money.stackexchange.com.7z
-    fb1dbb79d0038b8d090834f463043360fe182d21b97efba4e9429bd9d7b873ae  movies.meta.stackexchange.com.7z
-    2c4cfa944c5e34b52f4adad8ae7d8fe951c5e5f5c28cfe85409485f0c3d235f1  movies.stackexchange.com.7z
-    c25460abb437c4b6259305d8663ac1ce04fc47509ece461f731afbee0a64d09d  music.meta.stackexchange.com.7z
-    707fd687808625172a1ea0f8c51d98478701c15b70d889341bce27741fa9dd6b  music.stackexchange.com.7z
-    69fc0fe11770bd26cd2c55c782dd1809bb0cce0af4a71632a247a4ef9ff32e36  musicfans.meta.stackexchange.com.7z
-    5b3d9051c689b5aa1975a0d7148d3f4f9e6fc2506e829584e9b5c557f028d965  musicfans.stackexchange.com.7z
-    efb3ac06b8cf556d7f045e6d291c1ffbc0fded64762b41f7202a571cc3bc7d49  mythology.meta.stackexchange.com.7z
-    081db80ec5b1015f4080fba86d54a2453361877a84b069afdff4edf82979d23a  mythology.stackexchange.com.7z
-    e7a6c6ea08683b37b33070c79c82e02f94fb1e6ad086ae4d6e68ea69cce29434  networkengineering.meta.stackexchange.com.7z
-    6d626643bbd3719ea8999fbc17f3ec26c4d01501448959f7efc2a78daa47691b  networkengineering.stackexchange.com.7z
-    36841992b71118d970fd4678604247963b06ad8a9431c26ee208d3809d941823  opendata.meta.stackexchange.com.7z
-    193ae312ca46b15fa732b8914b71cba4ed732075ea3f1455f946d629fb9c5695  opendata.stackexchange.com.7z
-    e87b314ce952ab091f341ad0919a259d2e6f82098aa6fa1ef5bbabaec4e65337  opensource.meta.stackexchange.com.7z
-    daa1fbcb77f739f446a2acc4036e393942a62769f9a83d477e8d03538f6b2643  opensource.stackexchange.com.7z
-    37ee7a51c42fbb38ca7eea0e50f3afe56c6653c6fa45d2bbf9b66a37e029d9a3  or.meta.stackexchange.com.7z
-    ccb8d87216047119d161cb3f83a80f52612df9cbd3258fd0f9960d9546d845c3  or.stackexchange.com.7z
-    5b6e707e65189befebc16ac3e3d9789b4321a274a2e813aabcbbaec3b8267cd7  outdoors.meta.stackexchange.com.7z
-    30c30744bfad16719c3c02efc4bb6288ea164fadf7adfac076bff349577ab8b7  outdoors.stackexchange.com.7z
-    6eed8d43985a8c9caaa373eeb55e360231539b486f6fe4ba808db35cb8272b8e  parenting.meta.stackexchange.com.7z
-    7a3a1d2da31e7702c9c1645689d6f2d870011ef5c8a7245ba1fa9a16299249b6  parenting.stackexchange.com.7z
-    740c8e8e1e010542a13b79e1ca45681f760cc9d30c5a59dca7041eb6724cdf77  patents.meta.stackexchange.com.7z
-    8093d715d514cef1dfd5293df0eab9e2f04d4198354e4031c00da7cdcaa15b5d  patents.stackexchange.com.7z
-    edc062a9d2cd4d7388d989b7bef429c4ea623a652acb79b14ef643fa02237fe8  pets.meta.stackexchange.com.7z
-    08ae1630e3439173716c4cc815507664577ba2e4e0a168239d60559338e34ee1  pets.stackexchange.com.7z
-    18a486796ef53728eef26b79e951fc748caba3c505266c4d24e2af43cf5c6bc1  philosophy.meta.stackexchange.com.7z
-    1a619b21aff28da8eca2fa1f368a653009cd8bfc13f9f413ddad0d0193fbd153  philosophy.stackexchange.com.7z
-    b1b1a33ed3a2e4f8c8d8f1bdace11ca07420f9fe36eb65ebb4cf9a93a28c7851  photo.meta.stackexchange.com.7z
-    a0883beaee930c760e3d5a084b299f6e8fb088105b99ff33b2aa8c47cf186a31  photo.stackexchange.com.7z
-    9ad1cc008234bc9baf5afaa5ee8d9b47699637b09165c171cb3faea383dbf221  physics.meta.stackexchange.com.7z
-    5a995ffadd095d23b09f964f7947f20bdb9f3e5688065f2e52967c582ad83d4d  physics.stackexchange.com.7z
-    a5a8c728dc6dc14bb436c4522d2dd0bde8fb124fbab9a5fab785bbed260b7361  pm.meta.stackexchange.com.7z
-    d403c9fd77826e2d8e890b7a2c9c239efc40e9b34e7f35d5c899582aa555c30e  pm.stackexchange.com.7z
-    73e9896c08a095fdf8000636b91069c8a454b4f17127dec4d36d4c398d40cf56  poker.meta.stackexchange.com.7z
-    c2c956f24d07197825ff0c3bd41a4de36e9fd4e31aed88667cd5ae91f20d53c7  poker.stackexchange.com.7z
-    fec404010451369973bf6f09b0048c6c933e1e106d75ce5ae867ec474dd8016b  politics.meta.stackexchange.com.7z
-    8009f346c4a90586c7edd82807c854efabd665a52c484490cc2fde34dca2affc  politics.stackexchange.com.7z
-    461921ba4be396d51e9202e511de633d5a550d1ab177389b15cc75278ef8cf56  portuguese.meta.stackexchange.com.7z
-    a5d8e379e70aec6744f146e0039696c29ec441483d06f7fa49380cfd6ad97e3c  portuguese.stackexchange.com.7z
-    ce532801cbcf29d30cc01c44210b917e4a75fba8097696a2ec7895022dba435c  proofassistants.meta.stackexchange.com.7z
-    b847a8de3944fe01357071ef7d20cab30d18553d31f0861a796c0232023a6698  proofassistants.stackexchange.com.7z
-    150cbd7a19aa15be24d69e6355b478d808965a4fcee7aae2f2caa96e89d8c22b  pt.meta.stackoverflow.com.7z
-    f26a6cd6c7aa877c6c2feaf73ba778dab0e6f44b95746157e785b1d8eeeee050  pt.stackoverflow.com.7z
-    28db9e56854e992f0cb8b34bb68bf0420727fcaf842490b637696ffe1d8709cf  puzzling.meta.stackexchange.com.7z
-    b4efd8225d8cd5b24cb68f76b4acde7d88b866b33de72b9ff36f4b2e6f8e1905  puzzling.stackexchange.com.7z
-    43169d9884f5c7c18bab28aeb3ce747154ee9239198366f07183474d3ee74918  quant.meta.stackexchange.com.7z
-    63a29d58c00d18f6630c873de4e5ef1266aa07648274c12c76fe54ba750b09fb  quant.stackexchange.com.7z
-    5860d0edf8236cd16711d4d998390d7dfab45751c802c1a86f97764ebac87a79  quantumcomputing.meta.stackexchange.com.7z
-    604146f30c47dba6c6009e32b6ae8e840bc1ad16e26c37af393af8e32ef98b49  quantumcomputing.stackexchange.com.7z
-    75901c44109a9e1be027cb544c5d6d6a0ce723715dedc435f0d589daad2c7e09  raspberrypi.meta.stackexchange.com.7z
-    cf2acde0ab4478a449d5ab88251cf1ebce6dd137176a9ef39eb8b5aad19b205b  raspberrypi.stackexchange.com.7z
-    1fcd922eb08cf7413407d039be62fa7c578eb3e9c7426830790d7cba4b861128  retrocomputing.meta.stackexchange.com.7z
-    985ae8a5e8c8bb3242f0805f6e139867b069dbb1964a1d4dd23fc5d07b4f2a81  retrocomputing.stackexchange.com.7z
-    931cd40ba765c58c00b10de242ef4461ec4a9d3948dcc7e591c8f41e40736a0b  reverseengineering.meta.stackexchange.com.7z
-    ce8c34e52559a64d72fcd16f2656c98d975280ba62bb439c867a5e39606b26b0  reverseengineering.stackexchange.com.7z
-    44c26fd41cad459e1c4379e750e36ecb983c3067b11a7a7212d462cb1cce404d  robotics.meta.stackexchange.com.7z
-    f9f3bab2af026baaff4ae271ebd572bb58cfdf600c75a9c55ff80c2e69bad717  robotics.stackexchange.com.7z
-    0ba891718974fbb464ad031b831f3d7d8c09b5e494355c29803415b0e6ba6349  rpg.meta.stackexchange.com.7z
-    3a16b0be4226e8c40fb6378022755fc3a153aca24a8a645adb3c66adeefd42b1  rpg.stackexchange.com.7z
-    3cc28d03483a833400c3ed73f80939336aef1bfe24bde4e9e70cb8dc30d08342  ru.meta.stackoverflow.com.7z
-    e10ae9d9cf56efbb47bad5cf50ab01679e043daf175f89f1b449a8cbbf06396b  ru.stackoverflow.com.7z
-    36d18ec68510c280d44f3bf36cf2d1cdf9108eaaa97effc3fda1a84ab60d90c6  rus.meta.stackexchange.com.7z
-    4ef021e6b7420cd05fd10ffe53a43cc3727eade8fd1417ca489b248f014a36df  rus.stackexchange.com.7z
-    c36556136eb4b103514bf95345986f4f408b7b502a13295d2d45122952202db4  russian.meta.stackexchange.com.7z
-    28d55f23b4ce546246d1571c0914df9216e60fe2c002fcccccbbb6c6f3a92c21  russian.stackexchange.com.7z
-    5a106bb7736739045ce5b8d90b09e940c8b9b09fad9dc84f1f03b8c29de58ccb  salesforce.meta.stackexchange.com.7z
-    9ce158f12860adb5e586a25c8c836bdb65830ccf509072942ceaae483edc7c2f  salesforce.stackexchange.com.7z
-    67144ab68012670f9056be37572ce7185a8f43fe5949c252ac4d2d2c534dbdaf  scicomp.meta.stackexchange.com.7z
-    f561649a026578fd97a66ccdb0aa4e6cced2f1847c4451a7898032296acaff46  scicomp.stackexchange.com.7z
-    d3970c4fb5950fce567e0a27462b262ff73c9a12316b4cfb08afd3db5360f856  scifi.meta.stackexchange.com.7z
-    bbcf61717b226c2bbd7f263630a2a8b796fc1d00d93294c58036a9afccfed54a  scifi.stackexchange.com.7z
-    3ef9280838bf5d692f931653d8909cb070e9c8aaec3b2914af94b0f06264c7e2  security.meta.stackexchange.com.7z
-    c0ebc7da8ed249848dba07320e8aaef9634d4d6536281cbba585a8c8386360b2  security.stackexchange.com.7z
-    0eb4c8434204f2f104748f26423edebf53783e042dfbbb1962081ce93e050624  serverfault.com.7z
-    f50b744355b081265bc31d00c5d3f036504703c7e5f51b3d50b74f5344549965  sharepoint.meta.stackexchange.com.7z
-    2aa82077b527af9e3b532e97409a530486c6c2f8daa310c4fa0ae67926fa1d84  sharepoint.stackexchange.com.7z
-    109b7a9ea947779f3f139730886f2727fc18502f128da3c2b3482a79743f07d8  sitecore.meta.stackexchange.com.7z
-    0a6c03696d336813eab858046d70624481b983b54bfcae0e197e268a4d667757  sitecore.stackexchange.com.7z
-    68b586e9af6f539f1a907e61b501fd6e37a7239adf4cec6803eedf35aab2163b  skeptics.meta.stackexchange.com.7z
-    6bd6fa89ec03f6c7d6bcea675df427d7e6b7de9d97bca95ef173f57dfb24afc5  skeptics.stackexchange.com.7z
-    f0039f89fbaf4b9668c7fb28053219f913eebacd90607e5f8c550dd93080d579  softwareengineering.meta.stackexchange.com.7z
-    a78a7a3d6e1ba4846960adb2f080bee6470564a62625a5685783979385f9c20e  softwareengineering.stackexchange.com.7z
-    ade86e3bbcdbe0fdc766a0d019f08682e3699d185695c6517ed2a14bd6296ebf  softwarerecs.meta.stackexchange.com.7z
-    96bfa166c71e907d30bf043afad8e17a3e81f1dc3345494833a72c632dc30997  softwarerecs.stackexchange.com.7z
-    c53a9cc64517f4fdf5f1404ec34df84edf6a3a79a7b4e912554059f2c6045544  solana.meta.stackexchange.com.7z
-    0a4717e66c68cd2c7efe0309cab45f9d211f5c886ca3d3bf7e06b63a26b83e41  solana.stackexchange.com.7z
-    3a827c91e5da1637c118053f7e39f94ac12344769ad45dc61d977a6f1f10a7a7  sound.meta.stackexchange.com.7z
-    7107d4b8bb43c4a30e08471c6eeecc4bd24fae5570b793f692ea4f55c15846f4  sound.stackexchange.com.7z
-    25f7e441eaa393ac6d9a04909cec46451b83333e0d28300814bea0c4f7d9cc07  space.meta.stackexchange.com.7z
-    3d0d12d401f78a44b92f6a56f52a80aa41a6d98b100669216eb3947e2e5a3b3a  space.stackexchange.com.7z
-    f1cf1f086f53e7f1468d2f26eb158fb1016df061613805be07de4e4f836e38d3  spanish.meta.stackexchange.com.7z
-    2d80e651c9f1a34282d3a62c79e3ca3717f4251466900abf5be6d776c1a414bf  spanish.stackexchange.com.7z
-    00c21022e3aaba529ee75a7e3d3d62fae0bb7363685b16ff2da16e814dec0b51  sports.meta.stackexchange.com.7z
-    8837103fdc24a2d75e0cb0b77a7f9796fc3cb17c7d09ec3ac604ae80b653db98  sports.stackexchange.com.7z
-    7feefb09f63976e1c493b12af7ce951af1ca305ade8eef4489d27c1ba6f07b39  sqa.meta.stackexchange.com.7z
-    b3292e38b747384bb5fd0c233a1629f565036019f8ddb371d5f93784596c80cb  sqa.stackexchange.com.7z
-    2cbff68c5904610723cac5dc84c59b21c484c3957421d53bdc08b8666b235cee  stackapps.com.7z
-    e5f5d9e8ec2797dd7f4f50ce4180a18abd0df0571ebccaa255d1f04f4200982a  stackoverflow.com.7z
-    51684a97ec2af143c6ec8bdbf5de97d21e7a9b77e4d56959f73d099b7cbb816d  stats.meta.stackexchange.com.7z
-    134a4ea1646590439ea86845a9c3f3864efebceb3d9fba887beb646881dcf7c5  stats.stackexchange.com.7z
-    0472934bab0b159fea92b8e0c26a6924aaed5f9a5fc7822a79315064b7f34a19  stellar.meta.stackexchange.com.7z
-    ad4748eb5726f8b1e02eb93b864e623f875d77aa1a003cd914a539af63fe9137  stellar.stackexchange.com.7z
-    ec30882bd1b84bae43f8ecc0e9c42ebcda55818386b189fb7f1aa20e72d82c91  substrate.meta.stackexchange.com.7z
-    729ce2a16dd009465c19f028e8ed530a52e8e83117e650fdd1ab3521ec8a697f  substrate.stackexchange.com.7z
-    2f02fed13482ac97e91bec667d942388d11c049c23d356b65639e0428e6a2f20  superuser.com.7z
-    412f3a139626ab470471b2a156d1ee0a2c12088833c92ced2cec9198410a38a6  sustainability.meta.stackexchange.com.7z
-    255b88732c2c2962c5664668872fb278acc88001258c158336361528cd9efa2b  sustainability.stackexchange.com.7z
-    5713d19f27a774e94480685ecd22ebacd15688580fbd70a1cd939dfc843a5250  tex.meta.stackexchange.com.7z
-    74236738e84e544a6f20a0ead92d6df37e6fb85f6717212802181e2ee38557a7  tex.stackexchange.com.7z
-    8b90f6f2d6420b9099bb316c7818fd166b50e3441a15baaf9f5176b2f2a7c725  tezos.meta.stackexchange.com.7z
-    a2b6c78b61a695b01df6253c745b0fa7742ee805388dd0d4cc5cdac0593afbbc  tezos.stackexchange.com.7z
-    22026c90bfc8040ef2494f1517e1bebeb407b3d10228ffb76b4507c2c98563c9  tor.meta.stackexchange.com.7z
-    3b42fd2f5179036920f1ae1f366a4da0737915f07312d6222d7330e7f813ff60  tor.stackexchange.com.7z
-    d0025433581ce976fe3deca6d41217509dda0b8d72acbfe5756a6de40cfb818f  travel.meta.stackexchange.com.7z
-    1df580f5e02f5c09502123729b403a98498aca89e8c54df8b038517c27f010bf  travel.stackexchange.com.7z
-    bca547db18eb9a87eeebe38e034cd1804fc661b4ea9160d1a12764cb031257eb  tridion.meta.stackexchange.com.7z
-    db6bbb25d35119ec2541d64782845825578a47ed6f0ce0bce775983950210468  tridion.stackexchange.com.7z
-    b1e9512b24460b7ed5d8409251468105c4836c5da4cdcab8990038f6ad9f7752  ukrainian.meta.stackexchange.com.7z
-    8b51772c073756f43b3a3b73afbb1779ac34e67204273d1586b180f0b8555963  ukrainian.stackexchange.com.7z
-    e8d038fe9b36ef015e441ced9e11a0b8a36c5b85e739e68da509ab844e0f4f26  unix.meta.stackexchange.com.7z
-    77cde77bf7046bef7f44c858b14b011b0e1a2131cb02548e7c3a00e9b5754e8e  unix.stackexchange.com.7z
-    4198ea6caae156e7b20fc9a5cb9969279b9c398d31c968da086f2d6d35434114  ux.meta.stackexchange.com.7z
-    900ec4cbe69f4623efec538c8b2dfd0b1cc927aaa5ab71e6ae38e6eddbe3c8c7  ux.stackexchange.com.7z
-    044dce7f4f90cf99f56ae75939e5ef498186b38af452636735d87d486b91ac54  vegetarianism.meta.stackexchange.com.7z
-    f666355b6a7020e7477763ca730f616e0df480daffbb47f10a352090437587ab  vegetarianism.stackexchange.com.7z
-    796895fcb576ac9940b3f64acd47af26e4e7ae3c0d14fb3f9aa5aa38b9963a50  vi.meta.stackexchange.com.7z
-    23adf7607bfe264fefc07aa77874fd049cba504e66a43044dcedc800a68a4e24  vi.stackexchange.com.7z
-    cae106c62435310af19129062fd81e4a9ce6b49d5447edecca483925e61833cd  webapps.meta.stackexchange.com.7z
-    3481578bf1e60e8180e855faa84e0ac0cec8d112c84a897bb54679237921e346  webapps.stackexchange.com.7z
-    e01cb7e71c8274a40a9de81a1d3f65998f538920bfb6d9a52af4f9158e74d790  webmasters.meta.stackexchange.com.7z
-    594ab3562945427dcfddd810c48fb0d82f8429401a78121d70e42e6eb128fca0  webmasters.stackexchange.com.7z
-    c23e185e00063a02dad3352786abf3f1deb9271a4e1115855e14b7236acd4c1b  windowsphone.meta.stackexchange.com.7z
-    6daba95df1911d352aca9bfa184d95d48d0991e07e1ac68e282214b3a57b05ba  windowsphone.stackexchange.com.7z
-    40d53c6ee612bbcf7d2a1f09b2c3b0a7953eadcff2e2a23f01e14c42f6cfccd4  woodworking.meta.stackexchange.com.7z
-    db66605bc28b6e91fb458e35f700706797494b27f13a232a3d967a8ca838dc8d  woodworking.stackexchange.com.7z
-    358eb182cc512ee3b7903434ab6839b863139328fcc042a7eb97e402c4df6d80  wordpress.meta.stackexchange.com.7z
-    1ef75022853f7672240478c97ae778c10f019dfe124ee8059be24324103ab81f  wordpress.stackexchange.com.7z
-    c5c38c27720a471bd97ac8fc3865f368b133e90f03a3118531e8e6302614c28e  workplace.meta.stackexchange.com.7z
-    6fdcfe56edcca4b4a690fea088c1ce415ecc625d30440bab4ae184a6b17fb9f9  workplace.stackexchange.com.7z
-    49eb287affd4dc9ba15aee5c1e45acbc362e849c0f8c58abbf11cf6886ae1467  worldbuilding.meta.stackexchange.com.7z
-    db6546caf7d807e82940f12f840238dd99128da915dbc54239b9795c85796db3  worldbuilding.stackexchange.com.7z
-    02ca47501ac6a1941fc9e90eaf7f068ad9a7f0651ea64b037fcacb848e8542e0  writers.meta.stackexchange.com.7z
-    dad3498a3e466bb8b6d66f64c55397711f90049ffb753633e63aa1b439dd50ac  writers.stackexchange.com.7z
-    </code>
-    </pre>
-    </details>
-    <details>
-    <summary>2025-06-30 rev1</summary>
-    Note: officially confirmed: https://meta.stackexchange.com/revisions/411485/1
-    <pre>
-    <code>
-    38ef461889a5ecd94c97d71c7ba4486d72191baa40e0333b5e8a3ad2e94bd9fd  3dprinting.meta.stackexchange.com.7z
-    be05c60c3b23390863cf211a6749d4d73a47ffa5a9dde2d3ceb994e5a75e522a  3dprinting.stackexchange.com.7z
-    72e30e638b2d28e8729c01d5b5b9be0a051a4d75d3cc7a59546a9022932d6a68  academia.meta.stackexchange.com.7z
-    367a58701fd9fea8617f79007b07f6360f78d068bc36c42eb1e3ae3b28c1796a  academia.stackexchange.com.7z
-    094b86d5b8044c7a4e2e81a3a600e54ce7a500e1d5e129d2f2f265c93044d165  ai.meta.stackexchange.com.7z
-    7b3b3eb2351772078b3438b0d1fcb0c388349b6ca24aaa4e12a43a36d38a06b5  ai.stackexchange.com.7z
-    9c5998434fa322dfaede18317961af9fa26b79cfb493421d71a8cef2651a5f9c  android.meta.stackexchange.com.7z
-    318968e7450c3a61b7b6d90833bba4d39960ad5901913bc6802baa7c68325c34  android.stackexchange.com.7z
-    20334a2ea5172d69bf1e531a502a4bbbcf272ac7a4acba5c8b88fa71e26ce861  anime.meta.stackexchange.com.7z
-    d9065e4779d6045e6ab02fbb333e7e214b1dbc7665515b7622573b682b443911  anime.stackexchange.com.7z
-    28762ab6111b014ece179c1d23227db1a4c54f9d76a0fc88b35e07d9302284e8  apple.meta.stackexchange.com.7z
-    ef0122615a5197542574bdb8ad05839b2931e6be7d2f03b62392d7d7557fe11f  apple.stackexchange.com.7z
-    32284d818bc5cbd3deef39c80c7c180fe1c06d3ec871be60845cfa3dc021ae4c  arduino.meta.stackexchange.com.7z
-    4e813ebcac0b7d08ca1df9434902ead08019d2c89ed490d595e5ca618a13c5db  arduino.stackexchange.com.7z
-    6ec403808badb2251d86dbbb53aaec46b37b019ae683a08a0fa87d618a045502  askubuntu.com.7z
-    fac4cf67287363d8f1ffd147633916cdb48bb61a8ae2c9f492e8b64cad3aa190  astronomy.meta.stackexchange.com.7z
-    1312a9ae8987626ca9715d7630d31f6ff4e6a350224167f3b3e29941bdb2386c  astronomy.stackexchange.com.7z
-    00a5e4c40c0f4ba4670a831c186f150e017e05d80d055dc21dbd38441f14ff34  aviation.meta.stackexchange.com.7z
-    c325ab892b2b8951ba7aae15d02d9366b880d1c16d6025e3246bf11481c7f38e  aviation.stackexchange.com.7z
-    952e741da4c94aae7b20d2c1c107904db6fcfd5a462133b599406ac0fcf56d98  avp.meta.stackexchange.com.7z
-    da2d96c57b6ea4b5ef5f9d812269d63629cd56694487bbd0dbb535cb184e79ee  avp.stackexchange.com.7z
-    919507aca09b967d910a033a12a1534b409f55324afedd3ee8942a78ec6ecc22  beer.meta.stackexchange.com.7z
-    ccd9e964f0a9af5d229c3d10297f5dee8b80710caf245cd392045b1abe840a5b  beer.stackexchange.com.7z
-    f44667dd010ee5c22d14319f3d9ddccc1d18b1ab8ff9207aef9c143586921ab1  bicycles.meta.stackexchange.com.7z
-    12a8a7290628730e18cd2296a2fa2350adc696a4f348a46d95c71aa575bfeedf  bicycles.stackexchange.com.7z
-    c88291aa35e79ec476941ae8732b14288a1ae7bc7d217dfbb5646d227d533feb  bioacoustics.meta.stackexchange.com.7z
-    01855b68eab3ceb51aa83d5ca563669439f1161fa4ce1239374b73ddde45cf87  bioacoustics.stackexchange.com.7z
-    71d0989ac425c9d18ff9a8e89e7bdeb79145ad49bd3045e3a06133832d79716b  bioinformatics.meta.stackexchange.com.7z
-    552fa474c20d491ec346a70253dbd2929a1c42450aeed96fa8fbf6d7eab67bd5  bioinformatics.stackexchange.com.7z
-    01f85d192eee666dda9b578287bdf9d4a575a42d36e1c513e45fff3561f3dd62  biology.meta.stackexchange.com.7z
-    4a494893ea7afdd5ecdbb1ca59193b20a3720d4ceeab7bcb1ea4349caec12364  biology.stackexchange.com.7z
-    436fd4316149b734f874b92034a02309198715bd40de74a6a307075eff239597  bitcoin.meta.stackexchange.com.7z
-    bd41f48a1d09b6c91747b0b5898bdd41e0342511f47bfaae2c40d24118fd3fff  bitcoin.stackexchange.com.7z
-    470c7065df2bc1634f22e9f43daa3751ad2a84467986f1c4e024fb8fcafb75ae  blender.meta.stackexchange.com.7z
-    4b88b54986ca56c930378921c91459ba7b9d4a67ee7b5f2363b1364a388c6044  blender.stackexchange.com.7z
-    f591ee84a8537543bbfc0644de0c51f44fae31b7988b6a99913a89de42f5f1e1  boardgames.meta.stackexchange.com.7z
-    ba1f566441624e9f545bf0b06b6eaca50695d2abfd1e98d2b1b30d9758091af3  boardgames.stackexchange.com.7z
-    dcedabddc842da0b2a10961512c42bb5647ebe8294fbe13cfe8a76a9a8c680dd  bricks.meta.stackexchange.com.7z
-    1435837733197bfbe52cd9d5d99665384732d6a85de217a21e7a099843a68cdc  bricks.stackexchange.com.7z
-    a3f2d3f17890c1ab0f0dbf01d92818a5b31b4e99ed2e7e81f773af7599ce6a50  buddhism.meta.stackexchange.com.7z
-    7023ca4cff2bcb0baf0e4fc869206bf33c3ed6e911741fb48302a9933e1ea230  buddhism.stackexchange.com.7z
-    99929904d9a5bedad5848ea07d093d6bccb9042e90af6ed82e8fa8944f0e77bd  cardano.meta.stackexchange.com.7z
-    7702bd4488b78121fc916dc48cdd1516a72c254a9c266bbcf91d19245a68f782  cardano.stackexchange.com.7z
-    cbe72aa8005c5ee5b1a12c4fc35127c139539c978a59a36abcbdc6c71dd71c2a  chemistry.meta.stackexchange.com.7z
-    9985659bfea3b7935132af05e3484ca923eda7e4cb80b5356d80c75b7f517726  chemistry.stackexchange.com.7z
-    ecdf7c39bdc7b604342e94b4e8128aef061690f1a26c3e75eda700ca023f46fa  chess.meta.stackexchange.com.7z
-    9b865a815e024698dfaee464d1d019fc28be7645c5773697010d30dd699bc430  chess.stackexchange.com.7z
-    1bc1c6b49eb726e4889aebb61384c7365d1a9a46e0eb5982fbf54c160f584b65  chinese.meta.stackexchange.com.7z
-    a72c5b456dd1a67619ad3a044dc99f3ccb9819f9ec7f3e3a3434f36418173836  chinese.stackexchange.com.7z
-    0f8de11a3a13e60e72a4de5600e752c688ef9d117fbe77c20c4f86a6c5e22f73  christianity.meta.stackexchange.com.7z
-    02c993325366d4e3a46b5f71e86d8124f5a598f79e7e75a877e6104f7ea834eb  christianity.stackexchange.com.7z
-    7fdabd17005bec6fcde4c618dde433c8ac6e451ef87e5f01f8a76384f4d7a833  civicrm.meta.stackexchange.com.7z
-    46497988515cd1d6b220bccfa4fb7080081134518e39acae3d8a07761a91655f  civicrm.stackexchange.com.7z
-    9f03f3cf9e41f33d138e134ecdd5276861a72a3a643f8bf79f7a553ace4bd031  codegolf.meta.stackexchange.com.7z
-    c5701dbbaa16f2c9466770470a7d811435411e6f566591c55ddb95575725a80f  codegolf.stackexchange.com.7z
-    60f0c5d6bfac5207c189f0c5fbea67a6ae82a1b53aee5d0b51ecb86146a3bb2e  codereview.meta.stackexchange.com.7z
-    8857393cb71ae8fdff0380689a29fc7a952a449f0aebfbc55619583c6cb10635  codereview.stackexchange.com.7z
-    4b8dceb564b972a2a112808a4af39be338cb9b619d47153ddbd175161db94426  coffee.meta.stackexchange.com.7z
-    2efdc89e3531b31f484f9b37567b276b3d9a47cc1b44bb4a924f259764495b91  coffee.stackexchange.com.7z
-    da130ad6a71553deb6810e6f1fa21bd8ce067a446447e9d7484ad4e7c89a4497  cogsci.meta.stackexchange.com.7z
-    04d21197d9f9049a379b9b18f1a451498020f93c2ebc800da5ddef8e317dae10  cogsci.stackexchange.com.7z
-    36a6a1ddda42e5d2fb03c24a59683e782256db47d3bfb62f779bd5f25d73526a  computergraphics.meta.stackexchange.com.7z
-    ca314202ab42db87825528c26b009a580e9961ff3c05c92313e0748288071fe7  computergraphics.stackexchange.com.7z
-    8826308a67ea2e2a1ebe1d18a44ae19847cbbb18514fa7bf498fce8257b90bf0  conlang.meta.stackexchange.com.7z
-    07319f4fc7ac26616b953921367436f5b45927a8ed70866d9ec79d1c9e2005b0  conlang.stackexchange.com.7z
-    9dd30f4caa2286afe5e5138d46fa431c82447ba157d5c162146cd2bafcb00d0c  cooking.meta.stackexchange.com.7z
-    4dfa53b0c11807591e152e4dd6e9d222c20f45ba7517419ff495b9607915dbe7  cooking.stackexchange.com.7z
-    e1dcb01ef4528115f07a890533e8c66d03cfc68f9d186c6f45d0fe9e84bafd8a  craftcms.meta.stackexchange.com.7z
-    9f211033bb235aa306d86ccd4f994d15a3fe4d277496d9aa9c20a221377955dd  craftcms.stackexchange.com.7z
-    b530ce317f555bb6f4c88191141634f76367f231fa0111cbfcfa2807bb5aa9d8  crafts.meta.stackexchange.com.7z
-    85494af09dd9eb5863f885d0e0d0879a639a3503615587c9296098984e79527f  crafts.stackexchange.com.7z
-    9e364b09ea26864b43796f71df8bffb2c4074e5350c2eb2b4d0d6c7ea7cffd9e  crypto.meta.stackexchange.com.7z
-    43cff7b0ad4fb9a21facafe35c50ec0494e38e57dd55064929dfd8393908cc4f  crypto.stackexchange.com.7z
-    3bc7739da3d879ad9fc4b121b59b209e71be5f8c4634e6fd68f71ac6bf63154c  cs.meta.stackexchange.com.7z
-    c2bc5b1cc4e235c20682a89d47bf016432cd823ed1e52fe8ddcf27656a36c88d  cs.stackexchange.com.7z
-    181c639b6f5378941e476dcb377b5218a3ea2c20adc31005d1e00a6936d14107  cseducators.meta.stackexchange.com.7z
-    4878c104ea9408d989966ef9988e0f3a1e4e00a6aafd9fd09ba86113900e0eba  cseducators.stackexchange.com.7z
-    042e5a9734187bafe852f5bd5ed1a9b27f46dee90cb272f6fd7607eab40856a7  cstheory.meta.stackexchange.com.7z
-    9b067528b66f6fb67badf6d045fb60e521723649a4b29403a0b19a4b05a5a28a  cstheory.stackexchange.com.7z
-    a7b1ced92b4257044d4b81fed9d57c2919beb6215f978ac33daf1dcc866ac509  datascience.meta.stackexchange.com.7z
-    6b71cd84e633a7498d13135279cd33caf9e863c4ff250bbf310f25e961cb32ea  datascience.stackexchange.com.7z
-    68d5f3136807d9950c0af5deb11dc0b4282c372b16740b128dfdddce2123ba9d  dba.meta.stackexchange.com.7z
-    19cbc221504103ebf05ae072c2fd845e563a4546070513fcf68954ef5db14352  dba.stackexchange.com.7z
-    2acbcd3ca8742c4eab96fbc7aed5fbe59da0062c89f2d3439d3f8634ae992cac  devops.meta.stackexchange.com.7z
-    a62a85ff5e65cc3f2331ff3f364360fb893c73a987aa8b03d75886d156e5cf6f  devops.stackexchange.com.7z
-    61633f5f40ed083bef045c93cfe9a3bec45d3d1754cfce81e5a173fca6ce713a  diy.meta.stackexchange.com.7z
-    e1fb808ae22f145cac27b91db2a3e259862510f5e96616ea0d3510225f0a84b7  diy.stackexchange.com.7z
-    b76ec9309136f11a8640d79128b84d350ca5c876642798c0c817c09fc784b12f  drones.meta.stackexchange.com.7z
-    2b87b6149bab188ae9c88b46c0f0891291f0087ca2faaa2bad39dd2ab53804c2  drones.stackexchange.com.7z
-    a3f0e08e356429a73a9cec97da05d07cf6545561fa71f73f4926eff1f19d46fb  drupal.meta.stackexchange.com.7z
-    ab8ca52a51c4f5cd584a68e6b9976aa774fafbe7036012178decd5eeedda8494  drupal.stackexchange.com.7z
-    1a8690dbdd5749fa8a4bd8c21d7813d2a5dc2142f5d822b33fe29bba3290dbe7  dsp.meta.stackexchange.com.7z
-    0ef7c426106500d562a7c5d77a7af995befc99f90aa99eaea43b6ebb1f1d6691  dsp.stackexchange.com.7z
-    185f576437df6c7c96878fe223488a610aafa380ab053dc6b74185c927b76c5f  earthscience.meta.stackexchange.com.7z
-    c6aceb9474c378904a3976db416e4af1eb739ed44f1177e57e193d1b762e8de6  earthscience.stackexchange.com.7z
-    b670f31c96fcc8a67d8744ea272adb7dbeefb47470381f2be8fc39fb16a01165  ebooks.meta.stackexchange.com.7z
-    29adb2a6ff78961a7cfb332a343ecd03746e1fe95aea4a6cd48ff9df254e711a  ebooks.stackexchange.com.7z
-    739019171cfdf8845f90ceb792d0b10ebd8010bbead214937e1bc23e81b822e2  economics.meta.stackexchange.com.7z
-    bf495fb606be76ce78533d7fc65dd46379fc121af4a3f3a2ed8a1547a6a47185  economics.stackexchange.com.7z
-    203a1691b652604d33ee402466152fc6dca3765113ae4392e8a92623838c5c30  electronics.meta.stackexchange.com.7z
-    2f022c8b0431762e637093ef0f0dac40c574454a3ff19f69a5d3a3ff6109d015  electronics.stackexchange.com.7z
-    800398c2b6f02c656046a8787209796382b14a66c27d4a4a4865dec24950eb21  elementaryos.meta.stackexchange.com.7z
-    b71a1a75d5be94ee47f19524ec731fd818418349ffe1de09758ce673b4d911ce  elementaryos.stackexchange.com.7z
-    214cef9df2f09d83c87187c2ab3e36425acf49bee9c0ea23b0b9de2e52f2257f  ell.meta.stackexchange.com.7z
-    aa8f2d0ccd560ef4942ff71d5b85ec9b0f75ceff1930c3e05abc38bf41fd4c4d  ell.stackexchange.com.7z
-    fe0e31f438ef7171f82f49bf27759298b3714efc79f4635f4ec6cfe2790b39aa  emacs.meta.stackexchange.com.7z
-    c308b96bb5fb2f7684cf128a2d6ef22a595edfcd12fc9d358a155bd55b348b76  emacs.stackexchange.com.7z
-    93a2a64c093753f4b3acb21c72d2c0c8d724520f020c9fa29980d09be3b808a4  engineering.meta.stackexchange.com.7z
-    ab7322dd61ff620d226d78d38215f26c103b1afbff14331c30c09ed9779bc51d  engineering.stackexchange.com.7z
-    2bfa6e278f1d2466dd1afb33f9863cea9831c0765e8b6f77455114ec54010453  english.meta.stackexchange.com.7z
-    0ec582f386e312487f34a0e83c262bae56132139ab8f7e833fe5395b16dfae80  english.stackexchange.com.7z
-    5643f165b08677d8ae0a3084296d39805daf5e08448c27c2cc53d853b1149b30  eosio.meta.stackexchange.com.7z
-    f23b6ba536aace39d6b76198cd0a0b375286268d9ed5a5046f2789cdf08ecd49  eosio.stackexchange.com.7z
-    db011b84430651d8f1bd045043b135e00802c3c32791e83bed6847fd1680fc7a  es.meta.stackoverflow.com.7z
-    c1962f25686b81c90ec253ddebb4facd67645a60341deb51d8a727b9dca7d1b1  es.stackoverflow.com.7z
-    6e290b551d645eb1e313049f5f172333855d78b72470bda9991852b551ddc08c  esperanto.meta.stackexchange.com.7z
-    d44dee2956f64cf8932c36a07b9e19e9c34a4363214e1e0db3749ed4decef6fa  esperanto.stackexchange.com.7z
-    14d458dcf65078593cee20d1ded40d36e8457b39a7dc0c344b7357b095e3ed11  ethereum.meta.stackexchange.com.7z
-    120f7b4780045df3b6920699f182d3562f0e07c1cb539700e2c7003190f05dad  ethereum.stackexchange.com.7z
-    63561f76323a79601d49afd91485ea372c79e16e27be969aa7acde1d21cceafb  expatriates.meta.stackexchange.com.7z
-    70e2fee57f5e98ca7c6193f09b8d1cdf61b3f4a99e83e4dd407f98ff3a2adf72  expatriates.stackexchange.com.7z
-    0275a1fb146852c0bab65743d7d4445a0e7e04b95b33085820348fb332e41009  expressionengine.meta.stackexchange.com.7z
-    78e383eb82daf9f682634d0bd4dfd9630d72db7a32842b01401aaeb37baf33f5  expressionengine.stackexchange.com.7z
-    4ed5c620a16bdb3683dd3db3672c1e4e0596a0e6b5af8d6bca60d8fd7ecb6b09  fitness.meta.stackexchange.com.7z
-    b822f8898b01004da4e730a806598ae9b2f2529b5376209c63c0cc224f668aa2  fitness.stackexchange.com.7z
-    6711c14ac6cf29b3972b770f264de32dcaf5547cfb60f06aabd98c1f89f90ded  freelancing.meta.stackexchange.com.7z
-    b06f1e3ba1883d96ac7ddc8cddb5b268c9d736677f958f0b89926489bc15e811  freelancing.stackexchange.com.7z
-    b769c238e009171fe1a8eab5f7f34b7b13fd78fe873d634926c95e79b31aef4d  french.meta.stackexchange.com.7z
-    47f31c6131087216af271d3d083a30d1c0f6d99ef93bdad699f73564a967e63d  french.stackexchange.com.7z
-    90b22266d25dcfc3591aac613a240a45819f518c360ade195176bf1b9ea33895  gamedev.meta.stackexchange.com.7z
-    3493c9ce4ce13ce2a245c4a1049b04fc825ae1758aae022ffa836da0d0ab6ab1  gamedev.stackexchange.com.7z
-    7565861ff5bd4c8117b873e8986a52d37f65480bd64db7d4dfc23e2899452469  gaming.meta.stackexchange.com.7z
-    a2fd1cdaaacdb3312c98ff37bd524597a7524039b63f16450e43ba0c08c23b78  gaming.stackexchange.com.7z
-    6b228a05f4ccc7f06a341988824536ddd0851abd88c9b0a8df50fdf508a7a082  gardening.meta.stackexchange.com.7z
-    93b1f0390e080334e5117581b830e24769ebbbfafeed43b9b3e64213e62773cc  gardening.stackexchange.com.7z
-    2d1f8bfb47feeaefb719e9784421c208792248f05f1de2b7b153942244899af3  genai.meta.stackexchange.com.7z
-    09fef918333015cf9765a06b141d5f25dd16cda89ac3b20afd6026b0ad2b21e6  genai.stackexchange.com.7z
-    21feac3e7a92f1bab97d903c13c597d7f507e74f059e99c8c7db72ce2bff3dd8  genealogy.meta.stackexchange.com.7z
-    ee96d7883390d552ec0b198c846787de36d5f67a0b8d572f7368ee8f2f0200d8  genealogy.stackexchange.com.7z
-    943fbbc8bb5e287a592097b763ab95c634f2d170f58f191acfb439c12325ba8e  german.meta.stackexchange.com.7z
-    54a52485ccae3b8b7de0315e4a2a2f13e0089deaba3b48b3b42b4a1c3b81971a  german.stackexchange.com.7z
-    0e9ef749b506fd630a1f2033a2e6c120d7b1bed3c9c583901bd0fdee6b70e8d6  gis.meta.stackexchange.com.7z
-    7fe1cc6fd5422ac26709d83e1fc6fe4c7a9a843a7729fefcdcff8b6381b9d377  gis.stackexchange.com.7z
-    a281b8203b94c8da0a570909cc4d33f8de3e726e668749bf5662db7599690178  graphicdesign.meta.stackexchange.com.7z
-    c56f831d2101313f2a46bd210d751120774406879b7015226486c580e8cc9278  graphicdesign.stackexchange.com.7z
-    f60d399c69764443019b195011aa2e509398073476089b2307599dcc668263ac  ham.meta.stackexchange.com.7z
-    eece46c66b8caf713312ed66a0a4e1fca635546eef4bca5befd8e31d91ec751a  ham.stackexchange.com.7z
-    4ff5deda354a2db70c356e6e3e2eff762820e7e5290f56a65efc493375bb9937  hardwarerecs.meta.stackexchange.com.7z
-    ee1fdb4de3e32ef0a0a0fb837dec63f7a431d9f18ec26497054e1654941f1806  hardwarerecs.stackexchange.com.7z
-    edf78239dff8d8d5f768c4c5879229909ef35ad124aca7bd125446ed554a1d92  health.meta.stackexchange.com.7z
-    762e0d9b12f8aaf92d7232832148e69edf43e09891b2c910adcb707e32ad1fd1  health.stackexchange.com.7z
-    3bc5ba0a81fc6c18d432e6a7d184be08194cb6ee02126e68a2f1f4f022dc3871  hermeneutics.meta.stackexchange.com.7z
-    bf4b3f5582b456ccaddca5fa812d67d20293db60c6f46a52f02ec4ae9b2d051a  hermeneutics.stackexchange.com.7z
-    4ab9fb1269e57b6023f07440f71cd807a986b8ddde0fe692eb32cec1e4773d28  hinduism.meta.stackexchange.com.7z
-    8d5f67ba88dfc60b4e98d24f460ce1e43f4959b81dde6bf7ada50bac09b32af4  hinduism.stackexchange.com.7z
-    e730cee3d33a2616c9eeb514db27274b35be6d341df2dd63d01b93bd2ac3d450  history.meta.stackexchange.com.7z
-    90358d8fc9a86a808dda66a47910deffb3fd9a9b95f5abf40aedda0ecb1587bf  history.stackexchange.com.7z
-    067205e81f6d8758893eb5ac3805c650e4b0e954cc3af58e43042dfcee018e6b  homebrew.meta.stackexchange.com.7z
-    20827a513493527d58c6283678f0365f378c46595b2aac5161cf77749b4b393a  homebrew.stackexchange.com.7z
-    89f15ed889b6db911567cc1300fb7333e92b24ba361fad3f5bfa752318727f29  hsm.meta.stackexchange.com.7z
-    b8bbeb2d5636c33d568b831e9c869912a46ae4b6425dd7740cd9b32a07fca8fe  hsm.stackexchange.com.7z
-    bc0d2ca08892ff19e5b93759a5487655ac0651e40f9dca28a818afdebf5580be  interpersonal.meta.stackexchange.com.7z
-    de22618226ee3a330e0535dbe7fd5d9ddb3bc593c481294923a51c54e638cef6  interpersonal.stackexchange.com.7z
-    d69176151147b02a3c572664787b52f45e819ec94a77f178e2aacad3dbfaf783  iot.meta.stackexchange.com.7z
-    7dbf7f216afa3b6868c1740973df4508b54c942c2c9b550af0d5e73314bc8db6  iot.stackexchange.com.7z
-    cf8a683f9eb58df31ca8b9b8fbb8f00caaa3f10de89fa07636c0998e09363130  iota.meta.stackexchange.com.7z
-    a16c460bbf7b0ea7b209678d1786bd6f5d8ca2f1a1cc2ee018edbe15f5bc8c4f  iota.stackexchange.com.7z
-    a256d1f2a4937e05754c7f8f6393939a8df2043be7706fbf0f00890ce4a12b87  islam.meta.stackexchange.com.7z
-    ffd197941871971a387d4cbf9013948a05dfb618e3c7a313627f98e3686723c9  islam.stackexchange.com.7z
-    7c494cb0e9f0266dbc2b7946189610b30ed699ea7b19a1fdc53d68a6c0c9b835  italian.meta.stackexchange.com.7z
-    efcee7c7cd81e595a79aa46c78ac7699210e0a7a41567fc7fcfe05fe273a397c  italian.stackexchange.com.7z
-    c0f82cbf87e1e40a9f369b1c05128afba59e830bd8252c431eaeb13144a94b59  ja.meta.stackoverflow.com.7z
-    4bcb927c9567d4a6403e9ef163aacaa0ad85f87946306726fd9d25913b747fae  ja.stackoverflow.com.7z
-    b27e2c22a6dcb4466c57073499990a64e3c7c028005bd00aee0e3b74a94641ec  japanese.meta.stackexchange.com.7z
-    188bfcfdaee7e8e65e25102a29c8b8f5ad267f33e7016cab16544a9db6cb260f  japanese.stackexchange.com.7z
-    d5a82b387fbb764c8802f909102c465e33524ba11244838afd71df7683295067  joomla.meta.stackexchange.com.7z
-    d92df9d6ad815bac05fc5dc0db4d9fe76b1a0ed47abec9b703a68fed9c832883  joomla.stackexchange.com.7z
-    cd43f084e04e2bc376ccc74d73049147945f37f802c4ca7102bffa5e03017234  judaism.meta.stackexchange.com.7z
-    b2eab3f172daaf89ee5011969a19bd57744517bf62a65c265139376aed2c53c3  judaism.stackexchange.com.7z
-    6454bdeb922bb43f23f810496304fd45afb69847850d2e272496acd627765823  korean.meta.stackexchange.com.7z
-    a30cdc2960bf971bfb3afea1b12e9fb58781fa8e9cffe4089df3f9613ee7d5d6  korean.stackexchange.com.7z
-    44a086b7d1c7bf87a8653ed0d5bf6b536a439093749118b81780257d7db90aaf  langdev.meta.stackexchange.com.7z
-    f5450c3abfc7cd1249bbbe8410bff72938928037b9d4971acac7dd8745246bdb  langdev.stackexchange.com.7z
-    8e495f3de718002c9a6f3871ec19706c94be5b470c3fcc8bed9e31939fd8103d  languagelearning.meta.stackexchange.com.7z
-    f8b68a2430924f93bb43ffbda4b0f67995caf46291c8b9377d19c2e5fbbce0f9  languagelearning.stackexchange.com.7z
-    c80ae20691a89e0e2a0a1817f14c1f3345637c078b0267c5bb5bc135ce07f587  latin.meta.stackexchange.com.7z
-    265114c284be272f32ed6dc60523cc61bbeea5590d8c5b7b8b4f608004d9727f  latin.stackexchange.com.7z
-    5faf86b35193b33f9225d7c3fdab6b8c05e529aeca13bead8c6e1d86a40f5d36  law.meta.stackexchange.com.7z
-    7d3fb83b923fb52da4a5a94c8dcc9fe237d3f0351c6dcf808756f93845a1bae0  law.stackexchange.com.7z
-    277721001bc230dabcd4925dfb6d30a419e15989b0ac0ddbb0f9177dfde97301  lifehacks.meta.stackexchange.com.7z
-    2732ea433ec771f0d125073ff72cdce93ed46c280474b24344cf9c9b5f1ab82b  lifehacks.stackexchange.com.7z
-    7afae6249b0679c98128ca34ce158b827859fdf8ab38e305105e1edeeaa40e75  linguistics.meta.stackexchange.com.7z
-    0e0b3538eaccec8c78ef1d45f5abf3881788b424553e6ea29c3115e418401753  linguistics.stackexchange.com.7z
-    54f21181e7c20484f1752b2b2e8f154800c1e787ba4db2965924483a8542adaa  literature.meta.stackexchange.com.7z
-    3be95f138ff2cca40a835e9cf435b9dbcf1747e4404cfd1f4805bb8f43fa147a  literature.stackexchange.com.7z
-    4b4cabeff00d91d92aaf449890142bd6e2466892da31277b22f08c3cf447a1f6  magento.meta.stackexchange.com.7z
-    b44d33a350488c1c26f56b6315e0fd578fe8a7c3b68058a32f6392a4293b00ed  magento.stackexchange.com.7z
-    ff19f3f7b767ed76f0dc6db899257f77d5e8806af880d393b29d7d0a3fdbf47d  martialarts.meta.stackexchange.com.7z
-    e6bce9ae1eb4e21b71b079d29dbf2eff54c3d3cbf1341a19d5c53e262866d786  martialarts.stackexchange.com.7z
-    73c2f8304a98006e5cd37c70830da3eef0423789ea0e83bd52503b4ab09d3382  materials.meta.stackexchange.com.7z
-    f0bb51a2642970cb29d6adf72e268098b9955d8b560a2b33b495201b65b31dfe  materials.stackexchange.com.7z
-    d7482fdd7c2f425a2337192b1152aedfb7d63d6f5cc2aadc2058defe7042302a  math.meta.stackexchange.com.7z
-    ade6d1a73eee94a97e86de31b987868dfabf0025b8940eb93b1d544b8936dd88  math.stackexchange.com.7z
-    575953580bc1bd0870c37432bfdc492bd24a8ff8e8e0d2ae702c87dd779097da  matheducators.meta.stackexchange.com.7z
-    9b2ed7d086069ec45a51782beb1312d048424323528388f776f5a0d5857dac9c  matheducators.stackexchange.com.7z
-    727e9e93d70d0eeb84927483f60c713069761e261c4eb395db276776a35bf4e6  mathematica.meta.stackexchange.com.7z
-    9badda13af8f8e5acc3ebe1cfa4fc5f9bda0f519cfa2c3071b8e1f7c6527060c  mathematica.stackexchange.com.7z
-    1e9144002ef215ef81a56c49ba278e4ae90d04a30822f46e9cd5c2655b5d64d5  mathoverflow.net.7z
-    e2944675fae92ca7594440c9d218fa36ef791f5cc61f48d94c1bf10df161d4f6  mechanics.meta.stackexchange.com.7z
-    4de3f2441fe04ce2abd01aa4e8896c962cd866ea03437c8021b619a274409bc7  mechanics.stackexchange.com.7z
-    99bbc8e1d908a14ec64268c147de6619be1cf0928b02b634ff5c10d8b39c6161  meta.askubuntu.com.7z
-    f7c43d77836c2084f94a5326f7b7f9b4d925904e666ce9f8d923e53620f52927  meta.mathoverflow.net.7z
-    256827b999427408d858581ba440dc2238ad0c5c3d6aeda0a0550117170648e3  meta.serverfault.com.7z
-    5e24dc9083f71126fc2153a5fd346854515ddf93950b34c9a09dff730ef3110f  meta.stackexchange.com.7z
-    a096e09ac21fff30276099814fe7600e66ac4748ae296f01adcd05195a7fc148  meta.stackoverflow.com.7z
-    ecedbc0cd94a59abfcd875b41f63c6ffd7168b29ec77528a75f4d2fc8da5010e  meta.superuser.com.7z
-    0aa1dc6d0c64fd19d69dff69251311e9a1da31160c4b86fa2b1ee5811e185875  moderators.meta.stackexchange.com.7z
-    9759e8b077505e61e69a5529d626e448a62b1d03fde80081a42b20566c1affa0  moderators.stackexchange.com.7z
-    46b0a2ca6563c22ba02196feaf557dd7fe1cb7caf79554a1009c0bfbf13f3d55  monero.meta.stackexchange.com.7z
-    808d6a61494a1bbe40a88c394156a2152971efbb34645d27a8e2089f4b18eb7f  monero.stackexchange.com.7z
-    41455f23e0219783382e247b63733fb488c26a51e09b1e26b3866946c3686660  money.meta.stackexchange.com.7z
-    3b2ad9b9a7af36d85be30d2a13ccc7f817cca732ffff80c0dcd18e9b43b018df  money.stackexchange.com.7z
-    fb1dbb79d0038b8d090834f463043360fe182d21b97efba4e9429bd9d7b873ae  movies.meta.stackexchange.com.7z
-    2c4cfa944c5e34b52f4adad8ae7d8fe951c5e5f5c28cfe85409485f0c3d235f1  movies.stackexchange.com.7z
-    c25460abb437c4b6259305d8663ac1ce04fc47509ece461f731afbee0a64d09d  music.meta.stackexchange.com.7z
-    707fd687808625172a1ea0f8c51d98478701c15b70d889341bce27741fa9dd6b  music.stackexchange.com.7z
-    69fc0fe11770bd26cd2c55c782dd1809bb0cce0af4a71632a247a4ef9ff32e36  musicfans.meta.stackexchange.com.7z
-    5b3d9051c689b5aa1975a0d7148d3f4f9e6fc2506e829584e9b5c557f028d965  musicfans.stackexchange.com.7z
-    efb3ac06b8cf556d7f045e6d291c1ffbc0fded64762b41f7202a571cc3bc7d49  mythology.meta.stackexchange.com.7z
-    081db80ec5b1015f4080fba86d54a2453361877a84b069afdff4edf82979d23a  mythology.stackexchange.com.7z
-    e7a6c6ea08683b37b33070c79c82e02f94fb1e6ad086ae4d6e68ea69cce29434  networkengineering.meta.stackexchange.com.7z
-    6d626643bbd3719ea8999fbc17f3ec26c4d01501448959f7efc2a78daa47691b  networkengineering.stackexchange.com.7z
-    36841992b71118d970fd4678604247963b06ad8a9431c26ee208d3809d941823  opendata.meta.stackexchange.com.7z
-    193ae312ca46b15fa732b8914b71cba4ed732075ea3f1455f946d629fb9c5695  opendata.stackexchange.com.7z
-    e87b314ce952ab091f341ad0919a259d2e6f82098aa6fa1ef5bbabaec4e65337  opensource.meta.stackexchange.com.7z
-    daa1fbcb77f739f446a2acc4036e393942a62769f9a83d477e8d03538f6b2643  opensource.stackexchange.com.7z
-    37ee7a51c42fbb38ca7eea0e50f3afe56c6653c6fa45d2bbf9b66a37e029d9a3  or.meta.stackexchange.com.7z
-    ccb8d87216047119d161cb3f83a80f52612df9cbd3258fd0f9960d9546d845c3  or.stackexchange.com.7z
-    5b6e707e65189befebc16ac3e3d9789b4321a274a2e813aabcbbaec3b8267cd7  outdoors.meta.stackexchange.com.7z
-    30c30744bfad16719c3c02efc4bb6288ea164fadf7adfac076bff349577ab8b7  outdoors.stackexchange.com.7z
-    6eed8d43985a8c9caaa373eeb55e360231539b486f6fe4ba808db35cb8272b8e  parenting.meta.stackexchange.com.7z
-    7a3a1d2da31e7702c9c1645689d6f2d870011ef5c8a7245ba1fa9a16299249b6  parenting.stackexchange.com.7z
-    740c8e8e1e010542a13b79e1ca45681f760cc9d30c5a59dca7041eb6724cdf77  patents.meta.stackexchange.com.7z
-    8093d715d514cef1dfd5293df0eab9e2f04d4198354e4031c00da7cdcaa15b5d  patents.stackexchange.com.7z
-    edc062a9d2cd4d7388d989b7bef429c4ea623a652acb79b14ef643fa02237fe8  pets.meta.stackexchange.com.7z
-    08ae1630e3439173716c4cc815507664577ba2e4e0a168239d60559338e34ee1  pets.stackexchange.com.7z
-    18a486796ef53728eef26b79e951fc748caba3c505266c4d24e2af43cf5c6bc1  philosophy.meta.stackexchange.com.7z
-    1a619b21aff28da8eca2fa1f368a653009cd8bfc13f9f413ddad0d0193fbd153  philosophy.stackexchange.com.7z
-    b1b1a33ed3a2e4f8c8d8f1bdace11ca07420f9fe36eb65ebb4cf9a93a28c7851  photo.meta.stackexchange.com.7z
-    a0883beaee930c760e3d5a084b299f6e8fb088105b99ff33b2aa8c47cf186a31  photo.stackexchange.com.7z
-    9ad1cc008234bc9baf5afaa5ee8d9b47699637b09165c171cb3faea383dbf221  physics.meta.stackexchange.com.7z
-    5a995ffadd095d23b09f964f7947f20bdb9f3e5688065f2e52967c582ad83d4d  physics.stackexchange.com.7z
-    a5a8c728dc6dc14bb436c4522d2dd0bde8fb124fbab9a5fab785bbed260b7361  pm.meta.stackexchange.com.7z
-    d403c9fd77826e2d8e890b7a2c9c239efc40e9b34e7f35d5c899582aa555c30e  pm.stackexchange.com.7z
-    73e9896c08a095fdf8000636b91069c8a454b4f17127dec4d36d4c398d40cf56  poker.meta.stackexchange.com.7z
-    c2c956f24d07197825ff0c3bd41a4de36e9fd4e31aed88667cd5ae91f20d53c7  poker.stackexchange.com.7z
-    fec404010451369973bf6f09b0048c6c933e1e106d75ce5ae867ec474dd8016b  politics.meta.stackexchange.com.7z
-    8009f346c4a90586c7edd82807c854efabd665a52c484490cc2fde34dca2affc  politics.stackexchange.com.7z
-    461921ba4be396d51e9202e511de633d5a550d1ab177389b15cc75278ef8cf56  portuguese.meta.stackexchange.com.7z
-    a5d8e379e70aec6744f146e0039696c29ec441483d06f7fa49380cfd6ad97e3c  portuguese.stackexchange.com.7z
-    ce532801cbcf29d30cc01c44210b917e4a75fba8097696a2ec7895022dba435c  proofassistants.meta.stackexchange.com.7z
-    b847a8de3944fe01357071ef7d20cab30d18553d31f0861a796c0232023a6698  proofassistants.stackexchange.com.7z
-    150cbd7a19aa15be24d69e6355b478d808965a4fcee7aae2f2caa96e89d8c22b  pt.meta.stackoverflow.com.7z
-    f26a6cd6c7aa877c6c2feaf73ba778dab0e6f44b95746157e785b1d8eeeee050  pt.stackoverflow.com.7z
-    28db9e56854e992f0cb8b34bb68bf0420727fcaf842490b637696ffe1d8709cf  puzzling.meta.stackexchange.com.7z
-    b4efd8225d8cd5b24cb68f76b4acde7d88b866b33de72b9ff36f4b2e6f8e1905  puzzling.stackexchange.com.7z
-    43169d9884f5c7c18bab28aeb3ce747154ee9239198366f07183474d3ee74918  quant.meta.stackexchange.com.7z
-    63a29d58c00d18f6630c873de4e5ef1266aa07648274c12c76fe54ba750b09fb  quant.stackexchange.com.7z
-    5860d0edf8236cd16711d4d998390d7dfab45751c802c1a86f97764ebac87a79  quantumcomputing.meta.stackexchange.com.7z
-    604146f30c47dba6c6009e32b6ae8e840bc1ad16e26c37af393af8e32ef98b49  quantumcomputing.stackexchange.com.7z
-    75901c44109a9e1be027cb544c5d6d6a0ce723715dedc435f0d589daad2c7e09  raspberrypi.meta.stackexchange.com.7z
-    cf2acde0ab4478a449d5ab88251cf1ebce6dd137176a9ef39eb8b5aad19b205b  raspberrypi.stackexchange.com.7z
-    1fcd922eb08cf7413407d039be62fa7c578eb3e9c7426830790d7cba4b861128  retrocomputing.meta.stackexchange.com.7z
-    985ae8a5e8c8bb3242f0805f6e139867b069dbb1964a1d4dd23fc5d07b4f2a81  retrocomputing.stackexchange.com.7z
-    931cd40ba765c58c00b10de242ef4461ec4a9d3948dcc7e591c8f41e40736a0b  reverseengineering.meta.stackexchange.com.7z
-    ce8c34e52559a64d72fcd16f2656c98d975280ba62bb439c867a5e39606b26b0  reverseengineering.stackexchange.com.7z
-    44c26fd41cad459e1c4379e750e36ecb983c3067b11a7a7212d462cb1cce404d  robotics.meta.stackexchange.com.7z
-    f9f3bab2af026baaff4ae271ebd572bb58cfdf600c75a9c55ff80c2e69bad717  robotics.stackexchange.com.7z
-    0ba891718974fbb464ad031b831f3d7d8c09b5e494355c29803415b0e6ba6349  rpg.meta.stackexchange.com.7z
-    3a16b0be4226e8c40fb6378022755fc3a153aca24a8a645adb3c66adeefd42b1  rpg.stackexchange.com.7z
-    3cc28d03483a833400c3ed73f80939336aef1bfe24bde4e9e70cb8dc30d08342  ru.meta.stackoverflow.com.7z
-    e10ae9d9cf56efbb47bad5cf50ab01679e043daf175f89f1b449a8cbbf06396b  ru.stackoverflow.com.7z
-    36d18ec68510c280d44f3bf36cf2d1cdf9108eaaa97effc3fda1a84ab60d90c6  rus.meta.stackexchange.com.7z
-    4ef021e6b7420cd05fd10ffe53a43cc3727eade8fd1417ca489b248f014a36df  rus.stackexchange.com.7z
-    c36556136eb4b103514bf95345986f4f408b7b502a13295d2d45122952202db4  russian.meta.stackexchange.com.7z
-    28d55f23b4ce546246d1571c0914df9216e60fe2c002fcccccbbb6c6f3a92c21  russian.stackexchange.com.7z
-    5a106bb7736739045ce5b8d90b09e940c8b9b09fad9dc84f1f03b8c29de58ccb  salesforce.meta.stackexchange.com.7z
-    9ce158f12860adb5e586a25c8c836bdb65830ccf509072942ceaae483edc7c2f  salesforce.stackexchange.com.7z
-    67144ab68012670f9056be37572ce7185a8f43fe5949c252ac4d2d2c534dbdaf  scicomp.meta.stackexchange.com.7z
-    f561649a026578fd97a66ccdb0aa4e6cced2f1847c4451a7898032296acaff46  scicomp.stackexchange.com.7z
-    d3970c4fb5950fce567e0a27462b262ff73c9a12316b4cfb08afd3db5360f856  scifi.meta.stackexchange.com.7z
-    bbcf61717b226c2bbd7f263630a2a8b796fc1d00d93294c58036a9afccfed54a  scifi.stackexchange.com.7z
-    3ef9280838bf5d692f931653d8909cb070e9c8aaec3b2914af94b0f06264c7e2  security.meta.stackexchange.com.7z
-    c0ebc7da8ed249848dba07320e8aaef9634d4d6536281cbba585a8c8386360b2  security.stackexchange.com.7z
-    0eb4c8434204f2f104748f26423edebf53783e042dfbbb1962081ce93e050624  serverfault.com.7z
-    f50b744355b081265bc31d00c5d3f036504703c7e5f51b3d50b74f5344549965  sharepoint.meta.stackexchange.com.7z
-    2aa82077b527af9e3b532e97409a530486c6c2f8daa310c4fa0ae67926fa1d84  sharepoint.stackexchange.com.7z
-    109b7a9ea947779f3f139730886f2727fc18502f128da3c2b3482a79743f07d8  sitecore.meta.stackexchange.com.7z
-    0a6c03696d336813eab858046d70624481b983b54bfcae0e197e268a4d667757  sitecore.stackexchange.com.7z
-    68b586e9af6f539f1a907e61b501fd6e37a7239adf4cec6803eedf35aab2163b  skeptics.meta.stackexchange.com.7z
-    6bd6fa89ec03f6c7d6bcea675df427d7e6b7de9d97bca95ef173f57dfb24afc5  skeptics.stackexchange.com.7z
-    f0039f89fbaf4b9668c7fb28053219f913eebacd90607e5f8c550dd93080d579  softwareengineering.meta.stackexchange.com.7z
-    a78a7a3d6e1ba4846960adb2f080bee6470564a62625a5685783979385f9c20e  softwareengineering.stackexchange.com.7z
-    ade86e3bbcdbe0fdc766a0d019f08682e3699d185695c6517ed2a14bd6296ebf  softwarerecs.meta.stackexchange.com.7z
-    96bfa166c71e907d30bf043afad8e17a3e81f1dc3345494833a72c632dc30997  softwarerecs.stackexchange.com.7z
-    c53a9cc64517f4fdf5f1404ec34df84edf6a3a79a7b4e912554059f2c6045544  solana.meta.stackexchange.com.7z
-    0a4717e66c68cd2c7efe0309cab45f9d211f5c886ca3d3bf7e06b63a26b83e41  solana.stackexchange.com.7z
-    3a827c91e5da1637c118053f7e39f94ac12344769ad45dc61d977a6f1f10a7a7  sound.meta.stackexchange.com.7z
-    7107d4b8bb43c4a30e08471c6eeecc4bd24fae5570b793f692ea4f55c15846f4  sound.stackexchange.com.7z
-    25f7e441eaa393ac6d9a04909cec46451b83333e0d28300814bea0c4f7d9cc07  space.meta.stackexchange.com.7z
-    3d0d12d401f78a44b92f6a56f52a80aa41a6d98b100669216eb3947e2e5a3b3a  space.stackexchange.com.7z
-    f1cf1f086f53e7f1468d2f26eb158fb1016df061613805be07de4e4f836e38d3  spanish.meta.stackexchange.com.7z
-    2d80e651c9f1a34282d3a62c79e3ca3717f4251466900abf5be6d776c1a414bf  spanish.stackexchange.com.7z
-    00c21022e3aaba529ee75a7e3d3d62fae0bb7363685b16ff2da16e814dec0b51  sports.meta.stackexchange.com.7z
-    8837103fdc24a2d75e0cb0b77a7f9796fc3cb17c7d09ec3ac604ae80b653db98  sports.stackexchange.com.7z
-    7feefb09f63976e1c493b12af7ce951af1ca305ade8eef4489d27c1ba6f07b39  sqa.meta.stackexchange.com.7z
-    b3292e38b747384bb5fd0c233a1629f565036019f8ddb371d5f93784596c80cb  sqa.stackexchange.com.7z
-    2cbff68c5904610723cac5dc84c59b21c484c3957421d53bdc08b8666b235cee  stackapps.com.7z
-    e5f5d9e8ec2797dd7f4f50ce4180a18abd0df0571ebccaa255d1f04f4200982a  stackoverflow.com.7z
-    51684a97ec2af143c6ec8bdbf5de97d21e7a9b77e4d56959f73d099b7cbb816d  stats.meta.stackexchange.com.7z
-    134a4ea1646590439ea86845a9c3f3864efebceb3d9fba887beb646881dcf7c5  stats.stackexchange.com.7z
-    0472934bab0b159fea92b8e0c26a6924aaed5f9a5fc7822a79315064b7f34a19  stellar.meta.stackexchange.com.7z
-    ad4748eb5726f8b1e02eb93b864e623f875d77aa1a003cd914a539af63fe9137  stellar.stackexchange.com.7z
-    ec30882bd1b84bae43f8ecc0e9c42ebcda55818386b189fb7f1aa20e72d82c91  substrate.meta.stackexchange.com.7z
-    729ce2a16dd009465c19f028e8ed530a52e8e83117e650fdd1ab3521ec8a697f  substrate.stackexchange.com.7z
-    2f02fed13482ac97e91bec667d942388d11c049c23d356b65639e0428e6a2f20  superuser.com.7z
-    412f3a139626ab470471b2a156d1ee0a2c12088833c92ced2cec9198410a38a6  sustainability.meta.stackexchange.com.7z
-    255b88732c2c2962c5664668872fb278acc88001258c158336361528cd9efa2b  sustainability.stackexchange.com.7z
-    5713d19f27a774e94480685ecd22ebacd15688580fbd70a1cd939dfc843a5250  tex.meta.stackexchange.com.7z
-    74236738e84e544a6f20a0ead92d6df37e6fb85f6717212802181e2ee38557a7  tex.stackexchange.com.7z
-    8b90f6f2d6420b9099bb316c7818fd166b50e3441a15baaf9f5176b2f2a7c725  tezos.meta.stackexchange.com.7z
-    a2b6c78b61a695b01df6253c745b0fa7742ee805388dd0d4cc5cdac0593afbbc  tezos.stackexchange.com.7z
-    22026c90bfc8040ef2494f1517e1bebeb407b3d10228ffb76b4507c2c98563c9  tor.meta.stackexchange.com.7z
-    3b42fd2f5179036920f1ae1f366a4da0737915f07312d6222d7330e7f813ff60  tor.stackexchange.com.7z
-    d0025433581ce976fe3deca6d41217509dda0b8d72acbfe5756a6de40cfb818f  travel.meta.stackexchange.com.7z
-    1df580f5e02f5c09502123729b403a98498aca89e8c54df8b038517c27f010bf  travel.stackexchange.com.7z
-    bca547db18eb9a87eeebe38e034cd1804fc661b4ea9160d1a12764cb031257eb  tridion.meta.stackexchange.com.7z
-    db6bbb25d35119ec2541d64782845825578a47ed6f0ce0bce775983950210468  tridion.stackexchange.com.7z
-    b1e9512b24460b7ed5d8409251468105c4836c5da4cdcab8990038f6ad9f7752  ukrainian.meta.stackexchange.com.7z
-    8b51772c073756f43b3a3b73afbb1779ac34e67204273d1586b180f0b8555963  ukrainian.stackexchange.com.7z
-    e8d038fe9b36ef015e441ced9e11a0b8a36c5b85e739e68da509ab844e0f4f26  unix.meta.stackexchange.com.7z
-    77cde77bf7046bef7f44c858b14b011b0e1a2131cb02548e7c3a00e9b5754e8e  unix.stackexchange.com.7z
-    4198ea6caae156e7b20fc9a5cb9969279b9c398d31c968da086f2d6d35434114  ux.meta.stackexchange.com.7z
-    900ec4cbe69f4623efec538c8b2dfd0b1cc927aaa5ab71e6ae38e6eddbe3c8c7  ux.stackexchange.com.7z
-    044dce7f4f90cf99f56ae75939e5ef498186b38af452636735d87d486b91ac54  vegetarianism.meta.stackexchange.com.7z
-    f666355b6a7020e7477763ca730f616e0df480daffbb47f10a352090437587ab  vegetarianism.stackexchange.com.7z
-    796895fcb576ac9940b3f64acd47af26e4e7ae3c0d14fb3f9aa5aa38b9963a50  vi.meta.stackexchange.com.7z
-    23adf7607bfe264fefc07aa77874fd049cba504e66a43044dcedc800a68a4e24  vi.stackexchange.com.7z
-    cae106c62435310af19129062fd81e4a9ce6b49d5447edecca483925e61833cd  webapps.meta.stackexchange.com.7z
-    7af2cfa857eed56f9396261b2985b387122b28f4a7fc43efc45629b20bf488c3  webapps.stackexchange.com.7z
-    e01cb7e71c8274a40a9de81a1d3f65998f538920bfb6d9a52af4f9158e74d790  webmasters.meta.stackexchange.com.7z
-    594ab3562945427dcfddd810c48fb0d82f8429401a78121d70e42e6eb128fca0  webmasters.stackexchange.com.7z
-    c23e185e00063a02dad3352786abf3f1deb9271a4e1115855e14b7236acd4c1b  windowsphone.meta.stackexchange.com.7z
-    6daba95df1911d352aca9bfa184d95d48d0991e07e1ac68e282214b3a57b05ba  windowsphone.stackexchange.com.7z
-    40d53c6ee612bbcf7d2a1f09b2c3b0a7953eadcff2e2a23f01e14c42f6cfccd4  woodworking.meta.stackexchange.com.7z
-    db66605bc28b6e91fb458e35f700706797494b27f13a232a3d967a8ca838dc8d  woodworking.stackexchange.com.7z
-    358eb182cc512ee3b7903434ab6839b863139328fcc042a7eb97e402c4df6d80  wordpress.meta.stackexchange.com.7z
-    1ef75022853f7672240478c97ae778c10f019dfe124ee8059be24324103ab81f  wordpress.stackexchange.com.7z
-    c5c38c27720a471bd97ac8fc3865f368b133e90f03a3118531e8e6302614c28e  workplace.meta.stackexchange.com.7z
-    6fdcfe56edcca4b4a690fea088c1ce415ecc625d30440bab4ae184a6b17fb9f9  workplace.stackexchange.com.7z
-    49eb287affd4dc9ba15aee5c1e45acbc362e849c0f8c58abbf11cf6886ae1467  worldbuilding.meta.stackexchange.com.7z
-    db6546caf7d807e82940f12f840238dd99128da915dbc54239b9795c85796db3  worldbuilding.stackexchange.com.7z
-    02ca47501ac6a1941fc9e90eaf7f068ad9a7f0651ea64b037fcacb848e8542e0  writers.meta.stackexchange.com.7z
-    dad3498a3e466bb8b6d66f64c55397711f90049ffb753633e63aa1b439dd50ac  writers.stackexchange.com.7z
-    </code>
-    </pre>
-    </details>
+<summary>Date [rev N, only if there's multiple versions]</summary>
+Note: officially confirmed: link
+OR: 
+Note: community-generated: link
+<pre>
+<code>
+hashes go here
+</code>
+</pre>
+</details>
+-->
+
+<details>
+<summary>2025 data dumps</summary>
+<details>
+<summary>2025-06-30 rev2</summary>
+Note: officially confirmed: https://meta.stackexchange.com/revisions/411485/1
+<pre>
+<code>
+38ef461889a5ecd94c97d71c7ba4486d72191baa40e0333b5e8a3ad2e94bd9fd  3dprinting.meta.stackexchange.com.7z
+be05c60c3b23390863cf211a6749d4d73a47ffa5a9dde2d3ceb994e5a75e522a  3dprinting.stackexchange.com.7z
+72e30e638b2d28e8729c01d5b5b9be0a051a4d75d3cc7a59546a9022932d6a68  academia.meta.stackexchange.com.7z
+367a58701fd9fea8617f79007b07f6360f78d068bc36c42eb1e3ae3b28c1796a  academia.stackexchange.com.7z
+094b86d5b8044c7a4e2e81a3a600e54ce7a500e1d5e129d2f2f265c93044d165  ai.meta.stackexchange.com.7z
+7b3b3eb2351772078b3438b0d1fcb0c388349b6ca24aaa4e12a43a36d38a06b5  ai.stackexchange.com.7z
+9c5998434fa322dfaede18317961af9fa26b79cfb493421d71a8cef2651a5f9c  android.meta.stackexchange.com.7z
+318968e7450c3a61b7b6d90833bba4d39960ad5901913bc6802baa7c68325c34  android.stackexchange.com.7z
+20334a2ea5172d69bf1e531a502a4bbbcf272ac7a4acba5c8b88fa71e26ce861  anime.meta.stackexchange.com.7z
+d9065e4779d6045e6ab02fbb333e7e214b1dbc7665515b7622573b682b443911  anime.stackexchange.com.7z
+28762ab6111b014ece179c1d23227db1a4c54f9d76a0fc88b35e07d9302284e8  apple.meta.stackexchange.com.7z
+ef0122615a5197542574bdb8ad05839b2931e6be7d2f03b62392d7d7557fe11f  apple.stackexchange.com.7z
+32284d818bc5cbd3deef39c80c7c180fe1c06d3ec871be60845cfa3dc021ae4c  arduino.meta.stackexchange.com.7z
+4e813ebcac0b7d08ca1df9434902ead08019d2c89ed490d595e5ca618a13c5db  arduino.stackexchange.com.7z
+6ec403808badb2251d86dbbb53aaec46b37b019ae683a08a0fa87d618a045502  askubuntu.com.7z
+fac4cf67287363d8f1ffd147633916cdb48bb61a8ae2c9f492e8b64cad3aa190  astronomy.meta.stackexchange.com.7z
+1312a9ae8987626ca9715d7630d31f6ff4e6a350224167f3b3e29941bdb2386c  astronomy.stackexchange.com.7z
+00a5e4c40c0f4ba4670a831c186f150e017e05d80d055dc21dbd38441f14ff34  aviation.meta.stackexchange.com.7z
+c325ab892b2b8951ba7aae15d02d9366b880d1c16d6025e3246bf11481c7f38e  aviation.stackexchange.com.7z
+952e741da4c94aae7b20d2c1c107904db6fcfd5a462133b599406ac0fcf56d98  avp.meta.stackexchange.com.7z
+da2d96c57b6ea4b5ef5f9d812269d63629cd56694487bbd0dbb535cb184e79ee  avp.stackexchange.com.7z
+919507aca09b967d910a033a12a1534b409f55324afedd3ee8942a78ec6ecc22  beer.meta.stackexchange.com.7z
+ccd9e964f0a9af5d229c3d10297f5dee8b80710caf245cd392045b1abe840a5b  beer.stackexchange.com.7z
+f44667dd010ee5c22d14319f3d9ddccc1d18b1ab8ff9207aef9c143586921ab1  bicycles.meta.stackexchange.com.7z
+12a8a7290628730e18cd2296a2fa2350adc696a4f348a46d95c71aa575bfeedf  bicycles.stackexchange.com.7z
+c88291aa35e79ec476941ae8732b14288a1ae7bc7d217dfbb5646d227d533feb  bioacoustics.meta.stackexchange.com.7z
+01855b68eab3ceb51aa83d5ca563669439f1161fa4ce1239374b73ddde45cf87  bioacoustics.stackexchange.com.7z
+71d0989ac425c9d18ff9a8e89e7bdeb79145ad49bd3045e3a06133832d79716b  bioinformatics.meta.stackexchange.com.7z
+552fa474c20d491ec346a70253dbd2929a1c42450aeed96fa8fbf6d7eab67bd5  bioinformatics.stackexchange.com.7z
+01f85d192eee666dda9b578287bdf9d4a575a42d36e1c513e45fff3561f3dd62  biology.meta.stackexchange.com.7z
+4a494893ea7afdd5ecdbb1ca59193b20a3720d4ceeab7bcb1ea4349caec12364  biology.stackexchange.com.7z
+436fd4316149b734f874b92034a02309198715bd40de74a6a307075eff239597  bitcoin.meta.stackexchange.com.7z
+bd41f48a1d09b6c91747b0b5898bdd41e0342511f47bfaae2c40d24118fd3fff  bitcoin.stackexchange.com.7z
+470c7065df2bc1634f22e9f43daa3751ad2a84467986f1c4e024fb8fcafb75ae  blender.meta.stackexchange.com.7z
+4b88b54986ca56c930378921c91459ba7b9d4a67ee7b5f2363b1364a388c6044  blender.stackexchange.com.7z
+f591ee84a8537543bbfc0644de0c51f44fae31b7988b6a99913a89de42f5f1e1  boardgames.meta.stackexchange.com.7z
+ba1f566441624e9f545bf0b06b6eaca50695d2abfd1e98d2b1b30d9758091af3  boardgames.stackexchange.com.7z
+dcedabddc842da0b2a10961512c42bb5647ebe8294fbe13cfe8a76a9a8c680dd  bricks.meta.stackexchange.com.7z
+1435837733197bfbe52cd9d5d99665384732d6a85de217a21e7a099843a68cdc  bricks.stackexchange.com.7z
+a3f2d3f17890c1ab0f0dbf01d92818a5b31b4e99ed2e7e81f773af7599ce6a50  buddhism.meta.stackexchange.com.7z
+7023ca4cff2bcb0baf0e4fc869206bf33c3ed6e911741fb48302a9933e1ea230  buddhism.stackexchange.com.7z
+99929904d9a5bedad5848ea07d093d6bccb9042e90af6ed82e8fa8944f0e77bd  cardano.meta.stackexchange.com.7z
+7702bd4488b78121fc916dc48cdd1516a72c254a9c266bbcf91d19245a68f782  cardano.stackexchange.com.7z
+cbe72aa8005c5ee5b1a12c4fc35127c139539c978a59a36abcbdc6c71dd71c2a  chemistry.meta.stackexchange.com.7z
+9985659bfea3b7935132af05e3484ca923eda7e4cb80b5356d80c75b7f517726  chemistry.stackexchange.com.7z
+ecdf7c39bdc7b604342e94b4e8128aef061690f1a26c3e75eda700ca023f46fa  chess.meta.stackexchange.com.7z
+9b865a815e024698dfaee464d1d019fc28be7645c5773697010d30dd699bc430  chess.stackexchange.com.7z
+1bc1c6b49eb726e4889aebb61384c7365d1a9a46e0eb5982fbf54c160f584b65  chinese.meta.stackexchange.com.7z
+a72c5b456dd1a67619ad3a044dc99f3ccb9819f9ec7f3e3a3434f36418173836  chinese.stackexchange.com.7z
+0f8de11a3a13e60e72a4de5600e752c688ef9d117fbe77c20c4f86a6c5e22f73  christianity.meta.stackexchange.com.7z
+02c993325366d4e3a46b5f71e86d8124f5a598f79e7e75a877e6104f7ea834eb  christianity.stackexchange.com.7z
+7fdabd17005bec6fcde4c618dde433c8ac6e451ef87e5f01f8a76384f4d7a833  civicrm.meta.stackexchange.com.7z
+46497988515cd1d6b220bccfa4fb7080081134518e39acae3d8a07761a91655f  civicrm.stackexchange.com.7z
+9f03f3cf9e41f33d138e134ecdd5276861a72a3a643f8bf79f7a553ace4bd031  codegolf.meta.stackexchange.com.7z
+c5701dbbaa16f2c9466770470a7d811435411e6f566591c55ddb95575725a80f  codegolf.stackexchange.com.7z
+60f0c5d6bfac5207c189f0c5fbea67a6ae82a1b53aee5d0b51ecb86146a3bb2e  codereview.meta.stackexchange.com.7z
+8857393cb71ae8fdff0380689a29fc7a952a449f0aebfbc55619583c6cb10635  codereview.stackexchange.com.7z
+4b8dceb564b972a2a112808a4af39be338cb9b619d47153ddbd175161db94426  coffee.meta.stackexchange.com.7z
+2efdc89e3531b31f484f9b37567b276b3d9a47cc1b44bb4a924f259764495b91  coffee.stackexchange.com.7z
+da130ad6a71553deb6810e6f1fa21bd8ce067a446447e9d7484ad4e7c89a4497  cogsci.meta.stackexchange.com.7z
+04d21197d9f9049a379b9b18f1a451498020f93c2ebc800da5ddef8e317dae10  cogsci.stackexchange.com.7z
+36a6a1ddda42e5d2fb03c24a59683e782256db47d3bfb62f779bd5f25d73526a  computergraphics.meta.stackexchange.com.7z
+ca314202ab42db87825528c26b009a580e9961ff3c05c92313e0748288071fe7  computergraphics.stackexchange.com.7z
+8826308a67ea2e2a1ebe1d18a44ae19847cbbb18514fa7bf498fce8257b90bf0  conlang.meta.stackexchange.com.7z
+07319f4fc7ac26616b953921367436f5b45927a8ed70866d9ec79d1c9e2005b0  conlang.stackexchange.com.7z
+9dd30f4caa2286afe5e5138d46fa431c82447ba157d5c162146cd2bafcb00d0c  cooking.meta.stackexchange.com.7z
+4dfa53b0c11807591e152e4dd6e9d222c20f45ba7517419ff495b9607915dbe7  cooking.stackexchange.com.7z
+e1dcb01ef4528115f07a890533e8c66d03cfc68f9d186c6f45d0fe9e84bafd8a  craftcms.meta.stackexchange.com.7z
+9f211033bb235aa306d86ccd4f994d15a3fe4d277496d9aa9c20a221377955dd  craftcms.stackexchange.com.7z
+b530ce317f555bb6f4c88191141634f76367f231fa0111cbfcfa2807bb5aa9d8  crafts.meta.stackexchange.com.7z
+85494af09dd9eb5863f885d0e0d0879a639a3503615587c9296098984e79527f  crafts.stackexchange.com.7z
+9e364b09ea26864b43796f71df8bffb2c4074e5350c2eb2b4d0d6c7ea7cffd9e  crypto.meta.stackexchange.com.7z
+43cff7b0ad4fb9a21facafe35c50ec0494e38e57dd55064929dfd8393908cc4f  crypto.stackexchange.com.7z
+3bc7739da3d879ad9fc4b121b59b209e71be5f8c4634e6fd68f71ac6bf63154c  cs.meta.stackexchange.com.7z
+c2bc5b1cc4e235c20682a89d47bf016432cd823ed1e52fe8ddcf27656a36c88d  cs.stackexchange.com.7z
+181c639b6f5378941e476dcb377b5218a3ea2c20adc31005d1e00a6936d14107  cseducators.meta.stackexchange.com.7z
+4878c104ea9408d989966ef9988e0f3a1e4e00a6aafd9fd09ba86113900e0eba  cseducators.stackexchange.com.7z
+042e5a9734187bafe852f5bd5ed1a9b27f46dee90cb272f6fd7607eab40856a7  cstheory.meta.stackexchange.com.7z
+9b067528b66f6fb67badf6d045fb60e521723649a4b29403a0b19a4b05a5a28a  cstheory.stackexchange.com.7z
+a7b1ced92b4257044d4b81fed9d57c2919beb6215f978ac33daf1dcc866ac509  datascience.meta.stackexchange.com.7z
+6b71cd84e633a7498d13135279cd33caf9e863c4ff250bbf310f25e961cb32ea  datascience.stackexchange.com.7z
+68d5f3136807d9950c0af5deb11dc0b4282c372b16740b128dfdddce2123ba9d  dba.meta.stackexchange.com.7z
+19cbc221504103ebf05ae072c2fd845e563a4546070513fcf68954ef5db14352  dba.stackexchange.com.7z
+2acbcd3ca8742c4eab96fbc7aed5fbe59da0062c89f2d3439d3f8634ae992cac  devops.meta.stackexchange.com.7z
+a62a85ff5e65cc3f2331ff3f364360fb893c73a987aa8b03d75886d156e5cf6f  devops.stackexchange.com.7z
+61633f5f40ed083bef045c93cfe9a3bec45d3d1754cfce81e5a173fca6ce713a  diy.meta.stackexchange.com.7z
+e1fb808ae22f145cac27b91db2a3e259862510f5e96616ea0d3510225f0a84b7  diy.stackexchange.com.7z
+b76ec9309136f11a8640d79128b84d350ca5c876642798c0c817c09fc784b12f  drones.meta.stackexchange.com.7z
+2b87b6149bab188ae9c88b46c0f0891291f0087ca2faaa2bad39dd2ab53804c2  drones.stackexchange.com.7z
+a3f0e08e356429a73a9cec97da05d07cf6545561fa71f73f4926eff1f19d46fb  drupal.meta.stackexchange.com.7z
+ab8ca52a51c4f5cd584a68e6b9976aa774fafbe7036012178decd5eeedda8494  drupal.stackexchange.com.7z
+1a8690dbdd5749fa8a4bd8c21d7813d2a5dc2142f5d822b33fe29bba3290dbe7  dsp.meta.stackexchange.com.7z
+0ef7c426106500d562a7c5d77a7af995befc99f90aa99eaea43b6ebb1f1d6691  dsp.stackexchange.com.7z
+185f576437df6c7c96878fe223488a610aafa380ab053dc6b74185c927b76c5f  earthscience.meta.stackexchange.com.7z
+c6aceb9474c378904a3976db416e4af1eb739ed44f1177e57e193d1b762e8de6  earthscience.stackexchange.com.7z
+b670f31c96fcc8a67d8744ea272adb7dbeefb47470381f2be8fc39fb16a01165  ebooks.meta.stackexchange.com.7z
+29adb2a6ff78961a7cfb332a343ecd03746e1fe95aea4a6cd48ff9df254e711a  ebooks.stackexchange.com.7z
+739019171cfdf8845f90ceb792d0b10ebd8010bbead214937e1bc23e81b822e2  economics.meta.stackexchange.com.7z
+bf495fb606be76ce78533d7fc65dd46379fc121af4a3f3a2ed8a1547a6a47185  economics.stackexchange.com.7z
+203a1691b652604d33ee402466152fc6dca3765113ae4392e8a92623838c5c30  electronics.meta.stackexchange.com.7z
+2f022c8b0431762e637093ef0f0dac40c574454a3ff19f69a5d3a3ff6109d015  electronics.stackexchange.com.7z
+800398c2b6f02c656046a8787209796382b14a66c27d4a4a4865dec24950eb21  elementaryos.meta.stackexchange.com.7z
+b71a1a75d5be94ee47f19524ec731fd818418349ffe1de09758ce673b4d911ce  elementaryos.stackexchange.com.7z
+214cef9df2f09d83c87187c2ab3e36425acf49bee9c0ea23b0b9de2e52f2257f  ell.meta.stackexchange.com.7z
+aa8f2d0ccd560ef4942ff71d5b85ec9b0f75ceff1930c3e05abc38bf41fd4c4d  ell.stackexchange.com.7z
+fe0e31f438ef7171f82f49bf27759298b3714efc79f4635f4ec6cfe2790b39aa  emacs.meta.stackexchange.com.7z
+c308b96bb5fb2f7684cf128a2d6ef22a595edfcd12fc9d358a155bd55b348b76  emacs.stackexchange.com.7z
+93a2a64c093753f4b3acb21c72d2c0c8d724520f020c9fa29980d09be3b808a4  engineering.meta.stackexchange.com.7z
+ab7322dd61ff620d226d78d38215f26c103b1afbff14331c30c09ed9779bc51d  engineering.stackexchange.com.7z
+2bfa6e278f1d2466dd1afb33f9863cea9831c0765e8b6f77455114ec54010453  english.meta.stackexchange.com.7z
+0ec582f386e312487f34a0e83c262bae56132139ab8f7e833fe5395b16dfae80  english.stackexchange.com.7z
+5643f165b08677d8ae0a3084296d39805daf5e08448c27c2cc53d853b1149b30  eosio.meta.stackexchange.com.7z
+f23b6ba536aace39d6b76198cd0a0b375286268d9ed5a5046f2789cdf08ecd49  eosio.stackexchange.com.7z
+db011b84430651d8f1bd045043b135e00802c3c32791e83bed6847fd1680fc7a  es.meta.stackoverflow.com.7z
+c1962f25686b81c90ec253ddebb4facd67645a60341deb51d8a727b9dca7d1b1  es.stackoverflow.com.7z
+6e290b551d645eb1e313049f5f172333855d78b72470bda9991852b551ddc08c  esperanto.meta.stackexchange.com.7z
+d44dee2956f64cf8932c36a07b9e19e9c34a4363214e1e0db3749ed4decef6fa  esperanto.stackexchange.com.7z
+14d458dcf65078593cee20d1ded40d36e8457b39a7dc0c344b7357b095e3ed11  ethereum.meta.stackexchange.com.7z
+120f7b4780045df3b6920699f182d3562f0e07c1cb539700e2c7003190f05dad  ethereum.stackexchange.com.7z
+63561f76323a79601d49afd91485ea372c79e16e27be969aa7acde1d21cceafb  expatriates.meta.stackexchange.com.7z
+70e2fee57f5e98ca7c6193f09b8d1cdf61b3f4a99e83e4dd407f98ff3a2adf72  expatriates.stackexchange.com.7z
+0275a1fb146852c0bab65743d7d4445a0e7e04b95b33085820348fb332e41009  expressionengine.meta.stackexchange.com.7z
+78e383eb82daf9f682634d0bd4dfd9630d72db7a32842b01401aaeb37baf33f5  expressionengine.stackexchange.com.7z
+4ed5c620a16bdb3683dd3db3672c1e4e0596a0e6b5af8d6bca60d8fd7ecb6b09  fitness.meta.stackexchange.com.7z
+b822f8898b01004da4e730a806598ae9b2f2529b5376209c63c0cc224f668aa2  fitness.stackexchange.com.7z
+6711c14ac6cf29b3972b770f264de32dcaf5547cfb60f06aabd98c1f89f90ded  freelancing.meta.stackexchange.com.7z
+b06f1e3ba1883d96ac7ddc8cddb5b268c9d736677f958f0b89926489bc15e811  freelancing.stackexchange.com.7z
+b769c238e009171fe1a8eab5f7f34b7b13fd78fe873d634926c95e79b31aef4d  french.meta.stackexchange.com.7z
+47f31c6131087216af271d3d083a30d1c0f6d99ef93bdad699f73564a967e63d  french.stackexchange.com.7z
+90b22266d25dcfc3591aac613a240a45819f518c360ade195176bf1b9ea33895  gamedev.meta.stackexchange.com.7z
+3493c9ce4ce13ce2a245c4a1049b04fc825ae1758aae022ffa836da0d0ab6ab1  gamedev.stackexchange.com.7z
+7565861ff5bd4c8117b873e8986a52d37f65480bd64db7d4dfc23e2899452469  gaming.meta.stackexchange.com.7z
+a2fd1cdaaacdb3312c98ff37bd524597a7524039b63f16450e43ba0c08c23b78  gaming.stackexchange.com.7z
+6b228a05f4ccc7f06a341988824536ddd0851abd88c9b0a8df50fdf508a7a082  gardening.meta.stackexchange.com.7z
+93b1f0390e080334e5117581b830e24769ebbbfafeed43b9b3e64213e62773cc  gardening.stackexchange.com.7z
+2d1f8bfb47feeaefb719e9784421c208792248f05f1de2b7b153942244899af3  genai.meta.stackexchange.com.7z
+09fef918333015cf9765a06b141d5f25dd16cda89ac3b20afd6026b0ad2b21e6  genai.stackexchange.com.7z
+21feac3e7a92f1bab97d903c13c597d7f507e74f059e99c8c7db72ce2bff3dd8  genealogy.meta.stackexchange.com.7z
+ee96d7883390d552ec0b198c846787de36d5f67a0b8d572f7368ee8f2f0200d8  genealogy.stackexchange.com.7z
+943fbbc8bb5e287a592097b763ab95c634f2d170f58f191acfb439c12325ba8e  german.meta.stackexchange.com.7z
+54a52485ccae3b8b7de0315e4a2a2f13e0089deaba3b48b3b42b4a1c3b81971a  german.stackexchange.com.7z
+0e9ef749b506fd630a1f2033a2e6c120d7b1bed3c9c583901bd0fdee6b70e8d6  gis.meta.stackexchange.com.7z
+7fe1cc6fd5422ac26709d83e1fc6fe4c7a9a843a7729fefcdcff8b6381b9d377  gis.stackexchange.com.7z
+a281b8203b94c8da0a570909cc4d33f8de3e726e668749bf5662db7599690178  graphicdesign.meta.stackexchange.com.7z
+c56f831d2101313f2a46bd210d751120774406879b7015226486c580e8cc9278  graphicdesign.stackexchange.com.7z
+f60d399c69764443019b195011aa2e509398073476089b2307599dcc668263ac  ham.meta.stackexchange.com.7z
+eece46c66b8caf713312ed66a0a4e1fca635546eef4bca5befd8e31d91ec751a  ham.stackexchange.com.7z
+4ff5deda354a2db70c356e6e3e2eff762820e7e5290f56a65efc493375bb9937  hardwarerecs.meta.stackexchange.com.7z
+ee1fdb4de3e32ef0a0a0fb837dec63f7a431d9f18ec26497054e1654941f1806  hardwarerecs.stackexchange.com.7z
+edf78239dff8d8d5f768c4c5879229909ef35ad124aca7bd125446ed554a1d92  health.meta.stackexchange.com.7z
+762e0d9b12f8aaf92d7232832148e69edf43e09891b2c910adcb707e32ad1fd1  health.stackexchange.com.7z
+3bc5ba0a81fc6c18d432e6a7d184be08194cb6ee02126e68a2f1f4f022dc3871  hermeneutics.meta.stackexchange.com.7z
+bf4b3f5582b456ccaddca5fa812d67d20293db60c6f46a52f02ec4ae9b2d051a  hermeneutics.stackexchange.com.7z
+4ab9fb1269e57b6023f07440f71cd807a986b8ddde0fe692eb32cec1e4773d28  hinduism.meta.stackexchange.com.7z
+8d5f67ba88dfc60b4e98d24f460ce1e43f4959b81dde6bf7ada50bac09b32af4  hinduism.stackexchange.com.7z
+e730cee3d33a2616c9eeb514db27274b35be6d341df2dd63d01b93bd2ac3d450  history.meta.stackexchange.com.7z
+90358d8fc9a86a808dda66a47910deffb3fd9a9b95f5abf40aedda0ecb1587bf  history.stackexchange.com.7z
+067205e81f6d8758893eb5ac3805c650e4b0e954cc3af58e43042dfcee018e6b  homebrew.meta.stackexchange.com.7z
+20827a513493527d58c6283678f0365f378c46595b2aac5161cf77749b4b393a  homebrew.stackexchange.com.7z
+89f15ed889b6db911567cc1300fb7333e92b24ba361fad3f5bfa752318727f29  hsm.meta.stackexchange.com.7z
+b8bbeb2d5636c33d568b831e9c869912a46ae4b6425dd7740cd9b32a07fca8fe  hsm.stackexchange.com.7z
+bc0d2ca08892ff19e5b93759a5487655ac0651e40f9dca28a818afdebf5580be  interpersonal.meta.stackexchange.com.7z
+de22618226ee3a330e0535dbe7fd5d9ddb3bc593c481294923a51c54e638cef6  interpersonal.stackexchange.com.7z
+d69176151147b02a3c572664787b52f45e819ec94a77f178e2aacad3dbfaf783  iot.meta.stackexchange.com.7z
+7dbf7f216afa3b6868c1740973df4508b54c942c2c9b550af0d5e73314bc8db6  iot.stackexchange.com.7z
+cf8a683f9eb58df31ca8b9b8fbb8f00caaa3f10de89fa07636c0998e09363130  iota.meta.stackexchange.com.7z
+a16c460bbf7b0ea7b209678d1786bd6f5d8ca2f1a1cc2ee018edbe15f5bc8c4f  iota.stackexchange.com.7z
+a256d1f2a4937e05754c7f8f6393939a8df2043be7706fbf0f00890ce4a12b87  islam.meta.stackexchange.com.7z
+ffd197941871971a387d4cbf9013948a05dfb618e3c7a313627f98e3686723c9  islam.stackexchange.com.7z
+7c494cb0e9f0266dbc2b7946189610b30ed699ea7b19a1fdc53d68a6c0c9b835  italian.meta.stackexchange.com.7z
+efcee7c7cd81e595a79aa46c78ac7699210e0a7a41567fc7fcfe05fe273a397c  italian.stackexchange.com.7z
+c0f82cbf87e1e40a9f369b1c05128afba59e830bd8252c431eaeb13144a94b59  ja.meta.stackoverflow.com.7z
+4bcb927c9567d4a6403e9ef163aacaa0ad85f87946306726fd9d25913b747fae  ja.stackoverflow.com.7z
+b27e2c22a6dcb4466c57073499990a64e3c7c028005bd00aee0e3b74a94641ec  japanese.meta.stackexchange.com.7z
+188bfcfdaee7e8e65e25102a29c8b8f5ad267f33e7016cab16544a9db6cb260f  japanese.stackexchange.com.7z
+d5a82b387fbb764c8802f909102c465e33524ba11244838afd71df7683295067  joomla.meta.stackexchange.com.7z
+d92df9d6ad815bac05fc5dc0db4d9fe76b1a0ed47abec9b703a68fed9c832883  joomla.stackexchange.com.7z
+cd43f084e04e2bc376ccc74d73049147945f37f802c4ca7102bffa5e03017234  judaism.meta.stackexchange.com.7z
+b2eab3f172daaf89ee5011969a19bd57744517bf62a65c265139376aed2c53c3  judaism.stackexchange.com.7z
+6454bdeb922bb43f23f810496304fd45afb69847850d2e272496acd627765823  korean.meta.stackexchange.com.7z
+a30cdc2960bf971bfb3afea1b12e9fb58781fa8e9cffe4089df3f9613ee7d5d6  korean.stackexchange.com.7z
+44a086b7d1c7bf87a8653ed0d5bf6b536a439093749118b81780257d7db90aaf  langdev.meta.stackexchange.com.7z
+f5450c3abfc7cd1249bbbe8410bff72938928037b9d4971acac7dd8745246bdb  langdev.stackexchange.com.7z
+8e495f3de718002c9a6f3871ec19706c94be5b470c3fcc8bed9e31939fd8103d  languagelearning.meta.stackexchange.com.7z
+f8b68a2430924f93bb43ffbda4b0f67995caf46291c8b9377d19c2e5fbbce0f9  languagelearning.stackexchange.com.7z
+c80ae20691a89e0e2a0a1817f14c1f3345637c078b0267c5bb5bc135ce07f587  latin.meta.stackexchange.com.7z
+265114c284be272f32ed6dc60523cc61bbeea5590d8c5b7b8b4f608004d9727f  latin.stackexchange.com.7z
+5faf86b35193b33f9225d7c3fdab6b8c05e529aeca13bead8c6e1d86a40f5d36  law.meta.stackexchange.com.7z
+7d3fb83b923fb52da4a5a94c8dcc9fe237d3f0351c6dcf808756f93845a1bae0  law.stackexchange.com.7z
+277721001bc230dabcd4925dfb6d30a419e15989b0ac0ddbb0f9177dfde97301  lifehacks.meta.stackexchange.com.7z
+2732ea433ec771f0d125073ff72cdce93ed46c280474b24344cf9c9b5f1ab82b  lifehacks.stackexchange.com.7z
+7afae6249b0679c98128ca34ce158b827859fdf8ab38e305105e1edeeaa40e75  linguistics.meta.stackexchange.com.7z
+0e0b3538eaccec8c78ef1d45f5abf3881788b424553e6ea29c3115e418401753  linguistics.stackexchange.com.7z
+54f21181e7c20484f1752b2b2e8f154800c1e787ba4db2965924483a8542adaa  literature.meta.stackexchange.com.7z
+3be95f138ff2cca40a835e9cf435b9dbcf1747e4404cfd1f4805bb8f43fa147a  literature.stackexchange.com.7z
+4b4cabeff00d91d92aaf449890142bd6e2466892da31277b22f08c3cf447a1f6  magento.meta.stackexchange.com.7z
+b44d33a350488c1c26f56b6315e0fd578fe8a7c3b68058a32f6392a4293b00ed  magento.stackexchange.com.7z
+ff19f3f7b767ed76f0dc6db899257f77d5e8806af880d393b29d7d0a3fdbf47d  martialarts.meta.stackexchange.com.7z
+e6bce9ae1eb4e21b71b079d29dbf2eff54c3d3cbf1341a19d5c53e262866d786  martialarts.stackexchange.com.7z
+73c2f8304a98006e5cd37c70830da3eef0423789ea0e83bd52503b4ab09d3382  materials.meta.stackexchange.com.7z
+f0bb51a2642970cb29d6adf72e268098b9955d8b560a2b33b495201b65b31dfe  materials.stackexchange.com.7z
+d7482fdd7c2f425a2337192b1152aedfb7d63d6f5cc2aadc2058defe7042302a  math.meta.stackexchange.com.7z
+ade6d1a73eee94a97e86de31b987868dfabf0025b8940eb93b1d544b8936dd88  math.stackexchange.com.7z
+575953580bc1bd0870c37432bfdc492bd24a8ff8e8e0d2ae702c87dd779097da  matheducators.meta.stackexchange.com.7z
+9b2ed7d086069ec45a51782beb1312d048424323528388f776f5a0d5857dac9c  matheducators.stackexchange.com.7z
+727e9e93d70d0eeb84927483f60c713069761e261c4eb395db276776a35bf4e6  mathematica.meta.stackexchange.com.7z
+9badda13af8f8e5acc3ebe1cfa4fc5f9bda0f519cfa2c3071b8e1f7c6527060c  mathematica.stackexchange.com.7z
+1e9144002ef215ef81a56c49ba278e4ae90d04a30822f46e9cd5c2655b5d64d5  mathoverflow.net.7z
+e2944675fae92ca7594440c9d218fa36ef791f5cc61f48d94c1bf10df161d4f6  mechanics.meta.stackexchange.com.7z
+4de3f2441fe04ce2abd01aa4e8896c962cd866ea03437c8021b619a274409bc7  mechanics.stackexchange.com.7z
+99bbc8e1d908a14ec64268c147de6619be1cf0928b02b634ff5c10d8b39c6161  meta.askubuntu.com.7z
+f7c43d77836c2084f94a5326f7b7f9b4d925904e666ce9f8d923e53620f52927  meta.mathoverflow.net.7z
+256827b999427408d858581ba440dc2238ad0c5c3d6aeda0a0550117170648e3  meta.serverfault.com.7z
+5e24dc9083f71126fc2153a5fd346854515ddf93950b34c9a09dff730ef3110f  meta.stackexchange.com.7z
+a096e09ac21fff30276099814fe7600e66ac4748ae296f01adcd05195a7fc148  meta.stackoverflow.com.7z
+ecedbc0cd94a59abfcd875b41f63c6ffd7168b29ec77528a75f4d2fc8da5010e  meta.superuser.com.7z
+0aa1dc6d0c64fd19d69dff69251311e9a1da31160c4b86fa2b1ee5811e185875  moderators.meta.stackexchange.com.7z
+9759e8b077505e61e69a5529d626e448a62b1d03fde80081a42b20566c1affa0  moderators.stackexchange.com.7z
+46b0a2ca6563c22ba02196feaf557dd7fe1cb7caf79554a1009c0bfbf13f3d55  monero.meta.stackexchange.com.7z
+808d6a61494a1bbe40a88c394156a2152971efbb34645d27a8e2089f4b18eb7f  monero.stackexchange.com.7z
+41455f23e0219783382e247b63733fb488c26a51e09b1e26b3866946c3686660  money.meta.stackexchange.com.7z
+3b2ad9b9a7af36d85be30d2a13ccc7f817cca732ffff80c0dcd18e9b43b018df  money.stackexchange.com.7z
+fb1dbb79d0038b8d090834f463043360fe182d21b97efba4e9429bd9d7b873ae  movies.meta.stackexchange.com.7z
+2c4cfa944c5e34b52f4adad8ae7d8fe951c5e5f5c28cfe85409485f0c3d235f1  movies.stackexchange.com.7z
+c25460abb437c4b6259305d8663ac1ce04fc47509ece461f731afbee0a64d09d  music.meta.stackexchange.com.7z
+707fd687808625172a1ea0f8c51d98478701c15b70d889341bce27741fa9dd6b  music.stackexchange.com.7z
+69fc0fe11770bd26cd2c55c782dd1809bb0cce0af4a71632a247a4ef9ff32e36  musicfans.meta.stackexchange.com.7z
+5b3d9051c689b5aa1975a0d7148d3f4f9e6fc2506e829584e9b5c557f028d965  musicfans.stackexchange.com.7z
+efb3ac06b8cf556d7f045e6d291c1ffbc0fded64762b41f7202a571cc3bc7d49  mythology.meta.stackexchange.com.7z
+081db80ec5b1015f4080fba86d54a2453361877a84b069afdff4edf82979d23a  mythology.stackexchange.com.7z
+e7a6c6ea08683b37b33070c79c82e02f94fb1e6ad086ae4d6e68ea69cce29434  networkengineering.meta.stackexchange.com.7z
+6d626643bbd3719ea8999fbc17f3ec26c4d01501448959f7efc2a78daa47691b  networkengineering.stackexchange.com.7z
+36841992b71118d970fd4678604247963b06ad8a9431c26ee208d3809d941823  opendata.meta.stackexchange.com.7z
+193ae312ca46b15fa732b8914b71cba4ed732075ea3f1455f946d629fb9c5695  opendata.stackexchange.com.7z
+e87b314ce952ab091f341ad0919a259d2e6f82098aa6fa1ef5bbabaec4e65337  opensource.meta.stackexchange.com.7z
+daa1fbcb77f739f446a2acc4036e393942a62769f9a83d477e8d03538f6b2643  opensource.stackexchange.com.7z
+37ee7a51c42fbb38ca7eea0e50f3afe56c6653c6fa45d2bbf9b66a37e029d9a3  or.meta.stackexchange.com.7z
+ccb8d87216047119d161cb3f83a80f52612df9cbd3258fd0f9960d9546d845c3  or.stackexchange.com.7z
+5b6e707e65189befebc16ac3e3d9789b4321a274a2e813aabcbbaec3b8267cd7  outdoors.meta.stackexchange.com.7z
+30c30744bfad16719c3c02efc4bb6288ea164fadf7adfac076bff349577ab8b7  outdoors.stackexchange.com.7z
+6eed8d43985a8c9caaa373eeb55e360231539b486f6fe4ba808db35cb8272b8e  parenting.meta.stackexchange.com.7z
+7a3a1d2da31e7702c9c1645689d6f2d870011ef5c8a7245ba1fa9a16299249b6  parenting.stackexchange.com.7z
+740c8e8e1e010542a13b79e1ca45681f760cc9d30c5a59dca7041eb6724cdf77  patents.meta.stackexchange.com.7z
+8093d715d514cef1dfd5293df0eab9e2f04d4198354e4031c00da7cdcaa15b5d  patents.stackexchange.com.7z
+edc062a9d2cd4d7388d989b7bef429c4ea623a652acb79b14ef643fa02237fe8  pets.meta.stackexchange.com.7z
+08ae1630e3439173716c4cc815507664577ba2e4e0a168239d60559338e34ee1  pets.stackexchange.com.7z
+18a486796ef53728eef26b79e951fc748caba3c505266c4d24e2af43cf5c6bc1  philosophy.meta.stackexchange.com.7z
+1a619b21aff28da8eca2fa1f368a653009cd8bfc13f9f413ddad0d0193fbd153  philosophy.stackexchange.com.7z
+b1b1a33ed3a2e4f8c8d8f1bdace11ca07420f9fe36eb65ebb4cf9a93a28c7851  photo.meta.stackexchange.com.7z
+a0883beaee930c760e3d5a084b299f6e8fb088105b99ff33b2aa8c47cf186a31  photo.stackexchange.com.7z
+9ad1cc008234bc9baf5afaa5ee8d9b47699637b09165c171cb3faea383dbf221  physics.meta.stackexchange.com.7z
+5a995ffadd095d23b09f964f7947f20bdb9f3e5688065f2e52967c582ad83d4d  physics.stackexchange.com.7z
+a5a8c728dc6dc14bb436c4522d2dd0bde8fb124fbab9a5fab785bbed260b7361  pm.meta.stackexchange.com.7z
+d403c9fd77826e2d8e890b7a2c9c239efc40e9b34e7f35d5c899582aa555c30e  pm.stackexchange.com.7z
+73e9896c08a095fdf8000636b91069c8a454b4f17127dec4d36d4c398d40cf56  poker.meta.stackexchange.com.7z
+c2c956f24d07197825ff0c3bd41a4de36e9fd4e31aed88667cd5ae91f20d53c7  poker.stackexchange.com.7z
+fec404010451369973bf6f09b0048c6c933e1e106d75ce5ae867ec474dd8016b  politics.meta.stackexchange.com.7z
+8009f346c4a90586c7edd82807c854efabd665a52c484490cc2fde34dca2affc  politics.stackexchange.com.7z
+461921ba4be396d51e9202e511de633d5a550d1ab177389b15cc75278ef8cf56  portuguese.meta.stackexchange.com.7z
+a5d8e379e70aec6744f146e0039696c29ec441483d06f7fa49380cfd6ad97e3c  portuguese.stackexchange.com.7z
+ce532801cbcf29d30cc01c44210b917e4a75fba8097696a2ec7895022dba435c  proofassistants.meta.stackexchange.com.7z
+b847a8de3944fe01357071ef7d20cab30d18553d31f0861a796c0232023a6698  proofassistants.stackexchange.com.7z
+150cbd7a19aa15be24d69e6355b478d808965a4fcee7aae2f2caa96e89d8c22b  pt.meta.stackoverflow.com.7z
+f26a6cd6c7aa877c6c2feaf73ba778dab0e6f44b95746157e785b1d8eeeee050  pt.stackoverflow.com.7z
+28db9e56854e992f0cb8b34bb68bf0420727fcaf842490b637696ffe1d8709cf  puzzling.meta.stackexchange.com.7z
+b4efd8225d8cd5b24cb68f76b4acde7d88b866b33de72b9ff36f4b2e6f8e1905  puzzling.stackexchange.com.7z
+43169d9884f5c7c18bab28aeb3ce747154ee9239198366f07183474d3ee74918  quant.meta.stackexchange.com.7z
+63a29d58c00d18f6630c873de4e5ef1266aa07648274c12c76fe54ba750b09fb  quant.stackexchange.com.7z
+5860d0edf8236cd16711d4d998390d7dfab45751c802c1a86f97764ebac87a79  quantumcomputing.meta.stackexchange.com.7z
+604146f30c47dba6c6009e32b6ae8e840bc1ad16e26c37af393af8e32ef98b49  quantumcomputing.stackexchange.com.7z
+75901c44109a9e1be027cb544c5d6d6a0ce723715dedc435f0d589daad2c7e09  raspberrypi.meta.stackexchange.com.7z
+cf2acde0ab4478a449d5ab88251cf1ebce6dd137176a9ef39eb8b5aad19b205b  raspberrypi.stackexchange.com.7z
+1fcd922eb08cf7413407d039be62fa7c578eb3e9c7426830790d7cba4b861128  retrocomputing.meta.stackexchange.com.7z
+985ae8a5e8c8bb3242f0805f6e139867b069dbb1964a1d4dd23fc5d07b4f2a81  retrocomputing.stackexchange.com.7z
+931cd40ba765c58c00b10de242ef4461ec4a9d3948dcc7e591c8f41e40736a0b  reverseengineering.meta.stackexchange.com.7z
+ce8c34e52559a64d72fcd16f2656c98d975280ba62bb439c867a5e39606b26b0  reverseengineering.stackexchange.com.7z
+44c26fd41cad459e1c4379e750e36ecb983c3067b11a7a7212d462cb1cce404d  robotics.meta.stackexchange.com.7z
+f9f3bab2af026baaff4ae271ebd572bb58cfdf600c75a9c55ff80c2e69bad717  robotics.stackexchange.com.7z
+0ba891718974fbb464ad031b831f3d7d8c09b5e494355c29803415b0e6ba6349  rpg.meta.stackexchange.com.7z
+3a16b0be4226e8c40fb6378022755fc3a153aca24a8a645adb3c66adeefd42b1  rpg.stackexchange.com.7z
+3cc28d03483a833400c3ed73f80939336aef1bfe24bde4e9e70cb8dc30d08342  ru.meta.stackoverflow.com.7z
+e10ae9d9cf56efbb47bad5cf50ab01679e043daf175f89f1b449a8cbbf06396b  ru.stackoverflow.com.7z
+36d18ec68510c280d44f3bf36cf2d1cdf9108eaaa97effc3fda1a84ab60d90c6  rus.meta.stackexchange.com.7z
+4ef021e6b7420cd05fd10ffe53a43cc3727eade8fd1417ca489b248f014a36df  rus.stackexchange.com.7z
+c36556136eb4b103514bf95345986f4f408b7b502a13295d2d45122952202db4  russian.meta.stackexchange.com.7z
+28d55f23b4ce546246d1571c0914df9216e60fe2c002fcccccbbb6c6f3a92c21  russian.stackexchange.com.7z
+5a106bb7736739045ce5b8d90b09e940c8b9b09fad9dc84f1f03b8c29de58ccb  salesforce.meta.stackexchange.com.7z
+9ce158f12860adb5e586a25c8c836bdb65830ccf509072942ceaae483edc7c2f  salesforce.stackexchange.com.7z
+67144ab68012670f9056be37572ce7185a8f43fe5949c252ac4d2d2c534dbdaf  scicomp.meta.stackexchange.com.7z
+f561649a026578fd97a66ccdb0aa4e6cced2f1847c4451a7898032296acaff46  scicomp.stackexchange.com.7z
+d3970c4fb5950fce567e0a27462b262ff73c9a12316b4cfb08afd3db5360f856  scifi.meta.stackexchange.com.7z
+bbcf61717b226c2bbd7f263630a2a8b796fc1d00d93294c58036a9afccfed54a  scifi.stackexchange.com.7z
+3ef9280838bf5d692f931653d8909cb070e9c8aaec3b2914af94b0f06264c7e2  security.meta.stackexchange.com.7z
+c0ebc7da8ed249848dba07320e8aaef9634d4d6536281cbba585a8c8386360b2  security.stackexchange.com.7z
+0eb4c8434204f2f104748f26423edebf53783e042dfbbb1962081ce93e050624  serverfault.com.7z
+f50b744355b081265bc31d00c5d3f036504703c7e5f51b3d50b74f5344549965  sharepoint.meta.stackexchange.com.7z
+2aa82077b527af9e3b532e97409a530486c6c2f8daa310c4fa0ae67926fa1d84  sharepoint.stackexchange.com.7z
+109b7a9ea947779f3f139730886f2727fc18502f128da3c2b3482a79743f07d8  sitecore.meta.stackexchange.com.7z
+0a6c03696d336813eab858046d70624481b983b54bfcae0e197e268a4d667757  sitecore.stackexchange.com.7z
+68b586e9af6f539f1a907e61b501fd6e37a7239adf4cec6803eedf35aab2163b  skeptics.meta.stackexchange.com.7z
+6bd6fa89ec03f6c7d6bcea675df427d7e6b7de9d97bca95ef173f57dfb24afc5  skeptics.stackexchange.com.7z
+f0039f89fbaf4b9668c7fb28053219f913eebacd90607e5f8c550dd93080d579  softwareengineering.meta.stackexchange.com.7z
+a78a7a3d6e1ba4846960adb2f080bee6470564a62625a5685783979385f9c20e  softwareengineering.stackexchange.com.7z
+ade86e3bbcdbe0fdc766a0d019f08682e3699d185695c6517ed2a14bd6296ebf  softwarerecs.meta.stackexchange.com.7z
+96bfa166c71e907d30bf043afad8e17a3e81f1dc3345494833a72c632dc30997  softwarerecs.stackexchange.com.7z
+c53a9cc64517f4fdf5f1404ec34df84edf6a3a79a7b4e912554059f2c6045544  solana.meta.stackexchange.com.7z
+0a4717e66c68cd2c7efe0309cab45f9d211f5c886ca3d3bf7e06b63a26b83e41  solana.stackexchange.com.7z
+3a827c91e5da1637c118053f7e39f94ac12344769ad45dc61d977a6f1f10a7a7  sound.meta.stackexchange.com.7z
+7107d4b8bb43c4a30e08471c6eeecc4bd24fae5570b793f692ea4f55c15846f4  sound.stackexchange.com.7z
+25f7e441eaa393ac6d9a04909cec46451b83333e0d28300814bea0c4f7d9cc07  space.meta.stackexchange.com.7z
+3d0d12d401f78a44b92f6a56f52a80aa41a6d98b100669216eb3947e2e5a3b3a  space.stackexchange.com.7z
+f1cf1f086f53e7f1468d2f26eb158fb1016df061613805be07de4e4f836e38d3  spanish.meta.stackexchange.com.7z
+2d80e651c9f1a34282d3a62c79e3ca3717f4251466900abf5be6d776c1a414bf  spanish.stackexchange.com.7z
+00c21022e3aaba529ee75a7e3d3d62fae0bb7363685b16ff2da16e814dec0b51  sports.meta.stackexchange.com.7z
+8837103fdc24a2d75e0cb0b77a7f9796fc3cb17c7d09ec3ac604ae80b653db98  sports.stackexchange.com.7z
+7feefb09f63976e1c493b12af7ce951af1ca305ade8eef4489d27c1ba6f07b39  sqa.meta.stackexchange.com.7z
+b3292e38b747384bb5fd0c233a1629f565036019f8ddb371d5f93784596c80cb  sqa.stackexchange.com.7z
+2cbff68c5904610723cac5dc84c59b21c484c3957421d53bdc08b8666b235cee  stackapps.com.7z
+e5f5d9e8ec2797dd7f4f50ce4180a18abd0df0571ebccaa255d1f04f4200982a  stackoverflow.com.7z
+51684a97ec2af143c6ec8bdbf5de97d21e7a9b77e4d56959f73d099b7cbb816d  stats.meta.stackexchange.com.7z
+134a4ea1646590439ea86845a9c3f3864efebceb3d9fba887beb646881dcf7c5  stats.stackexchange.com.7z
+0472934bab0b159fea92b8e0c26a6924aaed5f9a5fc7822a79315064b7f34a19  stellar.meta.stackexchange.com.7z
+ad4748eb5726f8b1e02eb93b864e623f875d77aa1a003cd914a539af63fe9137  stellar.stackexchange.com.7z
+ec30882bd1b84bae43f8ecc0e9c42ebcda55818386b189fb7f1aa20e72d82c91  substrate.meta.stackexchange.com.7z
+729ce2a16dd009465c19f028e8ed530a52e8e83117e650fdd1ab3521ec8a697f  substrate.stackexchange.com.7z
+2f02fed13482ac97e91bec667d942388d11c049c23d356b65639e0428e6a2f20  superuser.com.7z
+412f3a139626ab470471b2a156d1ee0a2c12088833c92ced2cec9198410a38a6  sustainability.meta.stackexchange.com.7z
+255b88732c2c2962c5664668872fb278acc88001258c158336361528cd9efa2b  sustainability.stackexchange.com.7z
+5713d19f27a774e94480685ecd22ebacd15688580fbd70a1cd939dfc843a5250  tex.meta.stackexchange.com.7z
+74236738e84e544a6f20a0ead92d6df37e6fb85f6717212802181e2ee38557a7  tex.stackexchange.com.7z
+8b90f6f2d6420b9099bb316c7818fd166b50e3441a15baaf9f5176b2f2a7c725  tezos.meta.stackexchange.com.7z
+a2b6c78b61a695b01df6253c745b0fa7742ee805388dd0d4cc5cdac0593afbbc  tezos.stackexchange.com.7z
+22026c90bfc8040ef2494f1517e1bebeb407b3d10228ffb76b4507c2c98563c9  tor.meta.stackexchange.com.7z
+3b42fd2f5179036920f1ae1f366a4da0737915f07312d6222d7330e7f813ff60  tor.stackexchange.com.7z
+d0025433581ce976fe3deca6d41217509dda0b8d72acbfe5756a6de40cfb818f  travel.meta.stackexchange.com.7z
+1df580f5e02f5c09502123729b403a98498aca89e8c54df8b038517c27f010bf  travel.stackexchange.com.7z
+bca547db18eb9a87eeebe38e034cd1804fc661b4ea9160d1a12764cb031257eb  tridion.meta.stackexchange.com.7z
+db6bbb25d35119ec2541d64782845825578a47ed6f0ce0bce775983950210468  tridion.stackexchange.com.7z
+b1e9512b24460b7ed5d8409251468105c4836c5da4cdcab8990038f6ad9f7752  ukrainian.meta.stackexchange.com.7z
+8b51772c073756f43b3a3b73afbb1779ac34e67204273d1586b180f0b8555963  ukrainian.stackexchange.com.7z
+e8d038fe9b36ef015e441ced9e11a0b8a36c5b85e739e68da509ab844e0f4f26  unix.meta.stackexchange.com.7z
+77cde77bf7046bef7f44c858b14b011b0e1a2131cb02548e7c3a00e9b5754e8e  unix.stackexchange.com.7z
+4198ea6caae156e7b20fc9a5cb9969279b9c398d31c968da086f2d6d35434114  ux.meta.stackexchange.com.7z
+900ec4cbe69f4623efec538c8b2dfd0b1cc927aaa5ab71e6ae38e6eddbe3c8c7  ux.stackexchange.com.7z
+044dce7f4f90cf99f56ae75939e5ef498186b38af452636735d87d486b91ac54  vegetarianism.meta.stackexchange.com.7z
+f666355b6a7020e7477763ca730f616e0df480daffbb47f10a352090437587ab  vegetarianism.stackexchange.com.7z
+796895fcb576ac9940b3f64acd47af26e4e7ae3c0d14fb3f9aa5aa38b9963a50  vi.meta.stackexchange.com.7z
+23adf7607bfe264fefc07aa77874fd049cba504e66a43044dcedc800a68a4e24  vi.stackexchange.com.7z
+cae106c62435310af19129062fd81e4a9ce6b49d5447edecca483925e61833cd  webapps.meta.stackexchange.com.7z
+3481578bf1e60e8180e855faa84e0ac0cec8d112c84a897bb54679237921e346  webapps.stackexchange.com.7z
+e01cb7e71c8274a40a9de81a1d3f65998f538920bfb6d9a52af4f9158e74d790  webmasters.meta.stackexchange.com.7z
+594ab3562945427dcfddd810c48fb0d82f8429401a78121d70e42e6eb128fca0  webmasters.stackexchange.com.7z
+40d53c6ee612bbcf7d2a1f09b2c3b0a7953eadcff2e2a23f01e14c42f6cfccd4  woodworking.meta.stackexchange.com.7z
+db66605bc28b6e91fb458e35f700706797494b27f13a232a3d967a8ca838dc8d  woodworking.stackexchange.com.7z
+358eb182cc512ee3b7903434ab6839b863139328fcc042a7eb97e402c4df6d80  wordpress.meta.stackexchange.com.7z
+1ef75022853f7672240478c97ae778c10f019dfe124ee8059be24324103ab81f  wordpress.stackexchange.com.7z
+c5c38c27720a471bd97ac8fc3865f368b133e90f03a3118531e8e6302614c28e  workplace.meta.stackexchange.com.7z
+6fdcfe56edcca4b4a690fea088c1ce415ecc625d30440bab4ae184a6b17fb9f9  workplace.stackexchange.com.7z
+49eb287affd4dc9ba15aee5c1e45acbc362e849c0f8c58abbf11cf6886ae1467  worldbuilding.meta.stackexchange.com.7z
+db6546caf7d807e82940f12f840238dd99128da915dbc54239b9795c85796db3  worldbuilding.stackexchange.com.7z
+02ca47501ac6a1941fc9e90eaf7f068ad9a7f0651ea64b037fcacb848e8542e0  writers.meta.stackexchange.com.7z
+dad3498a3e466bb8b6d66f64c55397711f90049ffb753633e63aa1b439dd50ac  writers.stackexchange.com.7z
+</code>
+</pre>
+</details>
+<details>
+<summary>2025-06-30 rev1</summary>
+Note: officially confirmed: https://meta.stackexchange.com/revisions/411485/1
+<pre>
+<code>
+38ef461889a5ecd94c97d71c7ba4486d72191baa40e0333b5e8a3ad2e94bd9fd  3dprinting.meta.stackexchange.com.7z
+be05c60c3b23390863cf211a6749d4d73a47ffa5a9dde2d3ceb994e5a75e522a  3dprinting.stackexchange.com.7z
+72e30e638b2d28e8729c01d5b5b9be0a051a4d75d3cc7a59546a9022932d6a68  academia.meta.stackexchange.com.7z
+367a58701fd9fea8617f79007b07f6360f78d068bc36c42eb1e3ae3b28c1796a  academia.stackexchange.com.7z
+094b86d5b8044c7a4e2e81a3a600e54ce7a500e1d5e129d2f2f265c93044d165  ai.meta.stackexchange.com.7z
+7b3b3eb2351772078b3438b0d1fcb0c388349b6ca24aaa4e12a43a36d38a06b5  ai.stackexchange.com.7z
+9c5998434fa322dfaede18317961af9fa26b79cfb493421d71a8cef2651a5f9c  android.meta.stackexchange.com.7z
+318968e7450c3a61b7b6d90833bba4d39960ad5901913bc6802baa7c68325c34  android.stackexchange.com.7z
+20334a2ea5172d69bf1e531a502a4bbbcf272ac7a4acba5c8b88fa71e26ce861  anime.meta.stackexchange.com.7z
+d9065e4779d6045e6ab02fbb333e7e214b1dbc7665515b7622573b682b443911  anime.stackexchange.com.7z
+28762ab6111b014ece179c1d23227db1a4c54f9d76a0fc88b35e07d9302284e8  apple.meta.stackexchange.com.7z
+ef0122615a5197542574bdb8ad05839b2931e6be7d2f03b62392d7d7557fe11f  apple.stackexchange.com.7z
+32284d818bc5cbd3deef39c80c7c180fe1c06d3ec871be60845cfa3dc021ae4c  arduino.meta.stackexchange.com.7z
+4e813ebcac0b7d08ca1df9434902ead08019d2c89ed490d595e5ca618a13c5db  arduino.stackexchange.com.7z
+6ec403808badb2251d86dbbb53aaec46b37b019ae683a08a0fa87d618a045502  askubuntu.com.7z
+fac4cf67287363d8f1ffd147633916cdb48bb61a8ae2c9f492e8b64cad3aa190  astronomy.meta.stackexchange.com.7z
+1312a9ae8987626ca9715d7630d31f6ff4e6a350224167f3b3e29941bdb2386c  astronomy.stackexchange.com.7z
+00a5e4c40c0f4ba4670a831c186f150e017e05d80d055dc21dbd38441f14ff34  aviation.meta.stackexchange.com.7z
+c325ab892b2b8951ba7aae15d02d9366b880d1c16d6025e3246bf11481c7f38e  aviation.stackexchange.com.7z
+952e741da4c94aae7b20d2c1c107904db6fcfd5a462133b599406ac0fcf56d98  avp.meta.stackexchange.com.7z
+da2d96c57b6ea4b5ef5f9d812269d63629cd56694487bbd0dbb535cb184e79ee  avp.stackexchange.com.7z
+919507aca09b967d910a033a12a1534b409f55324afedd3ee8942a78ec6ecc22  beer.meta.stackexchange.com.7z
+ccd9e964f0a9af5d229c3d10297f5dee8b80710caf245cd392045b1abe840a5b  beer.stackexchange.com.7z
+f44667dd010ee5c22d14319f3d9ddccc1d18b1ab8ff9207aef9c143586921ab1  bicycles.meta.stackexchange.com.7z
+12a8a7290628730e18cd2296a2fa2350adc696a4f348a46d95c71aa575bfeedf  bicycles.stackexchange.com.7z
+c88291aa35e79ec476941ae8732b14288a1ae7bc7d217dfbb5646d227d533feb  bioacoustics.meta.stackexchange.com.7z
+01855b68eab3ceb51aa83d5ca563669439f1161fa4ce1239374b73ddde45cf87  bioacoustics.stackexchange.com.7z
+71d0989ac425c9d18ff9a8e89e7bdeb79145ad49bd3045e3a06133832d79716b  bioinformatics.meta.stackexchange.com.7z
+552fa474c20d491ec346a70253dbd2929a1c42450aeed96fa8fbf6d7eab67bd5  bioinformatics.stackexchange.com.7z
+01f85d192eee666dda9b578287bdf9d4a575a42d36e1c513e45fff3561f3dd62  biology.meta.stackexchange.com.7z
+4a494893ea7afdd5ecdbb1ca59193b20a3720d4ceeab7bcb1ea4349caec12364  biology.stackexchange.com.7z
+436fd4316149b734f874b92034a02309198715bd40de74a6a307075eff239597  bitcoin.meta.stackexchange.com.7z
+bd41f48a1d09b6c91747b0b5898bdd41e0342511f47bfaae2c40d24118fd3fff  bitcoin.stackexchange.com.7z
+470c7065df2bc1634f22e9f43daa3751ad2a84467986f1c4e024fb8fcafb75ae  blender.meta.stackexchange.com.7z
+4b88b54986ca56c930378921c91459ba7b9d4a67ee7b5f2363b1364a388c6044  blender.stackexchange.com.7z
+f591ee84a8537543bbfc0644de0c51f44fae31b7988b6a99913a89de42f5f1e1  boardgames.meta.stackexchange.com.7z
+ba1f566441624e9f545bf0b06b6eaca50695d2abfd1e98d2b1b30d9758091af3  boardgames.stackexchange.com.7z
+dcedabddc842da0b2a10961512c42bb5647ebe8294fbe13cfe8a76a9a8c680dd  bricks.meta.stackexchange.com.7z
+1435837733197bfbe52cd9d5d99665384732d6a85de217a21e7a099843a68cdc  bricks.stackexchange.com.7z
+a3f2d3f17890c1ab0f0dbf01d92818a5b31b4e99ed2e7e81f773af7599ce6a50  buddhism.meta.stackexchange.com.7z
+7023ca4cff2bcb0baf0e4fc869206bf33c3ed6e911741fb48302a9933e1ea230  buddhism.stackexchange.com.7z
+99929904d9a5bedad5848ea07d093d6bccb9042e90af6ed82e8fa8944f0e77bd  cardano.meta.stackexchange.com.7z
+7702bd4488b78121fc916dc48cdd1516a72c254a9c266bbcf91d19245a68f782  cardano.stackexchange.com.7z
+cbe72aa8005c5ee5b1a12c4fc35127c139539c978a59a36abcbdc6c71dd71c2a  chemistry.meta.stackexchange.com.7z
+9985659bfea3b7935132af05e3484ca923eda7e4cb80b5356d80c75b7f517726  chemistry.stackexchange.com.7z
+ecdf7c39bdc7b604342e94b4e8128aef061690f1a26c3e75eda700ca023f46fa  chess.meta.stackexchange.com.7z
+9b865a815e024698dfaee464d1d019fc28be7645c5773697010d30dd699bc430  chess.stackexchange.com.7z
+1bc1c6b49eb726e4889aebb61384c7365d1a9a46e0eb5982fbf54c160f584b65  chinese.meta.stackexchange.com.7z
+a72c5b456dd1a67619ad3a044dc99f3ccb9819f9ec7f3e3a3434f36418173836  chinese.stackexchange.com.7z
+0f8de11a3a13e60e72a4de5600e752c688ef9d117fbe77c20c4f86a6c5e22f73  christianity.meta.stackexchange.com.7z
+02c993325366d4e3a46b5f71e86d8124f5a598f79e7e75a877e6104f7ea834eb  christianity.stackexchange.com.7z
+7fdabd17005bec6fcde4c618dde433c8ac6e451ef87e5f01f8a76384f4d7a833  civicrm.meta.stackexchange.com.7z
+46497988515cd1d6b220bccfa4fb7080081134518e39acae3d8a07761a91655f  civicrm.stackexchange.com.7z
+9f03f3cf9e41f33d138e134ecdd5276861a72a3a643f8bf79f7a553ace4bd031  codegolf.meta.stackexchange.com.7z
+c5701dbbaa16f2c9466770470a7d811435411e6f566591c55ddb95575725a80f  codegolf.stackexchange.com.7z
+60f0c5d6bfac5207c189f0c5fbea67a6ae82a1b53aee5d0b51ecb86146a3bb2e  codereview.meta.stackexchange.com.7z
+8857393cb71ae8fdff0380689a29fc7a952a449f0aebfbc55619583c6cb10635  codereview.stackexchange.com.7z
+4b8dceb564b972a2a112808a4af39be338cb9b619d47153ddbd175161db94426  coffee.meta.stackexchange.com.7z
+2efdc89e3531b31f484f9b37567b276b3d9a47cc1b44bb4a924f259764495b91  coffee.stackexchange.com.7z
+da130ad6a71553deb6810e6f1fa21bd8ce067a446447e9d7484ad4e7c89a4497  cogsci.meta.stackexchange.com.7z
+04d21197d9f9049a379b9b18f1a451498020f93c2ebc800da5ddef8e317dae10  cogsci.stackexchange.com.7z
+36a6a1ddda42e5d2fb03c24a59683e782256db47d3bfb62f779bd5f25d73526a  computergraphics.meta.stackexchange.com.7z
+ca314202ab42db87825528c26b009a580e9961ff3c05c92313e0748288071fe7  computergraphics.stackexchange.com.7z
+8826308a67ea2e2a1ebe1d18a44ae19847cbbb18514fa7bf498fce8257b90bf0  conlang.meta.stackexchange.com.7z
+07319f4fc7ac26616b953921367436f5b45927a8ed70866d9ec79d1c9e2005b0  conlang.stackexchange.com.7z
+9dd30f4caa2286afe5e5138d46fa431c82447ba157d5c162146cd2bafcb00d0c  cooking.meta.stackexchange.com.7z
+4dfa53b0c11807591e152e4dd6e9d222c20f45ba7517419ff495b9607915dbe7  cooking.stackexchange.com.7z
+e1dcb01ef4528115f07a890533e8c66d03cfc68f9d186c6f45d0fe9e84bafd8a  craftcms.meta.stackexchange.com.7z
+9f211033bb235aa306d86ccd4f994d15a3fe4d277496d9aa9c20a221377955dd  craftcms.stackexchange.com.7z
+b530ce317f555bb6f4c88191141634f76367f231fa0111cbfcfa2807bb5aa9d8  crafts.meta.stackexchange.com.7z
+85494af09dd9eb5863f885d0e0d0879a639a3503615587c9296098984e79527f  crafts.stackexchange.com.7z
+9e364b09ea26864b43796f71df8bffb2c4074e5350c2eb2b4d0d6c7ea7cffd9e  crypto.meta.stackexchange.com.7z
+43cff7b0ad4fb9a21facafe35c50ec0494e38e57dd55064929dfd8393908cc4f  crypto.stackexchange.com.7z
+3bc7739da3d879ad9fc4b121b59b209e71be5f8c4634e6fd68f71ac6bf63154c  cs.meta.stackexchange.com.7z
+c2bc5b1cc4e235c20682a89d47bf016432cd823ed1e52fe8ddcf27656a36c88d  cs.stackexchange.com.7z
+181c639b6f5378941e476dcb377b5218a3ea2c20adc31005d1e00a6936d14107  cseducators.meta.stackexchange.com.7z
+4878c104ea9408d989966ef9988e0f3a1e4e00a6aafd9fd09ba86113900e0eba  cseducators.stackexchange.com.7z
+042e5a9734187bafe852f5bd5ed1a9b27f46dee90cb272f6fd7607eab40856a7  cstheory.meta.stackexchange.com.7z
+9b067528b66f6fb67badf6d045fb60e521723649a4b29403a0b19a4b05a5a28a  cstheory.stackexchange.com.7z
+a7b1ced92b4257044d4b81fed9d57c2919beb6215f978ac33daf1dcc866ac509  datascience.meta.stackexchange.com.7z
+6b71cd84e633a7498d13135279cd33caf9e863c4ff250bbf310f25e961cb32ea  datascience.stackexchange.com.7z
+68d5f3136807d9950c0af5deb11dc0b4282c372b16740b128dfdddce2123ba9d  dba.meta.stackexchange.com.7z
+19cbc221504103ebf05ae072c2fd845e563a4546070513fcf68954ef5db14352  dba.stackexchange.com.7z
+2acbcd3ca8742c4eab96fbc7aed5fbe59da0062c89f2d3439d3f8634ae992cac  devops.meta.stackexchange.com.7z
+a62a85ff5e65cc3f2331ff3f364360fb893c73a987aa8b03d75886d156e5cf6f  devops.stackexchange.com.7z
+61633f5f40ed083bef045c93cfe9a3bec45d3d1754cfce81e5a173fca6ce713a  diy.meta.stackexchange.com.7z
+e1fb808ae22f145cac27b91db2a3e259862510f5e96616ea0d3510225f0a84b7  diy.stackexchange.com.7z
+b76ec9309136f11a8640d79128b84d350ca5c876642798c0c817c09fc784b12f  drones.meta.stackexchange.com.7z
+2b87b6149bab188ae9c88b46c0f0891291f0087ca2faaa2bad39dd2ab53804c2  drones.stackexchange.com.7z
+a3f0e08e356429a73a9cec97da05d07cf6545561fa71f73f4926eff1f19d46fb  drupal.meta.stackexchange.com.7z
+ab8ca52a51c4f5cd584a68e6b9976aa774fafbe7036012178decd5eeedda8494  drupal.stackexchange.com.7z
+1a8690dbdd5749fa8a4bd8c21d7813d2a5dc2142f5d822b33fe29bba3290dbe7  dsp.meta.stackexchange.com.7z
+0ef7c426106500d562a7c5d77a7af995befc99f90aa99eaea43b6ebb1f1d6691  dsp.stackexchange.com.7z
+185f576437df6c7c96878fe223488a610aafa380ab053dc6b74185c927b76c5f  earthscience.meta.stackexchange.com.7z
+c6aceb9474c378904a3976db416e4af1eb739ed44f1177e57e193d1b762e8de6  earthscience.stackexchange.com.7z
+b670f31c96fcc8a67d8744ea272adb7dbeefb47470381f2be8fc39fb16a01165  ebooks.meta.stackexchange.com.7z
+29adb2a6ff78961a7cfb332a343ecd03746e1fe95aea4a6cd48ff9df254e711a  ebooks.stackexchange.com.7z
+739019171cfdf8845f90ceb792d0b10ebd8010bbead214937e1bc23e81b822e2  economics.meta.stackexchange.com.7z
+bf495fb606be76ce78533d7fc65dd46379fc121af4a3f3a2ed8a1547a6a47185  economics.stackexchange.com.7z
+203a1691b652604d33ee402466152fc6dca3765113ae4392e8a92623838c5c30  electronics.meta.stackexchange.com.7z
+2f022c8b0431762e637093ef0f0dac40c574454a3ff19f69a5d3a3ff6109d015  electronics.stackexchange.com.7z
+800398c2b6f02c656046a8787209796382b14a66c27d4a4a4865dec24950eb21  elementaryos.meta.stackexchange.com.7z
+b71a1a75d5be94ee47f19524ec731fd818418349ffe1de09758ce673b4d911ce  elementaryos.stackexchange.com.7z
+214cef9df2f09d83c87187c2ab3e36425acf49bee9c0ea23b0b9de2e52f2257f  ell.meta.stackexchange.com.7z
+aa8f2d0ccd560ef4942ff71d5b85ec9b0f75ceff1930c3e05abc38bf41fd4c4d  ell.stackexchange.com.7z
+fe0e31f438ef7171f82f49bf27759298b3714efc79f4635f4ec6cfe2790b39aa  emacs.meta.stackexchange.com.7z
+c308b96bb5fb2f7684cf128a2d6ef22a595edfcd12fc9d358a155bd55b348b76  emacs.stackexchange.com.7z
+93a2a64c093753f4b3acb21c72d2c0c8d724520f020c9fa29980d09be3b808a4  engineering.meta.stackexchange.com.7z
+ab7322dd61ff620d226d78d38215f26c103b1afbff14331c30c09ed9779bc51d  engineering.stackexchange.com.7z
+2bfa6e278f1d2466dd1afb33f9863cea9831c0765e8b6f77455114ec54010453  english.meta.stackexchange.com.7z
+0ec582f386e312487f34a0e83c262bae56132139ab8f7e833fe5395b16dfae80  english.stackexchange.com.7z
+5643f165b08677d8ae0a3084296d39805daf5e08448c27c2cc53d853b1149b30  eosio.meta.stackexchange.com.7z
+f23b6ba536aace39d6b76198cd0a0b375286268d9ed5a5046f2789cdf08ecd49  eosio.stackexchange.com.7z
+db011b84430651d8f1bd045043b135e00802c3c32791e83bed6847fd1680fc7a  es.meta.stackoverflow.com.7z
+c1962f25686b81c90ec253ddebb4facd67645a60341deb51d8a727b9dca7d1b1  es.stackoverflow.com.7z
+6e290b551d645eb1e313049f5f172333855d78b72470bda9991852b551ddc08c  esperanto.meta.stackexchange.com.7z
+d44dee2956f64cf8932c36a07b9e19e9c34a4363214e1e0db3749ed4decef6fa  esperanto.stackexchange.com.7z
+14d458dcf65078593cee20d1ded40d36e8457b39a7dc0c344b7357b095e3ed11  ethereum.meta.stackexchange.com.7z
+120f7b4780045df3b6920699f182d3562f0e07c1cb539700e2c7003190f05dad  ethereum.stackexchange.com.7z
+63561f76323a79601d49afd91485ea372c79e16e27be969aa7acde1d21cceafb  expatriates.meta.stackexchange.com.7z
+70e2fee57f5e98ca7c6193f09b8d1cdf61b3f4a99e83e4dd407f98ff3a2adf72  expatriates.stackexchange.com.7z
+0275a1fb146852c0bab65743d7d4445a0e7e04b95b33085820348fb332e41009  expressionengine.meta.stackexchange.com.7z
+78e383eb82daf9f682634d0bd4dfd9630d72db7a32842b01401aaeb37baf33f5  expressionengine.stackexchange.com.7z
+4ed5c620a16bdb3683dd3db3672c1e4e0596a0e6b5af8d6bca60d8fd7ecb6b09  fitness.meta.stackexchange.com.7z
+b822f8898b01004da4e730a806598ae9b2f2529b5376209c63c0cc224f668aa2  fitness.stackexchange.com.7z
+6711c14ac6cf29b3972b770f264de32dcaf5547cfb60f06aabd98c1f89f90ded  freelancing.meta.stackexchange.com.7z
+b06f1e3ba1883d96ac7ddc8cddb5b268c9d736677f958f0b89926489bc15e811  freelancing.stackexchange.com.7z
+b769c238e009171fe1a8eab5f7f34b7b13fd78fe873d634926c95e79b31aef4d  french.meta.stackexchange.com.7z
+47f31c6131087216af271d3d083a30d1c0f6d99ef93bdad699f73564a967e63d  french.stackexchange.com.7z
+90b22266d25dcfc3591aac613a240a45819f518c360ade195176bf1b9ea33895  gamedev.meta.stackexchange.com.7z
+3493c9ce4ce13ce2a245c4a1049b04fc825ae1758aae022ffa836da0d0ab6ab1  gamedev.stackexchange.com.7z
+7565861ff5bd4c8117b873e8986a52d37f65480bd64db7d4dfc23e2899452469  gaming.meta.stackexchange.com.7z
+a2fd1cdaaacdb3312c98ff37bd524597a7524039b63f16450e43ba0c08c23b78  gaming.stackexchange.com.7z
+6b228a05f4ccc7f06a341988824536ddd0851abd88c9b0a8df50fdf508a7a082  gardening.meta.stackexchange.com.7z
+93b1f0390e080334e5117581b830e24769ebbbfafeed43b9b3e64213e62773cc  gardening.stackexchange.com.7z
+2d1f8bfb47feeaefb719e9784421c208792248f05f1de2b7b153942244899af3  genai.meta.stackexchange.com.7z
+09fef918333015cf9765a06b141d5f25dd16cda89ac3b20afd6026b0ad2b21e6  genai.stackexchange.com.7z
+21feac3e7a92f1bab97d903c13c597d7f507e74f059e99c8c7db72ce2bff3dd8  genealogy.meta.stackexchange.com.7z
+ee96d7883390d552ec0b198c846787de36d5f67a0b8d572f7368ee8f2f0200d8  genealogy.stackexchange.com.7z
+943fbbc8bb5e287a592097b763ab95c634f2d170f58f191acfb439c12325ba8e  german.meta.stackexchange.com.7z
+54a52485ccae3b8b7de0315e4a2a2f13e0089deaba3b48b3b42b4a1c3b81971a  german.stackexchange.com.7z
+0e9ef749b506fd630a1f2033a2e6c120d7b1bed3c9c583901bd0fdee6b70e8d6  gis.meta.stackexchange.com.7z
+7fe1cc6fd5422ac26709d83e1fc6fe4c7a9a843a7729fefcdcff8b6381b9d377  gis.stackexchange.com.7z
+a281b8203b94c8da0a570909cc4d33f8de3e726e668749bf5662db7599690178  graphicdesign.meta.stackexchange.com.7z
+c56f831d2101313f2a46bd210d751120774406879b7015226486c580e8cc9278  graphicdesign.stackexchange.com.7z
+f60d399c69764443019b195011aa2e509398073476089b2307599dcc668263ac  ham.meta.stackexchange.com.7z
+eece46c66b8caf713312ed66a0a4e1fca635546eef4bca5befd8e31d91ec751a  ham.stackexchange.com.7z
+4ff5deda354a2db70c356e6e3e2eff762820e7e5290f56a65efc493375bb9937  hardwarerecs.meta.stackexchange.com.7z
+ee1fdb4de3e32ef0a0a0fb837dec63f7a431d9f18ec26497054e1654941f1806  hardwarerecs.stackexchange.com.7z
+edf78239dff8d8d5f768c4c5879229909ef35ad124aca7bd125446ed554a1d92  health.meta.stackexchange.com.7z
+762e0d9b12f8aaf92d7232832148e69edf43e09891b2c910adcb707e32ad1fd1  health.stackexchange.com.7z
+3bc5ba0a81fc6c18d432e6a7d184be08194cb6ee02126e68a2f1f4f022dc3871  hermeneutics.meta.stackexchange.com.7z
+bf4b3f5582b456ccaddca5fa812d67d20293db60c6f46a52f02ec4ae9b2d051a  hermeneutics.stackexchange.com.7z
+4ab9fb1269e57b6023f07440f71cd807a986b8ddde0fe692eb32cec1e4773d28  hinduism.meta.stackexchange.com.7z
+8d5f67ba88dfc60b4e98d24f460ce1e43f4959b81dde6bf7ada50bac09b32af4  hinduism.stackexchange.com.7z
+e730cee3d33a2616c9eeb514db27274b35be6d341df2dd63d01b93bd2ac3d450  history.meta.stackexchange.com.7z
+90358d8fc9a86a808dda66a47910deffb3fd9a9b95f5abf40aedda0ecb1587bf  history.stackexchange.com.7z
+067205e81f6d8758893eb5ac3805c650e4b0e954cc3af58e43042dfcee018e6b  homebrew.meta.stackexchange.com.7z
+20827a513493527d58c6283678f0365f378c46595b2aac5161cf77749b4b393a  homebrew.stackexchange.com.7z
+89f15ed889b6db911567cc1300fb7333e92b24ba361fad3f5bfa752318727f29  hsm.meta.stackexchange.com.7z
+b8bbeb2d5636c33d568b831e9c869912a46ae4b6425dd7740cd9b32a07fca8fe  hsm.stackexchange.com.7z
+bc0d2ca08892ff19e5b93759a5487655ac0651e40f9dca28a818afdebf5580be  interpersonal.meta.stackexchange.com.7z
+de22618226ee3a330e0535dbe7fd5d9ddb3bc593c481294923a51c54e638cef6  interpersonal.stackexchange.com.7z
+d69176151147b02a3c572664787b52f45e819ec94a77f178e2aacad3dbfaf783  iot.meta.stackexchange.com.7z
+7dbf7f216afa3b6868c1740973df4508b54c942c2c9b550af0d5e73314bc8db6  iot.stackexchange.com.7z
+cf8a683f9eb58df31ca8b9b8fbb8f00caaa3f10de89fa07636c0998e09363130  iota.meta.stackexchange.com.7z
+a16c460bbf7b0ea7b209678d1786bd6f5d8ca2f1a1cc2ee018edbe15f5bc8c4f  iota.stackexchange.com.7z
+a256d1f2a4937e05754c7f8f6393939a8df2043be7706fbf0f00890ce4a12b87  islam.meta.stackexchange.com.7z
+ffd197941871971a387d4cbf9013948a05dfb618e3c7a313627f98e3686723c9  islam.stackexchange.com.7z
+7c494cb0e9f0266dbc2b7946189610b30ed699ea7b19a1fdc53d68a6c0c9b835  italian.meta.stackexchange.com.7z
+efcee7c7cd81e595a79aa46c78ac7699210e0a7a41567fc7fcfe05fe273a397c  italian.stackexchange.com.7z
+c0f82cbf87e1e40a9f369b1c05128afba59e830bd8252c431eaeb13144a94b59  ja.meta.stackoverflow.com.7z
+4bcb927c9567d4a6403e9ef163aacaa0ad85f87946306726fd9d25913b747fae  ja.stackoverflow.com.7z
+b27e2c22a6dcb4466c57073499990a64e3c7c028005bd00aee0e3b74a94641ec  japanese.meta.stackexchange.com.7z
+188bfcfdaee7e8e65e25102a29c8b8f5ad267f33e7016cab16544a9db6cb260f  japanese.stackexchange.com.7z
+d5a82b387fbb764c8802f909102c465e33524ba11244838afd71df7683295067  joomla.meta.stackexchange.com.7z
+d92df9d6ad815bac05fc5dc0db4d9fe76b1a0ed47abec9b703a68fed9c832883  joomla.stackexchange.com.7z
+cd43f084e04e2bc376ccc74d73049147945f37f802c4ca7102bffa5e03017234  judaism.meta.stackexchange.com.7z
+b2eab3f172daaf89ee5011969a19bd57744517bf62a65c265139376aed2c53c3  judaism.stackexchange.com.7z
+6454bdeb922bb43f23f810496304fd45afb69847850d2e272496acd627765823  korean.meta.stackexchange.com.7z
+a30cdc2960bf971bfb3afea1b12e9fb58781fa8e9cffe4089df3f9613ee7d5d6  korean.stackexchange.com.7z
+44a086b7d1c7bf87a8653ed0d5bf6b536a439093749118b81780257d7db90aaf  langdev.meta.stackexchange.com.7z
+f5450c3abfc7cd1249bbbe8410bff72938928037b9d4971acac7dd8745246bdb  langdev.stackexchange.com.7z
+8e495f3de718002c9a6f3871ec19706c94be5b470c3fcc8bed9e31939fd8103d  languagelearning.meta.stackexchange.com.7z
+f8b68a2430924f93bb43ffbda4b0f67995caf46291c8b9377d19c2e5fbbce0f9  languagelearning.stackexchange.com.7z
+c80ae20691a89e0e2a0a1817f14c1f3345637c078b0267c5bb5bc135ce07f587  latin.meta.stackexchange.com.7z
+265114c284be272f32ed6dc60523cc61bbeea5590d8c5b7b8b4f608004d9727f  latin.stackexchange.com.7z
+5faf86b35193b33f9225d7c3fdab6b8c05e529aeca13bead8c6e1d86a40f5d36  law.meta.stackexchange.com.7z
+7d3fb83b923fb52da4a5a94c8dcc9fe237d3f0351c6dcf808756f93845a1bae0  law.stackexchange.com.7z
+277721001bc230dabcd4925dfb6d30a419e15989b0ac0ddbb0f9177dfde97301  lifehacks.meta.stackexchange.com.7z
+2732ea433ec771f0d125073ff72cdce93ed46c280474b24344cf9c9b5f1ab82b  lifehacks.stackexchange.com.7z
+7afae6249b0679c98128ca34ce158b827859fdf8ab38e305105e1edeeaa40e75  linguistics.meta.stackexchange.com.7z
+0e0b3538eaccec8c78ef1d45f5abf3881788b424553e6ea29c3115e418401753  linguistics.stackexchange.com.7z
+54f21181e7c20484f1752b2b2e8f154800c1e787ba4db2965924483a8542adaa  literature.meta.stackexchange.com.7z
+3be95f138ff2cca40a835e9cf435b9dbcf1747e4404cfd1f4805bb8f43fa147a  literature.stackexchange.com.7z
+4b4cabeff00d91d92aaf449890142bd6e2466892da31277b22f08c3cf447a1f6  magento.meta.stackexchange.com.7z
+b44d33a350488c1c26f56b6315e0fd578fe8a7c3b68058a32f6392a4293b00ed  magento.stackexchange.com.7z
+ff19f3f7b767ed76f0dc6db899257f77d5e8806af880d393b29d7d0a3fdbf47d  martialarts.meta.stackexchange.com.7z
+e6bce9ae1eb4e21b71b079d29dbf2eff54c3d3cbf1341a19d5c53e262866d786  martialarts.stackexchange.com.7z
+73c2f8304a98006e5cd37c70830da3eef0423789ea0e83bd52503b4ab09d3382  materials.meta.stackexchange.com.7z
+f0bb51a2642970cb29d6adf72e268098b9955d8b560a2b33b495201b65b31dfe  materials.stackexchange.com.7z
+d7482fdd7c2f425a2337192b1152aedfb7d63d6f5cc2aadc2058defe7042302a  math.meta.stackexchange.com.7z
+ade6d1a73eee94a97e86de31b987868dfabf0025b8940eb93b1d544b8936dd88  math.stackexchange.com.7z
+575953580bc1bd0870c37432bfdc492bd24a8ff8e8e0d2ae702c87dd779097da  matheducators.meta.stackexchange.com.7z
+9b2ed7d086069ec45a51782beb1312d048424323528388f776f5a0d5857dac9c  matheducators.stackexchange.com.7z
+727e9e93d70d0eeb84927483f60c713069761e261c4eb395db276776a35bf4e6  mathematica.meta.stackexchange.com.7z
+9badda13af8f8e5acc3ebe1cfa4fc5f9bda0f519cfa2c3071b8e1f7c6527060c  mathematica.stackexchange.com.7z
+1e9144002ef215ef81a56c49ba278e4ae90d04a30822f46e9cd5c2655b5d64d5  mathoverflow.net.7z
+e2944675fae92ca7594440c9d218fa36ef791f5cc61f48d94c1bf10df161d4f6  mechanics.meta.stackexchange.com.7z
+4de3f2441fe04ce2abd01aa4e8896c962cd866ea03437c8021b619a274409bc7  mechanics.stackexchange.com.7z
+99bbc8e1d908a14ec64268c147de6619be1cf0928b02b634ff5c10d8b39c6161  meta.askubuntu.com.7z
+f7c43d77836c2084f94a5326f7b7f9b4d925904e666ce9f8d923e53620f52927  meta.mathoverflow.net.7z
+256827b999427408d858581ba440dc2238ad0c5c3d6aeda0a0550117170648e3  meta.serverfault.com.7z
+5e24dc9083f71126fc2153a5fd346854515ddf93950b34c9a09dff730ef3110f  meta.stackexchange.com.7z
+a096e09ac21fff30276099814fe7600e66ac4748ae296f01adcd05195a7fc148  meta.stackoverflow.com.7z
+ecedbc0cd94a59abfcd875b41f63c6ffd7168b29ec77528a75f4d2fc8da5010e  meta.superuser.com.7z
+0aa1dc6d0c64fd19d69dff69251311e9a1da31160c4b86fa2b1ee5811e185875  moderators.meta.stackexchange.com.7z
+9759e8b077505e61e69a5529d626e448a62b1d03fde80081a42b20566c1affa0  moderators.stackexchange.com.7z
+46b0a2ca6563c22ba02196feaf557dd7fe1cb7caf79554a1009c0bfbf13f3d55  monero.meta.stackexchange.com.7z
+808d6a61494a1bbe40a88c394156a2152971efbb34645d27a8e2089f4b18eb7f  monero.stackexchange.com.7z
+41455f23e0219783382e247b63733fb488c26a51e09b1e26b3866946c3686660  money.meta.stackexchange.com.7z
+3b2ad9b9a7af36d85be30d2a13ccc7f817cca732ffff80c0dcd18e9b43b018df  money.stackexchange.com.7z
+fb1dbb79d0038b8d090834f463043360fe182d21b97efba4e9429bd9d7b873ae  movies.meta.stackexchange.com.7z
+2c4cfa944c5e34b52f4adad8ae7d8fe951c5e5f5c28cfe85409485f0c3d235f1  movies.stackexchange.com.7z
+c25460abb437c4b6259305d8663ac1ce04fc47509ece461f731afbee0a64d09d  music.meta.stackexchange.com.7z
+707fd687808625172a1ea0f8c51d98478701c15b70d889341bce27741fa9dd6b  music.stackexchange.com.7z
+69fc0fe11770bd26cd2c55c782dd1809bb0cce0af4a71632a247a4ef9ff32e36  musicfans.meta.stackexchange.com.7z
+5b3d9051c689b5aa1975a0d7148d3f4f9e6fc2506e829584e9b5c557f028d965  musicfans.stackexchange.com.7z
+efb3ac06b8cf556d7f045e6d291c1ffbc0fded64762b41f7202a571cc3bc7d49  mythology.meta.stackexchange.com.7z
+081db80ec5b1015f4080fba86d54a2453361877a84b069afdff4edf82979d23a  mythology.stackexchange.com.7z
+e7a6c6ea08683b37b33070c79c82e02f94fb1e6ad086ae4d6e68ea69cce29434  networkengineering.meta.stackexchange.com.7z
+6d626643bbd3719ea8999fbc17f3ec26c4d01501448959f7efc2a78daa47691b  networkengineering.stackexchange.com.7z
+36841992b71118d970fd4678604247963b06ad8a9431c26ee208d3809d941823  opendata.meta.stackexchange.com.7z
+193ae312ca46b15fa732b8914b71cba4ed732075ea3f1455f946d629fb9c5695  opendata.stackexchange.com.7z
+e87b314ce952ab091f341ad0919a259d2e6f82098aa6fa1ef5bbabaec4e65337  opensource.meta.stackexchange.com.7z
+daa1fbcb77f739f446a2acc4036e393942a62769f9a83d477e8d03538f6b2643  opensource.stackexchange.com.7z
+37ee7a51c42fbb38ca7eea0e50f3afe56c6653c6fa45d2bbf9b66a37e029d9a3  or.meta.stackexchange.com.7z
+ccb8d87216047119d161cb3f83a80f52612df9cbd3258fd0f9960d9546d845c3  or.stackexchange.com.7z
+5b6e707e65189befebc16ac3e3d9789b4321a274a2e813aabcbbaec3b8267cd7  outdoors.meta.stackexchange.com.7z
+30c30744bfad16719c3c02efc4bb6288ea164fadf7adfac076bff349577ab8b7  outdoors.stackexchange.com.7z
+6eed8d43985a8c9caaa373eeb55e360231539b486f6fe4ba808db35cb8272b8e  parenting.meta.stackexchange.com.7z
+7a3a1d2da31e7702c9c1645689d6f2d870011ef5c8a7245ba1fa9a16299249b6  parenting.stackexchange.com.7z
+740c8e8e1e010542a13b79e1ca45681f760cc9d30c5a59dca7041eb6724cdf77  patents.meta.stackexchange.com.7z
+8093d715d514cef1dfd5293df0eab9e2f04d4198354e4031c00da7cdcaa15b5d  patents.stackexchange.com.7z
+edc062a9d2cd4d7388d989b7bef429c4ea623a652acb79b14ef643fa02237fe8  pets.meta.stackexchange.com.7z
+08ae1630e3439173716c4cc815507664577ba2e4e0a168239d60559338e34ee1  pets.stackexchange.com.7z
+18a486796ef53728eef26b79e951fc748caba3c505266c4d24e2af43cf5c6bc1  philosophy.meta.stackexchange.com.7z
+1a619b21aff28da8eca2fa1f368a653009cd8bfc13f9f413ddad0d0193fbd153  philosophy.stackexchange.com.7z
+b1b1a33ed3a2e4f8c8d8f1bdace11ca07420f9fe36eb65ebb4cf9a93a28c7851  photo.meta.stackexchange.com.7z
+a0883beaee930c760e3d5a084b299f6e8fb088105b99ff33b2aa8c47cf186a31  photo.stackexchange.com.7z
+9ad1cc008234bc9baf5afaa5ee8d9b47699637b09165c171cb3faea383dbf221  physics.meta.stackexchange.com.7z
+5a995ffadd095d23b09f964f7947f20bdb9f3e5688065f2e52967c582ad83d4d  physics.stackexchange.com.7z
+a5a8c728dc6dc14bb436c4522d2dd0bde8fb124fbab9a5fab785bbed260b7361  pm.meta.stackexchange.com.7z
+d403c9fd77826e2d8e890b7a2c9c239efc40e9b34e7f35d5c899582aa555c30e  pm.stackexchange.com.7z
+73e9896c08a095fdf8000636b91069c8a454b4f17127dec4d36d4c398d40cf56  poker.meta.stackexchange.com.7z
+c2c956f24d07197825ff0c3bd41a4de36e9fd4e31aed88667cd5ae91f20d53c7  poker.stackexchange.com.7z
+fec404010451369973bf6f09b0048c6c933e1e106d75ce5ae867ec474dd8016b  politics.meta.stackexchange.com.7z
+8009f346c4a90586c7edd82807c854efabd665a52c484490cc2fde34dca2affc  politics.stackexchange.com.7z
+461921ba4be396d51e9202e511de633d5a550d1ab177389b15cc75278ef8cf56  portuguese.meta.stackexchange.com.7z
+a5d8e379e70aec6744f146e0039696c29ec441483d06f7fa49380cfd6ad97e3c  portuguese.stackexchange.com.7z
+ce532801cbcf29d30cc01c44210b917e4a75fba8097696a2ec7895022dba435c  proofassistants.meta.stackexchange.com.7z
+b847a8de3944fe01357071ef7d20cab30d18553d31f0861a796c0232023a6698  proofassistants.stackexchange.com.7z
+150cbd7a19aa15be24d69e6355b478d808965a4fcee7aae2f2caa96e89d8c22b  pt.meta.stackoverflow.com.7z
+f26a6cd6c7aa877c6c2feaf73ba778dab0e6f44b95746157e785b1d8eeeee050  pt.stackoverflow.com.7z
+28db9e56854e992f0cb8b34bb68bf0420727fcaf842490b637696ffe1d8709cf  puzzling.meta.stackexchange.com.7z
+b4efd8225d8cd5b24cb68f76b4acde7d88b866b33de72b9ff36f4b2e6f8e1905  puzzling.stackexchange.com.7z
+43169d9884f5c7c18bab28aeb3ce747154ee9239198366f07183474d3ee74918  quant.meta.stackexchange.com.7z
+63a29d58c00d18f6630c873de4e5ef1266aa07648274c12c76fe54ba750b09fb  quant.stackexchange.com.7z
+5860d0edf8236cd16711d4d998390d7dfab45751c802c1a86f97764ebac87a79  quantumcomputing.meta.stackexchange.com.7z
+604146f30c47dba6c6009e32b6ae8e840bc1ad16e26c37af393af8e32ef98b49  quantumcomputing.stackexchange.com.7z
+75901c44109a9e1be027cb544c5d6d6a0ce723715dedc435f0d589daad2c7e09  raspberrypi.meta.stackexchange.com.7z
+cf2acde0ab4478a449d5ab88251cf1ebce6dd137176a9ef39eb8b5aad19b205b  raspberrypi.stackexchange.com.7z
+1fcd922eb08cf7413407d039be62fa7c578eb3e9c7426830790d7cba4b861128  retrocomputing.meta.stackexchange.com.7z
+985ae8a5e8c8bb3242f0805f6e139867b069dbb1964a1d4dd23fc5d07b4f2a81  retrocomputing.stackexchange.com.7z
+931cd40ba765c58c00b10de242ef4461ec4a9d3948dcc7e591c8f41e40736a0b  reverseengineering.meta.stackexchange.com.7z
+ce8c34e52559a64d72fcd16f2656c98d975280ba62bb439c867a5e39606b26b0  reverseengineering.stackexchange.com.7z
+44c26fd41cad459e1c4379e750e36ecb983c3067b11a7a7212d462cb1cce404d  robotics.meta.stackexchange.com.7z
+f9f3bab2af026baaff4ae271ebd572bb58cfdf600c75a9c55ff80c2e69bad717  robotics.stackexchange.com.7z
+0ba891718974fbb464ad031b831f3d7d8c09b5e494355c29803415b0e6ba6349  rpg.meta.stackexchange.com.7z
+3a16b0be4226e8c40fb6378022755fc3a153aca24a8a645adb3c66adeefd42b1  rpg.stackexchange.com.7z
+3cc28d03483a833400c3ed73f80939336aef1bfe24bde4e9e70cb8dc30d08342  ru.meta.stackoverflow.com.7z
+e10ae9d9cf56efbb47bad5cf50ab01679e043daf175f89f1b449a8cbbf06396b  ru.stackoverflow.com.7z
+36d18ec68510c280d44f3bf36cf2d1cdf9108eaaa97effc3fda1a84ab60d90c6  rus.meta.stackexchange.com.7z
+4ef021e6b7420cd05fd10ffe53a43cc3727eade8fd1417ca489b248f014a36df  rus.stackexchange.com.7z
+c36556136eb4b103514bf95345986f4f408b7b502a13295d2d45122952202db4  russian.meta.stackexchange.com.7z
+28d55f23b4ce546246d1571c0914df9216e60fe2c002fcccccbbb6c6f3a92c21  russian.stackexchange.com.7z
+5a106bb7736739045ce5b8d90b09e940c8b9b09fad9dc84f1f03b8c29de58ccb  salesforce.meta.stackexchange.com.7z
+9ce158f12860adb5e586a25c8c836bdb65830ccf509072942ceaae483edc7c2f  salesforce.stackexchange.com.7z
+67144ab68012670f9056be37572ce7185a8f43fe5949c252ac4d2d2c534dbdaf  scicomp.meta.stackexchange.com.7z
+f561649a026578fd97a66ccdb0aa4e6cced2f1847c4451a7898032296acaff46  scicomp.stackexchange.com.7z
+d3970c4fb5950fce567e0a27462b262ff73c9a12316b4cfb08afd3db5360f856  scifi.meta.stackexchange.com.7z
+bbcf61717b226c2bbd7f263630a2a8b796fc1d00d93294c58036a9afccfed54a  scifi.stackexchange.com.7z
+3ef9280838bf5d692f931653d8909cb070e9c8aaec3b2914af94b0f06264c7e2  security.meta.stackexchange.com.7z
+c0ebc7da8ed249848dba07320e8aaef9634d4d6536281cbba585a8c8386360b2  security.stackexchange.com.7z
+0eb4c8434204f2f104748f26423edebf53783e042dfbbb1962081ce93e050624  serverfault.com.7z
+f50b744355b081265bc31d00c5d3f036504703c7e5f51b3d50b74f5344549965  sharepoint.meta.stackexchange.com.7z
+2aa82077b527af9e3b532e97409a530486c6c2f8daa310c4fa0ae67926fa1d84  sharepoint.stackexchange.com.7z
+109b7a9ea947779f3f139730886f2727fc18502f128da3c2b3482a79743f07d8  sitecore.meta.stackexchange.com.7z
+0a6c03696d336813eab858046d70624481b983b54bfcae0e197e268a4d667757  sitecore.stackexchange.com.7z
+68b586e9af6f539f1a907e61b501fd6e37a7239adf4cec6803eedf35aab2163b  skeptics.meta.stackexchange.com.7z
+6bd6fa89ec03f6c7d6bcea675df427d7e6b7de9d97bca95ef173f57dfb24afc5  skeptics.stackexchange.com.7z
+f0039f89fbaf4b9668c7fb28053219f913eebacd90607e5f8c550dd93080d579  softwareengineering.meta.stackexchange.com.7z
+a78a7a3d6e1ba4846960adb2f080bee6470564a62625a5685783979385f9c20e  softwareengineering.stackexchange.com.7z
+ade86e3bbcdbe0fdc766a0d019f08682e3699d185695c6517ed2a14bd6296ebf  softwarerecs.meta.stackexchange.com.7z
+96bfa166c71e907d30bf043afad8e17a3e81f1dc3345494833a72c632dc30997  softwarerecs.stackexchange.com.7z
+c53a9cc64517f4fdf5f1404ec34df84edf6a3a79a7b4e912554059f2c6045544  solana.meta.stackexchange.com.7z
+0a4717e66c68cd2c7efe0309cab45f9d211f5c886ca3d3bf7e06b63a26b83e41  solana.stackexchange.com.7z
+3a827c91e5da1637c118053f7e39f94ac12344769ad45dc61d977a6f1f10a7a7  sound.meta.stackexchange.com.7z
+7107d4b8bb43c4a30e08471c6eeecc4bd24fae5570b793f692ea4f55c15846f4  sound.stackexchange.com.7z
+25f7e441eaa393ac6d9a04909cec46451b83333e0d28300814bea0c4f7d9cc07  space.meta.stackexchange.com.7z
+3d0d12d401f78a44b92f6a56f52a80aa41a6d98b100669216eb3947e2e5a3b3a  space.stackexchange.com.7z
+f1cf1f086f53e7f1468d2f26eb158fb1016df061613805be07de4e4f836e38d3  spanish.meta.stackexchange.com.7z
+2d80e651c9f1a34282d3a62c79e3ca3717f4251466900abf5be6d776c1a414bf  spanish.stackexchange.com.7z
+00c21022e3aaba529ee75a7e3d3d62fae0bb7363685b16ff2da16e814dec0b51  sports.meta.stackexchange.com.7z
+8837103fdc24a2d75e0cb0b77a7f9796fc3cb17c7d09ec3ac604ae80b653db98  sports.stackexchange.com.7z
+7feefb09f63976e1c493b12af7ce951af1ca305ade8eef4489d27c1ba6f07b39  sqa.meta.stackexchange.com.7z
+b3292e38b747384bb5fd0c233a1629f565036019f8ddb371d5f93784596c80cb  sqa.stackexchange.com.7z
+2cbff68c5904610723cac5dc84c59b21c484c3957421d53bdc08b8666b235cee  stackapps.com.7z
+e5f5d9e8ec2797dd7f4f50ce4180a18abd0df0571ebccaa255d1f04f4200982a  stackoverflow.com.7z
+51684a97ec2af143c6ec8bdbf5de97d21e7a9b77e4d56959f73d099b7cbb816d  stats.meta.stackexchange.com.7z
+134a4ea1646590439ea86845a9c3f3864efebceb3d9fba887beb646881dcf7c5  stats.stackexchange.com.7z
+0472934bab0b159fea92b8e0c26a6924aaed5f9a5fc7822a79315064b7f34a19  stellar.meta.stackexchange.com.7z
+ad4748eb5726f8b1e02eb93b864e623f875d77aa1a003cd914a539af63fe9137  stellar.stackexchange.com.7z
+ec30882bd1b84bae43f8ecc0e9c42ebcda55818386b189fb7f1aa20e72d82c91  substrate.meta.stackexchange.com.7z
+729ce2a16dd009465c19f028e8ed530a52e8e83117e650fdd1ab3521ec8a697f  substrate.stackexchange.com.7z
+2f02fed13482ac97e91bec667d942388d11c049c23d356b65639e0428e6a2f20  superuser.com.7z
+412f3a139626ab470471b2a156d1ee0a2c12088833c92ced2cec9198410a38a6  sustainability.meta.stackexchange.com.7z
+255b88732c2c2962c5664668872fb278acc88001258c158336361528cd9efa2b  sustainability.stackexchange.com.7z
+5713d19f27a774e94480685ecd22ebacd15688580fbd70a1cd939dfc843a5250  tex.meta.stackexchange.com.7z
+74236738e84e544a6f20a0ead92d6df37e6fb85f6717212802181e2ee38557a7  tex.stackexchange.com.7z
+8b90f6f2d6420b9099bb316c7818fd166b50e3441a15baaf9f5176b2f2a7c725  tezos.meta.stackexchange.com.7z
+a2b6c78b61a695b01df6253c745b0fa7742ee805388dd0d4cc5cdac0593afbbc  tezos.stackexchange.com.7z
+22026c90bfc8040ef2494f1517e1bebeb407b3d10228ffb76b4507c2c98563c9  tor.meta.stackexchange.com.7z
+3b42fd2f5179036920f1ae1f366a4da0737915f07312d6222d7330e7f813ff60  tor.stackexchange.com.7z
+d0025433581ce976fe3deca6d41217509dda0b8d72acbfe5756a6de40cfb818f  travel.meta.stackexchange.com.7z
+1df580f5e02f5c09502123729b403a98498aca89e8c54df8b038517c27f010bf  travel.stackexchange.com.7z
+bca547db18eb9a87eeebe38e034cd1804fc661b4ea9160d1a12764cb031257eb  tridion.meta.stackexchange.com.7z
+db6bbb25d35119ec2541d64782845825578a47ed6f0ce0bce775983950210468  tridion.stackexchange.com.7z
+b1e9512b24460b7ed5d8409251468105c4836c5da4cdcab8990038f6ad9f7752  ukrainian.meta.stackexchange.com.7z
+8b51772c073756f43b3a3b73afbb1779ac34e67204273d1586b180f0b8555963  ukrainian.stackexchange.com.7z
+e8d038fe9b36ef015e441ced9e11a0b8a36c5b85e739e68da509ab844e0f4f26  unix.meta.stackexchange.com.7z
+77cde77bf7046bef7f44c858b14b011b0e1a2131cb02548e7c3a00e9b5754e8e  unix.stackexchange.com.7z
+4198ea6caae156e7b20fc9a5cb9969279b9c398d31c968da086f2d6d35434114  ux.meta.stackexchange.com.7z
+900ec4cbe69f4623efec538c8b2dfd0b1cc927aaa5ab71e6ae38e6eddbe3c8c7  ux.stackexchange.com.7z
+044dce7f4f90cf99f56ae75939e5ef498186b38af452636735d87d486b91ac54  vegetarianism.meta.stackexchange.com.7z
+f666355b6a7020e7477763ca730f616e0df480daffbb47f10a352090437587ab  vegetarianism.stackexchange.com.7z
+796895fcb576ac9940b3f64acd47af26e4e7ae3c0d14fb3f9aa5aa38b9963a50  vi.meta.stackexchange.com.7z
+23adf7607bfe264fefc07aa77874fd049cba504e66a43044dcedc800a68a4e24  vi.stackexchange.com.7z
+cae106c62435310af19129062fd81e4a9ce6b49d5447edecca483925e61833cd  webapps.meta.stackexchange.com.7z
+7af2cfa857eed56f9396261b2985b387122b28f4a7fc43efc45629b20bf488c3  webapps.stackexchange.com.7z
+e01cb7e71c8274a40a9de81a1d3f65998f538920bfb6d9a52af4f9158e74d790  webmasters.meta.stackexchange.com.7z
+594ab3562945427dcfddd810c48fb0d82f8429401a78121d70e42e6eb128fca0  webmasters.stackexchange.com.7z
+40d53c6ee612bbcf7d2a1f09b2c3b0a7953eadcff2e2a23f01e14c42f6cfccd4  woodworking.meta.stackexchange.com.7z
+db66605bc28b6e91fb458e35f700706797494b27f13a232a3d967a8ca838dc8d  woodworking.stackexchange.com.7z
+358eb182cc512ee3b7903434ab6839b863139328fcc042a7eb97e402c4df6d80  wordpress.meta.stackexchange.com.7z
+1ef75022853f7672240478c97ae778c10f019dfe124ee8059be24324103ab81f  wordpress.stackexchange.com.7z
+c5c38c27720a471bd97ac8fc3865f368b133e90f03a3118531e8e6302614c28e  workplace.meta.stackexchange.com.7z
+6fdcfe56edcca4b4a690fea088c1ce415ecc625d30440bab4ae184a6b17fb9f9  workplace.stackexchange.com.7z
+49eb287affd4dc9ba15aee5c1e45acbc362e849c0f8c58abbf11cf6886ae1467  worldbuilding.meta.stackexchange.com.7z
+db6546caf7d807e82940f12f840238dd99128da915dbc54239b9795c85796db3  worldbuilding.stackexchange.com.7z
+02ca47501ac6a1941fc9e90eaf7f068ad9a7f0651ea64b037fcacb848e8542e0  writers.meta.stackexchange.com.7z
+dad3498a3e466bb8b6d66f64c55397711f90049ffb753633e63aa1b439dd50ac  writers.stackexchange.com.7z
+</code>
+</pre>
+</details>
+<details>
+<summary>2025-03-31</summary>
+Note: officially confirmed: https://meta.stackexchange.com/a/408184/332043 but initially community-generated: https://meta.stackexchange.com/revisions/402072/7
+<pre>
+<code>
+f7e75d0404b6ac482664627bc33b078d1cf64200e1ab5c264f5c1276285312b4  3dprinting.meta.stackexchange.com.7z
+03598472c142924f161312473f32f7a343ff0376d0bafc7c65fa9de8a0280aa0  3dprinting.stackexchange.com.7z
+bc18b9c9404f05cf4c0dd4f338ee7e01b9bdd00d81fc2edb02753975d5ba6ada  academia.meta.stackexchange.com.7z
+dab38b017a900627ede2be74529e61bae9cf02111513875d7cc801f2d408cd1a  academia.stackexchange.com.7z
+8aef12b06226793d5a9b472e6a8c09a37d53ca48b97c04c4d80602986ad071dc  ai.meta.stackexchange.com.7z
+40fb41a0ce06c364428ceb2572ea6b35afca21e9b5e8c1e8797186f1ce78511e  ai.stackexchange.com.7z
+2f750dfa1b43d057bfc2f86ca2f5242bd999a0f7dbb5315b47dd3792a6ad5dc5  android.meta.stackexchange.com.7z
+22bab77ffd1e0c4e527e0e016ace85defad71730c11d3b864dfc020ae4511f63  android.stackexchange.com.7z
+72bc00d84f35042c7342bc98580ec66650427baa6bed506a6410c28878f09919  anime.meta.stackexchange.com.7z
+589abcd8e23bd852991865b827590cbf2b2a0b2cbbbd702074ef4ff46037daf9  anime.stackexchange.com.7z
+767eb98436971551eb3e95aef4f24ef3f65e77a942f0c5ca3252ddb44daa3ae6  apple.meta.stackexchange.com.7z
+6eb1e5ceba4d4aea604f721e8179521e4198c5446159d9b7e7da340a5ecf65b3  apple.stackexchange.com.7z
+b1113fdd0f9bb38c862499828d496e5a9c40c684efbe9c8916c220ce028b582b  arduino.meta.stackexchange.com.7z
+e940937349288589c6c91fd6aadc4451b0b4b2049945c8131fa54830efab8c95  arduino.stackexchange.com.7z
+6492d19b6056333d09541c903db5387b74bd343177d4e53996c5b47ea864f579  askubuntu.com.7z
+5f188bbf2d847cd605dc2fa07f96dc3eb4421ee42a821a342fe2674cc3dcb4b8  astronomy.meta.stackexchange.com.7z
+479b91f82fac4f3277dbe02c759484aff99cd382e9cda4ecdc930e8c1361ed64  astronomy.stackexchange.com.7z
+2fe4bf987b1bf5a3edd89354060f2ff4f283766c60410bfe1c03dca59b2cc615  aviation.meta.stackexchange.com.7z
+266b35930926303ae508782957a24dbf97d7823506a6adc48f099a43e2f53f29  aviation.stackexchange.com.7z
+245955e9994d9fa52f0c0d3772bacf0bd97f273b79403ab73758c1488f11ce9f  avp.meta.stackexchange.com.7z
+369f0c15563e8e6da55039b1253a6a0cd07b69764968198b9af4482ff422c1b7  avp.stackexchange.com.7z
+9018313eba3b04cf4cceb830c9b6e525157b77cb30b064145f822592be77284b  beer.meta.stackexchange.com.7z
+e7787636fafd1dcb22225185f030647ca5885c6777e34b5a7a737a9b321e204d  beer.stackexchange.com.7z
+6efb521ca55bb44d4fc15b3f1b894e21c769df64a9e5a105376af171240646ab  bicycles.meta.stackexchange.com.7z
+da1067878546cbd3dc61b431045bb5d7f6988408ce4903071de62b09dcfdb4c7  bicycles.stackexchange.com.7z
+e9822acfbe96230642f3f1354cff0270403031b2718c208a9c0ee0552616b0b2  bioacoustics.meta.stackexchange.com.7z
+e192dbc149f41f6f818481febffcc1864a0cc753596db555e64878c47521e376  bioacoustics.stackexchange.com.7z
+b451f6e413c357828dd0889a9f9c953eb9197149ad681d974181b6117fe225fc  bioinformatics.meta.stackexchange.com.7z
+6c645fefa205eefcf4c681e2d2f9e4ef2585925c9df8943e119a831299822ad0  bioinformatics.stackexchange.com.7z
+926cddcd8910c71433021226aa67a0dfe85bb112807c6d52273e79bbc5605604  biology.meta.stackexchange.com.7z
+59f3234a031ec12259a5e356b2fd69cd4496e2c228bbc92748b733fbbef38850  biology.stackexchange.com.7z
+d2fed9bf6e1e5b1c66ea52ed794a477ee55c06ceb39cf4da749fdc21cc9622d1  bitcoin.meta.stackexchange.com.7z
+7d8477231ad811bc6f8833a53f5893d3619c9330800149423fea9ca50fe0fa60  bitcoin.stackexchange.com.7z
+c79580640c89c0db36b1219e3aee2a628efe0acfbf9b9e3ec7b62d26a26a35b2  blender.meta.stackexchange.com.7z
+1a6d082e6a4e8b8eec7412c3f09157c8da50d78bfffaebde70b229e3773088d5  blender.stackexchange.com.7z
+f03907ed02bb40a411180a8b32603954bdf6fa906fc8637b2842c244fe5d8d36  boardgames.meta.stackexchange.com.7z
+054eb86b705969172560b8b0bede3276acaa1b39d724bcfb9b574ade930fa191  boardgames.stackexchange.com.7z
+f2747e26b07b8c368e9a801c578b2121de458e500115f1a7888c614f3976c607  bricks.meta.stackexchange.com.7z
+5fa728cc0dc6a3aa29cd9887f3e17f2fcd40f2cd02208fb20f111959433314c7  bricks.stackexchange.com.7z
+52f45861150735ea108cc306d825922d2addc856b13a172a8a517138f9589e58  buddhism.meta.stackexchange.com.7z
+08bfff52fd0f126b77cf990b86ac18b3d05c7a85e9e9dd05df35dc71edc10845  buddhism.stackexchange.com.7z
+7202576029d60508ce56fafc7b82df8b3cde8129fa9f6a150ea4f0182655579f  cardano.meta.stackexchange.com.7z
+a89e60cf8b21f3b53dd5ff0064c4b404e3e1d461ee2eca25d01f5f596902fde5  cardano.stackexchange.com.7z
+2b18aabb2907053a2d1908a7ccf1c24fd5a846677903ac187e9bb085ff65676e  chemistry.meta.stackexchange.com.7z
+1af7028208ce9b9569b95200c3de5cb8559cef1c73def797b0543bb90be91fde  chemistry.stackexchange.com.7z
+83cf9a6712f4f2aaf02054aa2ecd5eb645f89de0ad0287b95f5162012bdb301f  chess.meta.stackexchange.com.7z
+1b852e09a1ddb13542f199347d045885a66174acc7030f073acbda7ef0a7e6cb  chess.stackexchange.com.7z
+4870937328855a298244f6dbd8361eee5ce390ed9e2202b393ef71c0acd90321  chinese.meta.stackexchange.com.7z
+77dd81ca5eec8a3c54e2ebeb23f94b29d6220f9bbda57a555d4f27b02d8ff94a  chinese.stackexchange.com.7z
+98edef435c678d10d7a1f95dd8e4d92eb10c0168e2125e3779da05db820dae29  christianity.meta.stackexchange.com.7z
+a8f8cee978cd8a37a548b07f52ec66c86a62f8c415005b458089e0b3b84c9d5a  christianity.stackexchange.com.7z
+b59d1d03ad7e6f696d2902d9dc570a55a4232aeacf9a4dbe23843cd2aa7cc1b4  civicrm.meta.stackexchange.com.7z
+b8daca3cc146a112eb3f7347b0aea5b33b26fdf24c5b3b2d7d166272d13d40cf  civicrm.stackexchange.com.7z
+7c0352bb68eb94d9de5f1bc30592b5f6c441fbc53e2ecd54038d54ae0dd96b8a  codegolf.meta.stackexchange.com.7z
+d0d082db66c365ffc8c0b023f36a5161b37d3646ada4e828628d3686f2ded963  codegolf.stackexchange.com.7z
+fb8d70440a9547a16460b0f2e2403fb4d5488a94d06550412e3aa0b01d7d9532  codereview.meta.stackexchange.com.7z
+c90f5bb52114ec0825a332f3dd9dddf796a6e83fd54aeca98953c213dc36fc62  codereview.stackexchange.com.7z
+ffd83b6aed176594f2e396e4f328c9b4fb8eda6a9768b726ad51efd819f70d6e  coffee.meta.stackexchange.com.7z
+969ebe6d897069ebdbd368d44d0359c4fdbf13a5fb974327c257c6f7c42c04eb  coffee.stackexchange.com.7z
+28380857b67c8f98e19dc1912a419b496446f334da1d9db75ff0315ceb6de300  cogsci.meta.stackexchange.com.7z
+c602b6e18cd9744a868f2582792e2626dd05017a1a3ad73b6fefa92943a446a1  cogsci.stackexchange.com.7z
+e44c44a79febd7bbb5f3440438f60f763b8531da8a7a98c2886e0a214bfbcbb2  computergraphics.meta.stackexchange.com.7z
+66947c0a814599419fdb94dfbeaeee439193313cea31af0b8e4dbc1164f2cc9a  computergraphics.stackexchange.com.7z
+d8b1eb2dbf0a72ee4757f6bbd7e24cdf87689271879b8d3a4348718af9293ee3  conlang.meta.stackexchange.com.7z
+78194a8da59d58f3f489350aa708821f676159d1e15b67f57c02ba6608702d81  conlang.stackexchange.com.7z
+064d92bd030201b4d9ffcf8162644d5b003a1de3e37c0e228828bd80b36f6029  cooking.meta.stackexchange.com.7z
+7bf853a04ae0ec2242005c31cfa422c24e7cb3ad9270b091b4a9f3685784d756  cooking.stackexchange.com.7z
+5f32549f9553517cf3d2b6c1bd9dcfc70da0d2c7bf6c88dcffbca0be2dc0933f  craftcms.meta.stackexchange.com.7z
+3fee722c010fc14642b6724f3aab14506a10e8c056e88b64a1c0f008e6cf451f  craftcms.stackexchange.com.7z
+6afc94120adb6de1991fea7a720da500ba8ee7b4d80a8f49fca76c0063e2cd87  crafts.meta.stackexchange.com.7z
+222f70dd843a3c45f9ce1696981842e70fa19ce637491ff3dad5ff4b77c76536  crafts.stackexchange.com.7z
+92d8b35c5c7eda7d829265a4d653a0c4d016f6c6050ab009037e4253e5d37a63  crypto.meta.stackexchange.com.7z
+b013e5b65ff01fc25ce8e923e3077babc366a2010012a7291144e0f2c5731e44  crypto.stackexchange.com.7z
+fa49164aafdeff47f63da881b953a1347b808b98ce332b6997a9f56435ab7f60  cseducators.meta.stackexchange.com.7z
+8bbd969ab00419761a23ba8bca28739b178ffb0b7b90898dea416528c241a657  cseducators.stackexchange.com.7z
+df52fc065f6df022fe186b8e781fb6ea43cd5fea3e1dfa2e3152fee77f35ddb7  cs.meta.stackexchange.com.7z
+a9e86b73f18a16ddcd75f987908e8eecb5c1b45b8bef6603e8842531e534d7fe  cs.stackexchange.com.7z
+06dced6a844e676a6e5bf03376637262722a9587b4f984d35add597907c9553f  cstheory.meta.stackexchange.com.7z
+707f0bd8118ea454f219540a0373345181f97ca78821eb67d9a2e9ad96750779  cstheory.stackexchange.com.7z
+9e9ca0f401237f57362e926243faded16bd45e9d76eff68a3d27ecb34a0b1371  datascience.meta.stackexchange.com.7z
+8d574b4ae04f07d544a90408d3d462a41c7cf228b7bdf2d605f3efaae3f9cc2c  datascience.stackexchange.com.7z
+c99a2f6221d46b8002bb325e27af5efc9ae8cc75d7f2cb422c6982cebf491128  dba.meta.stackexchange.com.7z
+8ea80981a3b5e71c0f6dbe3709b64060d35c4601fe0c43cee9935dae3546bff5  dba.stackexchange.com.7z
+2701aa918b60fdb634770aa65061b8e64b3de0526803837cb970428d566c2508  devops.meta.stackexchange.com.7z
+c09ecd6bd5588bcc3bf94b322e1e8223f9e2cf024a71dbdd5acbb2efd1574b01  devops.stackexchange.com.7z
+388272c6518a35341a9e5e76cc4ea7e5716d289e35a9138b439bd2743530297a  diy.meta.stackexchange.com.7z
+e223155af17a0e6f8902ccf1c3a00167c1ddb357152ada351ac4e11b35a9586e  diy.stackexchange.com.7z
+93c11f735ed32a71f2726e2aca89305a3ba331842eb00ce78fe55b49f2b2f71e  drones.meta.stackexchange.com.7z
+b2b727eea3c54a2fec0601b81080f410cdbe289ebaefa5a54c4f80fbefcd61d9  drones.stackexchange.com.7z
+da972f0d75a66e44572522d2495a4fde5c36ca6dbd1f34ce5fcdb572eda88c22  drupal.meta.stackexchange.com.7z
+a7765b86d4002b876de4f9db2b37eadeba41ff47acc460a543376a725fec5c55  drupal.stackexchange.com.7z
+5e91770aeda57af615b0057e3e0e3c7dbb07f033ea6c4bfdfd44877e99d8a495  dsp.meta.stackexchange.com.7z
+e824de00d4f99346ecd7a64515a2669452bb31615bc62a70e3a7709b303403c5  dsp.stackexchange.com.7z
+0d326006c5b620382d2d2f7055f352b7d05b01e3a5d8507e0e335496c074e872  earthscience.meta.stackexchange.com.7z
+f396815bb68f542f0dde2b3a68b6f44ef934fdb7fc3ba6d32bd80584f3063742  earthscience.stackexchange.com.7z
+4e4124afe4300dab435e19077418454aae6443f4497ace5619fa26eae5feb9d9  ebooks.meta.stackexchange.com.7z
+b06058ec1cbb4421cef3b2c47c3de173582743d693f1e2114b7f1c56c1583b40  ebooks.stackexchange.com.7z
+360f8071f53ee8c51a24e3c4a2707edbb273fb7c81d2ea4c44a1dfd7babc32e0  economics.meta.stackexchange.com.7z
+19600083b6c939f1e622b9dc02f96684d9e4834ca42dd1712131a5a37f477f1e  economics.stackexchange.com.7z
+da07b265e09c864becf5a92e1b17c501d7db38e5494f978a873cbf3a95ac3a59  electronics.meta.stackexchange.com.7z
+6fabb9ecbcbc3a38bbe215c57bfc76dcf99468d38b04684dc1c12bca2413c8b5  electronics.stackexchange.com.7z
+5762c87d7e502e99d92c643c85395c5484936f5d44b837217f2b2b9c40bc0fbd  elementaryos.meta.stackexchange.com.7z
+53f837734abede6225e2244bfb511fc939c711e44d1a5998992a5fd611bc18b0  elementaryos.stackexchange.com.7z
+4dba98f8dd02eb1606a5c886250dff33d7fb76b1c003db8b57b26e1a8ee8ab37  ell.meta.stackexchange.com.7z
+f38c04955c7269f336fc9f6773d9c7bf4c37848f348083214c3384bd238d6321  ell.stackexchange.com.7z
+09cbde883ebfdca4003766d72a5e2a10ad35d58febab88e8cd0c83998647ee80  emacs.meta.stackexchange.com.7z
+0af6da3911427ff926d7126c1f8d787620dcd69bf13437b0994cd767c631aa0f  emacs.stackexchange.com.7z
+48bba4be0f6e2b91dea38fa29bb3aa1eb66c8e220118d733344404b390bb9ceb  engineering.meta.stackexchange.com.7z
+a389db834488eccfc3745a1b510ffb3048effebf19207f1c17398bc894dcb815  engineering.stackexchange.com.7z
+7052a29f57e9226d7a7c30170ce2d065291adc9917eceab7d065307902e3fb68  english.meta.stackexchange.com.7z
+07720c801f210a11e1a9264fc0727bd2a982c9bc6ea04d6e72717f83030ffb96  english.stackexchange.com.7z
+7e76fabc47403daef4d72c726cb0d972c7ab821e1ee6633b2e9f866227df5191  eosio.meta.stackexchange.com.7z
+5e1e311747fb6ddfe1f15cc5c08f306eba5a33371ec5ff0dd0a720638e515c36  eosio.stackexchange.com.7z
+76eacf5aa6529220675032ab8885bf170604302c1eceb38827a18d19235e5bff  es.meta.stackoverflow.com.7z
+24cba98ba5085f2a08fa429ebd656111e77e1da640bc1e4efd86d33b01252aff  esperanto.meta.stackexchange.com.7z
+8649135dd601655aa44cba0e6d8c9a4a29cbe6a2ec961c871b09845fdd3d2be9  esperanto.stackexchange.com.7z
+3fb59d336f5d31fc4cbe60e7b9b2279ae002e16b89b3d706fa81809a5fffe9e8  es.stackoverflow.com.7z
+76415d51ad5d4c326726897821a1c1b2163ab3e24cf9a56d1736d9500ff9da75  ethereum.meta.stackexchange.com.7z
+8e4f92a867feec2ef5143532264ab460e2c2a7535782a709ea8e945581b64e9a  ethereum.stackexchange.com.7z
+05192f23bab59957b76346fbbe7ed152fcfb689c94c6fc5b4733c15789ae7617  expatriates.meta.stackexchange.com.7z
+e53f5a27e25b169dafdef3a99fb45577d65e125556f22d3f260bd6e5db347600  expatriates.stackexchange.com.7z
+5eb4d44baa9857ea8d8421add7187493936fd29b2ab39637f0e479f35cadc9be  expressionengine.meta.stackexchange.com.7z
+cf5fc307727c1dbd1ff32ca20fed5fe94326b886679189e78aae01a1241741de  expressionengine.stackexchange.com.7z
+e68ad7cf34a60b3eb97bde9951bbd6411121e454c816ac255b330765f9c72ced  fitness.meta.stackexchange.com.7z
+360f4ccf1abf4af4e2b5885fd7d82964edea3eb580ddfa7044203b5cfe4336c8  fitness.stackexchange.com.7z
+09442c5413438d550e2a9957129cee9f81d3f894a3975ad6fabb0967a3aa18dc  freelancing.meta.stackexchange.com.7z
+f8bd2a077a5f0382b23e19fcbf0b9251219387ab804ef98705a95d5ee4094596  freelancing.stackexchange.com.7z
+8a87bba23cbf15d60ea0ba92839b80aa458d52f903843bfcc8a90783fa5816d4  french.meta.stackexchange.com.7z
+bb1e1a436ec1049c51e26e6ff88ee90d5e02d2a9edfe26c7db3eb037d0c0632e  french.stackexchange.com.7z
+061dbf4f3595df587da8a4635b594c48f2764387f5bde1379a4f91caf96e81d3  gamedev.meta.stackexchange.com.7z
+c63a96dd8467608947fa3da5e2e939b1d2018f102f9c690fe3c67d42787538d5  gamedev.stackexchange.com.7z
+c84f3e354b2e6be37464f8e1f10c0bb742e56c99a27b541ed729bd2b05add324  gaming.meta.stackexchange.com.7z
+c32c698d62cb0326c4e28036d2bd2112b2832da70c63bbad0bc00e1cd477d42e  gaming.stackexchange.com.7z
+1f80dd5953edd245ae641cf110c75e8eb4d10f5011acaba13cf96043a01861bf  gardening.meta.stackexchange.com.7z
+28a48ad581fa545ede38450f3e9abe1f48f1a8d4a02c78c3c43f1eee6652b836  gardening.stackexchange.com.7z
+f192026e9a54bc29331dfa2bd3daed42a93a5d64517aa6cc3f7e79bd7b874ff9  genai.meta.stackexchange.com.7z
+24bdc9f13bca9c81e74e46d1210ddc3f9afeac7a82e337ec6b7f349fb675c8d0  genai.stackexchange.com.7z
+fc300e6938d5f62b3f50600eb159673eaaa48968bf54fdebc32047e7793c62e6  genealogy.meta.stackexchange.com.7z
+a800933ab2ba2a93e8ac8ef7d0583deb3cd7bdbe9f12a750e634fc9cc1374422  genealogy.stackexchange.com.7z
+44ca6f253ce81381738aa75c01fa41e6662acdacf530fd452e52715c3034f9c8  german.meta.stackexchange.com.7z
+44c51f58f69b0dd597cb5df7c8a99a60e2eeb9a7fd3dc3b8becb4750476bb3c5  german.stackexchange.com.7z
+8365a103b520f4766a4c47b06136dcc2cda15cbe8b47e377fcaf6ce2dff06d51  gis.meta.stackexchange.com.7z
+9befe06cf57619a667cd20aead761bf2b53f96244bc47bb9b1d586385a1beea7  gis.stackexchange.com.7z
+fcbd965a504c25501329d7ac5d692e659cd0b0eeb893fdfcd9d9f500862e9dda  graphicdesign.meta.stackexchange.com.7z
+a9c50aaf42ffe74fbb91fbc874904d59e83d8d5bf455cb24155c34a057682b4d  graphicdesign.stackexchange.com.7z
+3b3ee2fb14e3dee7bae8a5e90fade923bc890c3b30fba4c4ba7dadd7e713bbe1  ham.meta.stackexchange.com.7z
+af6fa417726228604856ff79679adad73dea44afc9eceea52de49fb55b86708a  ham.stackexchange.com.7z
+c9dff51255332d64d745b60acc083a99c5ae9ac37bbfab818038db3276918304  hardwarerecs.meta.stackexchange.com.7z
+21d7912de5c139ce9b351b5952bc9a6360d971cf23d2e221019bab5705847487  hardwarerecs.stackexchange.com.7z
+92202f1ed1e4e81a640c1ce93c5ba6369c4fa14caaaa6aa8637e41cd47916d4b  health.meta.stackexchange.com.7z
+aae321682b3bb61d7996bbf83b99bd914f907e9ea3d5ab67ef842fece6d7f4fe  health.stackexchange.com.7z
+07a33c3e8bb1ee9381a86628931242afa49d6fe0010ca54d46ebfcded343ad6b  hermeneutics.meta.stackexchange.com.7z
+c1ad376bc4c45c0fc746ae3f904faa8ff5a114e0a097a4cdbede484da2ceef4d  hermeneutics.stackexchange.com.7z
+cac5e69686270bb921cf20432895f1a2465ecc6cb7f7f915bfe99724315254de  hinduism.meta.stackexchange.com.7z
+5490709762d83e5d91d5fdbd86e0827a15d9e135b1ed6d42ca33ed0ae04043a5  hinduism.stackexchange.com.7z
+dcab8a5085ac0d852422cb27b6bba19fa429f049300c4b4bd32158f09b587eb9  history.meta.stackexchange.com.7z
+11a4b3724a3986eb130a45c99ac7e02e5b9b90f03e151d3be6846422dcf4f54c  history.stackexchange.com.7z
+0471d857d3c7f1a712f8c68f74137566570e99fd7ebcaef4e547e0a0d7d5d206  homebrew.meta.stackexchange.com.7z
+9eb3b7dec952ec965752d78f65df622685a6b461f6d2425f6052e1101d7a8ab4  homebrew.stackexchange.com.7z
+8e8aa0694e4b63ac169fdf46fa789dfc0d818bbf346df5cfe1ca4fd0ae01101a  hsm.meta.stackexchange.com.7z
+575cc3cdd584b9739b99062e9d08b900def97f3d73932357daeebbf0b1ef60d5  hsm.stackexchange.com.7z
+e58534aed503fea28e3c0b0631b08ac0e2cf388e869225eefeacbc41981e0ea7  interpersonal.meta.stackexchange.com.7z
+f1285f9d8526f6004b68ffeb814ce028ddc6b1d536e160c22245f4f382920a52  interpersonal.stackexchange.com.7z
+9f4d71ab3412f9485f4dba5176e9e607396bb84c65da66718c0b4caa38ffa621  iota.meta.stackexchange.com.7z
+dc9e2c7e5e6260ae553b1db250349376335c70478b4838119143b7a0c6d6969b  iota.stackexchange.com.7z
+865b46b17a8b466d03d754e400aa4b94e14795c2b0676483e465a95d765be06a  iot.meta.stackexchange.com.7z
+e2fdf2eb97e1d35d5e9310e0e7676d8cf2e28baf003e49341aaf126f753fb569  iot.stackexchange.com.7z
+7e8a72138e390bf97cba77fecff05e3aa14e9447384bf5de72b8e5380cf64086  islam.meta.stackexchange.com.7z
+6c395d123d659efb8621c1414a0489c8f51879371aa051ca9d55afee9568d07d  islam.stackexchange.com.7z
+73392399771b25a15d30028e485e08fcdc0ac53ab6e09082fc7e07abb613861e  italian.meta.stackexchange.com.7z
+4716e6d647ef70445cebd1fd0377239bafd2a420260c1afc53afa7ffeab79e06  italian.stackexchange.com.7z
+f6f94bd7dcb9502bafcd9776dbb718392928c3a67e493835bde1a8864b1fb18d  ja.meta.stackoverflow.com.7z
+ef3301299e14bb8211e7694990ef58ab0b145b6f694551612b11b5fd1efc0c13  japanese.meta.stackexchange.com.7z
+16da39e2990b5de8603500e44f4fce46ce96ab59fd76000242a0290cec1bd6c3  japanese.stackexchange.com.7z
+72dcf4641854a68d3d3d812896349a2881549cbb28eabac8f2fcb4468d1e1ca7  ja.stackoverflow.com.7z
+9efeceed79fd139be6070f2c971f5875334fdcbdfabac7d9588b914838d9323d  joomla.meta.stackexchange.com.7z
+bc88e6df91d22d4ea6b0dae6081f895a6b1970e3e7b10d4eef94479582f18d2c  joomla.stackexchange.com.7z
+83a07f6d3c88c01501d796a3a86298a3dd272804233a68f8a4df32a436d4084f  judaism.meta.stackexchange.com.7z
+84cd12cc1fc0c62acb6f030ab0c35ef3e960d7a0d44dd81d4fb57219f5016730  judaism.stackexchange.com.7z
+6a64c7cc17074183a4a518db88297077ba4d6b30e83b89ed397cd06f7a6bb1a5  korean.meta.stackexchange.com.7z
+2cd747f644f0ba813a9d893414d99a3d780f92a392118d1fe85d46e82af1e802  korean.stackexchange.com.7z
+81b37a2719e28effdcb01c45ee0d970a1d2043124307f96326784fe9fc1bd8db  langdev.meta.stackexchange.com.7z
+4fcc66e251c6fc7cef23539a69a6d09083ddb1f565fa5022d761f089a74d2b00  langdev.stackexchange.com.7z
+c96b61f7c6c987251aede1f18bcc4b5da5bdbcbb5549e38c6cacac5960fc7995  languagelearning.meta.stackexchange.com.7z
+fefa9f67fbc530f3b00b927ac55af477189b20678be624ec16fb02cf276a5d00  languagelearning.stackexchange.com.7z
+5725107f52adc1bbcc7ae17ccb7913d9b220c9df497ff44bc4187b553636b003  latin.meta.stackexchange.com.7z
+31314e057dd465c53f0d4c238e57859d0f6feed862f2c5a3bd6fb4cb3d7d3c64  latin.stackexchange.com.7z
+93c87bc88ac287694d8179f5524065f39ba6a9163a240c674762c9ba95b8c5e3  law.meta.stackexchange.com.7z
+1b092311667b4563db774a357db32d55f9368a10e7aee99469e8cacd3c912ce9  law.stackexchange.com.7z
+04ee711eb59f1f08966a67d3ead8a38d2147c894efd9877af7ddb7525a2697ad  lifehacks.meta.stackexchange.com.7z
+61cbf8832166e93ffe1664c8b39b66ee91986e8560ab835bbdbfae89e64747c6  lifehacks.stackexchange.com.7z
+1458755a97571332501057d594152988ff1f2a9518f45c74e6339bdb366eecfc  linguistics.meta.stackexchange.com.7z
+29fda498945d6b14c862649b69074b68a4ae1b20b29c8c2e1140666e83021aab  linguistics.stackexchange.com.7z
+790f7d4d2ab374055074e81c796df0f3af59a1f632d59dcdc43601bf974a32b9  literature.meta.stackexchange.com.7z
+20af0378d86bf21a00fe05cd7b7b8810d6a85e8478deed6f766d709366e1b23b  literature.stackexchange.com.7z
+f9f0fd4876d933bb890b6fcde854d4051179cfdd0da34589ad2ae0a04444675f  magento.meta.stackexchange.com.7z
+900c9dabaf6a8a204b75183785af065b298bd82f27a236df983cbfca48e3b8ed  magento.stackexchange.com.7z
+84e3e3fe48fe5a1c71da4cd4dc6c85889ba3708a14935193b2449d7c8a938ce3  martialarts.meta.stackexchange.com.7z
+b134e0a2001f5f3e50a36c9318981f03f78b8276217ca62b6ef493a80a0f0a8c  martialarts.stackexchange.com.7z
+19248fb244bdc4d614b808d83e7fc9c27f929fd60a7741629f7f9df75044e79f  materials.meta.stackexchange.com.7z
+11a636fdc5b89c1bc6122066ea6d54e147b44462ecc1285b4974d39da6124c6b  materials.stackexchange.com.7z
+ceade4331ccec9783e6e39dedfc358cfdb1bc874690be51f216fda5f48e4837b  matheducators.meta.stackexchange.com.7z
+e1cdce80f28ce01f09b72623eb59118c200a2f18095f426a25b837055016f8db  matheducators.stackexchange.com.7z
+36a92a4f2acec5f731bd159486af6d965824e34e7ce4a4d69a26c9e4d2acdba7  mathematica.meta.stackexchange.com.7z
+408ab142f926f2029bb2eb5adc79c87c2f581c1875539715e84aef69ae787e7a  mathematica.stackexchange.com.7z
+e57cd5b5fbf52fa1504f0043cfe689ec1fcb1544cbb1baae4cf8d7e8d0ce93ae  math.meta.stackexchange.com.7z
+0ab5911afe757e7ff6d5f07cf46d8b6a11f5dc87b7887b0c3c14af9569697d00  mathoverflow.net.7z
+187d5f887699d48a3446c855bef75b3706d064c39c57cd2045c53a36673f1fcd  math.stackexchange.com.7z
+4f8fdcc7fdc483fa89d5a4550699a4c90c470a97b7ea47b730ef723c8a83367b  mechanics.meta.stackexchange.com.7z
+258563e5e7e8b7cfb21a9318fa8985a852b0c59afe14531b87e7fd010f859657  mechanics.stackexchange.com.7z
+2121dd0060bd82da39fdeb328ff8811953e552822f054e237841a8b22dde9367  meta.askubuntu.com.7z
+db1b5e583d45d5a02dae74392f870fd3b4a5942c080ad4c37cbdb8be04d5d1f5  meta.mathoverflow.net.7z
+abce0493760bb42c56faca81cae56067b87cb41a81a2e78fc8f34beafdc3f556  meta.serverfault.com.7z
+32767278f5a4265842eef4bfefc58ca77f7805a048318e3554f1427628009b63  meta.stackexchange.com.7z
+5e9031cca45ac8ce102acaa606573f00454d23a8594112e8b87f27e9ef7985b9  meta.stackoverflow.com.7z
+2ab640452cbc766766a591201aace80c5dfb9777fb3d0c6b8c4a9e074eac5892  meta.superuser.com.7z
+2d1d34a0682180506055b153f502a8de402443c008e5a363f02f94a744b6dc6a  moderators.meta.stackexchange.com.7z
+070ce0dc50a619dc23316efccce7af27b5c6b9ad1e3d4514cdcfda0253be1228  moderators.stackexchange.com.7z
+1d330bbcbf9fcd55b985e0377e862290bae14364712f918961b475249d33a720  monero.meta.stackexchange.com.7z
+434a6c3c8b91c6cf20bfb71a237fb3c6c847a822489d390ddcd1688c8e055ca5  monero.stackexchange.com.7z
+70e97a2395d7aa7c0f1c61cb762ffd3bb4c28b3cf7f583bfefc0848bb2b09d81  money.meta.stackexchange.com.7z
+06d672aa233057bd77ad458573998fb45b949e198290173aad4945a9a65cae38  money.stackexchange.com.7z
+d8d1d491098d16704708d3887543db503e3265a31c8f7835a49b572da1a73b93  movies.meta.stackexchange.com.7z
+d7891748d496b0dbf8aa131551003e4df54f026285afda4961ffb1e47ab13927  movies.stackexchange.com.7z
+38c7fd36d2b5808c2cae20a675c683994cdc463461deb250279ef03b41ffe830  musicfans.meta.stackexchange.com.7z
+a847557c79505285bdeaeb15336c53b77dc0c0646ac5c49af00ef3e746ef4bfc  musicfans.stackexchange.com.7z
+7b568074a7a6d45401814cc4781399997ec3fae1ee27614ad80c1a2027c0032c  music.meta.stackexchange.com.7z
+50d0a4d1007a4c64613d992ee09a62824b845a92e4788c77df01b8908fe32162  music.stackexchange.com.7z
+fd89e456e54b44fabd0c1512ef9cc9738f7ebeb44e6577301fa7c7d5d56077cb  mythology.meta.stackexchange.com.7z
+7e02246c1c092d7b3936aeab0e2f5a0d99ca6f45951dbc8b17686683518b739e  mythology.stackexchange.com.7z
+33be22509189dd7e7138123e8ea8d39055a8fd8f737ac6b5b70a6162964d0fe2  networkengineering.meta.stackexchange.com.7z
+7cf5596ad93cc9f7b3568aa04d75dae74a6d40c0785f4c52d29693c9f5edb8dc  networkengineering.stackexchange.com.7z
+79bacc40bbb4f5de4a31bb55316093cf84404ad3f060174f7a10dd84487a7991  opendata.meta.stackexchange.com.7z
+8d15e5f40ab35a0555cebbb6c0a6d78dd8f77bd1870b803a2ee29e8daba01dab  opendata.stackexchange.com.7z
+5dc9a1714a0f33ba01040efa2150e2b9c9a0c09ad1e6feaffda8dcc564b7e5a3  opensource.meta.stackexchange.com.7z
+1953832efe26289de63e1f3fa159c2eb16e3d16fb55a07c65cc7026e1ce4b25e  opensource.stackexchange.com.7z
+2cc3d28195fea0c6277e832db55791eeca6aacf4c52a294c86fee707cbd342c2  or.meta.stackexchange.com.7z
+da55c548f5ac62ed979d6addc6e78ee2b431d24f7945dbd6e77ff350142c66e6  or.stackexchange.com.7z
+baeaf254142c9d4ce82ff4287b16f103a8cbac11b1620dcbdabb8a94cad55ba9  outdoors.meta.stackexchange.com.7z
+99366c28f6f41f3a6ec0cb4d519c0cf416180507ac5e4bf8679a55046c19033e  outdoors.stackexchange.com.7z
+5604d955f929dd7a3bfed73e6bdeeb1694a13e314124af74f4f14f32f965b774  parenting.meta.stackexchange.com.7z
+efd1f33e2cc7cfa5c95cc87dfe9105beec86bcf12facfffc3999657baefd7a99  parenting.stackexchange.com.7z
+a89131c11605d0c4409d68f37c147fd619c062269d8e469a226a9b03b030be79  patents.meta.stackexchange.com.7z
+2ff361fce97aa41d24f0b63ebc8128f5ced995de3d14dfcaadd724d7fea45228  patents.stackexchange.com.7z
+39610a92d27405472e0593fba29512519ecbf59fc31fcae4c896e36475455f2d  pets.meta.stackexchange.com.7z
+c6533de04a8e9a70da45a81387f23ebddfc9fc65bd324b1c442b2d51c3e30cf2  pets.stackexchange.com.7z
+a75cd8e82e8aa16aa41e119fa8fdbcd108959148f3b9b2c80621ab7b2ece4bd0  philosophy.meta.stackexchange.com.7z
+d1dc9c903cc78c4e6498a279cda11eccc4ebd5df3122502dede6ca803949d898  philosophy.stackexchange.com.7z
+521a867959eb2e4c0eea0c95abaf51afb39508bb3524914f5ddeded4d146f970  photo.meta.stackexchange.com.7z
+075bb0592a625e9e997f0f63d6d80bb881313a9b6f5521b3dd84daa3992da26c  photo.stackexchange.com.7z
+65cb4079797a64b0868863c15445745adfac9d0ab07544d918fbcdfa916ea0e7  physics.meta.stackexchange.com.7z
+872b95068151841c4aa7e15fd53e1685c6442315d9bd5d467e965e764852c619  physics.stackexchange.com.7z
+86fa6b8f2638d2b7fe0fb2dd7719934b1b1d0d47d477e2a1092a30d3309245b6  pm.meta.stackexchange.com.7z
+5cc21d6a1bf2ecffd59979cfa22bcc77eee938042144db8377e0cc08cb460788  pm.stackexchange.com.7z
+70444aa68c35bc02da2268d8fe775684a16f1afd5c37e900ce0466e3984d22a1  poker.meta.stackexchange.com.7z
+6149c60b48e82a8bb0108fe9e67f14b9ae33f4f4a3fb744d08c4afd5d5cdca11  poker.stackexchange.com.7z
+900f33d6cd58bca85421a2560776a9bbfe7c81c69f16c99ba08f7a0ae80bca31  politics.meta.stackexchange.com.7z
+6f79a794b926082cd8a53e5cc320703a2666464a68b41c16de0e2f5b4f8dc438  politics.stackexchange.com.7z
+879a8ae4eaf025ce1c5e6fbc2f411b614e40cafa05923b4675b1e3e8bc8d6952  portuguese.meta.stackexchange.com.7z
+d0f6678d64a0d26be94af9d9a23b7c304a75d504242416eaa735c8b3c6be3e16  portuguese.stackexchange.com.7z
+76a70687211b111674afc18698b993e7cdc3b4a92ecb49352c52b04607a301a7  proofassistants.meta.stackexchange.com.7z
+7a954af8f32a7e717aa247ea3c49af69857106a34e3de74a29b93df2267b7b8b  proofassistants.stackexchange.com.7z
+24f489738f607d2e57e1346c3af59dda2bbdb4d0c77f5eb6f4e6b7ce352dac42  pt.meta.stackoverflow.com.7z
+d2b6888861598bc8fe0fc59e792fae40d072edddc4bcfad187ae9e353dbc6d90  pt.stackoverflow.com.7z
+4eea15cccbc41a18078825db166a2164db5b834aa7edeeb39afb82fc9087f6f1  puzzling.meta.stackexchange.com.7z
+4261cea136eb81f323c0ce29b8023b47dd2ded87fd7e154a11b05fc992e944a0  puzzling.stackexchange.com.7z
+b142732564636c412e163697d590cf2211d0b6ccffbbc8ae8176d16336003e03  quant.meta.stackexchange.com.7z
+8c3944e6495e14c6ce39ad5048529ddd64d5a9411abf9a9253ffc747241fb03e  quant.stackexchange.com.7z
+edb9e34c3d4c11949bc116d263ff4aa44bc847c16beb769677f2c25fbc9d3ae4  quantumcomputing.meta.stackexchange.com.7z
+168597a3de46d0321b29ba03fcea5d186e35e86f51a48ecf043f509aa67a6f11  quantumcomputing.stackexchange.com.7z
+17756dd8740e25f2afa7e8879ba4177d6a56ddd21d3ca712ab3ffaebac94bd0d  raspberrypi.meta.stackexchange.com.7z
+695468c2b194f5725316c404e004fec2c29e791addc818b0429ccc630bda8103  raspberrypi.stackexchange.com.7z
+5c030457de0879d716f6984a89e049d2b50c8e51cbc7ecdd754114499b2cd40a  retrocomputing.meta.stackexchange.com.7z
+cdd867219e66dc863725812a0886ba686b0d1a83a95b9943c8bbd8225e3892a4  retrocomputing.stackexchange.com.7z
+73a549eddefe2d6331ffcf9854fd87970d53e9451420532a66ef26a70c887ad1  reverseengineering.meta.stackexchange.com.7z
+c188b41145e64c562bdcbfe14e8d520918d421c91bff54e6c6e28fb082b5d365  reverseengineering.stackexchange.com.7z
+e9c95a050969459c99b3cb37277d893a1e36046406873784397c3a4fedd6d27d  robotics.meta.stackexchange.com.7z
+f072cd972f4fe34bdd51e413987840ac1d1e3a7979e5b14e564450319c7ed3f1  robotics.stackexchange.com.7z
+7889589684d19e86f1c8a3d69acf8902b6b178f5338f0e05fb5d77a7c783db84  rpg.meta.stackexchange.com.7z
+9ee3d33cc2dd47bcf6e23552c00e733de3ea60abc5455fe53ac078e15f6369fb  rpg.stackexchange.com.7z
+0f8cbe39dd020231c9b7932d94694e44b37605d9d982b030981bfaadb4b855de  ru.meta.stackoverflow.com.7z
+80e1442c89a217dab60fd85bc1d1716dab8995dde3a80dd7ccf7b7525e0e5f16  rus.meta.stackexchange.com.7z
+fa978244ede0a6589ebc42c1a93d48c319f985b0f398f08299a11e86bf8a8753  russian.meta.stackexchange.com.7z
+cdb93b24cf3ab99bf74eb812587877a6071460c7d18d5c341cb39c908199a0b8  russian.stackexchange.com.7z
+923faf7adf2dfd49aa2e4b49d600bebcab3c31a72e7ade24af06f840e1049a03  rus.stackexchange.com.7z
+8ef0120fa7a3c07c6a2179243c89aa6bdaf57ec8dbe1b7f63e0302b46031f80f  ru.stackoverflow.com.7z
+2121e9e2d42c981335afcef9fe5b1302ba8fb895a96936424a3c76a0b3fca2ab  salesforce.meta.stackexchange.com.7z
+b97ade4da39d696fb59696b0c330d61146f4aee648c9521addba6a1ed5fda0c2  salesforce.stackexchange.com.7z
+12934409e97ac89c7aa0eb33fa4883e6e70b4d08608184ee048dbd824950ce20  scicomp.meta.stackexchange.com.7z
+2a3a5d079b7fe8f15c286238cff5543049d7294e822f35cf0498f7d7cf3b2b2a  scicomp.stackexchange.com.7z
+9364dfabdc95a7f5cb8d428124d609c68af356f98cc44f84545085ff4de377b2  scifi.meta.stackexchange.com.7z
+e29e030c000e37ed5bcb4a8cfc83b58129b9f2430b9b7c4d84365ea07cc01bc5  scifi.stackexchange.com.7z
+8f3b5465cc00d99209bd30e5ab508db1187c76cfb7cf410ec6db1deaa48f620d  security.meta.stackexchange.com.7z
+0898d0901d408984c1276a69f91b11e781753786a4221eb92650eaa49bbbf139  security.stackexchange.com.7z
+313e74fa4ee3c01f53f183998fe38440a184c2eb5a8e3e9d72697d81103471d3  serverfault.com.7z
+3fdea96b92dbf5da9e47a12246648a206dc3d51fdf911dd5aabcc0d1ad4ec96f  sharepoint.meta.stackexchange.com.7z
+0e4a53272e0e9dab3a8e7b16e1eebcf5ed4303f7f2237b4bac57f50dfa9b8db3  sharepoint.stackexchange.com.7z
+141f09f32c03c0e71b166974ddcb24938f95e0ab20ac9a547edf882b74dafbd5  sitecore.meta.stackexchange.com.7z
+ef9064140d52b35e3b777046e60e8c5717a5dbf002e350e1e5b0b72426211d19  sitecore.stackexchange.com.7z
+f94f3a2e04259ed201455e1e3e094d0f0f1e9cf572fa1ddfa45956cfa2fa9785  skeptics.meta.stackexchange.com.7z
+4a967c30be7aea54cad295fe5cfd7ebae7a89c9599948e6ec738ba418518fb48  skeptics.stackexchange.com.7z
+7b7f5fdab8e7d72ad4678defe017a6b18fd8726ee1a964497eb52d81b03f308e  softwareengineering.meta.stackexchange.com.7z
+220385af676016225fd6539eb1a1420a61e39221d54021c16adec910e524fe26  softwareengineering.stackexchange.com.7z
+5771e4800843881cdfd6a50a5c1dab1e1738f209f5b09a28bdb29f22bb6a97bd  softwarerecs.meta.stackexchange.com.7z
+1b5d1187660d1592266d209a36e6caebca6125de48b736b9998364191bef4dfa  softwarerecs.stackexchange.com.7z
+3402ff594fb1743397c2325075adb75f9c07770e5fe6f343e407981188521a7b  solana.meta.stackexchange.com.7z
+be513aacf9d22d18690c2f629c7b9d0d735fbb8d902b9fe27fdfa656a19e2953  solana.stackexchange.com.7z
+64d3f39cb593d832d3541411144f3ff9aa991e37fd874f0e34a2fd63f397da47  sound.meta.stackexchange.com.7z
+c975d28a12008a1cf5fc2697c38e7002bc856a532ced575fa67ae83d0b377757  sound.stackexchange.com.7z
+3ef8b2e6aed0905b1e31653d3f64041cd85590305157e125dfa7f435e3f507d0  space.meta.stackexchange.com.7z
+b211db83809348e9b37f2f35e22a57d1a0add2b7c5feee0a7e09ea91b6361d9c  space.stackexchange.com.7z
+2678200d306a7db17e5fe04318abf05875e83f42c414444a279cb984c7c4d6b6  spanish.meta.stackexchange.com.7z
+905d735e88e9e38c53266298f1c47cf65fe7a3a6117c7d74bcaebf72f698cf94  spanish.stackexchange.com.7z
+0ab547c0ed8854168d3d612277a71132d70b54d850d451bc50c8d885154d5a19  sports.meta.stackexchange.com.7z
+3d449e0a6e1ed92bb20f78162c9930e6cbd4a0476c7512d376706c54cb0cfa58  sports.stackexchange.com.7z
+4a957d7f943103d6846a75f5822a5cb6f3a46b56df144b2b7c79be5ddc3beb90  sqa.meta.stackexchange.com.7z
+5910f6b90e8ee5663a715efe567d1bdc8902893097d7646f6818d816a75f96a5  sqa.stackexchange.com.7z
+83b02f43b1f66e48a3d4b26243b9c3385c9e2e24e6f2336ec7dfead887960de8  stackapps.com.7z
+e98c3850fe4249486e022a26f16af5b76a29f36c63a0872191ac1b6b8c46812b  stackoverflow.com.7z
+70d733f4b56d39bd0a9d6a22ca31f2d3f199fa7c5ad388f3c2f43a81a26ee685  stats.meta.stackexchange.com.7z
+7dc03c124621a63fa390fcb46d58ef61b05162b2a4f1815c4cfd7c869aaef855  stats.stackexchange.com.7z
+54571d462ba1813223df46a648500b2c10decd951f54e74406b25c39b27c6e15  stellar.meta.stackexchange.com.7z
+c5a1a87adcb339d85d6ca88a6ef1ae18507337e85862f470264f7fc5278b767b  stellar.stackexchange.com.7z
+986523228f9df285f0e79bd5117ae7ab7893cf5f36dd94482bdf0a54d2d39bb8  substrate.meta.stackexchange.com.7z
+87ce02706e2e83d35faae29426277e19ce5012270c492363be621a9918102044  substrate.stackexchange.com.7z
+3371466a22910c8d499a0b75ad89df9171e45a9eae0b8d48c1b31f68b8de97a4  superuser.com.7z
+2565d632cf9d2d2ff2eb28edebc3edb8cf2708b574569c71977a9cdd10ad8e8b  sustainability.meta.stackexchange.com.7z
+97f39912e4d97c8a5f5363be7c73b1892aa91c04bd9331d135290bfcd790a8d7  sustainability.stackexchange.com.7z
+9f53bbf3e0735a0792c79b302fd73281ab934123c971cac994c49184a9af7428  tex.meta.stackexchange.com.7z
+c2792c02901aa6fc53a9b11cc4216fc664c84914430c0328dfdc58752d50a36c  tex.stackexchange.com.7z
+c6d759a676feb5d6ab8d16f1951222c6ef4cc5cd254ec75e3eb10d4bbbfd00a9  tezos.meta.stackexchange.com.7z
+f27b8b606b7488181d2859eace1b7457dd68bd7bf0bfe4352600385c1d66119b  tezos.stackexchange.com.7z
+27c19e6a843c17b205f6633fe365dd80a85ac033dd4ec5fe122dd17e75d4fcf2  tor.meta.stackexchange.com.7z
+0866ea0a4edeac79cd70d6b6eea6771c4c17ce92cf6625dcd7780662f6f4eb75  tor.stackexchange.com.7z
+89448369e0599f6a45ba92a4dd184ef09aed7b773f016d8a3e40b94f54794250  travel.meta.stackexchange.com.7z
+bc02b8f3a06a8ea4ffa205b414faaac613115a1dca819abee4e2b23b07ff5785  travel.stackexchange.com.7z
+873db8c607eb2ab8a81c7e314ee227fd4352941e6a739f6206afc0f83aa7cbc1  tridion.meta.stackexchange.com.7z
+39964156824960da3aaea81e961d3f746851ad90a22f9b4157e5d0e9a8c1d518  tridion.stackexchange.com.7z
+9ad11e445a67b2e7e8bf605d6ed591feabcfed2ed8286606a0324ed8340a8018  ukrainian.meta.stackexchange.com.7z
+937f0d77e09c7094ff34e6ec5f25779885c4fd78a73b1e3cf1cabbeebe8d1421  ukrainian.stackexchange.com.7z
+3e669749e356189f14d3de75bc7adabc7437b0a92cd9cf333931254a3dae6b02  unix.meta.stackexchange.com.7z
+2a0555a6624061beefe05fa63ea5e52bb32acc7d3c5104a29f09c1cd88865f76  unix.stackexchange.com.7z
+a2549064e9d4677728068728df39d00b0bece71524a40b769b514f780aa01709  ux.meta.stackexchange.com.7z
+45c7579c61482abd4d4445d90b11b114ee7a4b17123f6a73e9f566c88090ab57  ux.stackexchange.com.7z
+46273467942f871326e7a1fda7537c2d9d4b498003b759506d626d44d7246f1e  vegetarianism.meta.stackexchange.com.7z
+7ed80ca9159016cd95dd6149342e2a2598433287b2e85653be7dbc13780c4897  vegetarianism.stackexchange.com.7z
+0e7ce34d73db6ec559bfeac1872cd3db4eaafe075ef7ae364372a01a365baade  vi.meta.stackexchange.com.7z
+0982c36aa90685c469295cc41130541b0898f408b8348022dc5cdba84e8b3ca3  vi.stackexchange.com.7z
+ad94a776ce8c35f775bf5b42b3f47208aea11d16ff770767410f4b3ea6aac2a5  webapps.meta.stackexchange.com.7z
+484dc398b441d9e6d6f64e96cb438573419c2cf725861fd9e6bc7e809c105e21  webapps.stackexchange.com.7z
+b636269a09f25938f4d13b73a7949b030ed7e184a07af9411def96f47e9c9ceb  webmasters.meta.stackexchange.com.7z
+434f6db93bd11b7d21ca9dee6c4d637618b4dc7ec72736936c646bda02728dbb  webmasters.stackexchange.com.7z
+3188aa84884e4a25eccd0074b9ebbaf05aefec981aa9b8966d5eeeaea292279c  woodworking.meta.stackexchange.com.7z
+376354409fe22f58765c4355d2ba247098ff5cf3d1b0380f661796b848a57d4d  woodworking.stackexchange.com.7z
+0b4bf81a77f4a28d3575938ccc100f56e56d630dab23d1e1e0cf3d0d5d99aff4  wordpress.meta.stackexchange.com.7z
+8e09567662e14c0e88e733951b2ce998fcf5f3f5bfaf484d5594646b9279f504  wordpress.stackexchange.com.7z
+30648f0ab496c38794f33ceb06f2349d356ae3bea53bc5ad38365e368f07d8ee  workplace.meta.stackexchange.com.7z
+87be1e08e4f049d039e7004a2e74cfc6dc1a513b62c41c90b8662208211c4bb4  workplace.stackexchange.com.7z
+22e7e37a7c6825ee9349de1bbefdeaca473fb2b03822d9bef7e3e9101093e9c5  worldbuilding.meta.stackexchange.com.7z
+5ce6b040ad5038315cf8293442efea023699077d81314be82536a03615a5120c  worldbuilding.stackexchange.com.7z
+e9811feb76b5844f82f5281e1ab02442700253d14755e1a686a74b393a498b5a  writers.meta.stackexchange.com.7z
+833881657af9a355d7e3b4d2cbe77367fb65615ebdba02058ebaa057172c22fc  writers.stackexchange.com.7z
+</code>
+</pre>
+</details>
 </details>
 
 
+<details>
+<summary>2024 data dumps</summary>
+
+<details>
+<summary>2024-12-31</summary>
+Note: officially confirmed: https://meta.stackexchange.com/a/405399/332043
+<pre>
+<code>
+bd1f3fb51269f383842383c57d430b3d836d026de2bdbbc6a0a289a7d9146242  3dprinting.meta.stackexchange.com.7z
+0cdbd74078ca05bef726dfc2658212104aae9ea180464b1e8600413d0711b511  3dprinting.stackexchange.com.7z
+a100be0e75a1d7c59107441aa541d40af22889062f6e2d92174c4a14e6ee9b23  academia.meta.stackexchange.com.7z
+66b3a83a2a051e7b583cc532e7c0186af08be072987e59efd133ddfbb9d82e8d  academia.stackexchange.com.7z
+e98f25a3ce5658a976d7a096f2229948e82f6121dddab3ab97bcd6774254d33a  ai.meta.stackexchange.com.7z
+4aa801e965ec9096bc776bf88a95d8e1e0b3db9c6815eec2ba3b219f9ba3c8e3  ai.stackexchange.com.7z
+a9f348716d9b04fc310cffbe7acb1e517e7454d3046639232f1a61df19c3f132  android.meta.stackexchange.com.7z
+6068a19db3f4b652beb66558580d32d62443bf09dff842a280b51ed295065b27  android.stackexchange.com.7z
+a399570b4ddaf1112fa0f1e357b473066bc748a11b1bd4b6609d1a28b8c784e3  anime.meta.stackexchange.com.7z
+a8dc51ae84c5e52d7319b76bcd91659359ad13e9b2885dca4b99b630af71b4c4  anime.stackexchange.com.7z
+f1f1dd84a62495cf0c8d044ca0ffd40b6f34d95df569c4acbc1a388ca0e663ac  apple.meta.stackexchange.com.7z
+09bdb408ca90274e23fe035140b01002e90055748656efb9ff3da9788ab88fe2  apple.stackexchange.com.7z
+9cacd7ba039e34ecde2064c8e19b8fcf0e53fb8d0d973363ebe9168ebf3c8d25  arduino.meta.stackexchange.com.7z
+7692e91e8e8ee07b035632565224e62b192d5500a0397e997e8cd7b1a342d6fd  arduino.stackexchange.com.7z
+1eb55a1ec9dc3a6d1a3529df7cd6113e715cf5aa9e05ea1749a788098be7b144  askubuntu.com.7z
+e4c102d42282f3ce9966a822ffe82b2c0e3ac918eb294916ebf628dbbd401954  astronomy.meta.stackexchange.com.7z
+c32dd908c6dff01ab7d3288b0aa56fc3d549819706f5647cfb12560f1d09edf6  astronomy.stackexchange.com.7z
+58be0190bd27d216339f640f21ea2fedc0d02b474410b0cc0834cc4491e518c3  aviation.meta.stackexchange.com.7z
+28a9d401920ea3720fea362680625cec11b771e6945a8866d160a2b8cd3e489e  aviation.stackexchange.com.7z
+d25ae4f7f7279e7ac9bd4567612971db12769130bf0d7e7b9d119db3d5ac6dba  avp.meta.stackexchange.com.7z
+b1cca84acfeeec837b4980c43edc65ec6d305aa9deda8b01910382dbdf68102a  avp.stackexchange.com.7z
+4416f6ed3a58f2e3a204e793b6c4abdfd452c692b30a6238dad7339d199bd3ec  beer.meta.stackexchange.com.7z
+5e213f4028a158e199a76fb96b356f6a10e65c207bd48e1433893e9dcca6e98a  beer.stackexchange.com.7z
+11b260c948e3474b9703acd5cfdde2fb81e5669569642b021c44adbffe464bb9  bicycles.meta.stackexchange.com.7z
+200b84e07cb923268da60f630772d9d36d55747f0b1e9a4d3eeb0e5de6d88a40  bicycles.stackexchange.com.7z
+5985887971616ca7c534a28366e59adf2a919ea990ff88c5c53a0822aaced3ba  bioacoustics.meta.stackexchange.com.7z
+a7355ead711a5a0ef59744dfa4f12285a1f42befbc7276951a3fd40682da1e8e  bioacoustics.stackexchange.com.7z
+734fce63d83341f3393935a277767009928f452f48c9dd0fe6cf86fa0282b52a  bioinformatics.meta.stackexchange.com.7z
+ab96b530a04810abe01d7f49f2bdc8b72ed26bef132914a9a40dabcd86cc69fc  bioinformatics.stackexchange.com.7z
+b47bcbcca0e36614f1480e2b4670d1b037e0a9f132f8d98f6d6898163ac4cb84  biology.meta.stackexchange.com.7z
+53dd4f0fe6094b8640aa9d55579752999132442dcad669d53a47c66fc9407794  biology.stackexchange.com.7z
+fcef003a9825559fa217619e659d04fbf947d01b1ebdf53ca2b4997453850b04  bitcoin.meta.stackexchange.com.7z
+2623c7243ab78100ab02c74ecb7f420643f371016ad10e6e54df1e574feb2a76  bitcoin.stackexchange.com.7z
+7e3297edb0cf18c69c1ae1d6ef3092c2db2540a1ed2a6041e34beae0f6233b97  blender.meta.stackexchange.com.7z
+1bfcd408486aceb26b9ed0d28abef691c5cde7a5246836fe7bb3e53e107ef8d3  blender.stackexchange.com.7z
+ed9683d3dbe43357e29c20e57bd700dfb98f1981d9ce888cdd3a36eb064a8b77  boardgames.meta.stackexchange.com.7z
+98365228d2f24bb8ee6cdd06fdd5db62952f83ac6bd291ab67febebeeb6d45f2  boardgames.stackexchange.com.7z
+4e67c1ea3e53131c703f131c36000a2812cb9d37ee1910f1247cbf8dff399b8d  bricks.meta.stackexchange.com.7z
+7910e0f706dfdffc7453e224eef972d1965f3f7585237fdd240aa00d82ee418a  bricks.stackexchange.com.7z
+eb6d2ac6927a80145ea8c1edf0961018ac832ac67070391e3ea63fc3a9dc92d7  buddhism.meta.stackexchange.com.7z
+0eb98d0e9a1038385741bc4faa67a675b64d84c33f6b51cce552a2ebec7b9ff4  buddhism.stackexchange.com.7z
+f5e66adc55a5784435a4e138a384f39220d464693ac93a57a55c8951be5f550d  cardano.meta.stackexchange.com.7z
+aed43c0b1730877ac474d6b0aa47d715792daa82f0693fb50209e3d9cf5930fa  cardano.stackexchange.com.7z
+ad0eeb0abddb828556703bb518771e4fb5ef6f1a5b3e92b692047f3707cd4775  chemistry.meta.stackexchange.com.7z
+a5805026c3d6786619e000dc39251db4ed76b0834dd1d40c4aa01d60c57beb47  chemistry.stackexchange.com.7z
+40a3a402acb89abd40c60b3b46667ad122c95a923c6ebb40bd33af43ed4ca7b4  chess.meta.stackexchange.com.7z
+2985c5cc2b3efa36f5a5e272cef7eff8ecaf67896b62f540f9be419de93252c6  chess.stackexchange.com.7z
+26c0701289c44290829b547424db77fe54c79cbd15a7fc429c3ba4cc79fbf560  chinese.meta.stackexchange.com.7z
+e3eb28a32b5d5afe902878d4790bb969f88a966dd0eecce6aba025e4d71175a4  chinese.stackexchange.com.7z
+e0856d10d0552774f3f325f06e6fba5b5621baaf23c916dbf167afcd3e5d4959  christianity.meta.stackexchange.com.7z
+e5cba9c5291326a553cde4fa376a0bcdd69a14248af349fa6cf64176568624c0  christianity.stackexchange.com.7z
+b2e43f85ba711a091b80ea6bf417762d1707888c565ceac62ed092637189b68e  civicrm.meta.stackexchange.com.7z
+4f5274f1f27d5e8ccd4e1becf8ff8fcdcac8a668589146d6fdfa47654929665a  civicrm.stackexchange.com.7z
+37ab6cd58ef93e4c42831836878b8d22c299f3b67e43f3f5972a9eb0c4ffc381  codegolf.meta.stackexchange.com.7z
+86385304f9bd4fc54da1fc07ae56a8007a45c0097a327f1a7fb385b88b6e9661  codegolf.stackexchange.com.7z
+722d1d78a7819abd18bdb29206c59ca2489698ea8efe8d1dd7ae95830ba43afb  codereview.meta.stackexchange.com.7z
+6433b51978ad11616576160411dbd49bf03271d7e7046a9d89ea8a96d0746272  codereview.stackexchange.com.7z
+3400bec7e2203b25e016eb7a78b0f4152e6d596dec2fcf50b006ab82c2eb28e6  coffee.meta.stackexchange.com.7z
+1098a4a55937ad7cc9b7c7d6277f41a1317dd46351f94183d2118086415cbd0c  coffee.stackexchange.com.7z
+9620cfc138349290319e1d2b645203f82d05ac3a3addf437b55e35ab742fdda4  cogsci.meta.stackexchange.com.7z
+cefa1cdfaafb0ebc4e465d5331039cc4b371b591ac31a96eef2cd57c92505225  cogsci.stackexchange.com.7z
+abe8cbab6a6e1a6dc56468a9ee162acddd41582bc7214421911dfc13174db58b  computergraphics.meta.stackexchange.com.7z
+bedbb682158adbe071292f8d54dec05bfadacd2523eb1b74c90850073594fc28  computergraphics.stackexchange.com.7z
+dd2a6edb0f3e2ea5ec2175b7cd7ea7c316c67704acf1b261e545b701397cd1e0  conlang.meta.stackexchange.com.7z
+ca681b22d31106c887dfc07497d146ecd1deab4531a3a72501e222724d3c419a  conlang.stackexchange.com.7z
+dc755fad5c4b0ac360eb6cc4fefaa4f699dfd9539cddc9225e51e2301a32084b  cooking.meta.stackexchange.com.7z
+37c4cc1a0a478a04297448cec614a3bfaa2943943af2a2adc7ae52f1754634ff  cooking.stackexchange.com.7z
+7f3f07adeedfb6eb384ff0ac0a78592ba3d4e20b830e8d5a8daf49aa3502498e  craftcms.meta.stackexchange.com.7z
+fe8d9c81f79d66139b1c1c3542535f7798c7ef93ac5c8606d8b7c3de0ea91d15  craftcms.stackexchange.com.7z
+7c9060cc45c8b0b0324d64c1c07b0139ac4d82eefccf38d1dd1665209b7ec07f  crafts.meta.stackexchange.com.7z
+53a13d05545fc1ab85736d271e9a2cc67f079e6b66fc1942acc3ea766a8ae84b  crafts.stackexchange.com.7z
+9829ef4126464679890e1916b2c80d2bbd22d9f23afa2606ceff386d38c776dd  crypto.meta.stackexchange.com.7z
+3676982a7927dae5e8548f8e8251d2bd420f7f09ee7a5eb917ca88fc47870c19  crypto.stackexchange.com.7z
+c6df3f3fadc04e60309a515cb35ea142d70fb94fe278a366961b2bd13e9b8ae3  cs.meta.stackexchange.com.7z
+d5f7e3f39896b985f31ab78b4c46f8fbf23c11bae6d08e1ead33c4de14aa61a6  cs.stackexchange.com.7z
+f43c41b39d2a087e051a425af5f3715e9a08daa803d3619e3289f616b95ee259  cseducators.meta.stackexchange.com.7z
+220cb5de5bc30429602e608c373de0a6538cf7b3d428fe620ccded0824ac27ee  cseducators.stackexchange.com.7z
+7ca5448b07e2577f21c82e63f690fa440c4255e99687c50b48d3eb70baf045e0  cstheory.meta.stackexchange.com.7z
+a519c62015b32d3743987028fc821697c695c02f2358816c274e2651816bb779  cstheory.stackexchange.com.7z
+1f1847f1f8ce5c5d0bcf14d4fe55e6eab021803faa95c1f52255e9dec1dd5657  datascience.meta.stackexchange.com.7z
+7e37d9d338d9bf2e2564773a7cf6e9db5d7defa8b2c29f827e1a8c2329f00241  datascience.stackexchange.com.7z
+7bac63f31234bd55cdb68ec9f34c71c170aed4986a36fa2ca3300ead73129fc9  dba.meta.stackexchange.com.7z
+802517515a23932601499395d67de314fdd8cf85e6b9bfe5ee806312fa2d2443  dba.stackexchange.com.7z
+8386badddc8b71ddc7fda017dc2b09634c521e534b911bba1e433d9a6e630329  devops.meta.stackexchange.com.7z
+737871b03fcdbb7da065de24d238c0914152febf013ceee4229731431776ad68  devops.stackexchange.com.7z
+650745065fa1f6ce33d97cf026ac424093053ed8ed3e2116fde802627f9bf037  diy.meta.stackexchange.com.7z
+5698758791618927890b9335a67760a6a9cde7642cd4904178a6c9a1de79f4d4  diy.stackexchange.com.7z
+3b0f23e81e7fa3b2da68ab0d69a0a2b3bbf4ba1f680c36911f2cec7af32016fd  drones.meta.stackexchange.com.7z
+e45c04e63330ca038e728231b34cae46a3656f30f9f0736dc5c7d9efd4311d6c  drones.stackexchange.com.7z
+44f622cea546917f7084f0953e961e6caa50b22a263cdea75769b78835e969a2  drupal.meta.stackexchange.com.7z
+a150e7a36cde3ad34535aee8fb746ee498fcd21bde9904397c1041b51aa62963  drupal.stackexchange.com.7z
+401502e49983691ae9701ff811813b0c14609d3c703afed30d72f1b38eaa3928  dsp.meta.stackexchange.com.7z
+6dc53a9f2371f6143bb5fd56898c22008fb1451de936649b4cd5b2dba5fc7b6e  dsp.stackexchange.com.7z
+c8f773acf349120d49089ad4e83a93906f61acd545b399c26505f1a164d537da  earthscience.meta.stackexchange.com.7z
+c5fc8026a81768a721f172fa0fb76d8e4d2e744028f2a042435cd153f2913228  earthscience.stackexchange.com.7z
+57986781f702c6e7fd4503f93a828b6c6cd622195405e4cea8f0274b1c95a98b  ebooks.meta.stackexchange.com.7z
+a727faaed4d7cdd9a556e6d0d6716f0d2fd799f9443e3047d8dbe0cffde03d7d  ebooks.stackexchange.com.7z
+dd4e18b324a94878e0d4e5d44bf3f354f2d46e069b7b59daa265778e167359e3  economics.meta.stackexchange.com.7z
+562713a5613ca494db668554c1098db98b44444d07101dd7caca59fb7ff53aa4  economics.stackexchange.com.7z
+e44a1e15246ca93749fb47b734411dc7b43736069d2dde34c4414b486ddf1c0a  electronics.meta.stackexchange.com.7z
+186dbf9694d38917ff6c815f86142b92567caf40db0ec21cfae6e691e25b8f6c  electronics.stackexchange.com.7z
+398f22de88db62baeba4c44ab904d30293bb6a75a6fa7c9b15ee3744a2e01727  elementaryos.meta.stackexchange.com.7z
+0e6a4bb034ca46716c2e3e84e1c100178e11e5c3981e4f00d15af634ccb3e877  elementaryos.stackexchange.com.7z
+ed1c020021c308e0b8ceb72db585f07641cc3cafff3ef6e76d7e679f6cb517a0  ell.meta.stackexchange.com.7z
+e051cde54cb79ee21a054c20ed8289827cbc4dbd524095bc9465e150967e6e26  ell.stackexchange.com.7z
+2967d8c83a5d2d9c34c58eba0c8be923bbdee7d346d71371bead7d5306b92a7f  emacs.meta.stackexchange.com.7z
+742c95d40d44f442929515d6348d01d579e67ae1d7c51791359aea864b36972c  emacs.stackexchange.com.7z
+e3fba03927185442c6370d61ea7b9ef0daeb62fd590d483fb0e59b0a267158b4  engineering.meta.stackexchange.com.7z
+3e5f155ce89a651a3cbacc03150e4d6245dfb112d2acb46f85932b7fbcd0c29d  engineering.stackexchange.com.7z
+0a641be01a784114bc7933b97ee6d7619877dbf9522374d208e42017afc9d74f  english.meta.stackexchange.com.7z
+d5f9fc6dcc87d4f10b519bfcef8d13bb8527997f2ea9ebcaf1c93fd83242a0f3  english.stackexchange.com.7z
+d3ae2e71e66b70eab58a3be393e38b8e2ae240def42966a76fbebccfde745f78  eosio.meta.stackexchange.com.7z
+3d79bca073580f63707f7a179bb4cc07f45639002b7e753793e78b53d0bb3685  eosio.stackexchange.com.7z
+e82d27af2f122c6ffa236966f67c5658348a04ed377db81d546f89f8b1937f92  es.meta.stackoverflow.com.7z
+e319d6e883e91c98ea46ace0f32758382972a2f4504c6e86e41ddd2d9f152806  es.stackoverflow.com.7z
+73db56ba549221212db22999dd44bec6c7db4c7c3a394f1485f4a8c38573ceaf  esperanto.meta.stackexchange.com.7z
+5bc476d4216e181eef0afdbe4d24594cf5089c3dd25c1e3e05bfe0218f023a46  esperanto.stackexchange.com.7z
+2a43d67735960ab383c563acd36d3c687fcc578b82ec0c22a2d7ab91598cf91a  ethereum.meta.stackexchange.com.7z
+af00fff18c2d11a27f2ce0fa5051f08daeb7bda1491bbd39a642065d99cf0c39  ethereum.stackexchange.com.7z
+d510c2ac433ef224f2db4be034efc0d840ad0aea408809c663722e9915121b17  expatriates.meta.stackexchange.com.7z
+8eb2d509ec133617791dc0abffdb6aa6ce10d0d231a846973cbb66d3ae48bc49  expatriates.stackexchange.com.7z
+e18dfd1c0798b0627aa8993977e5a63f61a29558d33d65e9f1f8d203ce8c7eee  expressionengine.meta.stackexchange.com.7z
+a129c0835660dd0d1f1c430865c27758a10ca74d08d87e674a3975bda4f3c577  expressionengine.stackexchange.com.7z
+fa74afee6073cc83bceb540097dce641270bed194ac0c4d8dde96852811b4d09  fitness.meta.stackexchange.com.7z
+a4f36964b4886917160c7359e56c49d5dd312a766064f97caaaabf2a81f1592e  fitness.stackexchange.com.7z
+fa642ed6dc81dda812173801fe4700cec3c6e8208e94dc1f33c07f1a6552d78f  freelancing.meta.stackexchange.com.7z
+13228258efb679b9c3ef7ca5cdc3b29678e8523df6df12d66b6692b26dfb9127  freelancing.stackexchange.com.7z
+32b5d341ef4798a4a02d0e4cd0518f38728283b47e7f0e86d727ed606d7a6ce9  french.meta.stackexchange.com.7z
+dc398abc4b3cd63942b36f758f674fa13f703164e517b667acd7c2abedf1f434  french.stackexchange.com.7z
+9648c0170a355e0c79edad2b645aaca9fefcfc512bc9bce41d2702ab5bc5ff0d  gamedev.meta.stackexchange.com.7z
+dc5ac8aa10830cdfe2b1535feeaea4c4fa09c1a5c518caff699ea40c36b36196  gamedev.stackexchange.com.7z
+42ca410d2f728b1145b59c252afd0d6322ff847ccbd5534d00372f3b3087e03f  gaming.meta.stackexchange.com.7z
+bb233c61ee804848c2591ef2ae7ab53d619c8baa471faafde3f6cacfae8833d6  gaming.stackexchange.com.7z
+f651593839411d3a9f451191f3015e9154a21e34c19a164ca6f919a354f0b17e  gardening.meta.stackexchange.com.7z
+77f2a110be222b8b2626c69e581afd29a126f13314e04b0268d08b41acb83223  gardening.stackexchange.com.7z
+544865265c7b8176e53a093aae92d0e756ab0091df413aaa679dafa904a7c84c  genai.meta.stackexchange.com.7z
+6e4e65b3bb078a326aff3201f1b6dcaec3c4d678fa371029593b1ccea80d7a50  genai.stackexchange.com.7z
+042ed30e95486659719473fcad33a695d0d2e94eb798c2a3aa3637885bba2a22  genealogy.meta.stackexchange.com.7z
+111a5354b5954fcd2bd28e74261c43b5acf04da64504615634ea9166cf09b66d  genealogy.stackexchange.com.7z
+15c550ad021887fa791205a8d33df885e9c374fc4aea77684e87c2b6bf674218  german.meta.stackexchange.com.7z
+a295713382923736834c9d11b566b91d6633a56ae77bc50675fb7e14d382e046  german.stackexchange.com.7z
+fcffea93c6448aa2cbf6377eb168ac11e8f0aaa434d569321d0e0662b45cbfcb  gis.meta.stackexchange.com.7z
+16df20cc101324c32f24b1b29ef795d972bce4c8600b34840ce3a9c1dcb2db53  gis.stackexchange.com.7z
+2a393d69a403ddce88f4464f6265b4953ecbf4788b4d1286dff83222d42feb9a  graphicdesign.meta.stackexchange.com.7z
+42d6547c121500c235e84f9e469cb811d193633e7d8db7bd5fd95d6c76badfc6  graphicdesign.stackexchange.com.7z
+0a4d62221f0005d9440a6fd759bb5b40ef22cd17222d6e0c4a074c5d47babc31  ham.meta.stackexchange.com.7z
+5a1fe7d62435f4f4efa9dff4ee19203336b155f879e90dabf668c5e3e7d11d1d  ham.stackexchange.com.7z
+9fa997987c49734a759133687bca828167f1b7b08bbd0353a7bc08b2d5e9a0d7  hardwarerecs.meta.stackexchange.com.7z
+1e1108f6e188277a637ce32b25959e829f105b36c6a35773f47218a7709b874d  hardwarerecs.stackexchange.com.7z
+d23f9fa2f3ec768a8aad94cd7a13cb30a1645ffb578a7c46c963661a3de6e5a1  health.meta.stackexchange.com.7z
+e44582ef609f10047dccfc8131f8389919d9d54a828829a5a6f80d0220fdf7b1  health.stackexchange.com.7z
+feb9cc3af052a09180f1f39620a8895a220cc83ad150278c3066fae7599222c3  hermeneutics.meta.stackexchange.com.7z
+d73848c702b7e0d88934fdab1e7831c6d7a88e5a2202d65b6d09ccb21d124474  hermeneutics.stackexchange.com.7z
+541347a46125380722c8e4d7a31e6d4786ec2ce2bb2c8694a1940890285fedb3  hinduism.meta.stackexchange.com.7z
+d05e523c273698801af16fb5352ca9f9731902b27939285d7f0e79bbbafba990  hinduism.stackexchange.com.7z
+88405dacdea471226be7ea61d69a23c68894d3f4b12f78e6aff9388f72d7bf4b  history.meta.stackexchange.com.7z
+86bc53f26581207bedeedc0c3b0dccb65d58f79302a37dc2ceca4559794b8cdb  history.stackexchange.com.7z
+a94c9e8c866edfa8c50810ebe6a9847efa3fa90d797c700fe0461835f7d9a98e  homebrew.meta.stackexchange.com.7z
+fbb82569ec173f5fdeba77246f7fe4a6f9ac80ba38221c0ba3c7f2aa1654e98d  homebrew.stackexchange.com.7z
+2c8694ded0d0a0a7799453778f571760da3d67fafafe2a2ecb635fe4a620ecbf  hsm.meta.stackexchange.com.7z
+65bd9f2a53802db39a7f167eebf14e42756add0bfc347e759940f3505d1542fa  hsm.stackexchange.com.7z
+6d606b9fbaf7824abd1b76dbc33dc4681231858999242f94e6d79512f2c40a9d  interpersonal.meta.stackexchange.com.7z
+b813f5f59f457707a4641010d7bc66ac43ac2b3bb0777655954ce04a96ea4179  interpersonal.stackexchange.com.7z
+8bb11b79bda5d3aa5ed01f81e13a02c0ae9b5ba331eac05f876f89bd0eb228fb  iot.meta.stackexchange.com.7z
+8cd28cddbfef5aca59c519bcb0ecc7948fcd3107b9e2957d950e60f743a7e656  iot.stackexchange.com.7z
+c18051939103ba6c451eca86a0efd93f34be73655ba409865dafb1c2a97013ef  iota.meta.stackexchange.com.7z
+034635e0e4cce8419a58d0bcbfd46081fc7caaef42ff8b1ffa2bb0bb2d72fa15  iota.stackexchange.com.7z
+67609a2190538e4d7c855eaa5147918c9970ece47df44fd727dfecb7ad533bbf  islam.meta.stackexchange.com.7z
+a496cd0d0c581bc91ef616dc6d3aa2884daccebeab809ee93acca69a310f98bc  islam.stackexchange.com.7z
+f6d273b15de77a899a6fd58fd00ec3abb592ab7c77403a2562a3c87d02d20938  italian.meta.stackexchange.com.7z
+42fa058a8b250490938ed45e956adb5ae5e0511d8716c65d62a1240aa616fb03  italian.stackexchange.com.7z
+f03d5a6c35fd12c607968762280e19b2eab54dcbf900d57fb545c700840ca01b  ja.meta.stackoverflow.com.7z
+75cb4bef30c16885599c1fe9eaf92b9f8711ec2a668d47615910788aa8cb1795  ja.stackoverflow.com.7z
+e0f254b5352a0a41de8c484baaeba58fd50bfc2d3d2452e8d63c07d05862f151  japanese.meta.stackexchange.com.7z
+b7fe12d4f396c736c25bd76b1bcca3a4d592841482be2e15a8f0d647fd9424b1  japanese.stackexchange.com.7z
+647286f9e5a1c3afd128c7cc841538c39784e11ffe0aa2b7c7563464034cdff5  joomla.meta.stackexchange.com.7z
+3f7e0c14342826a6d694c2229b6e4b84f2f3b7078efca33f2dae28e380419884  joomla.stackexchange.com.7z
+495ebea7330e7f14e3fd0e42e61ee38a25dc6e70ec71ae6f820171729fb6c67f  judaism.meta.stackexchange.com.7z
+593809b001dec503d1867207f49510a788d59fa823f789857396d648572ccddf  judaism.stackexchange.com.7z
+4e489672813f8223a97935691e59de9d8112e42162786f780e193c54a8eb249f  korean.meta.stackexchange.com.7z
+4eaef18b831dcca32d03e39d94e969b061a6d456c9cfe89740f76a44ded05dd2  korean.stackexchange.com.7z
+37eb0f4f62d679752456d2218972832a5f658b857c0671f19b8e721cc2d4e559  langdev.meta.stackexchange.com.7z
+1edd781d861217e4a68344c551c4df5b3b76eff5fd534d6ccd304a6499be0e9a  langdev.stackexchange.com.7z
+0a7693e3392b17846c0b5247aa58fa1989da6c79849d31055ca41e2ffbfac419  languagelearning.meta.stackexchange.com.7z
+283dba75c1ee72e70b6574b0c4fbd5b58bfe25b16144016ff4e73e44b44dae96  languagelearning.stackexchange.com.7z
+14650b66f27d055a0d621446daccac1f98888b90571dac5b835002ac966f8077  latin.meta.stackexchange.com.7z
+308722ac540f0e3820fe64765f6d2636bbe3b1d200d97983f626a46cf7367e25  latin.stackexchange.com.7z
+a27461d24dbbb83f23a2a560747005f39aab8f2d6d169b9ae25c90533aedb3fa  law.meta.stackexchange.com.7z
+4e05db73d13c21fd484a7884ee4bc3d0ae55eab5c86ad15801847e359a4095e3  law.stackexchange.com.7z
+68e3101d80a8c1a1cce86b3c1ab18e8c4361ed838de91f28fe344e62ee1ca2fb  lifehacks.meta.stackexchange.com.7z
+b4b0d7f984952c9e94d8f374b4d5f862ec9033a8bb89e67c54ccbe9e90d21afd  lifehacks.stackexchange.com.7z
+69f6adf3f328d6a5ce597a1af0e9d10a3a4158bacea0b55ce28123832b9942d9  linguistics.meta.stackexchange.com.7z
+2c47f17eacbfafd7f49af4388f610faf8298c464dd6e459db521b30c8c090414  linguistics.stackexchange.com.7z
+e52c481468ba1b6caa303bb242d03d7bd9583b9cc253ca0045afe180823d95db  literature.meta.stackexchange.com.7z
+ee64474eda59872dec80014baa9f162b781bf5fcc09d0f6aaa35f65e07edc055  literature.stackexchange.com.7z
+8e3e151f10fe6bc8a12c3e5fc4459acc9053d250026a7870e4c2c72475f88b40  magento.meta.stackexchange.com.7z
+e5edf5039092352f818386992a196cad64d01b274acb8503202a46b3fcabaada  magento.stackexchange.com.7z
+a45103031e7bd67a3e3a4874d1ccc3adcbd109af54873dfe46ccf705efaa9f9b  martialarts.meta.stackexchange.com.7z
+d464b116ea7caaaf485d59d97dc78ef0e3345224d1c3a6f90b9fbe555cb7ac18  martialarts.stackexchange.com.7z
+9c9b2d937f4fc666e15e03556758a19d4cdf5a3e71a3228de51443256c50dce0  materials.meta.stackexchange.com.7z
+729af3ff8570faebf7cc7cc243badfbb5b71985e805c52b0736d784c8cf7a4b0  materials.stackexchange.com.7z
+e130912d6afcb7ef8a4c3d1debdca47ceafb9b1c62621a91545b98436d30c8b2  math.meta.stackexchange.com.7z
+384d1eec977dc8b02cf9147d5eee7cf890a1e1aa2b1462f324b3222f139354ee  math.stackexchange.com.7z
+249649afbb6c0765ffcb1d2e43b888b71bf3ced064e0bbaa65eb3a063820dd81  matheducators.meta.stackexchange.com.7z
+8ec54cbb0b074d877f86afc64ba5aa23f6ff9c7be7b4efead35d181983ef6d62  matheducators.stackexchange.com.7z
+e621bdffac5990a4c08904b6b02f188c15e583f4954b6882ea815a5edfe48d53  mathematica.meta.stackexchange.com.7z
+061b7ebdc4302be01cfece8bb32da61ce616653ab66db976fe3f98ff4a866533  mathematica.stackexchange.com.7z
+6828ef54578c42f117325454bb688061edc5beb0d31225eff096146fd50d6de7  mathoverflow.net.7z
+4e7dd3e2af1e7508d365a6f1d209727971e02e6ee99e0826441412864e962a5b  mechanics.meta.stackexchange.com.7z
+bbc01bb24aafe1411da25142f1fad92cca6a93f53f7afd17d35b7f52b95f0bda  mechanics.stackexchange.com.7z
+47a29629c55741631a1406dc8e57d1a4491fdd60fc1290ffb389cbd21b453c6d  meta.askubuntu.com.7z
+b3c45a118f0a1e397113fb3ded90b01d8d5f84f1529541ebba5ebf9feb8d2e3b  meta.mathoverflow.net.7z
+7715901dee07f8c5cb59bb9c5f7a1ff54eee8226d0a52fb884dd82956415659f  meta.serverfault.com.7z
+262493b7de21f386e19e5df43994651c98c5ee7ecb016787e1e155bc331186da  meta.stackexchange.com.7z
+d9bb433d635423688bb3d483460f2a9b4a3144163640245cbaa1c642c89bd73c  meta.stackoverflow.com.7z
+e81523d8e32e89bc4a0a4f9221ee0f5872ea3ff384307381d9be1823736f1879  meta.superuser.com.7z
+b1a88f4c7cf358b1ff5f3ae6c640d9a679bbd7b872129c8ba826188cdd74e5ac  moderators.meta.stackexchange.com.7z
+e69abb74077f2b618866c631cbac46961c8caddbc005c7985b3ab215aa53507f  moderators.stackexchange.com.7z
+349887b0c5b180bee63b3e5734a3811fde8d3ae8f83a6d17f1d9a9b5a5a49e05  monero.meta.stackexchange.com.7z
+77e49c0337d3c94df2f0aee0439c55468fc997df71edb2aeb0d6e612b2ec02c9  monero.stackexchange.com.7z
+a9b59ca77c0f6efd8daca377bbac5e68e9048f8323b8cbefa506caa573d17342  money.meta.stackexchange.com.7z
+1f8bedf11809dcf2f873ae915b5406584d1cac73e58327441e809bb459e54c40  money.stackexchange.com.7z
+87b3ee545cf39ad66529456add551749ae9022bc56ff3421eec0d7f8f96180d3  movies.meta.stackexchange.com.7z
+8494c14412901300c80454307253fac72f903195c34016bf19bf3bf6ea354af7  movies.stackexchange.com.7z
+a435d650607494a813a4205ab2e3c0c2096cbf65e06bb0603c51cd3d502a471e  music.meta.stackexchange.com.7z
+284394d47e433e1afbbfbbca2e3b71c43f2cbc5f1c53daeb8c668a13683bd589  music.stackexchange.com.7z
+e6b4f16f61c35c9fec453122886b1f38645f503657707484fad0afc72401602d  musicfans.meta.stackexchange.com.7z
+d76c9f61b3f421bc2b7284f0a0e06d06b46fc29027303a5048894c6a9692b466  musicfans.stackexchange.com.7z
+71e77e4372c8e0248e6abac1e1a6561808b15016f1cc16ae507421302727575e  mythology.meta.stackexchange.com.7z
+01aebe208b095c8360584bc3dbddb70e2e9db548e5a85e2c516f4264dde31ec2  mythology.stackexchange.com.7z
+22bca4ad104890749691c88f9099b5c70556fc8e30645cd5c152729c0cea8352  networkengineering.meta.stackexchange.com.7z
+bb836a44ba6c5beb41c5fbf91481f992e7e2a4971231da03df4a712ccd69e3b5  networkengineering.stackexchange.com.7z
+e63de65593f43d291d464275599f66550e287635ddb089347c4d069a863e87c4  opendata.meta.stackexchange.com.7z
+0f127579a645585c4e847bce916f040cb206c6bcb8de921dce4d33750c2510d3  opendata.stackexchange.com.7z
+0b7fde75d5d6b2d8783a1b9deb3d5fc849e24226bcd0315d71fc19ffa74c447f  opensource.meta.stackexchange.com.7z
+bf2fe31050d6f3e1cb6e4817eee8e95ccba1b66f60b47c7217d759d956d8f95a  opensource.stackexchange.com.7z
+8dbd92e8843006e2c1fd2f37247951e6457c36835b00b00c576f734a32bd0580  or.meta.stackexchange.com.7z
+0a4833213dfe7bf4d38600b5e0ee005fc7752834dcc9ac97f0bd02c4a36fbdce  or.stackexchange.com.7z
+b4b63faf278bc8bf92568e05c822751c1bf15317cbc574290297a2e882262c1c  outdoors.meta.stackexchange.com.7z
+fbda4c8ed0b3f426e87615bc90f8c7abc36a18fe2f303aee104d847233c9d962  outdoors.stackexchange.com.7z
+0b070bd22b919f113733366f360eaba337be8e598c76218043fd676e14a16fb0  parenting.meta.stackexchange.com.7z
+a4b21de61e905c0254dd1c873534b1c917e9716a3d2ec6e42d359be4f8406962  parenting.stackexchange.com.7z
+f3ff4976a944f099dc309426183fb13fa700dd58712d198c1b5a4069c016d68c  patents.meta.stackexchange.com.7z
+430e4ed2f58daeb3791d1befb94c5be4a2c1db19be1a41414a688336ef74c181  patents.stackexchange.com.7z
+ea1437a03913a2ba4155d210ab033f5f272f325e5ffcafb0338ce5a8e6bd53f1  pets.meta.stackexchange.com.7z
+756c981f1e209df3ebf774c623f044ff7b524814220562bb5a71625f58e30c8b  pets.stackexchange.com.7z
+09756ddc17e5381604d1a165a514c831cc5c382401e2ebfa0e8d533ef257a46d  philosophy.meta.stackexchange.com.7z
+1ea72c8b306663e707092ab24d2d992e3f14eb2cdb4950947c672e733ffc2506  philosophy.stackexchange.com.7z
+6afc234721b4a192e835b7609ce882b2e568f85c4c0e511cde09294315d4625e  photo.meta.stackexchange.com.7z
+99c42bb541e6f1c550b9e9546caf21b88ac70f353a1fcb020203f3a2e265d2b4  photo.stackexchange.com.7z
+5677fd63f8b243e612d6e91e5a8ec6d01ea42863c7602358a4147d9a2632eaa6  physics.meta.stackexchange.com.7z
+4dc4bb200e8d67af92cd24fe8b2f51accce10fec01d68abf4b9e37f713ae3b4f  physics.stackexchange.com.7z
+9ad18cab56306e8cea866c835c5efef53eafbdfef4deae412c214ff53a788254  pm.meta.stackexchange.com.7z
+5f4b0721215052e9ca82a807894d3034dbb9a03de6d749b622ce15f97a75e407  pm.stackexchange.com.7z
+12703b00104e273b0c5290de260f9ec585a4f8f0f269b1c55b88bc1473caecba  poker.meta.stackexchange.com.7z
+252c2a96cad295851a47925cd2404dc60db62f2f4ec4190f72f4b6d51ecf8ea2  poker.stackexchange.com.7z
+f84f208bf46394e8b133364e57e9b9f443f1210960d6c28d39f91bff490217ed  politics.meta.stackexchange.com.7z
+3ce237468e2e03ffd3d3f659008ab13d097482f03e08badb47eb33368110b01d  politics.stackexchange.com.7z
+4b6ff2eae0ce40e8f12190a89ff624695fa9e85da9f944d231b877a64bf7924e  portuguese.meta.stackexchange.com.7z
+d5693fc792739cdbec5d5a9440e003414fb494603e1027620f92c981a24b71a2  portuguese.stackexchange.com.7z
+65928bf310b5a4007e9cf9653b0f6a00d4be17c7763825c9d4e8af405b5a6615  proofassistants.meta.stackexchange.com.7z
+debd068f05168fdbd24bdde915a479e7720b7c229450e740703f555f67823c05  proofassistants.stackexchange.com.7z
+b1668f5e43c2a13eb3c16e5635bc2df9cb09a40108684f372b2d52e05ee42c98  pt.meta.stackoverflow.com.7z
+57963343662083b9c92be18a850067ee9c8a513f84558f02fa39a4d81393c781  pt.stackoverflow.com.7z
+8fcec2e5bef55284880592b4a8d6d34b92fddb473d081a15e6fa7206878af88e  puzzling.meta.stackexchange.com.7z
+2e105c66fc9a854d450549f8e1a0ae8a796c061e5d65e68ce8b39649c7093414  puzzling.stackexchange.com.7z
+1054b3af7ea42818b38c32d66e43cf6dc4f8cc4a925edc219be3cbc31a2d3f6d  quant.meta.stackexchange.com.7z
+a92bf8858f5047137749560d5cb98a13e7896a75a41bfa20e6f4c9b082e303f8  quant.stackexchange.com.7z
+d75a11ca52e69fe3b09da86c76129ca192f14d0dbda099f95a48b78c6e433f90  quantumcomputing.meta.stackexchange.com.7z
+3dc8b89c35fcb3d9d3431908a1cd5c9e786d59557ecbe2cdcf04a38629de6000  quantumcomputing.stackexchange.com.7z
+637b26bfe6f1239612e13c6ec9a4d5e22896fcef0ac20ff5edebcd6001c94d86  raspberrypi.meta.stackexchange.com.7z
+c687fb44714f43b58d8293c5ccfbe556ec6f860d5ac2fdb3ced0c71cdb6d64eb  raspberrypi.stackexchange.com.7z
+6ff390d9e138d260b91b0e84358955fa722edf99a728f7d5add084a5846bcdc2  retrocomputing.meta.stackexchange.com.7z
+78b9ee744e7fca3ef916d774f5edc613dc1529c628a455ea3185be280d067224  retrocomputing.stackexchange.com.7z
+5b3311edbb4dea93ab049f786292d3071fbc54a4b3837a7a00feaa0552e38e8d  reverseengineering.meta.stackexchange.com.7z
+845ee38b828a224b07e938d5f7d7e541e748c20432a9aef830ad185da877b4d0  reverseengineering.stackexchange.com.7z
+c3e9e14da330c4a3c22f32771beb7aa69e2777bd83773b15dc832fc02cc779a1  robotics.meta.stackexchange.com.7z
+56c25534b1bb04b7ec03d01b89d0e92e78189694d8f285aac79dfe9f90c8eadf  robotics.stackexchange.com.7z
+8b448f5a0b3eb6e347c33dbe96befb04ca12cd4db83e3cec439efbfe08ae81fe  rpg.meta.stackexchange.com.7z
+1e48d918b54bd35b393ae3c7cc9cd4dde4b61ada472af2bace833a55d9438a82  rpg.stackexchange.com.7z
+d8a4de7be6a8e2d92968e10cd0146ed29a0c590ebc32c6f787e1f5ef24fcc8a1  ru.meta.stackoverflow.com.7z
+e54fea522164068fd702e1b71977ef6ce4b0f27f15b4868210c26b38ef00a943  ru.stackoverflow.com.7z
+d3dbf05a50a054176e429de6e04018df7f9b2f9322443317db3b8cb16b165872  rus.meta.stackexchange.com.7z
+61164df4d0df5e148d079567304722e4c280023ce7c01595a73b91a0ec7d20b7  rus.stackexchange.com.7z
+06b6ec698884073a39b37c4a06d07639edbf10c6566b4144c7d3569631c0ca98  russian.meta.stackexchange.com.7z
+0c74fc58a4f16c9cf676b68e058e70116d91344342f03a56078c57b96325f5e7  russian.stackexchange.com.7z
+4dd470ba216cded634242783332446bfe50df2e4e4c12de61dacd7a3620979a9  salesforce.meta.stackexchange.com.7z
+4f99356ed1cffcb0b4765e04277e0dd580c94e7b43771afda98b072a2421e3e0  salesforce.stackexchange.com.7z
+5d78416a322c0f9fb3139c1672d056717a9b8817f8176430d133e60ae493a63b  scicomp.meta.stackexchange.com.7z
+fddb37ea074f02dcc08c356602806efe06be12c5ee0b1ebbbaace7b3a6997f5e  scicomp.stackexchange.com.7z
+f731daafaccadf9cf9fe12d1a7d54e22fac12c41d19047f474b4052c987ca386  scifi.meta.stackexchange.com.7z
+a2efcbec870e9754015eaa455337f1720f7cb6f2226a2978edb16488d00fdc4c  scifi.stackexchange.com.7z
+7294758a4e162299f7238c241385a6c8b3a8129b9130016020d58ea9a4941a1a  security.meta.stackexchange.com.7z
+eff5b9752c8bd35306187d9324dbaf5f648169a5f61e612321f6569603cf1894  security.stackexchange.com.7z
+d7cde7e0c1866daff1c1df9b9b27dfa004e6e111ebe861aeb5f3f9f808849328  serverfault.com.7z
+27b6aa4f164cd9533136712174319008148e7981bee86013c3600f56b37e9418  sharepoint.meta.stackexchange.com.7z
+7607c73b7c05c63ce1e0d2978251118916b48eb00ff5f4bffc7e57f0cc06d3b9  sharepoint.stackexchange.com.7z
+b11be2122bee853fe35e839f833f283a79a85d7934b626ca5297f4738aeb270f  sitecore.meta.stackexchange.com.7z
+9ba5a4d36661cd4f6493e487db949a3d4c28e64e7c9870772887f1ef9f8b77c2  sitecore.stackexchange.com.7z
+bc2f2b6b214bdb78dde70bc3ee36df1d0bd23ae404df418a699cfd07d592f9e3  skeptics.meta.stackexchange.com.7z
+5ba9ea94d1d8b7bc7ae32b6c71bb7e9a6123f1ba62f062ca279c67bec337761a  skeptics.stackexchange.com.7z
+32b7c48a243f35955e703aca372afbc1e8d6e15408b8d923c80fddc26104fdea  softwareengineering.meta.stackexchange.com.7z
+a9f44f4d8a21453262f694dec19bbfe7dd2367da56332aae3046b40a07c498df  softwareengineering.stackexchange.com.7z
+47929e39eff42b17eba4fa6b41c8c178eb497d54ee11802f828186ef4a922cc9  softwarerecs.meta.stackexchange.com.7z
+45630f44151d17166c4a70f90b98b09e4aff3fee354f85047ab62e19e4ea2613  softwarerecs.stackexchange.com.7z
+ede58d3bc51a9433d9f9b5a7d86988c42630b704efa587fbc6969e1bb274c5b2  solana.meta.stackexchange.com.7z
+c4e58f8dfceff753cd0f99be5b5237bdc707c1b7b4c704d31bb71c5ba90c8669  solana.stackexchange.com.7z
+03c946aaf9859943fe48ee73543b3447f729405a9bdeb6d511da9fac33e1ebcc  sound.meta.stackexchange.com.7z
+528c21515a01a4267ace800a18fee1189362a042a7828167fbf3ad428010e3cb  sound.stackexchange.com.7z
+83c89dee0c5a07ad830cdcf4191ba4df18241cc890d88d00272a7a184a5dcbe3  space.meta.stackexchange.com.7z
+8205640e240adad58798ebdc44acf16e419864477be7c478c9e14a51bd71b275  space.stackexchange.com.7z
+3e56de76ee642199a916b837ec51634f3ffc4bd40ccad0427313f6d44ccac3df  spanish.meta.stackexchange.com.7z
+bfbef79dba03e2a400edc6ccea0a9cb575e8a0c4dd2eb873ba83434d254a94e8  spanish.stackexchange.com.7z
+33ee88c251d45bf158b4fd41ed5ae2c53c1e78ad4fe5e94b969c3fe45db93057  sports.meta.stackexchange.com.7z
+8b37256adec7e5dd88fb858d528f651342e45e17beb83bc23f0b3d33a1fd47e2  sports.stackexchange.com.7z
+20aec8438d22d39542952c76124531ff4bd2b71cafe46ef3c658e9c110b100af  sqa.meta.stackexchange.com.7z
+bea2683e301bc76bed72fbff1be71d0883b01ec05ed44219edea1355fd3e9826  sqa.stackexchange.com.7z
+12c833728bc60bc9dc93d78c35b8c3fd5210546c948d968c4ecb9936a354603d  stackapps.com.7z
+906df5a002a92c482191f17f85fa63ece44be26d747f2d1cad6adf7b66a6e5d1  stackoverflow.com.7z
+42a3ac78b45a09ee49ade459ec13672b0c0e057c27a5f0f53634fa22ba1644cf  stats.meta.stackexchange.com.7z
+4b469fb8abcee07ca53d5a801425de381e9fd202959f6fe90e470add2a22deb6  stats.stackexchange.com.7z
+f89fb66137f672a6d82cd3bf7f6b0c04291cc0c95e2223988356f148bccfdcca  stellar.meta.stackexchange.com.7z
+c283cf942144f75a3458ab9aff79b69bd8470d3d6bf5c2515cec0f1a1d318851  stellar.stackexchange.com.7z
+6fae2f4e9c8ea63082a6292414a087470ad41ba6d7d00e1bab2e5a0044053b38  substrate.meta.stackexchange.com.7z
+093d3cf7fd87e1ea54a8f808651756619e38163c18df5d2e3b60f88aeaaa13e7  substrate.stackexchange.com.7z
+bda4a9f0ad9658a5ebf68b863f9ff839babdd618e24c5e3c01bee4055ab0cc8c  superuser.com.7z
+9d74b7d6f5da41d770b46ba8d6a0f3e7c09282d7c1cc46ee162d71d47cf2e0d9  sustainability.meta.stackexchange.com.7z
+3c40b9d0b596f6333d6f29773948d1aa06b926c67bc190b96157a3a429627f06  sustainability.stackexchange.com.7z
+a6ae8814929bc78817ef2e8b8a545a3b4798ed986f6d3be541f10577a81ffcd6  tex.meta.stackexchange.com.7z
+eb2da6ed86a31de7084c0dc9774ce10d97bc13fe3910bbfe61aff5b47d3076d5  tex.stackexchange.com.7z
+d62b22fb529d60b612e7cfc13f927b62a0d7e250a7264ac34089689d65ab14b0  tezos.meta.stackexchange.com.7z
+a810cf49b15fa4dd48f0d8db629a385fcb0417aad5436bcbbb650c9fb62476e8  tezos.stackexchange.com.7z
+b22ee0308e55ad3e571cbefb838de8fe1821ab07f26661c101f391602a082644  tor.meta.stackexchange.com.7z
+d00be64132ae7550130b853d1195e023c000d2f36fd191e0b1b0df6788bb05d6  tor.stackexchange.com.7z
+a5a96870a3cf1d2739147f3eff36cf1362115e5ebf0dd7d7833aa86f7a3bb947  travel.meta.stackexchange.com.7z
+e8d7dbd40bdb004e8f2a6300440b21f117f5e66eb2c7a2184ca9f845f3e41c24  travel.stackexchange.com.7z
+4488fe410b3a28b2229f332d521cb9303a0cead56f4f6c4784731989f094302e  tridion.meta.stackexchange.com.7z
+f510ad352ef64fe5e3fe6fd42d569d471bd6355aaf9ba56bf2f0a051432fc51e  tridion.stackexchange.com.7z
+25d879bb18138d3e2187e22edd31d6da62f11ca43509d9ab680143db3c5bb2b5  ukrainian.meta.stackexchange.com.7z
+d6259e816366efd9572e449c5c1d8d0d5410c22e02b3d3ad9e14d74316bff374  ukrainian.stackexchange.com.7z
+1a474ed03999dc343c6dfb05d86ab696f4bf15c6dcf4469c992672b9e542c53c  unix.meta.stackexchange.com.7z
+dd2d84f6f4894b4418fb8f26ca1f117733fb8a42eb218f4e0a47868fd45cccbc  unix.stackexchange.com.7z
+ddad702d409faae0cd32f1040e4abd58a68f4e7b99f2bed3cfcdc35ec7d47504  ux.meta.stackexchange.com.7z
+0eb5e44a84a605c30274aa4fa27126e06635cca4fee50c3ec18e0bd89e446ca7  ux.stackexchange.com.7z
+b7b31480024fc3d588ad76f1c89481ddc2be12f6d7fd689d5f28fa6ce450dcb2  vegetarianism.meta.stackexchange.com.7z
+5fec622fc7c8c7b0781acccaf98ce3c03ae5d63cf9ef8a5a455e3a77a29a9bdc  vegetarianism.stackexchange.com.7z
+838e4abd1c4758e91b29b84abec9a07450c8bb13873713762ee7c3a0a2dd79ed  vi.meta.stackexchange.com.7z
+05322675c22f072178c8a9959b2df413579101d80181197fe714de64a2ea9ee1  vi.stackexchange.com.7z
+9382ab9793dd75036c7d6308958a47b8e0a6472d3781cc519ba80b3f9bf90206  webapps.meta.stackexchange.com.7z
+7d8e2e443ed5cdf4f1e36a381f96973b895b16837c82a7840fa07efd51dc419c  webapps.stackexchange.com.7z
+ebd9305f05b4a435d448fe0b6f30d488279426f651657779d480b97b356303b4  webmasters.meta.stackexchange.com.7z
+8d7b8c2252ddbd7d5cab48976b5f283d2824448c0e013a3b070b50213ede1f86  webmasters.stackexchange.com.7z
+e4891a6f75cec7e3ba4f3ac74d88dbf78f595abdb3d634ca2a41c65f89b18635  woodworking.meta.stackexchange.com.7z
+97e750294c15ff325fd3f2f918ff259fd23a46ce9c8effa97a89ad0d950abb23  woodworking.stackexchange.com.7z
+2ea7f5de8ebd8ee842ddd030df19b55d0c9690431746cf9d5d71c2b965382478  wordpress.meta.stackexchange.com.7z
+8e45309002ac390d807da5b8afaa3be39a3cb9d210f0d0ab997c924806eb92b2  wordpress.stackexchange.com.7z
+98400d32ef938d7e4599ff61bcc0c2d6e16b1e048eaf7d18baf8a710fd404b6c  workplace.meta.stackexchange.com.7z
+f5bcec949dfcc08357153d4658e63c295b8818dc25c0add06c81a580d0e410d4  workplace.stackexchange.com.7z
+6cde5009c32324b7e2feb921b995cd75ebbb61c67e5f49a63d9647984c11ded6  worldbuilding.meta.stackexchange.com.7z
+ccb23f2b3180884b5b93fe1e9c38143555f37d8c6b75df779d2121b51806f5b5  worldbuilding.stackexchange.com.7z
+e395e480158314613f60fb9b0028cf9c7924367736ee6cbe351a6ca79d6dfd2c  writers.meta.stackexchange.com.7z
+8b6409a164a75d1685a6948d62a1c4c335ef7c737f1054d4ee270e81e2c225ed  writers.stackexchange.com.7z
+</code>
+</pre>
+</details>
+<details>
+<summary>2024-09-30</summary>
+Note: officially confirmed: https://meta.stackexchange.com/a/403470/332043
+<pre>
+<code>
+2cf08f0683e8f07e9cf99e3b24c2629fc7ac2653cad37001c0085e0a54ef03dd  3dprinting.meta.stackexchange.com.7z
+2a0fb373e8da94b7cf4654d3812aace39295e03d212651d8cc53bcb5065e49ab  3dprinting.stackexchange.com.7z
+8aabfbde0d883556b5035fbc1b90277c1b70412ed85535d24d58bafb996a8429  academia.meta.stackexchange.com.7z
+e5b7a86762d495a1944a6c45ed7d448d257cde76c15e62c38a3253cce2d362f0  academia.stackexchange.com.7z
+ce82f527885a970efe89961011a4d2d69d7dedcc26dc6bbd463ebd8cf056db03  ai.meta.stackexchange.com.7z
+e20307e937ad8302b7ea3bf8588ecd61da90f7986a07b6a8c63b7ae41824504b  ai.stackexchange.com.7z
+08df3ea4f04abe7013606452e5292562b68cbcfc3dfa91f3e3ac7f99cbc71ad1  android.meta.stackexchange.com.7z
+91675eb69249d8d3f3865126f4e7686f3c1b0e55a501aa7479599e1bf9ff300d  android.stackexchange.com.7z
+487b88e48dfea40f544efb47517a19b2c6349cfa28ff5196b6cfa436a5802f72  anime.meta.stackexchange.com.7z
+f43bb28d251017f58aa67914f4a2fd39b1481834ee5e05dc9d6e6614f24fe3ae  anime.stackexchange.com.7z
+1e3db72f304e791e9f8fd97b1f55d22ce176b57bb5e98f809b404a20b2434d31  apple.meta.stackexchange.com.7z
+ed161a9229f4658ad060128321ffb9e021f9488ca02269788c49d0fdf2af35f2  apple.stackexchange.com.7z
+e7730063f87d680f407f42e114dddaa1a418c0eaf3b714c261548d539fc2183f  arduino.meta.stackexchange.com.7z
+07132c1367222c963185419bab2e8628d84d031daf48969adb5a4d8814402299  arduino.stackexchange.com.7z
+121164fda551ba94c03eeae6227df6f952690a4db9aa504507fe89d98e415643  askubuntu.com.7z
+30a751367e142ef5b104273d7d19f9d924659eb1cf4d26d245bf0033b5001b56  astronomy.meta.stackexchange.com.7z
+cfa6873cec18ed717aed94a0e14d57dcbe108d8e7a9070101d8329ad4e28aefd  astronomy.stackexchange.com.7z
+2ef294795bd24384f6ca9eec8ac9c5f3d04d390f5388adcdfd01254bb1c84c4f  aviation.meta.stackexchange.com.7z
+7f8e5548ea890c9e2aaeb2f0a8739f8324b07095d43155c6226dbe9be19ddf1c  aviation.stackexchange.com.7z
+2220688fa2598957c5f2f50053b64d0a56e0427c14f9806714af314b8e00bc8a  avp.meta.stackexchange.com.7z
+f5d22458bbb1ef16fc622e06ffd703af57d01311cc90d1d168e1e333514829c9  avp.stackexchange.com.7z
+fa217394e06cd291cfe25ec1177eeb36e8e9e3993cdc736b6b8f14c963e936e3  beer.meta.stackexchange.com.7z
+5df4db4f4e35c8d785b18f3e9a4f719ce1015e9eb8d04e1f9064f50155a2a82e  beer.stackexchange.com.7z
+a1827d06eb5eaa0b3f5e8dfd3eb283fcc24c30a99fadfabd13a1259944fbdc51  bicycles.meta.stackexchange.com.7z
+604c69fcc40dab4de999382d237074758b7e8c65e31736891ca3c7eea317dbe1  bicycles.stackexchange.com.7z
+057544445a01217e29b282cf587b556e2aeeae7e322f3a80adacc9abac015d5b  bioacoustics.meta.stackexchange.com.7z
+3e13f72e28326117078db970af2ce508a10ad8d88e421cbc914fd6f455111221  bioacoustics.stackexchange.com.7z
+8dd6c8224d27c4515ad2ffe79f8109b8757ca9c566e2946b9f89bc3779c38f43  bioinformatics.meta.stackexchange.com.7z
+a802d4aadd67b311a700c9cac2bf9075d00fca49070522220a24e68cb1d795ff  bioinformatics.stackexchange.com.7z
+f62ba2fcbe72589cb215dafefb1cef9dec88ad6a4a9ebee42741113b304f1675  biology.meta.stackexchange.com.7z
+afe5a0106c3c6b974a0ccb0876a7f7b6e0aff50cc71179217e2f269581269248  biology.stackexchange.com.7z
+3bf88e969ecb88090e5d9960e0b0c9d20fba299f1d614f7ac116a84f2bc0aa45  bitcoin.meta.stackexchange.com.7z
+2766ae8f9cec1599cac1295bf9b3df03ab77c8e6c4302730e3edea28f8852d35  bitcoin.stackexchange.com.7z
+3b3ce531a301db7774aa1ce686642569794e8a672e4b868646e73eefc257156d  blender.meta.stackexchange.com.7z
+39f7ade3c6cfd0dd15a6a51add4ed612d3061bd1536546a930e629db8781b23c  blender.stackexchange.com.7z
+deb55f266d3e50c95fc4b327ac1fc85b47f698790321c10841d3f8c6ce174c77  boardgames.meta.stackexchange.com.7z
+c4c3e83d5921e16727bb65e31220a03eb090ad533c062a6aa616a342af49c5aa  boardgames.stackexchange.com.7z
+501fa473fca75bcb4e176b60547b96921509c6a894277432cb11f4c2bb8046dd  bricks.meta.stackexchange.com.7z
+fe60c15b161ac056006f487cca3daf29399572914e9b5a0afea59b38f4743f3d  bricks.stackexchange.com.7z
+e5214aee77083d3fa783fd1544c66650d810c97fa142f7847c6ec854fa558d46  buddhism.meta.stackexchange.com.7z
+114c6db45f64fb2857b3ecb15425ba130039206869e5c6c1e48b880c89c71b87  buddhism.stackexchange.com.7z
+a031d1de78d6fdc4576df9c31e35d8995e29dc75d8e3e1cf763c6b854c72d317  cardano.meta.stackexchange.com.7z
+ef689f544ca8ceb0c146b0b1272b6b52334fab8c68273d48f23a56b33ed7765c  cardano.stackexchange.com.7z
+28bb200f6aa1079167e4367306fc754d0086439d97ad75b9f580ccb5c9946486  chemistry.meta.stackexchange.com.7z
+9aeab08fd2f947211d9471cc4c1cec99bfb09e6e36777aa1768189359b2e2a74  chemistry.stackexchange.com.7z
+1a8a77b30006ccd2222cfea202ae125055dbf0a43905a4805f73ddeeb52e1484  chess.meta.stackexchange.com.7z
+d792373d8b60a898046ae09bece8cfc10562696f35b3e08f7ed45aa11ec56cd4  chess.stackexchange.com.7z
+2ce64acf693be56844ad63155ef60146275a7c33c061ae5884c2cbd1c1e50931  chinese.meta.stackexchange.com.7z
+faaec04fdc50daf6193f328f32dbdcd9f2704a601161435cdd97bd11f3964526  chinese.stackexchange.com.7z
+f4a485170023c95f3a185b37ee4370c9e71c4d6ae71387db5b93b60fecbbefab  christianity.meta.stackexchange.com.7z
+2f1b234e80bfa443281a73f01bb922f153c70408b2d4f0a205a086cd83a2a498  christianity.stackexchange.com.7z
+2e39b769af6db5b99e6fca3998b29cbe357fe5251488215282745942576614d7  civicrm.meta.stackexchange.com.7z
+f72ed6d1bbc6bc6997213b2c3ef8a2cab5d656d3b0629c3085f839ed61cb0a72  civicrm.stackexchange.com.7z
+ed8681db9888d17e24414de23896652d548a555420afdb3b209777df1cffc2a5  codegolf.meta.stackexchange.com.7z
+01cb61939a18bc03734a98ce14d0a1001123f53f5b5723be18eacc17bd4e3eac  codegolf.stackexchange.com.7z
+a453c0dc1a2f6123db0e26f831de12e0becba14ddde71e6ba6aeb8d41d79eb00  codereview.meta.stackexchange.com.7z
+867009bef4e444bad2c112915ff6d2304677a23caa65b97c98f1476604d99c56  codereview.stackexchange.com.7z
+eb3a88b93439023f8a729eb6e86d72ac4e1fea1102e54cbfcb29622ead4c64d9  coffee.meta.stackexchange.com.7z
+5346adffa4cde96061373c94b43773c80c20306647164de5c1fb67abcfce37cc  coffee.stackexchange.com.7z
+590aceadf542a925ab118a07948b23e717cf84799dd46b036ab8e96f0ced0c1d  cogsci.meta.stackexchange.com.7z
+f31ec0e4d5ee4c6aa076dd61daea6068df8ac4f566a69cde631cc4e5d29f9052  cogsci.stackexchange.com.7z
+89f78cd1c06c816a1df73779492332467ca6a785c5f4f855d1a86eac36af76ee  computergraphics.meta.stackexchange.com.7z
+977cd8ba2a332b09f4ce2e6e1db603f91e1df94863a70a7b486c866715411c49  computergraphics.stackexchange.com.7z
+264acec2dcc2d1e4a9cdc7f7f81dda5d557be8a6bebf14374bb0c7026adac9ef  conlang.meta.stackexchange.com.7z
+62289c8dfaa598cab0aad8fb5bed45690970729900ceb70f66bec1e7c8f597a8  conlang.stackexchange.com.7z
+f505f00fbdb3372d83d007e1886cf8eab7afadc4b13a23be907ebf7f8e989fba  cooking.meta.stackexchange.com.7z
+f54eb073650460d3527947d8855bf0016827047f365c33fa026386e7c0cf8314  cooking.stackexchange.com.7z
+353cbd1281639744ec695ba0a2ba4dbfefc0adf03c5470ed7cbcabdfb7869023  craftcms.meta.stackexchange.com.7z
+1a6b3ea2ec657946dfbcfc79531e524ec5ee9060c8fa5619ec4ba40dee2a845f  craftcms.stackexchange.com.7z
+c29cc5d4c780e1b57650398381d2c00a47a8f3f6568427ace09684261d6562ec  crafts.meta.stackexchange.com.7z
+cfae4866bb79c9e924d9e51a94028799a07bbbee8da7e6c8d977922367f47f8d  crafts.stackexchange.com.7z
+6292c13bd205915f217fb183266827d99b0e452b6b0009dbe08e553d80ebec10  crypto.meta.stackexchange.com.7z
+4ff6939e38f3bd634a8389f1385e9539f6905249e99c79ff76024f6331233bf6  crypto.stackexchange.com.7z
+563329f957ea9f77c27f82180840b82c44ddaa5e14e213366c06e99f74949afc  cs.meta.stackexchange.com.7z
+0769b735e10d3dd7852fee8240e5b0ad8eeddd7af6002da8a347a68aacf63785  cs.stackexchange.com.7z
+a07978376311d70b3c35f739617d2a5c1703b4eba9574a840614112426e7af0d  cseducators.meta.stackexchange.com.7z
+822aeca69b7cbfe47f198c21baff1a8acdf3df899eb172121ee142fe33e2a805  cseducators.stackexchange.com.7z
+fc1dfec9cde290589855763e3e6f1f8f163bdd875e91fc0b272d22688c4b3820  cstheory.meta.stackexchange.com.7z
+1f2e6146c51818b90eb1fd2f5eaa8f4e5bbc0a2ab540edfdb15a5a8f7ba2174e  cstheory.stackexchange.com.7z
+de1561f6390a08cc8abe4319bf58a7b9249ebaaa5f3775c9c2b5d62bfa5f8bdc  datascience.meta.stackexchange.com.7z
+bd916ca707fba55d12da1affe3aec0cb6b20d684212393e89fe13b9d7530335f  datascience.stackexchange.com.7z
+6b041f82835766021e5f632f17a314c9f1fd314bbdbc8b301e9c3222ab68efab  dba.meta.stackexchange.com.7z
+baef8ae0a548469eddd329a87541e1741509eed3607e52d25abab31c963c4515  dba.stackexchange.com.7z
+c9015ac247a4312ab9c3f380f3463c2d2bfe591e059a9e20c9dd6b70439976df  devops.meta.stackexchange.com.7z
+103bf0077bc664f584a1edad35840b9a53daccb9093cf9c432c1bffccbba1a98  devops.stackexchange.com.7z
+d005cd91afbb437f270ba02cb14ee9d20f1667eae31cc4d3f318db76ea8a9196  diy.meta.stackexchange.com.7z
+bfd13fee4790301e8cc92b819bfc9c7f02cfea567eeda9b7e2a124932b2b6181  diy.stackexchange.com.7z
+6a15223467abf2cd5fd2becb98d0a7a7adfdbbfe0a45de1a7f1ccc91e0f57e64  drones.meta.stackexchange.com.7z
+23c7e54a9f88d03abc43a685a7fd3fec02c8f60b99cbe8c9baad643d62007618  drones.stackexchange.com.7z
+a0139de755fbb15ae6ca07477180d5b699ca239105d92164a1c53e855fa56232  drupal.meta.stackexchange.com.7z
+4c9873b5a0ea32b8157a2c7527a42d1072e2229945b2601795f2de9d8950b2db  drupal.stackexchange.com.7z
+d4f7a7ac449deb3e7aee62f4e60caae611144618a51110abc7562fa08419270a  dsp.meta.stackexchange.com.7z
+ff1141574ad088ea80763e437f44f277d40f78dc5f664f079a496dd7c69e771a  dsp.stackexchange.com.7z
+a6587db4272672ab4a03844f15b71bcd1d80daa5e78ab042ae07b64464802ed8  earthscience.meta.stackexchange.com.7z
+1da8a1a476c49da4952bab61476613611c4f7eb411f9048dae1b25d55fe0a81c  earthscience.stackexchange.com.7z
+db9928dbc6e795abb8cfc257e3a40f7681d239870eb716af1ac6032cb3a42ea1  ebooks.meta.stackexchange.com.7z
+c0e2bdfa2c45cfb6346b276da55ac9b43ccfa1285d2e8d50c3d91ed0a47e85fa  ebooks.stackexchange.com.7z
+9223e7e31367f0d4db1389e0f1d647cdb844e50622711f9a86be08e86f8b20bc  economics.meta.stackexchange.com.7z
+f6fd3637cfaad2ee3f73a792ae7cf12cd160c0e65a8365f8a56e6cbd9e2944ee  economics.stackexchange.com.7z
+a7706eb9209e74a355fc8d116b519a0ee3cb7b33b788aeb6aa7599d40bc24bff  electronics.meta.stackexchange.com.7z
+4788b17a61ef1b1f7dd00317975076090112ec0349d12551851e2676c4a1d4f9  electronics.stackexchange.com.7z
+cb1c2e280c291394dc6f355f4732e775c9dcb68618d1cba61bd9c29515d41527  elementaryos.meta.stackexchange.com.7z
+f0bfb4a730bb3ae0307a8aacffee24f419d1ac27c4dcabfdbbdc6d50cf242f04  elementaryos.stackexchange.com.7z
+5413221c1440dd82dfc1009d708c5f2401496f35016f7549d8621fd85922c85e  ell.meta.stackexchange.com.7z
+88834c3911494dceea3a6a5aa3aae79fd097b3c17b8431ed3230671b0cd79485  ell.stackexchange.com.7z
+726907616065a83fb896ae0b84fea9264e15494e2c369575b2f03a1f77571be3  emacs.meta.stackexchange.com.7z
+ba81133dc848e400340bdb19b2baa644f39f9bc082010f5f6fb94f1f7b03546c  emacs.stackexchange.com.7z
+657c6e8b82d790237003440038222e681d2dd5e2460a0a7e27c46dda7e0d2218  engineering.meta.stackexchange.com.7z
+ba50fd51ef4d8418ccc5619b40e4021020c3e01d938585a1e3bc5ff195d065fe  engineering.stackexchange.com.7z
+2e1cf33998f5a44e8fa1f8aaec3602ef0ce96140f0cbbd31b5c71c9021e2e72e  english.meta.stackexchange.com.7z
+d3f6747e188c808386073e082ebcefc0f6e01cf93805b2ec316c34eeada8c41f  english.stackexchange.com.7z
+8ab803f568b287b9206b62dc7244a8843b1e25e06759dfb6e91d4ab571532697  eosio.meta.stackexchange.com.7z
+faff0d8b4b3b8b1cd3abea6ee896545695b9b9dc64671b1b899afb8ad0a56692  eosio.stackexchange.com.7z
+279528b27bf3bc754bd56d29ba272cc1749e2dcbea50bd5a1c5d5f7ec1439b97  es.meta.stackoverflow.com.7z
+ab62bc6b87e28c215afe8afa951a66f7e4bad579cae3d59891b4e2cfcd9eb840  es.stackoverflow.com.7z
+da7e2c779c10cb97c694505e0394ffcfc75fb27d8b0f30972b0469da93d68bf9  esperanto.meta.stackexchange.com.7z
+6ec9da8ffce933dd8059ae2e9b826e1190bd96c7944920ff53ebcb20ab5bf1b8  esperanto.stackexchange.com.7z
+39a24b106b23ddf73d7cc332184c63f0a5cb4457a541e3edfa0e38ec617236d7  ethereum.meta.stackexchange.com.7z
+f9d17618cc89b5fa6886620f730bf56dad5e86a71de23ef8517f5226fdf615f0  ethereum.stackexchange.com.7z
+8797a8ec279d37dc5a263ef0d17a217ec91191fec7a458ff893bb0d8b7e6525d  expatriates.meta.stackexchange.com.7z
+3bcd763802fcd0b51cc9b187338a8ff48f022c3feab50431f999180b3550e3d0  expatriates.stackexchange.com.7z
+2c2864a371b2f221acedc60003bc2b60727728790e701ef0c353f5ebf81a83e3  expressionengine.meta.stackexchange.com.7z
+b0e392ecdc113ffe2be96d91527fe5def0c3716ce7d449bc91dc873d866f904a  expressionengine.stackexchange.com.7z
+ec42b3f1e57c5d2ffa87fd3e4278d5b491700981216e373af539b00cd52548b9  fitness.meta.stackexchange.com.7z
+759db6de9b6b99c78554afa4d98a11ad496246ca8ac265614171e35b2aa38c36  fitness.stackexchange.com.7z
+b5f43ca131079e6d340b16b7d09394b8fc6101e46ee732ec6dd4dd32bd361aad  freelancing.meta.stackexchange.com.7z
+3cb439b293c5b47880bd4b22d201c3e4dcc43d62346476c198c68190d1a4b541  freelancing.stackexchange.com.7z
+fd9a7f35cff917f384868e31f5dc95c8301dc5c8bc2417942e7afd7c499f50fc  french.meta.stackexchange.com.7z
+036fd0d09a710d4f053633c58ee3f9cd4e7e09c049b965fbdb77c2cf66b6ad31  french.stackexchange.com.7z
+45bdb25884401926c7857d05eebdc08b30baa73cd357330145cb737f84ab5b5c  gamedev.meta.stackexchange.com.7z
+b9729dc2e28037447ff10a79fced9398f7114e37df6c6e9ef3f8fea8d4c46daf  gamedev.stackexchange.com.7z
+e6d440f956dfede6ba755aae982e462ef5b4a0c845449078ecff262803b25895  gaming.meta.stackexchange.com.7z
+c36e20faf36b3fd506216ed2ce30ba6f886b47f0318e133e2d51c6670e36e6d5  gaming.stackexchange.com.7z
+0068d38791815820c156838e97af51811d31822b8b4e9069bb6f1ff10952b7f2  gardening.meta.stackexchange.com.7z
+303ef040d4f25eed2930f1f016e73a0f77a7f63da8956b6acd6d06d4be14fcea  gardening.stackexchange.com.7z
+e692714f60e07937fec7ef487c4c057397e23e472141741aeb19c724d6f6a4ac  genai.meta.stackexchange.com.7z
+7e77b81c6a83ca6107ff988b0ac9f83a7ace3f3aa89de4b662da45563070adac  genai.stackexchange.com.7z
+616e76cfbc4096793d9f873b9ab817d50836e51a22f739352835200af06a0c2f  genealogy.meta.stackexchange.com.7z
+ffba4353caa6f8bf4abc0f831a51f26a54e3bcbcf797c4f1e889987ccd211849  genealogy.stackexchange.com.7z
+cb7aa7999e23555e34c1a2a253176e5abce8abf4e163b2dc31686a46294a536d  german.meta.stackexchange.com.7z
+c52a131d51db67c246969abd00288ad21ca021feb485f001dc1d67478cd7abac  german.stackexchange.com.7z
+28caf6c51ece44eef779e7281adb13b4b83f1bb0fa568e62f4e30f5a2badc0c4  gis.meta.stackexchange.com.7z
+774027223effebe6d3748233705928e7019b9141a785707c4719a788d2d12414  gis.stackexchange.com.7z
+96eea92dd4d5cb368e6bb5eb8d907701d064322465528a42623d26a893fdf34d  graphicdesign.meta.stackexchange.com.7z
+a49e0d8383029dd0068488dba508c0d02901a764d6c3de2dbbb4fb54f19cb2e3  graphicdesign.stackexchange.com.7z
+4e031fdb4cc699c2f5f1df002295baa75b1338c8b651cc9969e5c614508621d2  ham.meta.stackexchange.com.7z
+cca03bbc7c7579d8278b4da2086c3f4a2c59ce471000fbef11e429547ad35d8c  ham.stackexchange.com.7z
+548ab923742437268ca65ead8295389a4c68abf8f0e08fe8390ca37d422bb6d6  hardwarerecs.meta.stackexchange.com.7z
+992544c60727e385aa7b30e5dfd93ba8dbe39bc211d21645cc56fe0dd20b7830  hardwarerecs.stackexchange.com.7z
+5b0a43a370e3ed7d88deb938d3207d16289f584ded817000a6da271df3c2b8ed  health.meta.stackexchange.com.7z
+e3aea9ad9d5a38b4d78459baafdd61b3b0d9cfba7281b18b759707c5cdc98565  health.stackexchange.com.7z
+135d0823db2ea6e03a277e190f96443ee6fec655024a8ef52e3df7997a3923ec  hermeneutics.meta.stackexchange.com.7z
+e1883dd14a2292ff5a3ceb574c518a5b4f6e355f6e9cf58250804717924a4942  hermeneutics.stackexchange.com.7z
+e0ef00e012d78a9e2321a514427695c9afb8574e73f1ce6e3fadb71ef4351ebe  hinduism.meta.stackexchange.com.7z
+efc6723b394e46ebfb6b76949f08c6dc101609087bbbd778e4b4c7c2ff5a929e  hinduism.stackexchange.com.7z
+c8e6cbb45bc7623d409401690cca2aa3ebc4747812c2399f6668464f778aaa04  history.meta.stackexchange.com.7z
+3a23feaf4ff0271fa77855d590bf6f80849c8a339026d553af4a8aa00d5c4840  history.stackexchange.com.7z
+c9f24efbc77f02b3dd9d94fe707657ef78c60a50002e93d4166dfdccf4b8beb7  homebrew.meta.stackexchange.com.7z
+29ecd6531bdc3f98b732f1b8a3d895fca457157aa5326b1a69357b12961a0876  homebrew.stackexchange.com.7z
+5d6b71839c206d0c3147abf8f31f05abd19e3214291a188ca005590305c1069b  hsm.meta.stackexchange.com.7z
+4bbc799fc11068e3bb53de7d6dc9011fe698874f797ce5c7d257abcfd3e98dfb  hsm.stackexchange.com.7z
+3d34c632f92fba235ce63ebd19c2ed7fb55266c861910e13bd1e4720c90e8a09  interpersonal.meta.stackexchange.com.7z
+0d68702500dd864c6d52f9675e9508f9e4af1762430ae5a4f618dd9093522e7b  interpersonal.stackexchange.com.7z
+e8dae9fb271ef87cf35dce0cb689a61858f8817a53d9f451b974d4cb5c59c550  iot.meta.stackexchange.com.7z
+164bb147f2952e4c7321948bb8bb9cd986fac0c51474f4a4c5ede64609a29407  iot.stackexchange.com.7z
+eeac9d8de7581c4a0d5df3371c6b3ccb955c02d19d16f0c3e035cb6601cb8940  iota.meta.stackexchange.com.7z
+274b79856061de5b88d0be9bb4462fa0c5c53e972168638d044a306da76d3f7a  iota.stackexchange.com.7z
+c7532762c671642b0df085e299a7563b1e290b5876f41d199405139627cbe554  islam.meta.stackexchange.com.7z
+4904ecc7d186761a09e9fa295d97a0662b8ad239ed333a3c84bae6c9c98d60a6  islam.stackexchange.com.7z
+53e2ef8ae04c2e8950ab23c4da13ae1e948f8e4c926f6fc0c5f04ff92066ebfd  italian.meta.stackexchange.com.7z
+4bfcfc4015a8dc2737c2d6d6f3eab84f60dea9cfaac4c15bc61401ce0aa3b5af  italian.stackexchange.com.7z
+378ebf33ac8e38395863f6faf14925f441d0e17f35b1c7c4ba08f6943e4d2c43  ja.meta.stackoverflow.com.7z
+7f2aca8dd07a352fda1de6fa49e5369d5778ba1053be9a9a95e5c064a32dc70d  ja.stackoverflow.com.7z
+dc45d8793356176b35d386a180e13650f24bbb2fb1210b3d617e16232529f594  japanese.meta.stackexchange.com.7z
+c630f401b5251e4f11a24c22c2665489b20b22adb37caa0db877aced922a64c1  japanese.stackexchange.com.7z
+ec5f1a96b967ab4852ebfde1412d5521e49c2234110d09c541cea79b09c72837  joomla.meta.stackexchange.com.7z
+ffc2599cf0add01bf26b8acab87e73ca7ac73d8937174ddafc10c26e371b619a  joomla.stackexchange.com.7z
+f737ab5fa43b6e8cd166c43191718aad2b01fcbc959f50a350159f30eef6b5fa  judaism.meta.stackexchange.com.7z
+9a8b55de4317267715a96bf1c9bd2ff8dd255dcda5906b2e97e737e8e277a78f  judaism.stackexchange.com.7z
+bd0e3230ae2c21da3d88c59345a48740ae3e171db5d445d22d0df98591085c71  korean.meta.stackexchange.com.7z
+a61d8fe0b5986308933c4c8a8632705d56a846564bcbadddd2fbc7609f494368  korean.stackexchange.com.7z
+589e648f647909421e7c84f9eae044ebacca9543297237f77e2f68538031e241  langdev.meta.stackexchange.com.7z
+d95adc9356a0a83cfbdd89fc3468868876da60c07a293d57a7458eee5f319c90  langdev.stackexchange.com.7z
+ed25230bf8557ed85f4a5919d2884fa8853e3224f7d143e3a8e89bc94113b94e  languagelearning.meta.stackexchange.com.7z
+4a2285957eb1483e6c7afbac2dc529edcbf63f4cde76824ead24ab0bebf2218a  languagelearning.stackexchange.com.7z
+5be8f2a0fad8a403a374cfeb38324482982ba86aad25989648973e15b7b27ad4  latin.meta.stackexchange.com.7z
+61331eab2ddabe8287e2c9ec383b692629b3489065f6ec6dfb29090546dc24d8  latin.stackexchange.com.7z
+4dfe23cb12e8eab73c08a109860dd0cb09c749befd40351b1289d400c718c132  law.meta.stackexchange.com.7z
+e1ed73b7305dfc37152a3b0fc412feb8deab3130ab1828867a1435cf7079e5eb  law.stackexchange.com.7z
+efbfc06f310f8c6f5667ab63f0ac068dfb9d5aacc833a9dcd6c6d406103b77dc  lifehacks.meta.stackexchange.com.7z
+ff9e3ab67d310f22eff079248169022af041201d43b9131e5481a3ab67108840  lifehacks.stackexchange.com.7z
+d0a0b2a0171f8a0db378b0a37ea39ad4b393717c8b98bcf07d2079da10a61177  linguistics.meta.stackexchange.com.7z
+67541bab9f0652eb21b91a6f81d850e12c85c68eee97188be155265fa9f93cd9  linguistics.stackexchange.com.7z
+71c0a9221d01e6df2163b0f227b0cd71c68f1108edf95a35cf4ea08920fa6aec  literature.meta.stackexchange.com.7z
+ac84719823584b87438ca4586e223333038afec99bfe3daaa213390cdb208587  literature.stackexchange.com.7z
+bc8435ae0e0203550f95f3497d84fdcc52659beac677ebb0dfd5058f4fdd4de3  magento.meta.stackexchange.com.7z
+7fd8819c908a802181c566ddfd605ecb307c2c065528562f77db08188c779af2  magento.stackexchange.com.7z
+3b1ece507ba74e6a2354524698b67013f75dddbb5293c6b5bcd47873e94f6eac  martialarts.meta.stackexchange.com.7z
+e8c164327865af0177d1705a0367a2778ea9b6889acfc2f2951e01af401e9f33  martialarts.stackexchange.com.7z
+f1658acbb9017f6392ca403856e7d37f292a0e3ad9f97f1d3d177ac184fdf428  materials.meta.stackexchange.com.7z
+4bf4984ade8d8db9320cc637a5ed70cca8c102c0319d6dfa0831d66e3ac9045f  materials.stackexchange.com.7z
+8f717fc3fc625bbc2ce7008baa571adf8d977f24c5a711964b7511800f0fd991  math.meta.stackexchange.com.7z
+267f1eeb8bb03d1c0d763489c5bb665048e5fef8f4b4e28e7e5d5c8491f80a04  math.stackexchange.com.7z
+003807b99e1ef99378bbdde7fb89339e5a12a71d64651519fea72681ae7a4777  matheducators.meta.stackexchange.com.7z
+b9e40d45ae8f745d133554b6737d47f879ade5864e4abb2dfda71027ded9f04f  matheducators.stackexchange.com.7z
+ae50f7dd5d3d0e548928c7318d4b08adde53772870ec6dead0c2ce9203fd4cbc  mathematica.meta.stackexchange.com.7z
+8949d0b9da526c8224d1267f0ff253a36d1c140d49b69a5900a6d866ac96ffbe  mathematica.stackexchange.com.7z
+8bf270163b0cc561a40497925ab915781d5943bbf85a1380f089e98f23342709  mathoverflow.net.7z
+0220fe7e31b6460cf076cec1d0843bbcc51b537b93c9edfe89ed461206810b8e  mechanics.meta.stackexchange.com.7z
+ef2db18e81cc19c67526e82b6bc863d490c656556fed9d60c1a3740f3e6f5153  mechanics.stackexchange.com.7z
+756f94e203b402b7c57293a3fe6667935c4bdc634e15e57c02bdab3fe38c6fec  meta.askubuntu.com.7z
+2c15f5401b9ed3061f6ee5ddcb26f0adffcd48061c67b864890b4d375bbe8fdc  meta.mathoverflow.net.7z
+3c3ee9f48436cc9e519bdfe38bec9e18bd4a61b9b60712c5b73acba5fd877f76  meta.serverfault.com.7z
+6dc87b19614280a76e086ebd7b7ee16cfd1af1f0386b28a00e45bd3af1d961e1  meta.stackexchange.com.7z
+1712c491630477f79f2d381dda2fd376ceefcaad0a060ce16b86465722e85812  meta.stackoverflow.com.7z
+8d55ffb07016386d0bc41307ef5b4bb09f7e246a9cb8fc1acb670655a1ed4d04  meta.superuser.com.7z
+f8422b5a563783e9ade20ccdc7b9e3786d6c9d7edc33106d6c77a81d44a71b1e  moderators.meta.stackexchange.com.7z
+d8d43c078dd1c553be97d8ba710fbe1f3821f22a2e5654b0cf8dad61066b3023  moderators.stackexchange.com.7z
+f8c26874e99e170357e6915342b14b46efd8019c70de013d4387ae0d24170498  monero.meta.stackexchange.com.7z
+9c1c287c61d1b4b0a889b74fb721031f9ffd72bd755a8e56bd350048e2cb7c07  monero.stackexchange.com.7z
+8810507c7e533b544d1c3c3cb3470b2810c55e05b02b88ee7baa7cea2d67a7d0  money.meta.stackexchange.com.7z
+3660cf7ed9e9814ecb14adb3f78dccb4b484c224b7b71f99bd57c5d0df51fd43  money.stackexchange.com.7z
+334e387806370788417147797ba1e1685125d532507f806e81fe6a1d3fc3a288  movies.meta.stackexchange.com.7z
+54954c07391e7dd38af17fc2b21fd864adb5fe374f1379c09d13cdf1fff9a7ed  movies.stackexchange.com.7z
+7077e15b44139b9bc58129c738139d1f7d6750f68347ce0cebb398f03f3e3289  music.meta.stackexchange.com.7z
+7b424cdf2ede8e71ff7911915b514dc904efc7dc04a94ae02a4ee0ab1acde31d  music.stackexchange.com.7z
+1c603116ddc4dd6dc720f3fe94b9a88991852e1a3bb9fe120bf315fed562b26f  musicfans.meta.stackexchange.com.7z
+852a56d8da51bf53e6130f02a216465c86e2dea2cad133c5f68782eb572eac5e  musicfans.stackexchange.com.7z
+6bb0946e51f9e742a2495e2baabd8d344f2c8165b1fe423f12b2bb0ed2500758  mythology.meta.stackexchange.com.7z
+93ec4cce4a7c94202075642a14c1c2e62854866e12ef66d69053c9b18f345d95  mythology.stackexchange.com.7z
+1e1283964c6c3552c50bd086448438d3286c8fd3e5e4c79775aafdeddc31cf33  networkengineering.meta.stackexchange.com.7z
+4425d8b1e210062a713cca69aead8769152e84b6595e6163179f114243707dbf  networkengineering.stackexchange.com.7z
+e93a496f128f6909620fa0aecea995804587caffa5b29612c8a935d33cbb67f5  opendata.meta.stackexchange.com.7z
+7cc8222f325db0a79f534e7a0180eb28d60e730ec6bb218abbac0abbd66e6dff  opendata.stackexchange.com.7z
+3c6bb89649bc368e9865aaa45117f2bd47b566119b34a9ebe2e504a84e365ce3  opensource.meta.stackexchange.com.7z
+4c37794a7fb3d830f6d628c13628a51e91d6e6e9f391d4149111b8be7e237769  opensource.stackexchange.com.7z
+b085ac7b90cd2c9e9886245772c09583c67b6d880cb440ed683d23b4c53a9673  or.meta.stackexchange.com.7z
+92cb0a2f5be03d113e94a660e64299db956740af74a0469e92dc1a88ea4d09cf  or.stackexchange.com.7z
+3679c71474d35e62340133c6710e2dbb0e6078c898c3d666a631da73a8e00cf5  outdoors.meta.stackexchange.com.7z
+5813d4005ce84a31c3546e7af8ef3cdb78d9e8973085fec296a2f26d8e9216fd  outdoors.stackexchange.com.7z
+1b0c1b8846d4afb390f271987b74685f2659e27810bffb82346d43b5ca7e9fbe  parenting.meta.stackexchange.com.7z
+3a9a506c516ae68b5663b2830bb25c94f571ebd023365042d739f15f47efefa2  parenting.stackexchange.com.7z
+abb5203f7e3f969cf5c0ca4502e1f0d8445c95d93584e6222531a499dd0eb108  patents.meta.stackexchange.com.7z
+d858fc94f2514292dfca50b135aac9658f89bc4ad8da7a212b87fd085573a9a7  patents.stackexchange.com.7z
+a25bc70e79ee63a09a9dfcedbb2c7a8fc98cc5bb334a904286bd625477656cd3  pets.meta.stackexchange.com.7z
+38a92d27ee00952da0d2eb28a5ab9baaf2f2b90227765079a9586f74b9edec8e  pets.stackexchange.com.7z
+19331f15515621bb1da5921b122d320fc37d397070a33a624619b9f1b1344955  philosophy.meta.stackexchange.com.7z
+b4d75259c054e76ddb74d7d3c261c96b1660c449203d6aec56818c1031bc651b  philosophy.stackexchange.com.7z
+5bc3af80a2d424ccb9e968e54129597e65f99db468430b7a5c3d2f6c7099e148  photo.meta.stackexchange.com.7z
+294bc3fc2f0053adc15d68873bbf4806dcab557f6c6b9be403fac39e1bd28250  photo.stackexchange.com.7z
+a46eaaf32a2632ac2c54abdcdcfb786bdf4cba3ef8fead32b95aa7afbd2fad8a  physics.meta.stackexchange.com.7z
+36b3d6e3e0978fd7e57558d2d633ad3448715d5a699186aac5e0567b44a37b05  physics.stackexchange.com.7z
+5234c92e1b4aabfd997a1fb240a66eca5c21aa3d8bf5f6223445c4ae021e462c  pm.meta.stackexchange.com.7z
+28173d3d9788da3996ff90122d48d8df747178d886022f98bde6a5ddc36d84a8  pm.stackexchange.com.7z
+913e6e9c5402dbd6e372e8f820728356d1fa79b3504b7a32256d0a8da1635c30  poker.meta.stackexchange.com.7z
+9e17ebea50f4c1fd8b105c853c778a4e6ba68d9295e4d82a40799820ae83dff4  poker.stackexchange.com.7z
+08ac7b2d115bf7ed6fa6802463dd5f22e2a60fb8b9eff030f75e83b23a2b34af  politics.meta.stackexchange.com.7z
+4790c034f618c7cb320df13151b8a6d66fdaff713d56c436276f29b88267a180  politics.stackexchange.com.7z
+a798c232959e881d74350ed8928191e1045a564d4639746d33e9e6317b2fd018  portuguese.meta.stackexchange.com.7z
+66ef53add1bb6051e53abe0ea8fc57b4a92fc0a9d47cbbb3cb849ccb5eb4dabd  portuguese.stackexchange.com.7z
+ab4c6a253355635963e0529847f5a4c7f2e38f6df7e3e40b3381d021660b6956  proofassistants.meta.stackexchange.com.7z
+d4f40403a1d23af490d6378ad9de0a15255129b622555f2d070dccb7acbe01c6  proofassistants.stackexchange.com.7z
+ae085fd7e961b3b3b374047b1a041ecdca8cc96527fee300604f9a0decc4fa3d  pt.meta.stackoverflow.com.7z
+bf2adf1b03756625a7df5972005bda1ae2ecf32af45c725d974f32f3977d4437  pt.stackoverflow.com.7z
+8d5533f9089d538c757ce59696e2602c4b5305cf1385fc57ee6a0cd07043d2b1  puzzling.meta.stackexchange.com.7z
+cfed746f0b5e4cbe8c6d58205f8769849695563cf47ec370d150a607864e3e46  puzzling.stackexchange.com.7z
+778002df412268f29fde381825140be704e59df33716500effa02011fb204e59  quant.meta.stackexchange.com.7z
+4aeef3dce140b3c797015e4425326c5e4f689ea66a84434a9fefebc07eff8991  quant.stackexchange.com.7z
+ea1d692365630914de50706f4c7eb901c880bbc89d989a968005ad84b14c131c  quantumcomputing.meta.stackexchange.com.7z
+0d17ae05672b9a54f01a9b0100601dff5e80a9aab61390f8c4d6c3d5fc3eb719  quantumcomputing.stackexchange.com.7z
+befc7164ef3bb5af887a283ce3b513cf5f15f1d0d94014cbdafac45bbaee448f  raspberrypi.meta.stackexchange.com.7z
+df56f75a08ecde06c15e1fe7fa37fa47ed1cbf1e7e0e26e835b1d5af0d87ffe6  raspberrypi.stackexchange.com.7z
+e6c95ba680f73b7e0bc0f7a7c02de6134a6e6ab8ae23679a576f6bb5f205110d  retrocomputing.meta.stackexchange.com.7z
+3b4547402bbe7c7fe6c99d83aaa9a71b3b3bc2c9bbfde751b16e967477a0b86d  retrocomputing.stackexchange.com.7z
+da5faeb9f2c7673250cbcf30bf2bcad54d0c462cf77cefdbaecd98ae3999f8cc  reverseengineering.meta.stackexchange.com.7z
+637105fedf2ccd7b820ac00571d8b7a2c84f8d685bc6b714ab92cfe20dfef5f7  reverseengineering.stackexchange.com.7z
+6ecb4af375ce056a1ee03df5df60b77bc67c68f04bf92e725016d9e4b1961a38  robotics.meta.stackexchange.com.7z
+65ec7aadfba31a1b484f9d9a2d80f18bc8ceb8beb7884322041ba71ba6ff3939  robotics.stackexchange.com.7z
+f64a8aed4ba3e851780583b356a960c0549564eb3dfe7268adcb5dd4c5e57fae  rpg.meta.stackexchange.com.7z
+d236d72ef5d9878042f442b1e5628a1dcfa49c25fd8d6e2a606572db88e95630  rpg.stackexchange.com.7z
+d2067c885975702c29d21f16aa958330ad7cdad238a97569a03d5d6f61b0f3db  ru.meta.stackoverflow.com.7z
+b7409bdd45daf712859388133463fe0b9a59664b77557cbb5ee7ca086eaeab67  ru.stackoverflow.com.7z
+cd3d3471e3afbabd4b66cb06d81e7c28b665b9378f904707194f155a8d0f1e9c  rus.meta.stackexchange.com.7z
+a9257563c82ca317b3ea09132120e8e3512bbb98d59da9617c5f1e0b48185108  rus.stackexchange.com.7z
+21fe15af2da55515fbb4e06b815316a9b1034f8cf37898fdf8bfdf30165dc7c6  russian.meta.stackexchange.com.7z
+fc2b8ae2445272d1cdc6f80ac0eac662952982c52044acde4bf674ca19a8e7ae  russian.stackexchange.com.7z
+4eef14426c0a18cc3b6cec84f564a68dc747c77bd38ccd15495bacdc40e109b8  salesforce.meta.stackexchange.com.7z
+b8a814c3915a8b0fcf9ea548e73645a76990725e5ce27f1d5b7dd803bc276eb8  salesforce.stackexchange.com.7z
+ec2716f17db59fb9a30c4b26a2014de1f7cb988e6639cbe7ba9780c6ad0bb78e  scicomp.meta.stackexchange.com.7z
+f8dcb2ba9f81fc510580d8750f9ffa0f43940b28252659010da484d753d04cfb  scicomp.stackexchange.com.7z
+fb4f97f6a8124b8be25c13b9d5c582d81992a108115bd15fa1c28aa50f783079  scifi.meta.stackexchange.com.7z
+8ac4d1887979246977f8a52a989e8cce658c0f9a3615a8d49d948378c080e130  scifi.stackexchange.com.7z
+2bf05623a9f86b5461d18cad4ddd35fb2b71bbaa34e40496c234c8601d4894ea  security.meta.stackexchange.com.7z
+f484c6da2d89d9ff58ccc9ea43a0b34d3576eb309a5979e4689ff606e7399883  security.stackexchange.com.7z
+5ebb58983912d8e6f002a5b4e8d47087264b3e5dcefc89de25c6701893c86610  serverfault.com.7z
+ee2292944c965da6ef88f9ad31a79c785dc3af6ea6aca29c9feb8efa3971e11e  sharepoint.meta.stackexchange.com.7z
+8065bdb91882b3b37fe72860e15422fbda94c2dad6dfcf48ce0ef76bb1efd68e  sharepoint.stackexchange.com.7z
+4c2183701728d565fd8479a1d8c6a6e2d69d8c9e3d7b3e0dcc71cd84070db375  sitecore.meta.stackexchange.com.7z
+42e6b8c4494c0a9d8a934b0d823c4ca975838bf412c1974d1366d86dbf14a488  sitecore.stackexchange.com.7z
+618f23ddf55c38c6122adc94c5a452386d1533cf8344ebfdc2e7e560e71224ea  skeptics.meta.stackexchange.com.7z
+4264a20125a7991ad632286c1e364b94d7bb45327b7f18b02a274a7e3a35d894  skeptics.stackexchange.com.7z
+ffa130c1635a8c542c7a8012596e766ca8273c12165179e933bb260c719d8478  softwareengineering.meta.stackexchange.com.7z
+1ef872a49c272417f56165457a9e408036b7c73917853eecaa3be7bfc1409d0c  softwareengineering.stackexchange.com.7z
+dde5eafc2aacda7d1beb993822213731f02b7fdce335f17c302a6d9b9d0d5e20  softwarerecs.meta.stackexchange.com.7z
+ecd636e6b401b3c319cf61ea31c29e94ce6b8f1f10eafc3f8ea2629b47696b81  softwarerecs.stackexchange.com.7z
+de5ff447a9aaf548991665bd80f017001a2e67614047ceb9ddd8627533b11e1a  solana.meta.stackexchange.com.7z
+fdea4474141d6ffe4f74211def5fc2c41a4119ae516c9e2b7f1e9faf2c12c865  solana.stackexchange.com.7z
+953182cfd78c589966611f67168ec666bb6e06f5e6a21b6d31393dd0ae2d789c  sound.meta.stackexchange.com.7z
+42691fedf7378442b986d4ed9f4a6d138cc9a931e42cc722dd72003c6f2c12f7  sound.stackexchange.com.7z
+2efd41c34d83f52402f466964f99cbc12ce247058be5dd40b075d37de7b00317  space.meta.stackexchange.com.7z
+02525ce069b456e2803735e61ff92c66b40946c0f739f47a21098c3b26b17fd8  space.stackexchange.com.7z
+badea1c0ee81a6d1c7c081e2c49d3e6ab45d63e86a49cc29ceb0aba557773934  spanish.meta.stackexchange.com.7z
+22f684f410bcdf8ebd4ec79b1ee3c9e563edb8f71dbfea79c80e189c22274a7e  spanish.stackexchange.com.7z
+2557f07a58ae48ddc0ebcbcf1ff0ba3183114d53093dcf475fe756bb9834cf59  sports.meta.stackexchange.com.7z
+6dfd0fe4cdfc303179fa10f781a83f818c2418dfd4ff1e77f77c48411a30ce0f  sports.stackexchange.com.7z
+cbbfa18d54dc9175dcfb3ef93d5963340e36b11665c987ec62c2ee4f4ed14c0b  sqa.meta.stackexchange.com.7z
+459bf7dd796298e274eec7a7d21c8f20b13ee63f7e5db7e67d305277c2359c5a  sqa.stackexchange.com.7z
+e76303da8af4e16cf77432267eebcc9ef4f0b00483a804fe95ff8d74fa6c8344  stackapps.com.7z
+3d654691883b5b185e9a5a897e31f32aaad77b3fe4a91f0b9f36e6327531bac7  stackoverflow.com.7z
+f4882259b7a449685cb4947c0c82f825e4230496254afd62c5bad3160af8b354  stats.meta.stackexchange.com.7z
+37a05bfdd997cd1be080ebff25987a2fd1276152448220cb2c22fb9c8694179a  stats.stackexchange.com.7z
+446ac6065cc0928d8c71cf279da67ecef93fb77ce6c77325be9eaff2ca1d6a23  stellar.meta.stackexchange.com.7z
+f90d34be7c616fedf666e48779ac04d8a07efae1eafc138f3ca3efcba5c7522b  stellar.stackexchange.com.7z
+a1798d6bd3e1cc415b00b3a98193b54c4aaf8667b15747db234d6dc71ca2d24c  substrate.meta.stackexchange.com.7z
+68675602eb0a81c8fb966432fa336919124802025974f7e923e6dee2c8eb5b27  substrate.stackexchange.com.7z
+d8ab8deae74da25d9d81c62679939a43e70af257714bf9fde40ef43a92efebd7  superuser.com.7z
+f2ad5c61ef29189139fecfed830268ffbe8ba2c07baa15e02551199f99d95539  sustainability.meta.stackexchange.com.7z
+0a5f9c3645b49bebbbf140d9c8f738cd2a6559dde40a63645e69fc6788db54b8  sustainability.stackexchange.com.7z
+28d557f20168ad14bea4ccd73bb058904fc585818be35011964727cfa51523f1  tex.meta.stackexchange.com.7z
+2023552bb6ce6798d9ef71067dc61f6e6001303d21be84397ba64f67ac411f58  tex.stackexchange.com.7z
+fa900e34e5fc20f0ed3b952b4017d4ffd044c933a4daf638ea930cb8bb841d89  tezos.meta.stackexchange.com.7z
+01999af643f60f1af71c88b48829155155d4d82ce44545d5aafe34863c98ccf4  tezos.stackexchange.com.7z
+c7bb05fd871cb4ab5a64a8e871be5ca7004f2e3447f2932baa383c8c156b5a73  tor.meta.stackexchange.com.7z
+d533383707c6043ddf95757bdd1f1160cbf6235254049b2593e3403f061a661e  tor.stackexchange.com.7z
+8da0d0c97239b5d2d80f0146039aece51a79a134f7119b265fa8ca767408e6cd  travel.meta.stackexchange.com.7z
+3fd65f03f5b94805122dcc2c1ceb044728b3dee9e2bd9e000b5dc310be2c8ab6  travel.stackexchange.com.7z
+16249f018772924fdae80622a4c99e3ae7494e43d87f92a8bcac9a1fa4b7fbff  tridion.meta.stackexchange.com.7z
+9f7df90837016ee2c119453cf5787b088718e14e86946fb4582b058cfdb0ffb8  tridion.stackexchange.com.7z
+46a650eda14ee13b578582113d66684422cb4912dec3b54256730b27abd9988b  ukrainian.meta.stackexchange.com.7z
+b951874f0bb6857da1bbdc764b4b8d2cc68518a6d20efab8ac505ec1165f668c  ukrainian.stackexchange.com.7z
+c74fc677ac6ea2ec730cc937e0c58c95817b00de8c2977a479505bf57f4d7242  unix.meta.stackexchange.com.7z
+09489f315093399104932fc31ec18748c0774549b5e7c03381015460180f833f  unix.stackexchange.com.7z
+cc70eb05c0d84a6d11d97b059ad7a8a1825fcd8be5d3da3a6740c2a502e3c9fb  ux.meta.stackexchange.com.7z
+5de75fcfff367a6b6c25bd2b2c2eba8cfd7922055dbea80e6569bb9d3a990cba  ux.stackexchange.com.7z
+5e4b3c5e653766d6411cc1e349d0d7a15a8e3bbcb1a6b18299fdf45d930571ef  vegetarianism.meta.stackexchange.com.7z
+a42f1d555df56fcae3f2850df7cf5769fa3eea08ad6c6764c85c6d3c4508e023  vegetarianism.stackexchange.com.7z
+de446e0e8125511b0fa140aa8df90b23413d718945c8f62a6582d0e95a0d87dc  vi.meta.stackexchange.com.7z
+025418a4cdbb41ab99a84c30064a1245205b683015d1218b91199ddec1396e1a  vi.stackexchange.com.7z
+6c78383b31041165b223efec16a0f8c81689bec43ea9d3ea78ed4297c8596c2b  webapps.meta.stackexchange.com.7z
+b321bd5348c99996e190e36423ac9288e88a499c912bedfd151ecd2ef80e7e46  webapps.stackexchange.com.7z
+44b81c20fbd08ce11acc1d2695bd9d56b3f94be37420fdeee1a8595be980a990  webmasters.meta.stackexchange.com.7z
+cd96c8380bc2f3d3e92219446419ef98d5193899af04630d990a4f1bdb262592  webmasters.stackexchange.com.7z
+ae9dbc0a45667bd138b76fa429160132fd07907c86041268126fc4e841fcdc9c  woodworking.meta.stackexchange.com.7z
+3b386b53ed3bd0808f47848f14f38421cc1e51d6337138d586ff1e3ed11f4918  woodworking.stackexchange.com.7z
+05d77df7c440e63dc43ca03adf4c0bf250d7f54fbea9cae4649c5759faf82d98  wordpress.meta.stackexchange.com.7z
+89ebacc5506eeca9a30036aa087f685f349e17eccd5b9d2d8b8d8edc12920bc2  wordpress.stackexchange.com.7z
+083288584d409daeb95c35c2972cf8d96bb93f874464338a4fae6cf6e0b18ad0  workplace.meta.stackexchange.com.7z
+0b3d427c25675f8dca90e8a9e4fa7572387aea8c5b9864f0fe6447fa256bb00d  workplace.stackexchange.com.7z
+2fab0d86832a58265dde3bd052e2efc2f95d0da9a7dae051fdb7def906ce42fe  worldbuilding.meta.stackexchange.com.7z
+256891852dfe53884f984184d65ca3de12febff42d004b77c40718c7decbe5cd  worldbuilding.stackexchange.com.7z
+64f3dca530f6a500287ac0f06843e342cf79437ac000ff74d7bb5a26e5302883  writers.meta.stackexchange.com.7z
+58c9956d6d620ba7e75a3ca7496e50083446e373a6b284cbeb81c173d9f6e0b3  writers.stackexchange.com.7z
+</code>
+</pre>
+</details>
+<details>
+<summary>2024-06-30 rev2</summary>
+Note: officially confirmed: https://meta.stackexchange.com/a/402500/332043
+<pre>
+<code>
+fd79c4836c364c15e9ef7275629e18cfa9e3fd9464791d5ab731d1534aaff9e6  3dprinting.meta.stackexchange.com.7z
+83ad983248d42a79cd6f93634bb94ee7cc600af31ab26f414ac6bd0fb886b3f0  3dprinting.stackexchange.com.7z
+516bc8b26c79165fbbd8792044abc33360d26c021294cfd66f14e27faa3ef660  academia.meta.stackexchange.com.7z
+a9dbef05ac65f9b6e92e47eba342cb9cf7e9346eb78fca3684958f530ca5c66a  academia.stackexchange.com.7z
+9d347147e409586ffe623949d9b91a06f2e815fa17102d767dd53353f1eeabab  ai.meta.stackexchange.com.7z
+b99fb3be5e5f3510f6134d78f461aabd57a55e25e899c36e960b6cf8780fe92d  ai.stackexchange.com.7z
+59a0b02e6ea896ef62c3541d14ab92c8ddcc846bfd2da8604c8b3b13ad36cb7a  android.meta.stackexchange.com.7z
+0e38137c0d1873f2d1556c9ea385c6a2ad51a28532db74922d6829dfbbddd7b0  android.stackexchange.com.7z
+696676cf78aa762fc10671482decd0d25d23a4e2cc02d53643c0c09ca3e4974a  anime.meta.stackexchange.com.7z
+8867dad8c8de8a54e9132fd76ae189d61bd8190712a0140c38b86b47b4a00ded  anime.stackexchange.com.7z
+7b103e83cb1347368ff7cdee7dc20f024a01f0f04a3a0a24c1a9291e282571ed  apple.meta.stackexchange.com.7z
+defc4e4268aae45c330d41fd663908b3f9f6129712a786d4a26a34408aec79af  apple.stackexchange.com.7z
+daf295f8b48f96033b0bca056385b5f25d47499a22671e3398f62bd059c4ecf2  arduino.meta.stackexchange.com.7z
+d30e8d21253a397c94a9be6ed894d1ddbdd605e46d1eefbe609f401d2b22b8af  arduino.stackexchange.com.7z
+9a3ca62a9bfa1822edaccb7bb638f20c2458ca0ddfa0cdb1ea00ff6501bde31e  askubuntu.com.7z
+134adbfa50d15fcc60ecfc70fe11113ce24654ade6167e00d19ceb3e9a07b2ed  astronomy.meta.stackexchange.com.7z
+3fa2b0d7964ea29ff403278b502d4360a42e933371b6e7a7d6eeaa44408f01df  astronomy.stackexchange.com.7z
+7787867f4737f791fb0857f03b46cb70f0b4371e6d646eac0d93d8e0f19d7adc  aviation.meta.stackexchange.com.7z
+0a962aef9380a61932040ece108cda672e8756d3136623c7a97c31f1ddfc1fbf  aviation.stackexchange.com.7z
+346373d2880eee83e7e1c54864c2d536a540a94b84122b5cd6f569c29043dff8  avp.meta.stackexchange.com.7z
+fc5c1601165f82e949252c78d123417c19f175a591167ed5e2106a98abf82ea0  avp.stackexchange.com.7z
+9b3ed90f00ef77a976027e6a764c02764f18722df2dd539184eda237f1b0fa86  beer.meta.stackexchange.com.7z
+747e8964d691db9a951d0c029cf099d66b1de54bf413508bb910043b7248de15  beer.stackexchange.com.7z
+51f96d6bb41976321bfbd7ea3dd196ab8dde45f1dccbee8a8ee901c9615a61d8  bicycles.meta.stackexchange.com.7z
+826d64ff8eea443e062f9422f74d4c0ecfb6d61f1910e2eb423859c0eb76ae50  bicycles.stackexchange.com.7z
+58b2d6448f6800fb5c9863772f3c79dff0bd0231c99fac25bf8dafa444c20b7d  bioacoustics.meta.stackexchange.com.7z
+c572da9e3bfb792d2dfd818386f1d2bb9a8050d2a4914ad1bbd6ea3c93c64263  bioacoustics.stackexchange.com.7z
+c14efb3d9b9d2cfcef4e78cfa34fac82dcad6f5aa2a50a473e89c89bef9f222c  bioinformatics.meta.stackexchange.com.7z
+44213498836c51903cfe9e279b423f1b45a606c298cafa6fd90b15c5566ba981  bioinformatics.stackexchange.com.7z
+e00d6af8893c8f39946064ec82822a7a64808d21256b9cfeaf33e4485ff017fb  biology.meta.stackexchange.com.7z
+b0dad4fc372dd3768baa6d40b523037a9ebf34798a7bfa857b07362f35414cd2  biology.stackexchange.com.7z
+88ed545209ff2e6143a07c07328fcafbdeb25dff9f6181863983d8090c8e3939  bitcoin.meta.stackexchange.com.7z
+911a242cb336ade9d56d03b1ace735bbbe9d928ca4e362604983231324d0c6a3  bitcoin.stackexchange.com.7z
+7f674b1625e78d0f17e5b656e402be02ebb54057bbb5235209e4072a99613746  blender.meta.stackexchange.com.7z
+cc2db14eeb09cac71a9b45c8a273d4ff87f63767c86d2b87fedc00e3d7345ecc  blender.stackexchange.com.7z
+2eb2f5a08f03e18d25fc979add70bbf127a20f61f62b7826f2637871cc3745e0  boardgames.meta.stackexchange.com.7z
+304c1fe5a80fc2b45b4ad17498661f66445384c1e26fd1565746c58d50eacd9b  boardgames.stackexchange.com.7z
+040dcda48be3e57cc06d718bb062b6d7f93d97ab7f183c48378234691916aeb7  bricks.meta.stackexchange.com.7z
+4064dd7cbe69fce70dfc561ffe99b7000f0a9de78e1daab663c7fb8df5a56338  bricks.stackexchange.com.7z
+abde0d4ed8adfd89894cc08414ea84d5091d2582a80761213284a547cff7fe79  buddhism.meta.stackexchange.com.7z
+3c1f56da26198ddd671d31d762e422176c972faa90c0d04762725a701f790545  buddhism.stackexchange.com.7z
+6ab2153d221c47a89fe085cbc66217e8d6355444df2f75e44b941cbec0067221  cardano.meta.stackexchange.com.7z
+6be7dd1b40fea7a3549dd5c14b9348ded7285df548588c3010c3a25379b8ca36  cardano.stackexchange.com.7z
+cf5acee5d6f100ec18da98d5ee1944b7c4126e545e5ab44030a27bb58b5eb356  chemistry.meta.stackexchange.com.7z
+3a0f99623821145905bd16421666a15f8eee32cb1cc33425affc299126269bc2  chemistry.stackexchange.com.7z
+47ef5fb8d6527531d46384005ec31a4bbe416f4932a2463a29c37d89ea9462b8  chess.meta.stackexchange.com.7z
+4dafc1876c9f789507d529a7a7069dc8016c461aa17a381b408b65113eeb3fbb  chess.stackexchange.com.7z
+85c093fb2f443eab0ab1baa8a005b1abf40fec04cd31cea62931e966163598a8  chinese.meta.stackexchange.com.7z
+648977396c4d69568604b7a83269c3ab043be6e6d99808a4f25e852be21d3c32  chinese.stackexchange.com.7z
+c32ce4c49777e77617114a408d2c085fc7c406c60bf26488c67c25873497cd92  christianity.meta.stackexchange.com.7z
+33739136fe7646823f4ccd1b2a9dde1035585de54e0da8ced0937afc965cd720  christianity.stackexchange.com.7z
+16e02c55257026a7784dbb9934a1a3aa38100f50f31fec853f744df1477d0a10  civicrm.meta.stackexchange.com.7z
+62f7418de39cbae6142575ad09ba58726d63d01f6b539f65ae91f24be8444383  civicrm.stackexchange.com.7z
+cac53036a565580c9e13601680d682c50db79ad3d99ca878d3efa8241a7dbb6d  codegolf.meta.stackexchange.com.7z
+c83c1387faee7ede38377c6b9e541fa015351774d24da9239922a1e723578d4d  codegolf.stackexchange.com.7z
+b8aa757cdc64b1d3ae1f0b6b892d306772a3fac23abb21a0ff6d4f70be0d27c3  codereview.meta.stackexchange.com.7z
+f1f31a1401f76bb7e686ffc85712ff2ee37d3d97887b4e0df2dd4881f2ab9e88  codereview.stackexchange.com.7z
+12b0cd05c97e8e8da48573a6f86f505c123075dae1cf1d56f24a611b0868739e  coffee.meta.stackexchange.com.7z
+1f3561437e4c9dfdfc89d74ea27c59983c86ad987da48e29fb9bfb6d933b8d68  coffee.stackexchange.com.7z
+63965571f7e4dc849ade5483cab455d63fc99b2a2dced097ace04f21ac5da4f0  cogsci.meta.stackexchange.com.7z
+8d663a1f89bfd143b40aac8a93652d749ea986785ce09ce9b2e1412a20093a2d  cogsci.stackexchange.com.7z
+ccdd36f12fe98128fac93d62fc2db2d132d41fc5dc9adbb6b45c123ab6432c5b  computergraphics.meta.stackexchange.com.7z
+192f575abbad9a6136500db962b3c82258a866c403f7fc842f9a10b26788c020  computergraphics.stackexchange.com.7z
+d7171dfe7fe887a69358a4c4494c343f28454c9181bc05655c8734bdcd3184d6  conlang.meta.stackexchange.com.7z
+f4ba394f7058eb11bc28b68518babbab501b31c68f87372fb449159f70498e98  conlang.stackexchange.com.7z
+33a6b33e496d2f6de41a4fc766f1483104812d7c570281839c8c8d5313f5aa7b  cooking.meta.stackexchange.com.7z
+8fa6fc643868101279914987f23e5c30dcdabf573b6e4a5755ed1dfeb4439a3a  cooking.stackexchange.com.7z
+adde3c9d93f3b45f86272551803d191aea3b7e2418635345aec37377e204c2b6  craftcms.meta.stackexchange.com.7z
+d9ba2861a9c4592e403160e60793fe7ba9e0238cc7b7e1652d2f2a1c7b9ed341  craftcms.stackexchange.com.7z
+ffcff10ca3dbddb8f44b36c6dc6a43e87bcdf3ee7d57bbbe90f50134e740cf49  crafts.meta.stackexchange.com.7z
+5c222844e9ad8f01cdde471fd902f3960c79b555e88d74e5a354e8f0594e91b6  crafts.stackexchange.com.7z
+9f8ef668668a5fd97f195d290c650125102ab7b29766b550108a6263ec2d0f55  crypto.meta.stackexchange.com.7z
+a1cbbb554f1d49e00c61a2a6b9ef89b2b27827c42e8c3220f1612a125e9541f9  crypto.stackexchange.com.7z
+db45296f4865365c94d635c5e9da77f2083c69f797bb9d88a74a459e9db53cc8  cs.meta.stackexchange.com.7z
+b24527c2e989bae399159e5ad4edcc2530b8790824a83d2e28860f39d369e361  cs.stackexchange.com.7z
+4b21749b6a1601f41e44e32f03810089f481443de5576704e3fcef7bf75bee74  cseducators.meta.stackexchange.com.7z
+cb8772938c56aea009829f65b3c6fd6eaf03ab2ff65b14b347c6cbb26b8a5621  cseducators.stackexchange.com.7z
+ce120bf48938552548bb58dc7f9f444d9528c9cb93d79af9a37f3cf62e52fb1b  cstheory.meta.stackexchange.com.7z
+e8ffbd3b0cab09985caacf065e6ec25c0028791cab8ea34a784a83eecfa78408  cstheory.stackexchange.com.7z
+2d2a572b0f8cc817b233e0a14a91dcb3b1d8e959de171b791f31c5eb647d694c  datascience.meta.stackexchange.com.7z
+05f524b42f5703e014f11af2f891cd79ecc3ba8b0ab9f926798a2ba1993d3937  datascience.stackexchange.com.7z
+4c60670c152d0b494d16b90ae77cfcee2e81618114ed01faad9071463f0fcfe1  dba.meta.stackexchange.com.7z
+e0ba8986988b201f234e627eefa931be0be14b5b3ff4c4f042edd8aebc60d243  dba.stackexchange.com.7z
+d79c76bbd40a634518f2a566c9eb240de9d7e5dad46492c2e5a5df828bd39602  devops.meta.stackexchange.com.7z
+90d3ff5664733411c1343e3c92c4ec9813b4865fafddab1c5f5f1a593806f7fa  devops.stackexchange.com.7z
+b0d0de095fcb05a3d3641cb4b9a4cfdd0139917a0d5d803a0e7b1895798eb6f9  diy.meta.stackexchange.com.7z
+ff3d6862a4efb646e2a009b5058fc0bc594b3ecc35e6e1085f9a7da992f954af  diy.stackexchange.com.7z
+2ee4543d7ea10e5ab7b1660754ea4101bf3334f29cb865dc9eba4716143f2655  drones.meta.stackexchange.com.7z
+737c2f8bdff86249cf495540f47fd68a87981fef390ea40b864a6172573e4ea7  drones.stackexchange.com.7z
+aba0a672ecefede0bac308881d3028be7ff3d6f7b05e4ed362cc16777461fe07  drupal.meta.stackexchange.com.7z
+e6d3db69348b312e527328c348d886c7c2759eb5a66536e980f64b2160f0e780  drupal.stackexchange.com.7z
+6f502f3ce9862f50a740b30d34930388c12ec461ecfeecdfbf5bd01b3abb3a4c  dsp.meta.stackexchange.com.7z
+f00c3cc60699758e1a1549d004c5806327470c23ef3288866678a55b0e00977e  dsp.stackexchange.com.7z
+b1cd185caa9532b6b7cca0c5952ddd50bb1d85bc1b1c24047b3af1dcd03aec48  earthscience.meta.stackexchange.com.7z
+804081fb37fb31d7fece122f570037694dc5289675c9e901311e15d9c2129c4f  earthscience.stackexchange.com.7z
+4b7ac152ea6d9c62451f34f57f8db56c7e169a2396504df96a759886ec178f8b  ebooks.meta.stackexchange.com.7z
+a075b176c064f16d9a406776be7be071ffba4268fdadce52f6474eda2cf883b6  ebooks.stackexchange.com.7z
+a69a42d4f4f99f169952f101f26f422386236350ebf9b8db22c7cc9663f7ea92  economics.meta.stackexchange.com.7z
+821cdd61450389535f1dae0a6788d402f37b70fb22d6df6e0a28c933539d2186  economics.stackexchange.com.7z
+8f20afa9c4f8b42c3735dd194dcba47dfc2d585affb06c37cbfdbbba26eaeefd  electronics.meta.stackexchange.com.7z
+d7d352b2a0f36e7360078aee2487fd598a26485c7ae43df94394fdb38d5f6000  electronics.stackexchange.com.7z
+2f909c8b00d1120af2a976fe197db9c0ad3b2e2a4c7a5bda34ca52b82210efc2  elementaryos.meta.stackexchange.com.7z
+3a9f653430690e0f217c0c866378e7324fc73a8345499e48bbc7c47acbbc8b99  elementaryos.stackexchange.com.7z
+f886f12aa90648408dba30f19e8f98e1126c2497c920819670a281642fa87ab4  ell.meta.stackexchange.com.7z
+b47a2debda9ca4d4a7425a3f03aab5d38477eb19a99a611943fc557e46e95784  ell.stackexchange.com.7z
+f7c9672923db06d8155aabfb22e723aeacbdd82a4ff8bceff7e136d2601b8ecf  emacs.meta.stackexchange.com.7z
+c14289dbacf4bd1b2cc9cb19087c6252bc81f1a214fe50a2bc83a57057acf638  emacs.stackexchange.com.7z
+5d90a2f0d3aad2fc440ea2606b074ae94796e87d9fc236f8be24985b17ef9678  engineering.meta.stackexchange.com.7z
+ec3ebb401fb9ee04e8bdda0f18fa162564d9cf05af0904fe977e538ebc5bf652  engineering.stackexchange.com.7z
+623230ef0f4aa3b814c84939ebf1c4675a431b270abe6fb4c9de5c1a2b5fa57a  english.meta.stackexchange.com.7z
+ebd4bf13c1224a140d3bf453757332c9528028ab2f35be392f8e306452528d1b  english.stackexchange.com.7z
+33bdcc4842b29d0b82bb72c44fadc2ff438f82290361e64df18d8f02641d8f72  eosio.meta.stackexchange.com.7z
+058a5c7927de338427c788dc94e447202309cbd1a09251b543a6e173ec6678cf  eosio.stackexchange.com.7z
+c40f231d0292d5d009da484c38eacde1e2102f73c9ef5f5cd8fca8b8b76428cd  es.meta.stackoverflow.com.7z
+2318daeb67449cc7a68a93027efbed4ca4482992239f451c7c5aabd88040f42c  es.stackoverflow.com.7z
+1a671ac45e44ab169ec7a56a50de4e8cc4276099b9d0ebe549924c85c14eb4a0  esperanto.meta.stackexchange.com.7z
+993acc2d583e2bcff336ea68d227778edc8618541b2ab2f894a515fc8630304c  esperanto.stackexchange.com.7z
+bdd174976668c78d9a8837fc1ece04727b12c8f1795354cb1667a937b8b2d27a  ethereum.meta.stackexchange.com.7z
+2d0412caa5d0e59cb883deaad40cdd65bb7c7016ca5c26da307470001403a914  ethereum.stackexchange.com.7z
+3cd8b737c23aa727239e0deac727963e84a6db17caebb8b2b447c537ac620926  expatriates.meta.stackexchange.com.7z
+5ba684fa42ea275b202406386127097aa50b51cd4610bc6909e5c33b6a88930d  expatriates.stackexchange.com.7z
+48e3aa3d7015f5e0d4dfc3b7759ac2121a4278cdf1f0ed8f798c22d7e5271b83  expressionengine.meta.stackexchange.com.7z
+ba5500591839e68a9dd771ebc1431ed2ab0a13f523bc1d10544f04ac91b7f988  expressionengine.stackexchange.com.7z
+b6e65f59398a2a61a4755d41b0681d6959d74349597d713a1a142ec68d12aa37  fitness.meta.stackexchange.com.7z
+f0c48cd55dee74cc68fb08386b6a253f690dec0fb7cd5926702befb34df7038d  fitness.stackexchange.com.7z
+11fb6393f29bcffe944b99ccba06507a8f55b0ccc4f6827e870547fce0514a56  freelancing.meta.stackexchange.com.7z
+371c359bd194a09c94ee39abd6fe9879d16972f82c381e0a7201a00fa49ea5f5  freelancing.stackexchange.com.7z
+25fc077bda73075e907e20b9de7f40ddf091b0a0b4b5803295878ef84d0fee1c  french.meta.stackexchange.com.7z
+37f7013afb34f1c252503857964a07b4c56081a8178cb4db55ec26946034a6c6  french.stackexchange.com.7z
+52a7d68d8592a9369e8602458f699184a604e2c3e2c28e8516e31a713b759dc8  gamedev.meta.stackexchange.com.7z
+5185036d919528dab20e32b4bc0c8dcecafe2b92d00b645233a03ddeb0215fb8  gamedev.stackexchange.com.7z
+f8c580a6dd06577eb8e639fd0d54a65744cf207db45a9ba28c9b02f26573b656  gaming.meta.stackexchange.com.7z
+b32c2437334f5615f036825962572bd4a38a93187092f094cc6f840b2375eda7  gaming.stackexchange.com.7z
+c59b1a55dae3587bc4212555411eaaf7ad70ae7764cb173d8e75f74033e6fa90  gardening.meta.stackexchange.com.7z
+83dd06853fc44366a8b0f28fc846ce684b7178f48ed6948c663707bfb5e7435f  gardening.stackexchange.com.7z
+10208e48a4e98a451af70f61e27d240ccac96642d940c2a7ed60fa93c622213e  genai.meta.stackexchange.com.7z
+42b9f99f22f6f6ebb63cea20348b692867949c312909c32237a8a5fdb47844b0  genai.stackexchange.com.7z
+4da7de8ca59a1dc22176d8944be62c140fcb9f55e162f5db3e58c177bd7a2e2a  genealogy.meta.stackexchange.com.7z
+ebe86c00411710355e4253c7a2c2d1617a24f58889568ef0e0f56f4333362c5a  genealogy.stackexchange.com.7z
+bbba585c584c013bfb5df466f53f7eec3991657e5f61bf9dfcd62b086535c175  german.meta.stackexchange.com.7z
+c91f244ec5a50e86c29da52393b76154f1e4ae1b53f9281de64b58d214293fc4  german.stackexchange.com.7z
+b9200a1cab4f1923702bdf0e9c380abf636434da02038b69e126cc760b5d975d  gis.meta.stackexchange.com.7z
+c1abf8ee289981bf30a2cbdc49cb9b6d326abc6b48388441199e18ae3ea860c4  gis.stackexchange.com.7z
+d97b89a4fe4546c352a2640de98a138258c9eb9e6855375f6648a3337815bafb  graphicdesign.meta.stackexchange.com.7z
+f573bda7dc57aa2bc15455f33f9f96aca26c04d23bd202438d03828de24e19b6  graphicdesign.stackexchange.com.7z
+0c3f3f86d9d0bfcc095bfb5b88780fdc3e7593e07bf55734f7e0d1b8724a735f  ham.meta.stackexchange.com.7z
+b4045468e0d1487057fd17511920b55362e1b05c5ac2cd8c9b9f91c4c32d2e7f  ham.stackexchange.com.7z
+e63f29b0330597d554bafdfa20ae4d0d9b135b1ba64555287f1ba0886b038867  hardwarerecs.meta.stackexchange.com.7z
+789f18fbb4fde9b2b65965b47d85009408bfc8561757449859de4f4842fa048c  hardwarerecs.stackexchange.com.7z
+3c69751ae5a432d41736eb719912fa40b11e104a758c523c4df2d9009a23a520  health.meta.stackexchange.com.7z
+3518bccd17e109738bc86ab28a0880034911475ba9993771980d7c3c2594f9a8  health.stackexchange.com.7z
+d24780dccfa64f0c248787de0e486b9b75e8c1063adee6dfd71174f0d6ff44cd  hermeneutics.meta.stackexchange.com.7z
+44e4c92b5a3e6b07568d477d91375d929112853b01237fe9a839f7633636d776  hermeneutics.stackexchange.com.7z
+39c92fa25cd3cae2935eb100ec37fea05334945045ba788d9e4ecaea575ff49d  hinduism.meta.stackexchange.com.7z
+8f8a67ca7e3d99c47b1c6154cd8da19fb1bdb43ece7ef93a2bb328c7da9ede16  hinduism.stackexchange.com.7z
+05a3df4a8eaef00fcbb3ff39eeb2f7315cb065507d4030ff71b307b969040c6f  history.meta.stackexchange.com.7z
+cff0edaf78a4b8e2c45f9b2319742330970cd35cc7875a5de842cb69c4a3bcd3  history.stackexchange.com.7z
+182ff607c4e74fe1c025c60c4fe3bd750f5d24f05379b2e0d7ac59ef584e0547  homebrew.meta.stackexchange.com.7z
+640bcadbb8fff38acfcf9b398afcf374dcd6f011bc151987711dfb2c2517181e  homebrew.stackexchange.com.7z
+3ed55d04ccc19e95df9d5f46298418de1a0e1d0b580f89a1bc09d1454b52bfe1  hsm.meta.stackexchange.com.7z
+fc6c409a9d95085ea5878ecb6431ed30756c20ec411847dbcb49a3a4643a67c7  hsm.stackexchange.com.7z
+0741d766fde17202a725cc2217ab994521f6db587c1be4845924a6f4a886a91a  interpersonal.meta.stackexchange.com.7z
+8c4dbc241e51ecac9795976e11c43dede5dd96124a75885cd9a5b9b7a6530a6a  interpersonal.stackexchange.com.7z
+be206f023246feab56dcd697be5a7407dcce0a1fdbed5e134c0b99a89803e83d  iot.meta.stackexchange.com.7z
+d1e0c83c3b9c598d2f722b7d60f68ce639053fba381b0c75aff6c120987a7e59  iot.stackexchange.com.7z
+a54c6245ddd1fd1d1f616d997247f6a30db78672c54ebcca399ce17f338454c7  iota.meta.stackexchange.com.7z
+e982eb0f23d36c4dbec13e9f376a89bf91282a5111b4c4e49d3753dc0be86121  iota.stackexchange.com.7z
+bae1e8e1fbffb0e29f10ab7d0c2065294f13b98732943259f301db18a7f2442e  islam.meta.stackexchange.com.7z
+a30589f204fb00a63b0f55e63f6b06c0d154ecd362df4a7dc6c687ad582ce164  islam.stackexchange.com.7z
+9d80a22b5ef638516985a99709bcc5c3bffca35447559584baa8f10388629331  italian.meta.stackexchange.com.7z
+c1198039d1d7bc80897929d66568e0f1d77c2899a2fa842e51e6eaf5a826a459  italian.stackexchange.com.7z
+023e06015d1d5ecf9b1783743d5b15c51351889d2cb39a96eafc8e10ff1a6a35  ja.meta.stackoverflow.com.7z
+d4c7fd9f51914ad48aa661d52d019878fd193f48d8cc2cdb4e42e72cf217721e  ja.stackoverflow.com.7z
+5ff31df5daf78954f3679be62a06cedf11315020365bc2a711c951ce4b8557d8  japanese.meta.stackexchange.com.7z
+206fd53aa828e6188d055a4e3ebfd09238f956caa1552d8739aac1584546e068  japanese.stackexchange.com.7z
+b7fad9e92bf9a230386258d99aef9ad1bb6329970ad53aa4fb3fc7d796bb9ad1  joomla.meta.stackexchange.com.7z
+85d756f891fd51e79567b0a9a733d57bbfa26fd872f08151998eaf743624be61  joomla.stackexchange.com.7z
+cee3256fc6db5ee417bd2f82e189c0bf0cf92185d901f517d9692d1554ad87d8  judaism.meta.stackexchange.com.7z
+37b62c4185c5603fec502f6ea148db686932e3c6a1db7cbdca95b842125abaec  judaism.stackexchange.com.7z
+c6731d86b672a9330b9fd68b855ffd06c4d388579c3b786ec2f383c73f2b9fc0  korean.meta.stackexchange.com.7z
+9feb5f69888534b269cf8806bf184e274aa42d064aa33e4ab6574a038ef9e377  korean.stackexchange.com.7z
+cd845aff06c5cfba2bcfaf0d1ef4773b6f2cfe0abe6186321c5449f9792730cd  langdev.meta.stackexchange.com.7z
+940dfbabe82a0b45e3c2549a79ed9c6b1bfd7e301dd058a2f30c48b6758b8e6e  langdev.stackexchange.com.7z
+0cc54ea4f2fe93ed4890037c732e40ee6819a8d4b652b225527a5609823f56f6  languagelearning.meta.stackexchange.com.7z
+a447c6d2ccc9a3bc1feee55cd15e332ec4f45017fc013e5046e8fd732ac35539  languagelearning.stackexchange.com.7z
+f3a25bf361af6e766839550c565140468aa21bbc017f989b984f6bcb153aac6e  latin.meta.stackexchange.com.7z
+c4c8593cd266b3313226c88fd4b258e1d0691cd037875bb287e86b070685b6fd  latin.stackexchange.com.7z
+7c0929cded581a550b9ecac0464618ced92d34b5b80e0913244473b98b63894c  law.meta.stackexchange.com.7z
+e087ace3472d4870457b5c7b5fe737f1d9cd5378801cf2f77f0d539a58ff758e  law.stackexchange.com.7z
+880657c8361dd0225f9909dec8be0a3cf61207266cabc00ec63046632f5f64ff  lifehacks.meta.stackexchange.com.7z
+27f320b8e370f1efdbda28a482617a4939aec1adda6531d5ce5a99668f66c4c3  lifehacks.stackexchange.com.7z
+b195cc912efdec76633bf0a1880173ac892a929988ff005447418e340204c55e  linguistics.meta.stackexchange.com.7z
+407c61f5239448dd061d14cebd42afbe1ee5fd87f5a353c51430a450c16034a0  linguistics.stackexchange.com.7z
+f1de47eeb57bb4d1a11375a0ae0f2387949f25feb331f3ec214c8153ec54f7f7  literature.meta.stackexchange.com.7z
+3ec01447002470a3fa60a28591c1a6f69809656e12b9c600c96e47023f8dde7d  literature.stackexchange.com.7z
+006f5577e62b3bc29616b9f51afdf117ba389dc1af195b513a37415913859373  magento.meta.stackexchange.com.7z
+015702477523e2cc4b3dd31e24d9b401910e5bf25abb375b235835489618cd9a  magento.stackexchange.com.7z
+ce02c3bb33bf7f2e07152c5600b047ed863549ec82bf3b12addfd1068ae2ea7c  martialarts.meta.stackexchange.com.7z
+154fcafbcf9b2344a48bd933dc0807e6bbb61a9f9cfb20063816b3ae561e2118  martialarts.stackexchange.com.7z
+e68aa65e9c08e48f6b9ee2139220d1854e309c629369cb63ccd02db127ed857f  materials.meta.stackexchange.com.7z
+521b58510a301cbe96d22654153f9a748d22b304c5bf8aaf633ecba712af2371  materials.stackexchange.com.7z
+db5846e7e32c2aedd8fcef5f76633c5296d3c252ac6f19977dbd0accb57c0f48  math.meta.stackexchange.com.7z
+cfa14f0b7a26316d1dff88924ec9262f5832ac8fb763bc95ed5929073c8e5b4b  math.stackexchange.com.7z
+f95e80c79a99da02786fe69add9ab88caeb990423e4aa225a13d0f0b70082211  matheducators.meta.stackexchange.com.7z
+5547c090c8e9d6cd55f8a045ede97555862382d6a8770360e3233d236f7372a5  matheducators.stackexchange.com.7z
+3a32d430f47c3ab67e4e21c1f3fd6e01a83c23d526872956981a5eacc1030fee  mathematica.meta.stackexchange.com.7z
+d29fde3335996861497599fb8c192b49c0477eed6ab0b8269c8487305f58e769  mathematica.stackexchange.com.7z
+3b1355edba0e2905f0335dc8b0958b27c7ce1f845867e856628c38751810ede1  mathoverflow.net.7z
+7880bb94e4e347d173c46db1d620e727c39913edfda5ecbe08efc882436c53a7  mechanics.meta.stackexchange.com.7z
+99d86d5f69fa39e78474dc7add76e75e7c5f7fe811e7ce5ef026c4b9b18cf9c1  mechanics.stackexchange.com.7z
+fafb96d0ad1c6fb0266deb8ee6a11e25f7ea98c819f33b39e05eb37c2c5302ac  meta.askubuntu.com.7z
+bfe2af460733e37b4c9de9cb7719a99cd3cad3b861e55590830077d8590652cf  meta.mathoverflow.net.7z
+0428b5f6c46e463223c9749db752eb206abd5438731bf8e791fc9f28fce845ad  meta.serverfault.com.7z
+4210326ba8b1b4b85913a20439bd3a3604f1b2ef0f820eb25dcfb67a2d126938  meta.stackexchange.com.7z
+6bb4a6273618c42c7a30ff758323e9e8cfd247f07f87de51bf216bfd7c79d91f  meta.stackoverflow.com.7z
+d622e00fa9ac153b3519fd5d88de5d4aa9217a68f58f1164ed57d86b618fe290  meta.superuser.com.7z
+c4b6a985f021f68a0f07920dd704d83761a9a69a4a1b8ba1614df0386b977b2b  moderators.meta.stackexchange.com.7z
+632c8b0ea024d1020842233f8e9b3d2d597d2c7e696c1aef52cfc313472dd2de  moderators.stackexchange.com.7z
+aade67c6554f9e0c0975850a2b3b51495462ed26b813dc5a7a0351f3a70b348c  monero.meta.stackexchange.com.7z
+1ea390df760c5ac7582effccb803a4c70ed7f06efbba4313e5af91d61b10a45b  monero.stackexchange.com.7z
+d7dacf7923d88471946c875f38701838621ebe822b8ce83ebc10b51ab958089e  money.meta.stackexchange.com.7z
+179be2c92e750666f6b0f54840cb6c569c0dd1ca73d0e0debdfb5c9205dccaf7  money.stackexchange.com.7z
+4a766ad8d2425db3ae6bd7bb9b7db0582ad09c9982d7327f79a86b9678158260  movies.meta.stackexchange.com.7z
+f963b91ea724506579799d6f97e5ae37353a3deedc733e6a3b9daf282df41537  movies.stackexchange.com.7z
+180120c4bce5f6ad604c50cd40fc4a830385a551f24a2bc186de1d2984f5b05d  music.meta.stackexchange.com.7z
+3199cbc0f1781b91c6ebf736a63cdd1d5ac93c4d5afc6459b8ee481d4bed76c0  music.stackexchange.com.7z
+1f6651a0c733d16d019f399bd1a77589643f0c3aa2c26bb30d584401fd1ed0e5  musicfans.meta.stackexchange.com.7z
+42ca79eaffc7e9573fa36ae71e7de31572fc5ec8d1e9ba0b27c3ba999025a66e  musicfans.stackexchange.com.7z
+02aaea30c4e82cfc0c5a28f64ba31c85ba96cd323af28a885d61069803ad3695  mythology.meta.stackexchange.com.7z
+6eca845baa3d72fde339cbb28921577ddd144ea63b58563678301234210a5358  mythology.stackexchange.com.7z
+6637303a8efc224e2cf8a76f5e120a363978027427cde419c294156287447d96  networkengineering.meta.stackexchange.com.7z
+3997aacc298eadaa0e9f14ba9fd4ddb2d9d0295bac657171ccf9e6817a773d4b  networkengineering.stackexchange.com.7z
+99c03a7edce737993d5dc63710c2bbf801b99fed284b9ddb9ae8e120a47c7c3d  opendata.meta.stackexchange.com.7z
+c5eeafa2cc0c2066f3c26d6515fb78b6269e28fc65350cb30b09182acde48846  opendata.stackexchange.com.7z
+ff8d74d87ad050299b69b18a48bfe88dc2800a6a407e7ef3afbcd935746d6c29  opensource.meta.stackexchange.com.7z
+db507978431038f820714654e6e70615e2f76e0b7909cadcb26a545d13b803a5  opensource.stackexchange.com.7z
+2d5a0804f2a153cfe1f41a50263fd094471087614d007c4eb49d2220965eea46  or.meta.stackexchange.com.7z
+30f4c6210e38ea2b592dcc6581596f4e402ca799a2f452edd3f8d00c94462f5e  or.stackexchange.com.7z
+469992f96ee1ec4d6bb14b58d3594f9440a920baa572a099e2c62f7f7e74ccf0  outdoors.meta.stackexchange.com.7z
+1519a72e40412bafa3df0c895b5f9f0453e2768139caedf03dd0dd0ea0a30bb4  outdoors.stackexchange.com.7z
+5fef894c9a3963b7813b74b1a4f96af59ea830f61f7976931b40c6fadf7a1e79  parenting.meta.stackexchange.com.7z
+1105e6721cbe7d3004824d2f9eb52a9ad3a9b2fd87e22f79970cf8334749c954  parenting.stackexchange.com.7z
+a36317fcc6d5c47cd35f41134afab6311c7a74c749d8cc5421ae7d913222e246  patents.meta.stackexchange.com.7z
+3c39aa91ed96a4ff5aaa3b860d16630f81548dba2d31bf4f2b1478f7d0228624  patents.stackexchange.com.7z
+1ef898b9cb5e172e0dc3877940870b89cbe81ee80add71fd2f90810b4cf529dc  pets.meta.stackexchange.com.7z
+6caf0407c420f9e82dc6013b4591883d04570c327d3fb62034d42408692427cb  pets.stackexchange.com.7z
+bcdf2892e8a13894c71f7122608f756e94b7f5ea107e6ca510b179c8bfc82592  philosophy.meta.stackexchange.com.7z
+c0ac68c54e96b79fa06e3d30d4678581bb03182b163d1c4137c4fb3714b11c7d  philosophy.stackexchange.com.7z
+5bd1cdb1c9affc4b07ecfdf776aca782f66b6bae0203919315147d0fa45c5ba9  photo.meta.stackexchange.com.7z
+a6c82f43703bd0b5a88bd1884a1f3e698f745ec84f6f6ab339e19e96ec400d49  photo.stackexchange.com.7z
+44083f3d0369c9b88d6026ed9d052bae0e2b959ecc5642e40302cff370053b40  physics.meta.stackexchange.com.7z
+b81f33fcd06b25dcf35fe4b3957a3cf4a1e50f21b74162df9d403c0ae15fc2cf  physics.stackexchange.com.7z
+13909e96661b96f129f8b73e0e4d92edab0d76af90319dac29f1ca3e8c673732  pm.meta.stackexchange.com.7z
+fd6634cb43add01cdad748de19fba59b08b5358eb1cce5cb99bcbfe59b09a316  pm.stackexchange.com.7z
+4f34e8d676ac6a72b40dec90424d74d808860386879dde64c85a0d557588288d  poker.meta.stackexchange.com.7z
+3ec210b6f19b6083bd0bc0c5fb70a1c58f2c61316e96c3ad1a55e026696a7c42  poker.stackexchange.com.7z
+749dd8152039fb3f1e320a0d4b7f7310a236653a0f29184fa294efc00996f410  politics.meta.stackexchange.com.7z
+124254c27991885373aea3c3ad707dff536dd5f368d0a2222d6b1f071c7fd621  politics.stackexchange.com.7z
+6739d8b6747fba0f5e31babb4aed0e6a36286bdf5eca6abe8b37825fe4eae8a7  portuguese.meta.stackexchange.com.7z
+b5a16f0add29d83ab96267cc6d3b257f3750bc188bdec1e3c4ba73a3c8977182  portuguese.stackexchange.com.7z
+628bfaba400ae972bd47bf9c1d71817bb46b057578273eebba9845d91ce6f5a4  proofassistants.meta.stackexchange.com.7z
+0590fa5a9f4fbb871ec0727b4d49d06810b5088ded6c24315e396c2feb5d508a  proofassistants.stackexchange.com.7z
+cffce4132dbe50de0c7a86473f5afebbedf11b88b89d93f643b9585554c1d786  pt.meta.stackoverflow.com.7z
+8b6cbf4818a03241ecb38cdc0556fac5c8769b6af0a03d619b0e577adc1d43c1  pt.stackoverflow.com.7z
+5a813b139f7de116cb5db795949fdcad65e6c31dd17f4468cf651e188e72a850  puzzling.meta.stackexchange.com.7z
+909b4f89ed01894999230251ddcaac76390c22b499cfb84ef3cc023191a6d846  puzzling.stackexchange.com.7z
+9c3719d04caa0cf85f410d40d44420dd264f2d8a205d076956e348372461c041  quant.meta.stackexchange.com.7z
+3e4f14b24aea80a9336a55cc3ce331b399dfb07bddb61bcf159712cb2039c26d  quant.stackexchange.com.7z
+11db7cbbc3a0fb810ef55adcdfa5cd04ea8152b74bd948bf3282d1ad87d69a8e  quantumcomputing.meta.stackexchange.com.7z
+5517d3c54b30b2bf3690d9e805cc9d1a95426a3e93826d9da8b7e1a917743936  quantumcomputing.stackexchange.com.7z
+87fb900826e61cf1b18603b8f2fc2771bd23a14047a9efe5af6994dc3d22ad1e  raspberrypi.meta.stackexchange.com.7z
+d3af528e3ae8a966f8f58fccd6fb52023f197e9d1353901a1637324681bc86ba  raspberrypi.stackexchange.com.7z
+f1fd360009422029da4de935d5523e40c8e80db8cca2bab293d049a35ebfe634  retrocomputing.meta.stackexchange.com.7z
+ac141d7156dd453c78955347ca5cb0d3d789ec1487ae4ad58c47eb0f7383661a  retrocomputing.stackexchange.com.7z
+78fbaa87c68375f91032a2a56cff78de254f9a921cc90b85b8ed4dd11b5023a6  reverseengineering.meta.stackexchange.com.7z
+4c9b0a9c5689b10249a3d3e50659381863e632dd75a4424f3f41891f7e14a61a  reverseengineering.stackexchange.com.7z
+c714d44d9347ea431f44f1dd583fddb047e84d105ac92c13e278ff2bcaa2eda3  robotics.meta.stackexchange.com.7z
+9c4f0bf008029ffdd8d55347d97313465abf28d00a4b8ca499480c4439cbccc9  robotics.stackexchange.com.7z
+a5f8e93f6cb8bbf8871ec0132166a9c2692ee5f7c30ba21989c15ffdb26433fc  rpg.meta.stackexchange.com.7z
+de3ada162342954b0c5d51b4ee7e55249739fdcfe4df075dc2c6fe5804498ff8  rpg.stackexchange.com.7z
+3edcc469ea5e41e7d40d232c9d6b8d26623b1ac46d67a6248573085d29daee8b  ru.meta.stackoverflow.com.7z
+c2e7354aad313fb103f2be11337a59f855dec2fe8d67fdc0f7728eded6e93119  ru.stackoverflow.com.7z
+68824706b3c0e7121cdf2312c8c007a7b2ee574f2d8bb8d3a1f4b4ee778c3625  rus.meta.stackexchange.com.7z
+408c6694b3a46c33f6c6a6087f406c09470299b13fa42c2284b4eec8bab5faa7  rus.stackexchange.com.7z
+9b743b5e52f8e88abb389d5dd1c5f15f78a18a8254450233cfcd0d2414b7f3e2  russian.meta.stackexchange.com.7z
+3c534d32f82683db8119e08bee624f48c5eb579a89840663c990cf0c5096cc36  russian.stackexchange.com.7z
+7616e05d5aeeaa9eeb95a184612b029ea1c865b965e7170f36512395c480eceb  salesforce.meta.stackexchange.com.7z
+2a42d5a2b71ba9ef3726623a314e8ba156f87b29cda3ca4ec7eba4d15d7e799d  salesforce.stackexchange.com.7z
+f4f2095c1319e3af4f70aaef2b103791de8ea96e1f1eb43fb9d279ce0d7bdf51  scicomp.meta.stackexchange.com.7z
+ca3c97aa930332bf16a1a39cb8f711c198316d1cffe7697e2a9ef3e063750a6b  scicomp.stackexchange.com.7z
+98d213b0033996e302231d0c27d038605b376ecf7386bfe365e2e0f36aa90266  scifi.meta.stackexchange.com.7z
+6e1f31d1dc77353ac5e45575df9ff0c51f0b37ac683b878824bd991f67deda69  scifi.stackexchange.com.7z
+76c7f1122c752aacd9fdc817009d77a0a681d2c887ef3397d92b4d747df3a99c  security.meta.stackexchange.com.7z
+7fbfc0d715e0db4a82c1107f924f521c65111e384c5946466aa4a461ffdfac4f  security.stackexchange.com.7z
+88727c67c6a4e881a6726f2c89d897927c99d91b1df27b523f734b5ff17b4b86  serverfault.com.7z
+efd4f2f7309aa5dcc4d6afdfa1f2f1a42343d2e9f6d4695e9445e28f661effa9  sharepoint.meta.stackexchange.com.7z
+bcaca135e94532cf6b5449ba5b8119e78120c4ec9cc6962a2deb03903b96013d  sharepoint.stackexchange.com.7z
+6dbf3ce5d20e48bef80149fa595b42ed0d65230fdaa2a9d4b46eb519c078e769  sitecore.meta.stackexchange.com.7z
+12f217959e752cc370b98d3c4539930e6e06bf59004fe4fe5ae395470ac12d74  sitecore.stackexchange.com.7z
+a3c5b50420f9432b1d4d27ff9c24543a97888ce27177a38aee7854b17482ed71  skeptics.meta.stackexchange.com.7z
+c87c2115ea7dd08b28e8726aa71f4db05c94b51710dfe919c13de8d7922643ce  skeptics.stackexchange.com.7z
+3dcc6ea45208b85327c011fe256ed00cbccc5dc1bb90968e491209aa604c10c9  softwareengineering.meta.stackexchange.com.7z
+630fb0990bc2e40a52fbe3a868db812d82ddf7d9d332a6109ae4a667b0b87898  softwareengineering.stackexchange.com.7z
+f27b3e12fa940e87ae05fb2a498de665916678bf5494a94689964d701e2af9f5  softwarerecs.meta.stackexchange.com.7z
+37ca0006b3f3331dd4709136b304efd9d6872add181d6408c3467e624ffa0e3e  softwarerecs.stackexchange.com.7z
+7d2d75142dc807b3efc96fd5ed832e96bdc0680be718453f2a73c57d5177fc05  solana.meta.stackexchange.com.7z
+f8e23b420f976bb759be845728f2e38cb539264eaa806b28fb677edbbcb918ed  solana.stackexchange.com.7z
+40a2edd0b18d73001228a20c1f6de77e9a4b5735e4e52091935b55de9f375db8  sound.meta.stackexchange.com.7z
+17f95ab648ae300d9b3b7d7c99ae070c4c1f168ccdec905baf7b0556af91505e  sound.stackexchange.com.7z
+8646ea565b93dea91d8dbf36a77ca2645f5e01e7fe6a8b6b81085114142c5c6a  space.meta.stackexchange.com.7z
+9f38d3c227219099698578cf4301273147b90ec49a683e9649351d0d38d3ba7f  space.stackexchange.com.7z
+cb80459af721941aaa86370365f1b2ef2191cb47dcae7eb7006c47cd7abe5fd5  spanish.meta.stackexchange.com.7z
+4302c84588908121242155f9f47b1acaa8c41bdb4006896965651f18d83c41e7  spanish.stackexchange.com.7z
+b0df6142f619d92b08cd097c7440b09ee43ab6417c765346dec241c42954ba31  sports.meta.stackexchange.com.7z
+df102a82bd34249c3a7c8902a9e99e42ceabd488bcd7e164c0cc82e1770afbc4  sports.stackexchange.com.7z
+2e81cd7a2eee2d18576813f869d31386f1dea314df227d4a7c16f3f2f9bde2d0  sqa.meta.stackexchange.com.7z
+ed97a2df09ea4f38522140b1c12c1c67420491fd03b007a37393caa1895c5b77  sqa.stackexchange.com.7z
+bbc705b3ceae34c3fde97ccb20b54ae6da2f53525b56e2151a7afb4ea360974c  stackapps.com.7z
+af29067f8acc171775995e1f02f8a41115b9aa5b5bb51580b4b244e28b0e68a8  stackoverflow.com.7z
+277ef3a885f3d8a745a2ff25a46291c34c720c4832bae5fbffaa9dbe59578592  stats.meta.stackexchange.com.7z
+27bce7e04fa48ff130acb397c6c9ae6fb2f01a85a6a594c387e7190144f4c87a  stats.stackexchange.com.7z
+4fab8cfc1f7c36ac17d690a3e9fac2d3b5c7d31e950ee93ac100f110ef09718e  stellar.meta.stackexchange.com.7z
+11cd052f54f6e5a353147686bf44283fff7551f4fc9ee82570bbf9cc74dc8079  stellar.stackexchange.com.7z
+2040c7657c49be5b86b6ea5a422bffb83d0da0ccbe99c85b741997d2b24786ea  substrate.meta.stackexchange.com.7z
+c9789ca0bff775b857a810280e2e8ff20533de8d95f76cb558333394a2843ea0  substrate.stackexchange.com.7z
+97b822b656d92e7034617cc3dd115d5aa04362e78645e048187880cefb654e4f  superuser.com.7z
+84e6a12d806593c974e19174a49d9802fc930597bb817d365fed63eb14e4c0de  sustainability.meta.stackexchange.com.7z
+2c6c8c407d49ef068043b1f2c6238e7786f10a6762d2416f052b94890c2154dc  sustainability.stackexchange.com.7z
+17395d532d8fc8aae9e69e74a1c2879bbc15a8f95717cf108e9a815693459908  tex.meta.stackexchange.com.7z
+787abf8cd9052ad4928db0c9821badcaba4b1398a3e86a4ea696303a2cdd37a7  tex.stackexchange.com.7z
+b3f215b0bfbbb813d54d8e6a57718d659a8d5453dd64c9faf55e81a7344fb881  tezos.meta.stackexchange.com.7z
+faa89eaf5613b6d4ab8bebd6042b7f48d6ac9b4612e8c5cd037ccb88739ab6fb  tezos.stackexchange.com.7z
+c9cd7ac991e6c1fc474671d4de7f9af0af6789419e845e47d51ff427bb48c88d  tor.meta.stackexchange.com.7z
+c5c428773ca2a7a81904de347fd92183d6aa26bcc97e3a90cf688d8f7a63418b  tor.stackexchange.com.7z
+b57eac3a3d2eb30b4feaa795c55cd61adc4364a8165422c6e7dcd4ae2481c26e  travel.meta.stackexchange.com.7z
+a0d779f2bfad182c14d3a490733ba50a25f28b2460c60454004551c1f30c53c4  travel.stackexchange.com.7z
+843e29d8c90761912c45f3fa0955727d85259a8d3e8e0dcd1ef609c8a6458710  tridion.meta.stackexchange.com.7z
+37a806d8149a414a787925e68be85ecaee3b8a8f2c600eeb6d7708cbb692a9c6  tridion.stackexchange.com.7z
+dabdb2e36e00984356095b42852cdc55c8738094418642e1420e0443235fb87d  ukrainian.meta.stackexchange.com.7z
+1cfd4d186e0639bbb5c79d2be6623a5cbf0e1f8881a8434c46390d707be0e014  ukrainian.stackexchange.com.7z
+06d69334a246bc57c92247268077873a04b1407089a17a61119f5d20700060f4  unix.meta.stackexchange.com.7z
+6fbdff28733bff1608bdda308640565552b6d0f691d52a90427fa596057e9e35  unix.stackexchange.com.7z
+0ece83e79a3223a89573ace782e71b191fc1c6fb3d6e3dbda1832ce5cee41b83  ux.meta.stackexchange.com.7z
+658e6faf0692ba38598621cc3de49616a72314d48e0e39c7e64e2be0e91053db  ux.stackexchange.com.7z
+47eefd491e0ceb0511380017e89de1f836d31491344be858c600737b3244fdcf  vegetarianism.meta.stackexchange.com.7z
+a1f20ea8a15b4203083d3dff70ea28c9b60cca97631b07794e9ff08294f9d938  vegetarianism.stackexchange.com.7z
+010c63f55625747f182bd4a0d19ea1f0fbc4e1afc7e3925feaf53beabd5e49bb  vi.meta.stackexchange.com.7z
+febd64c1ce1d817a64a541ec8afb66fe38d15ff15f7059f20dc26b2d7f230546  vi.stackexchange.com.7z
+624a2ffe4f0555535155bb530c0e1d5f268db59caf679da37a0121bbd90f965c  webapps.meta.stackexchange.com.7z
+caf8421fae938d440ac14ed1d1b69a1eb07517052e5b65b91aafadfd2932dc67  webapps.stackexchange.com.7z
+5a1c962ddf66fe7b62eecfabba2fc28400955331d035a31858a44a344d8f8e8d  webmasters.meta.stackexchange.com.7z
+dba2b4dfa7245b7f6ed4e59f91efe287c41728f11ebdc2356007b931a4088eec  webmasters.stackexchange.com.7z
+f12cba6f4512eed4197b4c86f9eb0f67a016a311b7146a888483baad67d26cba  woodworking.meta.stackexchange.com.7z
+69f580998f1031deef56f90964ed98917391c488740a4d377ef7f62134b19a9d  woodworking.stackexchange.com.7z
+a30223467d8351a34013d56a6e4c19acea5b89eab099a0fbe34875a46b3a49ba  wordpress.meta.stackexchange.com.7z
+de76201c9d32b475181d836c3ea58db56fd2c52c289f1ed8099e2470252092fc  wordpress.stackexchange.com.7z
+dc2ec28b4ef749e5a3cfce32a697dbb921ef8a6b582c856ccbd7fc4b32946eed  workplace.meta.stackexchange.com.7z
+2215cdd74b658067ebcb7f41741b38d6f2be1a22d8dc976939106cad9715a265  workplace.stackexchange.com.7z
+7d4d34d63c33946c45910c94ff82039d69032460c96a22f3b09cfb621131a606  worldbuilding.meta.stackexchange.com.7z
+e1fd4de51e84cab504980bdf7bbfe61d9888b2bb57fa0803b083515613837470  worldbuilding.stackexchange.com.7z
+59f50e7ebf7b9fa12543e8a03a7fda1da34f43ffcbd91a1499de01271acdb555  writers.meta.stackexchange.com.7z
+51020d5d03a7fc10663b838e06a03e9aa941858f9a79595b30a6874a22d75d52  writers.stackexchange.com.7z
+</code>
+</pre>
+</details>
+
+<details>
+<summary>2024-06-30 rev1</summary>
+Note: community-generated: https://meta.stackexchange.com/revisions/402072/1
+<pre>
+<code>
+a48a9e6b5756b6acdb5728478246b612263a578a8fbaa0d852e2bd0dd5e6f7ff  3dprinting.meta.stackexchange.com.7z
+826b16125035a53e4a0c339459a42a8aba88fb3d7b0c930212afaa0d811ce4b6  3dprinting.stackexchange.com.7z
+fa54ebb9f5c3083509e037ef07348f25e4ef335dc21e23b31e496ec7ac212e0b  academia.meta.stackexchange.com.7z
+85e1ccd6a3744231616ff2a58780dec248c11fed33850b8a3dce49279c629b2f  academia.stackexchange.com.7z
+e65da5783d44747f596abc37b6b80c670ed1c563f765e8a4a4cb694acff82980  ai.meta.stackexchange.com.7z
+4ddb0d26bfa04a26e3b5692bc6066bb4732431ad0ee10f80f134ad316003a06b  ai.stackexchange.com.7z
+2bf4d0a8baf8cb09fd3f12e4a43ed72e0b02cd931781ab144a24ef61c69f45b8  android.meta.stackexchange.com.7z
+396d763a1133f47f1259b5156e6fe7e6fa0711746a00441d88d391a32df94c56  android.stackexchange.com.7z
+14ba3c7502810c6b4c34f223020a389c8b0a6f3d7da981bac37c63a7790adda4  anime.meta.stackexchange.com.7z
+1cfd9c5b78ecb277e98bdf43ecfad272a42846546dff1c19a285bd9af5b4f7a9  anime.stackexchange.com.7z
+c16842a40dca68ae138f8b0975e1125f17abec08acc3c5b94790ede889ba2707  apple.meta.stackexchange.com.7z
+fb6be1dda0526b925996387689257ed18014974b2928ddcc5dc7ca462dd744a3  apple.stackexchange.com.7z
+885e43757dc67e9018836823e9c9515d83b073696c7da872482e78e8a9e961f6  arduino.meta.stackexchange.com.7z
+3eb63e3db66be16451c40a5ba19060fc49992e5a659693aa91983508473d8185  arduino.stackexchange.com.7z
+79593631660efab2163c5a91e1b8fbda12b156a89359a334d24de0b7c6292a9c  askubuntu.com.7z
+8ea637005076b0336c07f42e3722423aec9453856eb5bd1883dba30b0265b0fc  astronomy.meta.stackexchange.com.7z
+25fe5b460e125db30235e3d929b69d780eac32b01b0885c6783cb4c0beb79eff  astronomy.stackexchange.com.7z
+b390b9d15dac7d5cff4613315203055b1cb8160076befccebd00461263d09ca3  aviation.meta.stackexchange.com.7z
+bab826100dc3c29c8d2665297effaa0c327a63103acd69bd505726d6ce05cf1f  aviation.stackexchange.com.7z
+fbfc077d9fcd06cf9ee15985e3a87158e50ffb3c53fe4b632f557d2fc83b358f  avp.meta.stackexchange.com.7z
+273ad6faa3973635f6ec2239f8dc743e35bf3550d9e904be79e9aa18bef7dc50  avp.stackexchange.com.7z
+3d2bc1285c221cc4d808ed5de722f6432feb32f60a9b20cb54e0c78c2e2ed2f0  beer.meta.stackexchange.com.7z
+6d3f5cf66960e4d89f66cda30316319fad8c5f790956674fc52221520f7f0e86  beer.stackexchange.com.7z
+c8400663b4e2056d3fbfd209014b456c9211ed2e4708eef676df8f8062edda97  bicycles.meta.stackexchange.com.7z
+6cd804887c196f8b47af420c28357116a5044fa7321f121730e33aaa70d8c99f  bicycles.stackexchange.com.7z
+8fac7e92da19e85d9790a760888c0e7011911ac14659ebcfdbb22e5f576ad57c  bioacoustics.meta.stackexchange.com.7z
+dd1994517ddc9533c36bdfe90b09f8232df208a7a0a8ace50769dc8fecec06e7  bioacoustics.stackexchange.com.7z
+6cc488720b1e25c2a830322abff14a1ad6480807637b9b3854ecec47ff710269  bioinformatics.meta.stackexchange.com.7z
+36f9ca77a9116b1cd8921f6bf1a6a27389e4880d22760045717eacec2c90c00c  bioinformatics.stackexchange.com.7z
+f175e249993690480b5a1d48aaab20cd54a5fd3bd31bde583c9b21a5e703e351  biology.meta.stackexchange.com.7z
+1676b3016f54cf23c6c743b84c887cf85dc232c77ddce4559d19a202d62b7850  biology.stackexchange.com.7z
+75f7f051bf9fa12bbf8adafffcc8ae070c5b82fb618b3ccc5d705bfe7000e463  bitcoin.meta.stackexchange.com.7z
+7e2fbfaf560ee8179431095a3252a51fec976b3b8b99bad08f154d2d5b3303b7  bitcoin.stackexchange.com.7z
+192fd0ab8d3a19af6ddc39563325afba7386c03a2e1b9424a04025d748b1d6a6  blender.meta.stackexchange.com.7z
+fa282833842e77efd4283e352e0afba28abd01c10ed02e2788f91b079b6cc32f  blender.stackexchange.com.7z
+ef09c664ad58169336edf71506f9b71cc1a7f1af692c9987cc42ae185a054739  boardgames.meta.stackexchange.com.7z
+811973e28027da3ab335af7b956bac1713a13d2a728755ecbc6e0008ee9d9bba  boardgames.stackexchange.com.7z
+703715d1ede98f07a1630c6859b96adf0033d05684a72d7f2ece076b26deccf6  bricks.meta.stackexchange.com.7z
+aa68ea657f563a4ced633f35af0e377564114a5ab0a5718d8886c01025d619fb  bricks.stackexchange.com.7z
+b6320e34dab8886e6886248db6445126760fb60650d04821ca870f2471a65bdb  buddhism.meta.stackexchange.com.7z
+e939f5ad23008abee8a1eaed7157f7ccadbcc43e28bc66ecc6b062ba50abca5f  buddhism.stackexchange.com.7z
+389e5ec2ad26f9c7795c8f70337dc76b8b5f954a2ee201133d0e3c688b9ba83d  cardano.meta.stackexchange.com.7z
+2786f126adabf9660362c967649c4e24692786788fda5e7a115cff71eed73b92  cardano.stackexchange.com.7z
+0d528b01ff9bcfb2561a285da94be79ec364f5b9a954052549159e30714db203  chemistry.meta.stackexchange.com.7z
+73d9c7c339f4c4c7a6c08f21679d63aadf7b025ffe346ce77ba816cff0c8ee7d  chemistry.stackexchange.com.7z
+0a69304cc0896bbddd17c079491656fe7afb756057922f21d0c67a434623a0d7  chess.meta.stackexchange.com.7z
+c34756e74d2208964cb09ec58024cbc99fb360f3c60447bdfdab44a10a40a0aa  chess.stackexchange.com.7z
+28a886708dea3445464ef16a1629d437e43e3c3651ba4942929cb247d1063f80  chinese.meta.stackexchange.com.7z
+a2221fa9e26c6464c5dc4f89efaa558c9c33086dd441386c7c62b7fab6e58442  chinese.stackexchange.com.7z
+8d544ee26c6a51e917b13d9bff496403fd8644626aab6d3adda08a985a45ec44  christianity.meta.stackexchange.com.7z
+d6aca3e77cb2bb24a1f591f0d58906f6f2ea44fd52abaf43b56c221911fc3506  christianity.stackexchange.com.7z
+545a1086bc1f65a0f7ca3b46e4e63e9131348ea0504a093260065826d3c2895f  civicrm.meta.stackexchange.com.7z
+1971ef80bb3d9e980f26c8ea2edad32745cd5a5c89d65fc7822ab06744f4ce71  civicrm.stackexchange.com.7z
+976f4bda2815fea538e86bcdd6978d9cd05890393bf46cf1bdebd2e46aca9782  codegolf.meta.stackexchange.com.7z
+d4a81b1d5e493f7a4200677d0b7000cbfcba88be8cef9ec6c7b8aa4f5534043a  codegolf.stackexchange.com.7z
+8e91a9fbe80c01d7ae1aebc1503da2f34e4e4e850d445e32d0decc9991a20269  codereview.meta.stackexchange.com.7z
+1067ec59bf311c0d6f3022c6caa2bf34131e83c61cb18204b1501d633544e3af  codereview.stackexchange.com.7z
+cffa4b345616d7bcc249882da29645a36b22c826928f39db688ac21af7344403  coffee.meta.stackexchange.com.7z
+9cd55678cc33b254f1068cd69dce67b17a3ed53796e997d8a43076694b779e23  coffee.stackexchange.com.7z
+804a380c713af9ed559643824323a897305bb1c10d7b64da1f23fb12e6e1fce2  cogsci.meta.stackexchange.com.7z
+1d06d9dd2666281f2a36ea51251580f43ba77288ccbff2dab148987ae620d445  cogsci.stackexchange.com.7z
+8e44b95f5d584b6ff9278e9b6de469bfb2e22d12e167a45f3fef5a2ec7dc945e  computergraphics.meta.stackexchange.com.7z
+48d2719a2615b479692c0f994a58ae8a5fe27ea4d1297a901df9fd349898008b  computergraphics.stackexchange.com.7z
+30a05c5e6495811db57c3b4f4d5808032dcffcd7fed86e13c90ced8228232a4d  conlang.meta.stackexchange.com.7z
+c065647a8d4f1bae8b205b4e88c45dcbf3c32e97a1884162dc6576f8ca928374  conlang.stackexchange.com.7z
+5e420499034c158423a89dbd43eb94d7b0bc4e08c9addaef5ae79f1d2de34c28  cooking.meta.stackexchange.com.7z
+715372cafb886610f088996a610087d8fdf5d1cb38756fe71cf0d9ba5331ac65  cooking.stackexchange.com.7z
+ed88ee1cc3716167dccbaaaa84b4b21766a8d9dfa95a79d19ea627cb12e4d18d  craftcms.meta.stackexchange.com.7z
+7d81ac406ad22670e49a142e1f50727918b589c8f87b822f1d63df5354d55c94  craftcms.stackexchange.com.7z
+c81e83b90eb9ff0988d3c8012678f76dd9f355dce2860b85b6d198614eda40a5  crafts.meta.stackexchange.com.7z
+9d0a3fac42d7e5ea023fc96d6d5b6e6bf2ce4e4e8e58bfb4191db32c5b65171d  crafts.stackexchange.com.7z
+d8c461ad26ffe37d5890dac4af598450b646d54a3e207de3561ae701dc5a7ccb  crypto.meta.stackexchange.com.7z
+30f85aa942492edc6a29e6e9ba7f2557190d51a5bef0708d51690b649721a7dd  crypto.stackexchange.com.7z
+24a72547c7e559c62efcc8a608779db92e0d247374c9b6f854035a9a0a6390b7  cseducators.meta.stackexchange.com.7z
+dd932c0b547519496c7c54fc44c03bd7666e0068c06bfe7e21a86f757eb5d85e  cseducators.stackexchange.com.7z
+2650fc589e86093d41136b4be1e653a1e5de523fe3d2a89808491037075ff24d  cs.meta.stackexchange.com.7z
+1f02fa49e6119a959bcdb04b2a29f69ab812a50a8e51a01e2dafa349d8c23c19  cs.stackexchange.com.7z
+eef6db6d055b9eb50cceeb04fb6d8a8cc675cc0a484451588aa82fa91e5d793c  cstheory.meta.stackexchange.com.7z
+d9ec0e38553ad5e0e893c1b723ac998e0917d8061cc9591cc2b46f4085099a23  cstheory.stackexchange.com.7z
+ea969d3396bc772f1061dffa7b9e55c48bdf0ddaeb92d861201d822384a2824e  datascience.meta.stackexchange.com.7z
+a81a6f5290b5ea1c2fcee7f06a3534a1cdcc0608d5510c63bce78bdedf6a494b  datascience.stackexchange.com.7z
+7827b625a7df24ac890ca01017519169a711a3a999a5e90c736d42e62b9022a7  dba.meta.stackexchange.com.7z
+b0a6fdb04958d0acc9606da3cb45d028316cdb82530df01fbc581d661a99b024  dba.stackexchange.com.7z
+78e8d1d2ab98fa581c564df8ac64661fb5cf28f20e768605aaecd05f8bc85085  devops.meta.stackexchange.com.7z
+2796e25257a80b237cf843c96df0878074730cc4babcd6b53f3ce2d4661278c4  devops.stackexchange.com.7z
+00bbe2395d0ef40653267af98a08dabb702331b3e557867305bebdec792f2d89  diy.meta.stackexchange.com.7z
+0cf1887ef3648ea22f56428af118b131f4a6b51fa0d27de0c97ecaf083e25556  diy.stackexchange.com.7z
+f4092319956334476ebc8fef0ce9a680f7bc580a256f5a8d254093431780a7fa  drones.meta.stackexchange.com.7z
+82cdfa30a9bb4f7f6d14bda4ed5099725febf34bc060ea1ed4d160a4b751d872  drones.stackexchange.com.7z
+8c0113985abe17e3bd92c2281db29743f019405110979da020f511f9d329896c  drupal.meta.stackexchange.com.7z
+54358dfdf48390db1387f58a4f967bd928927a0245040cf34d64d6505986eaef  drupal.stackexchange.com.7z
+e7c50123997580e00befc79dcd8011219a5d6fa714ff63720099cd6c93805064  dsp.meta.stackexchange.com.7z
+462787b626f5dea0f4530d3b6e4435b9ed7615826b247d7f4e290f519ef17a62  dsp.stackexchange.com.7z
+a58d864597da6e84459babf4eb74c61488b5d8cb9723c2db18381281dbf5d2e7  earthscience.meta.stackexchange.com.7z
+39a047fa498d2823c0d580e1b1cc24dd7cf57b6a92e869e6f7392cd7433a5cfa  earthscience.stackexchange.com.7z
+2853de442382be9bf3c841365b66a5367bd7f0fa796e812e88eb4b1db57e6c0a  ebooks.meta.stackexchange.com.7z
+c950a4671bbc42efaf53d10eb3a76c3263edae12cfec90f0f7c982b29cbcfec7  ebooks.stackexchange.com.7z
+9ff81fea5542c2807704c37da9497ebf7666cd4dff5c0fa7977e3cb6af2f572d  economics.meta.stackexchange.com.7z
+4c66c71a7771b9b3ef11ba1ab2cffa2571969f138598fe425ec80e7c0dfb09fe  economics.stackexchange.com.7z
+67d4ffb5bd1ec51657d2ce407c9481d303e9e607a9c8bdd730098459c61f7808  electronics.meta.stackexchange.com.7z
+d05d839bc744a01658abfa78301f12d421f48d51d43f1d7421c9067e0f910cb2  electronics.stackexchange.com.7z
+55ec72eacaeeb6aeac33e09c9ad90bffffbd112d6b02dbd04fb0f5bfa510807d  elementaryos.meta.stackexchange.com.7z
+196d9ee58c6fd0c0bae58cd542702f0c891064c17476b3ee91d9297559740fb6  elementaryos.stackexchange.com.7z
+cded3c89b58ce8d7e615c9344803df4ccad70a9c961c9f5031a81103d85f41b8  ell.meta.stackexchange.com.7z
+23938665229d76da7d72f8d0d470cbd01e4dce04875167a704779d3ef4ac8ca1  ell.stackexchange.com.7z
+fff1db330a4500c066631143259479e6798bfb7bbb8d7a9ea7ba02b3ff6fc2fc  emacs.meta.stackexchange.com.7z
+6c7bb9142cafa9e67e9714307cd0ea1ad47a06ab5bb1037f5876b0cba6544a46  emacs.stackexchange.com.7z
+2b876b4c9bc3f894101fbcc304b5b3f0e4af0db201332e82747492c2e49f7e81  engineering.meta.stackexchange.com.7z
+afcb3421e4c1a10f1d328b64b46b7fb8c742919d17d6a08aed65ffa795d4fbae  engineering.stackexchange.com.7z
+ced728758ff4b1c936712afa53ba43dc2c97567cda233e6dac1bd58b74e858af  english.meta.stackexchange.com.7z
+e3d391f7a8bd841c75575ce4795be2d0aa7e49a0f4b2c77d99d26e03c340199b  english.stackexchange.com.7z
+4b233899c0e6969baa77d56b7dffde757152c36d2ff0c11987dedc261996f39d  eosio.meta.stackexchange.com.7z
+62bc0c26c2a2cd364934dd23a5a2f987b10dbff8bcb9e4f5fde32ca9522a535f  eosio.stackexchange.com.7z
+68c8ce3e06ae8c9bd17fa24a9cef9a32bec4cc39a19987aec64bc5acb83e4575  es.meta.stackoverflow.com.7z
+2432d0201f35a4b8fd5fe642924a33e8b6f36d59c839fc4d36264f82f1e91d46  esperanto.meta.stackexchange.com.7z
+113f738a7dc2f50062296a105453ffa09386d9e0647b08288a81baf6a984b021  esperanto.stackexchange.com.7z
+f5d05d728ffb2969424ad88be15c3ae9574656c3120d0446a8738bceb4b66d26  es.stackoverflow.com.7z
+f98f5336be76070ec749dded63b342eff020ddfe0ee49ec8589643aae921b0c9  ethereum.meta.stackexchange.com.7z
+1bf1ff8b25141eb0b8ee07dc23ad34948406957f4360c40473de722d0da629b7  ethereum.stackexchange.com.7z
+d26797c0adc553e8e14166fa36dedfbab77dbfeb5c077b55e2a0d15562c1c29d  expatriates.meta.stackexchange.com.7z
+9b0db789af6b87a75bc60441ff0819271e06a079fa10051cd0659d3eb115faee  expatriates.stackexchange.com.7z
+60c795c9d4fe0f0dcf97b61deb8d34e8ec4bc3ed568fa0b9d8fb36ac82b01e8a  expressionengine.meta.stackexchange.com.7z
+e2415b55c38955a007f33f18b1578e0e537226fce707588d1af239363ba2a940  expressionengine.stackexchange.com.7z
+1676287bafdc5e7f6a5f53a75dc10aacb5d36ce27adb69cdbbd42e95b325095a  fitness.meta.stackexchange.com.7z
+3128e5e7cb76ca66ec20bf7c6a3bf16b037d8044ee7688f21514f98d048e1f5b  fitness.stackexchange.com.7z
+093cbbf60297d0fe2ca83c942a27ae24626c59032a5095ccb596b8b953639711  freelancing.meta.stackexchange.com.7z
+dd3c4f0615cf2179faca14f924b978025bb8a2410d4b7ff2ed289f439ac0381a  freelancing.stackexchange.com.7z
+b77ff1f2a0d9785c08c7adec2d06390d49b190599fd9d4c7ce6374cae24e93da  french.meta.stackexchange.com.7z
+98374228170a3617eea23c73b98dd81e343264b64defddefa9228d05b42f0da4  french.stackexchange.com.7z
+d0cf556c7fb584fa9ebab95a45f08cdf044b5d564ea1ef5223d130e28f982adc  gamedev.meta.stackexchange.com.7z
+b87a739190f4e143d5edf12eac931bda60fdb8301489ae2976e1a930091a905a  gamedev.stackexchange.com.7z
+2d988aa2f8d229768be107881b9b8b470575751b784eeb396157647e0394f13f  gaming.meta.stackexchange.com.7z
+fa4a7f1678c13eb2773dba0a370a77b371a2fa335f2e36b8d6af4cf8349d714b  gaming.stackexchange.com.7z
+12324f36e33811819b8b15fbe28035593402dcd273d151306c78ef380ad99caa  gardening.meta.stackexchange.com.7z
+d7eb1b003084ed2ea6e04d499df224c1109daf7e23f8e97a06008c01eaef1a2a  gardening.stackexchange.com.7z
+1167c308c6886aedccabc292700bba0e9d23008fcb0f0296fbb4e79adcae8a1d  genai.meta.stackexchange.com.7z
+a6809b6d8d806dd5abfe2dbbf86d14a7f9d71067b2e60bec3c11018710df3ac7  genai.stackexchange.com.7z
+8018721df8eab48b6bc0c5d191bbdb04bcb13afba3e97a3ca7f0ab0a38fa86df  genealogy.meta.stackexchange.com.7z
+c5c51d80036c5601f5fc878412c9e6a1e7abf8c68616e394eb51472fe8fbb733  genealogy.stackexchange.com.7z
+268ff7cee7e5a659c72cec8acf88bbbaec64d352cfb0b441102cce174d620725  german.meta.stackexchange.com.7z
+881f73c79a745db59c638c66084f8f7064ae1c5f6d6259b6845e9e8af3caf95c  german.stackexchange.com.7z
+d9f11b80c267644c776f6c45ba35fe425027e3fa2f07aa97be219c7a47e016cf  gis.meta.stackexchange.com.7z
+6995a4b051a59586d297e218b8827575699960db7303801ab493db7602b7a132  gis.stackexchange.com.7z
+774132253909d3463a579cbec8eef5a77f5d2618e6075526a711b069f9c06420  graphicdesign.meta.stackexchange.com.7z
+ddedc45f0e0917339ebc7f74b98b650615cffad0ed9708f70592129c8e537bf1  graphicdesign.stackexchange.com.7z
+33c6d9c3e483272eb5adde087eda54fb7da90316dff3c1b791b7d7d993e4328b  ham.meta.stackexchange.com.7z
+d5a714d229fda5b280f90b18c1f48bd6051bc05d4cd9b559482243db197fdf28  ham.stackexchange.com.7z
+764222ac7b000485ac32cba2323c8e0cac5fb0fd380b3c38c922afba587e98ab  hardwarerecs.meta.stackexchange.com.7z
+078c2942d00008c71034f05ebf6a3248681f8cd53733662c61630c4c5ea582ab  hardwarerecs.stackexchange.com.7z
+1b612200b15f135b0383e7f9e64dd8490a790e1fec633f052c1a8197d996505a  health.meta.stackexchange.com.7z
+43df2c60d0038f9fc9eb9c41aeaf19dbd48004e607c26b6daf614a840cfc0b0f  health.stackexchange.com.7z
+3f2d499b752ee0159318af3821cca3eda0cd8be14ae59538e0703938b2f0082f  hermeneutics.meta.stackexchange.com.7z
+9e05235d28686ace1ba1bee49319a84ade421784e9eb027499f26dca24937b86  hermeneutics.stackexchange.com.7z
+48f556d22bb7d3008e97ceb1c46642968b7795f0ea6e9c2f2aee946cd4670a42  hinduism.meta.stackexchange.com.7z
+7c185e26e3dee7d6ece5df48a901b99e5ce18762eab40fc6b6db9391fe4b1b69  hinduism.stackexchange.com.7z
+ecc513f9abf99e8b91478359b977bad61c1e732b7a02e25ac00a2a4aace2cb89  history.meta.stackexchange.com.7z
+64c9e1d9e78a9a1001703a7f372a6315a72f2950c91ec0bfdfb849b10c7b3d42  history.stackexchange.com.7z
+1c88c79c223d94602bc6b9e3bdefb40a941d117cdddc0ee80efb81e17276f575  homebrew.meta.stackexchange.com.7z
+0efb0fcbfbb933fc7331a4ca49574304218057f280b5aad545f8a2cb8609ed27  homebrew.stackexchange.com.7z
+a91aa3b2f44ffbf260e1d68f7a2b4706c3d1a75e63bf920c92cf7fac8f656ec7  hsm.meta.stackexchange.com.7z
+8824eb2c0b1ce06505866b0f8ce18eb27bf5cbb48afbf4881bc8a690d0aee14d  hsm.stackexchange.com.7z
+ae32d6cb0b338fdd3dbc4635f707e0172ea3bc627d2481b41e40cad6eefce9a0  interpersonal.meta.stackexchange.com.7z
+7db0cacb70aa84c9bf957774e7064fe5c2ab37c98ed22ffab1899306c75a078d  interpersonal.stackexchange.com.7z
+6dd62e222ef3cb3948f00fb80ecd90afb940ead6c434ac125d34e223b04a4533  iota.meta.stackexchange.com.7z
+f7883f0373c18f455929c29b140220bd9c0afecbff88c426fa0562cf333f2432  iota.stackexchange.com.7z
+88609c4c760ce9f017eca9a571d34bda86703d0ab9aa8ca9c5a1228f6c967871  iot.meta.stackexchange.com.7z
+a685978d9264a9de54c60726ffc1c99a8a30c16945734fc4d9820917acba4998  iot.stackexchange.com.7z
+d87eb5fd3ba538069a056f031fcd5b882ee5a0a83f912caec65ee7ad5d529741  islam.meta.stackexchange.com.7z
+0774ef643c5e224c04c924732def82e3aa18295584741df929f21e4577f2dcce  islam.stackexchange.com.7z
+74e499f468374ad5ca9e5e02d6452a5edef9cf73b2bdd1605ef5022f65498564  italian.meta.stackexchange.com.7z
+478d17791bd8456a380448e99bb61351fc6e61fac2b7f4f3e9b5e5eca7c89f55  italian.stackexchange.com.7z
+b5e9ef0870f5d564470769450c058d943137d3df8101498d11e8e713d90f45cc  ja.meta.stackoverflow.com.7z
+55775798efcf7c52e8688c26a9197ec215c07bbfa1a06efa7c34370b67314e44  japanese.meta.stackexchange.com.7z
+04c353a8b116107c2d40a88887937aa025c215bc0a3fe05b44a229212cd8c7f9  japanese.stackexchange.com.7z
+597b7525d2d3cbc85774a2844e47ccdee774337c26160c8f13a78b723c9a26b8  ja.stackoverflow.com.7z
+bd09d9ba7c7ee1813c7cf8da4ab14d49ca76f07139868088fccae88b65028e26  joomla.meta.stackexchange.com.7z
+533dcd3962393512606525596fec5799206c8a49650dd9de01a1fe5968739064  joomla.stackexchange.com.7z
+6832b34c78ba1a37899d2c5d8678e6c29f215568bd798705ac389aa43e715d34  judaism.meta.stackexchange.com.7z
+8f52b28e27c30dc98d0333ee9dcb275e60217533ccee1be678e80c0b3d84fb7b  judaism.stackexchange.com.7z
+37aca7ae0e64f8a6dc4f806bff969ae0b5437c9cb2e2d4a0ce3a08552de7ee03  korean.meta.stackexchange.com.7z
+c890a777d91e05d5f03bddedad2ce520fe36e807401ed3b28e0e8d3fb6fd2d15  korean.stackexchange.com.7z
+f277f53979b61e73350ca5a531b26a83f89459153a32cf30131162839439bea0  langdev.meta.stackexchange.com.7z
+4e136fbfc130f2c8870b4bf9b8848e0e05960e223b1cb3c5cccc3559921e0c9f  langdev.stackexchange.com.7z
+783023622599ab8f950bd24f13f08c8748cf2eba1a76a24c70690fdc709bbd2d  languagelearning.meta.stackexchange.com.7z
+e10bdfe4c5fd428a593d541b5cadda377d24e5a03ba9086e026692ac6c8b870a  languagelearning.stackexchange.com.7z
+9ba7ecf64a7cac650dd452d5c29d443e75a1636384781ad19d25ef9ef2b9a935  latin.meta.stackexchange.com.7z
+a9cf76c9aeef95f9084e984ebf57dc3b2b7d4d58c0e80eb96254e0c51564c308  latin.stackexchange.com.7z
+17489156cbcc4513ec943a89894ad86a26345fc9ed8ceb38d3b0c4cf0eee4a00  law.meta.stackexchange.com.7z
+9fb27b5780b866bd8e8b3f8dac8bd5e06df47e1c80c0bb670a11f7479b0bfda5  law.stackexchange.com.7z
+a431f8e5a81e64764b964ab43405bf71ce60db9178446af40015f1d4978e1d25  lifehacks.meta.stackexchange.com.7z
+5b5bd150b1ed4db38b97e64c807f96c2451d571a43babd5b92ae1b1f3e03ec66  lifehacks.stackexchange.com.7z
+165f17fbc11d9d90478344594f9700ddf65a99a92b6c383a6301b05457534ae2  linguistics.meta.stackexchange.com.7z
+d8752adf0b2c18ddfa46b6c433558a40ec3b2a0b7a1c3f8554c57784ea3c2e69  linguistics.stackexchange.com.7z
+8bc5502720e2da0296a775f9e50aa4e1918ddd94673eef21f8e90e835d54e0f2  literature.meta.stackexchange.com.7z
+a871ecbb82e421773d86b3306d0c2656bf7345670bec5a1abbd24e80f05e8143  literature.stackexchange.com.7z
+03ceeb2115b1c217ca11e744690bd700171ba54381ec83ebd9abc07f3ffa5eb7  magento.meta.stackexchange.com.7z
+3504afcbb3a78cb0368ab2a7e0fb5ba256c678179eaf01987727eaf9724e9487  magento.stackexchange.com.7z
+48d8d524e032056fe2446fa1070edcd5dd9b541f9cf4d52544e6274c26b085d1  martialarts.meta.stackexchange.com.7z
+03043d524375ea98820d4d175b5b105755fddeef5a08be0ca747baa097f14445  martialarts.stackexchange.com.7z
+854a9ffa78caa79a7d98d104c2ab89f1aac48735b027ba923a81de37f7961e66  materials.meta.stackexchange.com.7z
+07598435896998d9a414873fa6695bde0505c81bc41bf6c7a50591e1d7377e4c  materials.stackexchange.com.7z
+9e63cb1494dc9995da8c649ec53ebdc95f810048c44d5e79ea599c3130166b70  matheducators.meta.stackexchange.com.7z
+fb5a2dac24809a117e8cd7b0a391bcd2d09d05ef98e3e1ce8d029a90440056e5  matheducators.stackexchange.com.7z
+81a1afc70df6897ee938f348a23e30d8756e0b80fd5c6d8d52dc21c2a97b654d  mathematica.meta.stackexchange.com.7z
+ae95d733b667ef05c8ed4d87af2c2cc6af4091e7b7c6049a2f7d5a4c6aceed24  mathematica.stackexchange.com.7z
+7c84b525d0b2f76643eed41974c1d70525bb070846362c7e810a6ac96ebdd7c6  math.meta.stackexchange.com.7z
+2f9f82c9ebbbdff05b09e120583edf5cabe44339082bbdddd224460423777950  mathoverflow.net.7z
+180f01504a974b43ec036200ebd322b50a7e02fbe03106a21011bdf5d71aab56  math.stackexchange.com.7z
+4671fd299650901c3444ce4e06e0041a2c9c0a297c9d29884dc5ccd3bbe13266  mechanics.meta.stackexchange.com.7z
+8f18b6b417b6ddfdec3889f430f3bb311b2c88b6fbdd5691a63fe9ecec294895  mechanics.stackexchange.com.7z
+4076bfa9239070f7656afabde15f4f587323654675e55e4435edde298372042b  meta.askubuntu.com.7z
+c9a92b62060b0402990608805dd5fb81833b8db2f8784dd8bc6f01ed3e853a2e  meta.mathoverflow.net.7z
+a7fa2efdf14517a5d9047063a31e2c4660d49263c2ef1f66cf4927a9f5219c3a  meta.serverfault.com.7z
+59e511ab134cd43ccb7de4d94c6b2aa740c1757f9c445824c8faf4d5c86aec67  meta.stackexchange.com.7z
+362dae7bb0a0e656dc7a81ac5cfb52deabade4e8285b9c4114ddc8883db6204b  meta.stackoverflow.com.7z
+04fe48964f6591fd3d89981ab2402a3bd31f0303f43664d6384cfa8f543da57b  meta.superuser.com.7z
+fabde74c91e9a2934c00ae9f3b75f525d1412f30f8113d11845e7afebdb0be0b  moderators.meta.stackexchange.com.7z
+dd73136e6dd6264696aad671ba3132244f969454d5b3e6265ea1ec96fd399928  moderators.stackexchange.com.7z
+ce9e2debf6dba11bae8a25429cb21301cfe8a9bb5104d8a147a0635f2a510d82  monero.meta.stackexchange.com.7z
+95f65a1d980fdd948b50db5600844a6c6819ddbcdee6b5baecd4c3395f3d6690  monero.stackexchange.com.7z
+579af4dd55eb7769f9c00f1b8288ad707a43b344f025e1cf0cd9cad7443e2638  money.meta.stackexchange.com.7z
+cbf4ad4e23ea52a1ff4b1578c5345efaf565b760eb23803b709d6e8ba1c0d279  money.stackexchange.com.7z
+9b68d1869d08f311511795ceca7b7d4bf325bc28b42c3d761cfb1b1020d50818  movies.meta.stackexchange.com.7z
+5a20a99d11b0e130a1ae6b5747eb7f1a12521d6cf13ee52e2e0f3518c8c5d3aa  movies.stackexchange.com.7z
+4c7362fdf38aaf14c625ccbc6f1e5614bc7054955529ab56bfec2c2187946ea0  musicfans.meta.stackexchange.com.7z
+1313b682dfca10edca5fd78ff9b589184843aa2ad7d9654ba1fc17fe586b0b74  musicfans.stackexchange.com.7z
+c5e8d052b17abe4a69e338c077760e0a0a899e8d5131416af471e232291e8787  music.meta.stackexchange.com.7z
+012fd3facf6ba5156de16a69def5e2b62a3d2e31b4f312da58e57e67e2a5dc36  music.stackexchange.com.7z
+6ae2163b2ab2e58ab6a131a540960e2d37fcfbd271f67a7b648f09bdbeefcbeb  mythology.meta.stackexchange.com.7z
+702a2a0ed274ffd0e9fa334c78ace1c654fed5064e600f43ea0a7739fcc7acda  mythology.stackexchange.com.7z
+e2dbfc46f77bedc50bd26fd0a0a7b5af6839dcb628e96e68627f2b9ff2d8e884  networkengineering.meta.stackexchange.com.7z
+677db67cbb922085d03a36051224c121ec4e275a9feccdff9d7b321ef607ca76  networkengineering.stackexchange.com.7z
+5d6a72d172cd585d7ae06baf3a7a9536901d34c191b61685adf5f3353a012595  opendata.meta.stackexchange.com.7z
+46d322f91204f1b539682f1ed1f07a627207a8ec0a4987caab04a66818ceef3d  opendata.stackexchange.com.7z
+a0393e33ebbedd84a68bf152fad6f78d3da70e30d64ccc38c3292dad5f9927e1  opensource.meta.stackexchange.com.7z
+31eaf98d47f79e70692a7d8e16db7090f30d7a97ffd31b3359bd545a91e6a259  opensource.stackexchange.com.7z
+792be9f1daee74dbdfd10bbb04709debb46e406286c7c8508e8fdc4ac8a3af28  or.meta.stackexchange.com.7z
+800f93f17a49f7072e60ee39f81d754f1bf353c2d12e848c56ed49da03705163  or.stackexchange.com.7z
+05cc602d66d16ac9226a400817644de8e4038e35e959e85dc786155cecab556b  outdoors.meta.stackexchange.com.7z
+c2f883d2eaa5418ba910f0dbea80ff7baa5226c8016d23fff98e94b5ba863e43  outdoors.stackexchange.com.7z
+bf33a4efa0a66968336d457f32b01b14b5064a927afc3ca27d1074063ec5e218  parenting.meta.stackexchange.com.7z
+2afebfff4d70d8e48b8b9407db4729194d440cde18d51e6907aa67b6d1c855bc  parenting.stackexchange.com.7z
+c36d85ece71331123854f1954d157d159f728e36531fe89c42e4a80acb47aa85  patents.meta.stackexchange.com.7z
+5a6a0e2ef23bb59fc2dac35728ee9a8a28c4b0ee3d16c6838d13f764c32667f8  patents.stackexchange.com.7z
+bbafdc7a7d573f04f4fb6f868a49f9ee05748168f734a24374d17fa98f207047  pets.meta.stackexchange.com.7z
+7336fd429bfc5d7cd2dd13211c26890fa9c25bcdca2c19e18ca944ff8b4f1be8  pets.stackexchange.com.7z
+2725cc4afe0531bd9082d2ff398915551d29c6159adf8828544dbabe3e3cea74  philosophy.meta.stackexchange.com.7z
+45176c32e7b5d587144e18bc3e159e6189730b08b8969cd61092f5dc08436939  philosophy.stackexchange.com.7z
+3d7076d7d838aa77841cc9d5089ca6796af4f337a00ca737bf71f2514ea0ff74  photo.meta.stackexchange.com.7z
+a1635ffd12720ddb8754fe7b5e073153e3446d1313eaf36a24b694d6e5025384  photo.stackexchange.com.7z
+3dfa57ddff9456cb3437c0abe3ab383f36c0f95b8828cd2b1d8f84d327e8954b  physics.meta.stackexchange.com.7z
+a3a23677ddfe7bc74caa7116ae05b0bbd26fa34f1e24356f212ccfcc48d01159  physics.stackexchange.com.7z
+5c71e42c4d0bc49fc245a3b3f3d9419fb936789be7a764c1096c977c4e9a8055  pm.meta.stackexchange.com.7z
+f8e5924c2afe01847d5a0d53e451372733cc7debd9ed182431ff01a8b3a767ec  pm.stackexchange.com.7z
+43f9cbbe86f6c511c1365f4120878e3be03293fa72c8f54fc3c146de91686181  poker.meta.stackexchange.com.7z
+7c7cbb49b70e12d7352bd47d05c9a173f6e9bd0033a27a119dcbb7a08d0191d4  poker.stackexchange.com.7z
+09a1d57c92a302934791dc396bf60aeb1e4e9efa299692c7b30b9527724aa1de  politics.meta.stackexchange.com.7z
+095bdc881705e7916dcb0f2c598320fb29b6c868a6a44c736e03ebba96e6038f  politics.stackexchange.com.7z
+7b79992c4cb1c95efdd923e60e5b4059775ae82fe80521620a80f0f368200751  portuguese.meta.stackexchange.com.7z
+438fd56765466821c2b9398e1efedc73ef8a7ddeda82808eb5affdd805b20c0b  portuguese.stackexchange.com.7z
+057ca97587589583d53eac11c4a2c8c664090304b0782d2d048bc9046ab15489  proofassistants.meta.stackexchange.com.7z
+a966d37bd34df2fda3409854bed10e3a299dc17c74ed29412eeb0710047595cf  proofassistants.stackexchange.com.7z
+fc8d08c2d8ef1ad856b0714339de06daa87306cfc3e61d2c24a1668d68b687aa  pt.meta.stackoverflow.com.7z
+521ecb4f25263e5d63bc8d3040c89110b835f9f8edf1b1d99d0c09726536b288  pt.stackoverflow.com.7z
+eb7554edb72168a4ffc5ae1dc7762929a5739c569b9d8d55a2cd3a458bd2ce5e  puzzling.meta.stackexchange.com.7z
+b0f046ad6d0110ca449134d01ba4bfb3edc788ec01aeb61904cd6d76384a1578  puzzling.stackexchange.com.7z
+f51ae363c57e8148bc6930cd4706ba669f38a7d0ec54d0f5dbf46646262b39e3  quant.meta.stackexchange.com.7z
+0dfa1f6e7a9ac74fcfd6e97d9a8214fb4e0bea6fd414cc601c0c253c536209b6  quant.stackexchange.com.7z
+484186d3c254fee956a47eeee06dd1b758df85c6fe0ea06ed7252373a85c09cd  quantumcomputing.meta.stackexchange.com.7z
+ebdb0f9d907ac49c21ea7f0ef332e139c8e3a4d16edc313694b6ee4388b02916  quantumcomputing.stackexchange.com.7z
+5f4587e289abc6ac0a90b823a97da32d312456586f3ac857d4d660064e5d90d0  raspberrypi.meta.stackexchange.com.7z
+0e47ab1131d83398d015c5677fb06a0d8bd24ea1337d89d877883048d3930116  raspberrypi.stackexchange.com.7z
+d9c3d502b7497b3d8715778242ac835b76ad22ef229dfb9d20e6bc95527b5eb1  retrocomputing.meta.stackexchange.com.7z
+b349a2fe9431219224c15742ecd1056389b2549ad56b4067643e8112a52b2a2b  retrocomputing.stackexchange.com.7z
+b140ffb05cc3f0d54fcb62da4bf5b91042e85e0afd01f5cb78f92e2cbb2e3017  reverseengineering.meta.stackexchange.com.7z
+17d6975c4f77badb24034aa7d7df442939eaaab84c928d739f9e88c3d76f0135  reverseengineering.stackexchange.com.7z
+5eee854c8368def1f19dfa60955f09194999e032f7bc69553219d19be62f4469  robotics.meta.stackexchange.com.7z
+fd58502a7405439d11b0f43d7dcffcedfab846e7bc452eb8c584c087add87ac2  robotics.stackexchange.com.7z
+0bf936f0860372a9b684ed3d5a0da38457a46302c98c995f3afc297e2e925adb  rpg.meta.stackexchange.com.7z
+86f1040c9843d25186952a1b8706e93e54a44ab2e89d42be5c2b1b0818338f00  rpg.stackexchange.com.7z
+93ebc52df552791ef2d024fe4e76b5cd7d0fbed070203e5ed6e7d7f1cda35ce2  ru.meta.stackoverflow.com.7z
+ca7200f1527dc5774708eacb4e96793a55ec971466896aedeea53eb3404e0ff1  rus.meta.stackexchange.com.7z
+d013a64c4c62bed5ee864db734337784701b4fc0be76ff9ce2c02447a6436bc1  russian.meta.stackexchange.com.7z
+9f4672d87ee144edd9f25d2adf09156de7e38482d113af35df2f40bd91139c74  russian.stackexchange.com.7z
+6ed2ca06de6b135abcd43942946c8bc191ea8e221da5064d77ef5761ee931798  rus.stackexchange.com.7z
+f3a37a50350b4c236e808e6e0da46e6b7ebd42e399977c9e8e80ce51bfd9e531  ru.stackoverflow.com.7z
+4a3ee197096226bda1e0fbb668a9ae1ff375c1906d3f01937856b0c677648469  salesforce.meta.stackexchange.com.7z
+722627cd01656d4fd435b3e89bc97deab5b81d68e8184b9bf90e0a79463c9d00  salesforce.stackexchange.com.7z
+01c8c290702c3deff73592e921e5f8559be72e23d7194990a2ec3bddf2c943bc  scicomp.meta.stackexchange.com.7z
+2396ceb1a9e2bcd57bf16fae49b9bd3db0a2ba6e6a6f47f7118f1677408aa620  scicomp.stackexchange.com.7z
+5865836ace132c96614e47060f8fcfa0911761cb0e1df7d30c2ba8d1e9f6cac7  scifi.meta.stackexchange.com.7z
+c4cef1f434ff340ee1198a1524ca576686acbbdda9fd94229a5ec27712dc1342  scifi.stackexchange.com.7z
+fb0db7b4d5eab656edcd31de109fce7ca7e97bf94dbec0e0cf7e4019173b219f  security.meta.stackexchange.com.7z
+c36802a967922c18431f6d455250d7ae24690d57363a4100270d596f74cf81e3  security.stackexchange.com.7z
+e3b0756725451870825b02760e5c6babdee01b82366628e442af04d0a65b86f3  serverfault.com.7z
+f52eacd160e99e291554382fd40b7afcb7bbde8fe4aa3bc6bdd4ef6470a1bce3  sharepoint.meta.stackexchange.com.7z
+b34fec2bb6491016ca9cc179c3e8cc686255437f85c20b0d01bed1e1d7483703  sharepoint.stackexchange.com.7z
+4cbf5fdf2adb0f594e02a13be8bc9e398ef6fd7d97f3e8fa83d386909439c9a0  sitecore.meta.stackexchange.com.7z
+6df134a36aee3454faba053423f2a646ea05e00291f7ed2a1f4112c5f12d173e  sitecore.stackexchange.com.7z
+af79324755559acbd3d68a8e6b917557b4df6997e11cb582b4ad3759f2c7c5ee  skeptics.meta.stackexchange.com.7z
+43ac74861cf5a35571e268d9a3f3d13441a2c63cf8ca41404e87c9c3d460d1e6  skeptics.stackexchange.com.7z
+f4fa9d567742ae629ea42669633191c8f0e74ec21739bae72493f1fd6641e4a9  softwareengineering.meta.stackexchange.com.7z
+e85deb577662aee6f1380de2bd313f5802f47c9762b0cc99bf23eaf662b7dc51  softwareengineering.stackexchange.com.7z
+7a38c7c35a39e8c5e4c1f1bbb8484bab70e8b7347d732412b747b736031f6691  softwarerecs.meta.stackexchange.com.7z
+d558b4179a96f9d418a0276c0dfb3f76b44d3b8b8fdeeca99e36207061df6c28  softwarerecs.stackexchange.com.7z
+cef0166e25d967fff7f313bf215b4b04b236484406e6925c52378f92b37b8176  solana.meta.stackexchange.com.7z
+c87af79c77c6683834e1f7110fce6372d82cfa0bad2bf4be7c99992aeb756565  solana.stackexchange.com.7z
+1910eb884e7f19e1e171d501e8c05ac5025e6c55f4747a5e7ef5edb5314a86bb  sound.meta.stackexchange.com.7z
+74516e04187c2dabe6aa1451adc490f3dcc60d8316fe172a6961e27d95d0cba6  sound.stackexchange.com.7z
+2b7f6690170fc6649066a6eb07f42a53f7c8fb3434ef1601cd819708457902a0  space.meta.stackexchange.com.7z
+1102a6b05a9e170113954dd43fc14e39f4361f60a1b5b3260a22235b495b0785  space.stackexchange.com.7z
+edba3751add45b523d4e6dbb8f5757ba691073e827a2ca5512b20b368a1434e1  spanish.meta.stackexchange.com.7z
+c11c508dfa816473933dcc5ef2f4e5ee26244fd191c8130a13dfde033c369e63  spanish.stackexchange.com.7z
+bcc8bd0b1fc55b65addd87a811db51e1bc5d942fd3659c49a57da47b7e764f36  sports.meta.stackexchange.com.7z
+36f3710a485ab31f220ed92e1a85d77cb4d826742ef7dbab59e0a405691cfd1c  sports.stackexchange.com.7z
+92d8cbd6f7795f3c3b80dbd1faececf1090dbd9586fca4309425c9c4fe65a83b  sqa.meta.stackexchange.com.7z
+a112a5c6e501335b64c29b74d51cc3c7699518344c6eaa5b3faa97c472225be6  sqa.stackexchange.com.7z
+c4ebffc9ed91bdfabb8c2265ce9346fdc86b1aa4158062c987a6f6dc813560e0  stackapps.com.7z
+96f2ddc51fdc5bf34b0654b46e8e01996d5ab5e5431a64418b445c83dcc3112d  stackoverflow.com.7z
+b3114effba9d1e60b5d7e8969edb4a1bf18d9ff8b83e9b60e88d79482026f507  stats.meta.stackexchange.com.7z
+441b57ab891dfb6648b4c47400d8f2cd27e5e94c2b73b09a6e0a72e76c012fb7  stats.stackexchange.com.7z
+594e4ff6dd57248ecacc816c1918d52afa4f4f8ebac965c48fd3291db319e86f  stellar.meta.stackexchange.com.7z
+d0284d15f812231cc24d85827e5dbe113d37cc894f7afdac9425c2b2595ec1dc  stellar.stackexchange.com.7z
+8391a3dd5b1b71910c6cd920928a427509d123aac852798ea0ae3ad9f579ab04  substrate.meta.stackexchange.com.7z
+a1de16d20b216d38653d3158861bcbd60c80fc35f9e9db940ea3f2845657ed8f  substrate.stackexchange.com.7z
+c814536cc5e48427d8debec71a632a32185074d155c06bc6a32866a21b2f293d  superuser.com.7z
+1276dfe537d6e0a990006c1835065f3d4089a4d817067aeff85e7d47440a948f  sustainability.meta.stackexchange.com.7z
+ca88d1a3feb9b573208cac8e6b62bba765925080f20e959bb9eff4e800ede5bb  sustainability.stackexchange.com.7z
+541e3f649cf35f2e863c55feebbc2a2d4fef349a9202b6d3b84445e67664eccd  tex.meta.stackexchange.com.7z
+4cd79bbf5831432b689a396c7539bec866a6acfcb7d2b4cda124b77d8a766e11  tex.stackexchange.com.7z
+f34cde03dca975c3847cd1ea95ba97118959be3d95453f0bfe936c5683efbd5d  tezos.meta.stackexchange.com.7z
+57004e5d34263ef6063a4c24feb378df763ba3f481c30e557891abdeff08f683  tezos.stackexchange.com.7z
+66b4cb0c1f5c3e2945b9951ff0ea685ad44f1b1ea5200adeb5548dd16f520f4e  tor.meta.stackexchange.com.7z
+3789d356ab4b41366c5591590a2b5cff4544c1c0df978a55890fba13240aebd9  tor.stackexchange.com.7z
+18a342f32b7e0eb733636903ff0eb8ef1ff64f5932d29433d936e114f0fccfb0  travel.meta.stackexchange.com.7z
+1714041e0919dc58afe60f9ad655b8b243b81d61857b1f2e0a569af1b44c6326  travel.stackexchange.com.7z
+18f494647a945cf28f54bc2143cfa372b007ae1055ede8407bc856e330f4ca6b  tridion.meta.stackexchange.com.7z
+3a5fbbce80746e2d1ea142ab55a74701d3ba5f5ade767aefe080e9800ccc8228  tridion.stackexchange.com.7z
+f14527105a81d93cb82a8759cc44828d829edde111c4306e502efc9486a18e37  ukrainian.meta.stackexchange.com.7z
+af3e428f69414249eb5ad3f41faee06a9280fe33f7cf9b4c7fa997565f597fd2  ukrainian.stackexchange.com.7z
+b0ceab1b3bd66686bc2ca83e33a4e70d196d19d012a1df6d027d88dba5c7e460  unix.meta.stackexchange.com.7z
+73075fa664291165e93f83abec7ea325ec0fcd41c0e656013d1fa3f4b368e351  unix.stackexchange.com.7z
+e0d00edff4b0c614daef8b0e94466edf524c2d48bb2d0f99c30c2d336b372662  ux.meta.stackexchange.com.7z
+0c8bb0ce2209046c3f75f2e8aff91af98a4382c0bb8a6a4d3e6e1e08ae8b4722  ux.stackexchange.com.7z
+f2caa866729a1ae1f0b46c293346b5a58ede6444b18a9a16993fc6cae300c986  vegetarianism.meta.stackexchange.com.7z
+50bc96078e657a6f5c58fb11df61d83f5febd0922ff22c881bb3157211066aef  vegetarianism.stackexchange.com.7z
+a426d2055af6f3871cb466bf45dfa7b100d7132b7e5b3dc6f0194ed5d3c483a1  vi.meta.stackexchange.com.7z
+9ed86ffadd6c4e912f9ddb461ba3fbacbe9e7f736adb96187c52a9162d2c87a4  vi.stackexchange.com.7z
+4533551b5edcb81b58f3b7d3a1d05a0402f83a4e1c8b624b6cea4dab0a918836  webapps.meta.stackexchange.com.7z
+7b466a6fc147e1837f731d41e8011642d31201f1fd6f19da84ec04ebed21138b  webapps.stackexchange.com.7z
+6d11b92f98641a83c6a42f923c2f80a1338bc2a844299e943083bcad192edada  webmasters.meta.stackexchange.com.7z
+87323f1e839089a0c52ae2b515bc899ca55ac1ecffed411e856a66070717a9b8  webmasters.stackexchange.com.7z
+9cf2a5c230b6d2206b12bef4b67af6bab57451e6af8225346bcc18b7d0eabf21  woodworking.meta.stackexchange.com.7z
+0ff61f8e9d522c511190564b1b7264e10313201f6831c5c12b3b87bf29e7768b  woodworking.stackexchange.com.7z
+c45cf6e7710825431f58af56d73261a652de17ce63841a801f716c4c885e92d4  wordpress.meta.stackexchange.com.7z
+872d0763fb0d7393b9757d1a87152f4b37338c90b16e701ca672a4231d11cc2a  wordpress.stackexchange.com.7z
+fbc8074edb0d6b5aa70895243fa3a2a20b44676a06a1eab5138438f8c13c2064  workplace.meta.stackexchange.com.7z
+d12b1278415dd5f7b94ea255c16c2dd24553ce041399118dfa0548d5c8dcea78  workplace.stackexchange.com.7z
+d2658e2b79565a34aaafcda959da1c11ace7639c8b46dc1a2a9e2beade2ef3ba  worldbuilding.meta.stackexchange.com.7z
+ad07970d6368a3dbc4dd7779a958a8b9c66839bf6bf02854f082ba764acc5271  worldbuilding.stackexchange.com.7z
+049e6db6fb8af0740b9c156f1a026d8dd35826b2160f61f3bd776a88a4cb1166  writers.meta.stackexchange.com.7z
+71fe5754f0ab2563b25db5916702469a4b59895e03195d72abbc49ecf6eb6f9e  writers.stackexchange.com.7z
+</code>
+</pre>
+</details>
+
+</details>
