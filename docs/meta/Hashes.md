@@ -376,7 +376,6 @@ This document contains the hashes for the new data dump format. This document ex
     </code>
     </pre>
     </details>
-
     <details>
     <summary>2025-06-30 rev1</summary>
     Note: officially confirmed: https://meta.stackexchange.com/revisions/411485/1
