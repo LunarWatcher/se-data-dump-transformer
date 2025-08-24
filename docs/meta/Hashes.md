@@ -16,6 +16,8 @@ hashes go here
 </details>
 -->
 
+---
+
 <details>
 <summary>2025 data dumps</summary>
 <details>
@@ -1130,6 +1132,7 @@ e9811feb76b5844f82f5281e1ab02442700253d14755e1a686a74b393a498b5a  writers.meta.s
 </details>
 </details>
 
+---
 
 <details>
 <summary>2024 data dumps</summary>
