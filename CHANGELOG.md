@@ -2,6 +2,16 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.3.0 (2025-08-24)
+
+### Added
+* Documentation containing all known hashes as of the 2024-06-30 data dumps (https://github.com/LunarWatcher/se-data-dump-transformer/blob/master/docs/meta/Hashes.md)
+* Documentation for watermarking (https://github.com/LunarWatcher/se-data-dump-transformer/blob/master/docs/meta/Known%20watermarks.md)
+* Transformer: `--filter-fabricated-v1` for removing the aforementioned v1 watermark.
+
+### Changed
+* Transformer (internals): `Filter::process` now takes an explicit argument containing the data dump filetype to allow filters operating only specific files.
+
 ## 2.2.2 (2025-07-16)
 
 ### Fixed
