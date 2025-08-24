@@ -4,6 +4,10 @@ This document contains the hashes for the new data dump format. This document ex
 
 This list is stored independently to make sure the hashes can be trusted as reliable. Most of the hashes have been verified by the company, but some are entirely community-generated. Whether it's officially confirmed or not is explicitly noted with each hash. The hashes are stored as of 2024-06-30 rev1, as this is the first version with the new method where the hashes are necessary to confirm integrity. Since Stack Exchange, Inc. does not maintain their own, proper list where it's clear what revision the hashes are for, this separate list has to be maintained. An equivalent, unofficial list is also being maintained [on MSE](https://meta.stackexchange.com/a/402072), but it's harder to navigate due to the lack of `<details>`.
 
+The dates associated with each data dump is when the data is frozen for generation. 2025-06-30, for example, means the data dump contains data up to and including 2025-06-30. 
+
+For links to the data dumps themselves, see https://communitydatadump.com/index.html for the exhaustive list (including recent releases), or [the Academic Torrents collection](https://academictorrents.com/collection/stack-exchange-data-dumps?sort_field=name&sort_dir=DESC) for just the latest unofficial torrents (exhaustive as of 2024-03-31). [The "Stack Exchange Data Dump" subject on archive.org](https://archive.org/search?query=subject%3A%22Stack+Exchange+Data+Dump%22) also contains most of the same data dumps. This list will not be maintained in this repo, as this has been done sufficiently in several other places.
+
 At the time of writing, all checksums are SHA256. If this changes, an explicit note will be added.
 
 <!-- Template:
