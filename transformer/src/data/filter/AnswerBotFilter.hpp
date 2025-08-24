@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/filter/Filter.hpp"
+
 namespace sedd {
 
 class AnswerBotFilter : public Filter {
@@ -9,7 +10,7 @@ private:
 public:
     AnswerBotFilter() : Filter("--no-aibot", "Whether or not to strip AI bot answers from the data dump") {}
 
-    bool process(pugi::xml_node& row) override;
+    bool process(DataDumpFileType_t, pugi::xml_node& row) override;
 
     std::string getSummary() override;
 };

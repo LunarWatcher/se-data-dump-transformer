@@ -139,6 +139,7 @@ add_library(sedd-src STATIC
 
     src/data/filter/Filter.cpp
     src/data/filter/AnswerBotFilter.cpp
+    src/data/filter/FabricatedDataV1.cpp
 
     src/data/transformers/JSONTransformer.cpp
     src/data/transformers/SQLiteTransformer.cpp

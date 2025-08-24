@@ -3,7 +3,7 @@
 namespace sedd {
 
 
-bool AnswerBotFilter::process(pugi::xml_node& row) {
+bool AnswerBotFilter::process(DataDumpFileType_t, pugi::xml_node& row) {
     try {
         auto attr = row.attribute("UserId");
         if (!attr.empty() && attr.as_int() == AIBOT_UID) {

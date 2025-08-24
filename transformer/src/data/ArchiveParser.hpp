@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/GlobalContext.hpp"
+#include "DataDumpFileType.hpp"
 #include <archive.h>
 
 #include <ctime>
@@ -9,26 +10,6 @@
 #include <vector>
 
 namespace sedd {
-
-namespace DataDumpFileType {
-    enum DataDumpFileType {
-        // If badges stops being first, update the CheckSchema test
-        BADGES,
-        COMMENTS,
-        POST_HISTORY,
-        POST_LINKS,
-        POSTS,
-        TAGS,
-        USERS,
-        VOTES,
-        // Must always be last; place any other values ahead of this
-        UNKNOWN
-    };
-
-    extern DataDumpFileType strToFiletype(const std::string&);
-    extern std::string filetypeToStr(DataDumpFileType);
-    extern std::string toFilename(DataDumpFileType);
-}
 
 struct ParserContext {
     /**
@@ -55,7 +36,7 @@ struct ParserContext {
     /**
      * The type of the file being parsed and passed onto the transformer
      */
-    DataDumpFileType::DataDumpFileType currType = DataDumpFileType::UNKNOWN;
+    DataDumpFileType_t currType = DataDumpFileType::UNKNOWN;
 
     /**
      * Same as currType, but as a string

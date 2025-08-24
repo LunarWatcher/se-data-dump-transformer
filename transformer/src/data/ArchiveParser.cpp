@@ -212,7 +212,7 @@ void ArchiveParser::read(const GlobalContext& conf) {
 
                     if (conf.transformer) {
                         for (const auto& parser : conf.enabledFilters) {
-                            if (parser->process(node)) {
+                            if (parser->process(ctx.currType, node)) {
                                 goto skip;
                             }
                         }

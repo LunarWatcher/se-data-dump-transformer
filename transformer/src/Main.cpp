@@ -11,6 +11,7 @@
 #include "data/ArchiveWriter.hpp"
 #include "data/GlobalContext.hpp"
 #include "data/filter/AnswerBotFilter.hpp"
+#include "data/filter/FabricatedDataV1.hpp"
 #include "data/filter/Filter.hpp"
 #include "data/transformers/SQLiteTransformer.hpp"
 #include "data/transformers/XMLTransformer.hpp"
@@ -106,13 +107,15 @@ int main(int argc, char* argv[]) {
         ->required(false)
         ->default_val(true);
 
-    bool checkNesting = true;
+    bool checkNesting = false;
     app.add_flag(
         "--check-nesting,!--no-nesting",
         checkNesting,
-        "Whether or not to check for nested .7zs. DO NOT SET TO FALSE UNLESS YOU KNOW THE ARCHIVE IS GOOD! "
-        "Setting this to false when there is nesting will have unintended consequences. All this option does is "
-        "save a few seconds during setup. Unless you know what you're doing, leave this at the default value."
+        "Whether or not to check for nested .7zs. This was only briefly required for a couple "
+            "data dumps after the anti-community changes. The default has now changed to false. If the bug reoccurs "
+            "and you get data dumps with .7zs inside .7sz, use this option. The option is a noop if the archives "
+            "aren't nested, so it can be set even if the archives aren't nested. The only benefit to not setting it "
+            "unnecessarily is some time being saved."
     )
         ->required(false)
         ->default_val(checkNesting);
@@ -143,7 +146,8 @@ int main(int argc, char* argv[]) {
         ->transform(CLI::CheckedTransformer(sedd::strToCompFormat, CLI::ignore_case));
 
     std::vector<std::shared_ptr<sedd::Filter>> filters = {
-        std::make_shared<sedd::AnswerBotFilter>()
+        std::make_shared<sedd::AnswerBotFilter>(),
+        std::make_shared<sedd::FabricatedDataV1Filter>(),
     };
 
     for (auto& filter : filters) {

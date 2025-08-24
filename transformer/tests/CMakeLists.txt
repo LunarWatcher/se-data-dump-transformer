@@ -4,6 +4,8 @@ add_executable(tests
     src/CheckSchema.cpp
     src/TestUnicodeManagement.cpp
     src/FilterTests.cpp
+
+    src/filters/FabricatedDataFilteringTests.cpp
 )
 
 Include(FetchContent)
@@ -11,7 +13,7 @@ Include(FetchContent)
 FetchContent_Declare(
   Catch2
   GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-  GIT_TAG v3.6.0
+  GIT_TAG v3.9.1
 )
 
 FetchContent_MakeAvailable(Catch2)

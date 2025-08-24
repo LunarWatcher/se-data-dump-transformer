@@ -1,5 +1,6 @@
 #pragma once
 
+#include "data/DataDumpFileType.hpp"
 #include "CLI/CLI.hpp"
 #include <string>
 #include <pugixml.hpp>
@@ -34,7 +35,7 @@ public:
      *
      * \returns whether or not to discard the line. Line is discarded if `true` is returned
      */
-    virtual bool process(pugi::xml_node& row) = 0;
+    virtual bool process(DataDumpFileType_t type, pugi::xml_node& row) = 0;
 
     /**
      * Invoked when setting up flags for the CLI app

@@ -45,14 +45,16 @@ TEST_CASE("Verify answer bot removal", "[AIBotFilter]") {
     REQUIRE(nodes.at(4).attribute("UserId").empty());
 
     // Validate the filter itself
+    // Note: this is a legacy filter, and the type is unused. POSTS was used because that's what's used here, but it
+    // really does not matter.
     // Only row 1 should be discarded
-    REQUIRE(filter.process(nodes.at(0)));
+    REQUIRE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(0)));
     // UserID -1 should not be discarded
-    REQUIRE_FALSE(filter.process(nodes.at(1)));
+    REQUIRE_FALSE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(1)));
     // Positive UIDs should not be discarded
-    REQUIRE_FALSE(filter.process(nodes.at(2)));
+    REQUIRE_FALSE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(2)));
     // Blank and non-existent UIDs should not be discarded
-    REQUIRE_FALSE(filter.process(nodes.at(3)));
-    REQUIRE_FALSE(filter.process(nodes.at(4)));
+    REQUIRE_FALSE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(3)));
+    REQUIRE_FALSE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(4)));
 
 }
