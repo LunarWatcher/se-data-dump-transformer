@@ -22,8 +22,8 @@ hashes go here
 
 ---
 
-<details>
-<summary>2025 data dumps</summary>
+## 2025 data dumps
+
 <details>
 <summary>2025-06-30 rev2</summary>
 Note: officially confirmed: https://meta.stackexchange.com/revisions/411485/2
@@ -1134,12 +1134,9 @@ e9811feb76b5844f82f5281e1ab02442700253d14755e1a686a74b393a498b5a  writers.meta.s
 </code>
 </pre>
 </details>
-</details>
 
----
 
-<details>
-<summary>2024 data dumps</summary>
+## 2024 data dumps
 
 <details>
 <summary>2024-12-31</summary>
@@ -2623,4 +2620,3 @@ ad07970d6368a3dbc4dd7779a958a8b9c66839bf6bf02854f082ba764acc5271  worldbuilding.
 </pre>
 </details>
 
-</details>
