@@ -2,6 +2,10 @@
 
 This document contains the hashes for the new data dump format. This document exists as [SE misunderstood a request to implement an automatic checksum feature](https://meta.stackexchange.com/q/402017), and later [failed to adequately separate revisions](https://meta.stackexchange.com/posts/411485/revisions), making it harder to tell what applies to what version.
 
+This list is stored independently to make sure the hashes can be trusted as reliable. Most of the hashes have been verified by the company, but some are entirely community-generated. Whether it's officially confirmed or not is explicitly noted with each hash. The hashes are stored as of 2024-06-30 rev1, as this is the first version with the new method where the hashes are necessary to confirm integrity. Since Stack Exchange, Inc. does not maintain their own, proper list where it's clear what revision the hashes are for, this separate list has to be maintained. An equivalent, unofficial list is also being maintained [on MSE](https://meta.stackexchange.com/a/402072), but it's harder to navigate due to the lack of `<details>`.
+
+At the time of writing, all checksums are SHA256. If this changes, an explicit note will be added.
+
 <!-- Template:
 <details>
 <summary>Date [rev N, only if there's multiple versions]</summary>
@@ -22,7 +26,7 @@ hashes go here
 <summary>2025 data dumps</summary>
 <details>
 <summary>2025-06-30 rev2</summary>
-Note: officially confirmed: https://meta.stackexchange.com/revisions/411485/1
+Note: officially confirmed: https://meta.stackexchange.com/revisions/411485/2
 <pre>
 <code>
 38ef461889a5ecd94c97d71c7ba4486d72191baa40e0333b5e8a3ad2e94bd9fd  3dprinting.meta.stackexchange.com.7z
