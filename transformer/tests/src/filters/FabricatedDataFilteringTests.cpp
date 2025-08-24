@@ -11,7 +11,8 @@ TEST_CASE("Verify v1 fabricated data removal", "[FabricatedDataV1]") {
     std::string docstr = R"(
     <?xml version="1.0" encoding="utf-8"?>
     <posts>
-        <row OwnerUserId="69420" />
+        <row OwnerUserId="69420" Body="Regular users should not be filtered out" />
+        <row OwnerUserId="-1" Id="42" Body="Community should not be automatically filtered out" />
         <row Id="1000000001" PostTypeId="1" CreationDate="2025-06-01T01:00:00.100" Score="1" ViewCount="100" Body="Stack Exchange hates their community" OwnerUserId="-1" LastEditorUserId="-1" LastEditDate="2025-06-01T01:00:00.100" LastActivityDate="2025-06-01T01:00:00.100" Title="irrelevant" Tags="trans rights" AnswerCount="1" CommentCount="0" />
         <row Id="1000000010" PostTypeId="2" CreationDate="2025-06-01T01:03:15.100" Score="1" Body="Fucking bullshit" OwnerUserId="-1" LastEditorUserId="-1" LastEditDate="2025-06-01T01:03:15.100" LastActivityDate="2025-06-01T01:03:15.100" CommentCount="0" />
     </posts>)";
@@ -36,17 +37,18 @@ TEST_CASE("Verify v1 fabricated data removal", "[FabricatedDataV1]") {
     }
 
     // Validate parsing for the test
-    REQUIRE(nodes.size() == 3);
+    REQUIRE(nodes.size() == 4);
 
     REQUIRE_FALSE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(0)));
-
-    INFO(nodes.at(1).attribute("OwnerUserId").as_string());
-    INFO(nodes.at(1).attribute("Id").as_string());
-    REQUIRE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(1)));
+    REQUIRE_FALSE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(1)));
 
     INFO(nodes.at(2).attribute("OwnerUserId").as_string());
     INFO(nodes.at(2).attribute("Id").as_string());
     REQUIRE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(2)));
+
+    INFO(nodes.at(3).attribute("OwnerUserId").as_string());
+    INFO(nodes.at(3).attribute("Id").as_string());
+    REQUIRE(filter.process(sedd::DataDumpFileType_t::POSTS, nodes.at(3)));
 
     // Other types should not be affected
     REQUIRE_FALSE(filter.process(sedd::DataDumpFileType_t::POST_HISTORY, nodes.at(2)));
