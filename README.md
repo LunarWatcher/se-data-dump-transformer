@@ -299,7 +299,9 @@ cmake --build . -j 8 --config Release
 .\sedd-transformer.exe -i ..\..\downloads -t [formatter type]
 ```
 
-Pass `--help` to see the available formatters for your current version of the data dump transformer.
+Pass `--help` to see the available formatters for your current version of the data dump transformer. There's also some filters available for use, that change the data.
+
+If you only want to filter the data, but keep the XML format, you can use `-t xml` to convert back to XML.
 
 ### Supported transformers
 

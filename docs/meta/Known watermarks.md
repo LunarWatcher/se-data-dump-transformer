@@ -6,7 +6,9 @@ For the sake of information distribution, this document refers to the specific w
 
 All dates shown in the headers are inclusive. Using a fictional example, "1999-12-30 to 2000-03-30" means the first affected data dump was 1999-12-30, and the last affected data dump was 2000-03-30. The first version not affected would then be 2000-06-30. 
 
-## v1 watermarks: 2025-06-30 to present
+## v1 watermarks: 2025-06-30 to 2025-06-30
+
+This watermark was only observed in two data dumps (2025-06-30 rev1 and rev2), and then disappeared.
 
 Transformer filter flag: `--filter-fabricated-v1`
 
