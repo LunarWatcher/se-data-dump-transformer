@@ -169,6 +169,7 @@ Exractor CLI supports the following configuration options:
 | `-v` | - | Optional | `false` | Whether or not to enable verbose logging. You do not want to enable this unless you're diagnosing a problem with sedd - the verbose logging includes low-level Selenium output. |
 | - | `--detect <last upload date>` | Optional | - | Enables a mode where sedd checks for the upload timestamp to change, and only then begins the download. This has several caveats. Please read [docs/Automated downloads](docs/Automated downloads.md) for more information before using this feature. |
 | `-u` | `--unsupervised` | Optional | false | Rather than notify you about failures and asking you to resolve them, hard failures that would require manual supervision throw an exception instead. |
+| `-N` | `--no-wipe-part-files` | Optional | false | Don't wipe `.part` files in the download directory on boot. Only ever useful if you're doing cursed shit. Disables automatic download error recovery, and may result in the download completion watcher getting stuck |
 
 #### Captchas and other misc. barriers
 

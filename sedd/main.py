@@ -2,11 +2,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.common.exceptions import NoSuchElementException
 from typing import Dict
+import glob
 
-
-from time import sleep
+from time import sleep, monotonic
 
 import re
+import os
 import sys
 import random
 from traceback import print_exception
@@ -17,6 +18,8 @@ from .config import load_sedd_config
 from .data import sites
 from .meta import notifications
 from .watcher.observer import register_pending_downloads_observer
+from .watcher.state import DownloadState
+from .watcher.recovery import LastState
 from . import utils
 
 from .driver import init_output_dir, init_firefox_driver
@@ -190,7 +193,7 @@ def login_or_create(browser: WebDriver, site: str):
             break
 
 
-def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict[str, str]):
+def download_data_dump(browser: WebDriver, site: str, meta_url: str | None, etags: Dict[str, str]):
     logger.info(f"Downloading data dump from {site}")
 
     def _exec_download(browser: WebDriver):
@@ -257,7 +260,7 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str, etags: Dict
 
         if args.skip_loaded and meta_loaded:
             pass
-        else:
+        elif meta_url is not None:
             browser.get(f"{meta_url}/users/data-dump-access/current")
             check_cloudflare_intercept(browser)
 
@@ -345,7 +348,134 @@ def await_date_change(args: SEDDCLIArgs, driver):
                 "Please open an issue: https://github.com/LunarWatcher/se-data-dump-transformer/"
             )
             raise
-        
+
+def do_download(site: str):
+    if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
+        # https://regex101.com/r/kG6nTN/1
+        meta_url = re.sub(
+            r"(https://(?:[^.]+\.(?=stackexchange))?)", r"\1meta.", site)
+    else:
+        meta_url = None
+
+    main_loaded = utils.is_file_downloaded(args.output_dir, site)
+    meta_loaded = utils.is_file_downloaded(args.output_dir, meta_url) or \
+        meta_url is None
+
+    if args.skip_loaded and main_loaded and meta_loaded:
+        pass
+    else:
+        logger.info(f"Extracting from {site}...")
+
+        login_or_create(browser, site)
+        download_data_dump(
+            browser,
+            site,
+            meta_url,
+            etags
+        )
+
+def clear_part_files():
+    files = glob.glob(
+        os.path.join(
+            args.output_dir,
+            "*.part"
+        )
+    )
+
+    for file in files:
+        logger.debug(
+            "Found existing .part file ({}). Removing...",
+            file
+        )
+        os.remove(file)
+
+def normalize_meta(url: str):
+    if (url.startswith("meta.") and url != "meta.stackexchange.com"):
+        return url.replace("meta.", "")
+    return url
+
+def try_recover_fucked_download(
+        last_sizes: dict[str, LastState],
+        state: DownloadState
+):
+    # TODO: This is a very naive approach. Can we get the information directly
+    # form the webdriver?
+    for path in state.pending:
+        # The path is in the form of the full site URL with the .zip
+        # The .part file is in the form `[first path component].[garbage].[rest]`
+        # meta.stackexchange.com.7z would be 
+        # meta.[garbage.]stackexchange.7z.part
+        spl = path.split(".", 1)
+        matches = glob.glob(
+            os.path.join(
+                args.output_dir,
+                '.*.'.join(spl) + ".part"
+            )
+        )
+
+        if len(matches) == 0:
+            logger.warning("{} has 0 part files. Race condition?", path)
+        elif len(matches) > 1:
+            logger.error(
+                "{} has more than 1 part file! Error recovery impossible",
+                path
+            )
+        else:
+            part_path = matches[0]
+            size = os.path.getsize(part_path)
+
+            last_size = last_sizes.get(
+                path,
+                LastState(monotonic(), 0)
+            )
+
+            # We only commit the size if it's changing
+            if (last_size.last_observed_size < size):
+                last_size.last_observed_size = size
+                last_size.last_observed_change = monotonic()
+
+                last_sizes[path] = last_size
+            else:
+                # If it isn't changing, we allow for a 60 second window 
+                # After 30 seconds, a warning is issued. This is likely useless
+                # in practice, because a failure this long almost certainly
+                # means the download has died
+                # After 60 seconds, we treat the download as failed and move on
+                # with our lives. Nuke the part file, redo the download
+                delta = monotonic() - last_size.last_observed_change
+
+                if (delta > 60):
+                    logger.error(
+                        "{} has failed. {} has been pinned for 60 seconds. "
+                        "Retrying",
+                        path,
+                        part_path
+                    )
+                    del last_sizes[path]
+
+                    os.remove(part_path)
+                    # TODO: optimally, we'd just call a single function that
+                    # directly downloads the specific site. Unfortunately, the
+                    # system wasn't set up to deal with this, and I don't feel
+                    # like rewriting it when all I want is to download the god
+                    # damn file
+                    # The download system should be split up to allow for this,
+                    # but it'll be a bigger refactor to do it. The current URL
+                    # system is fairly fragile, really
+                    do_download(
+                        "https://" + normalize_meta(
+                            path.replace(".7z", "")
+                        )
+                    )
+                elif (
+                    # the "and" is to avoid excessive spam. This allows a 2
+                    # second window
+                    delta > 30 and delta < 32
+                ):
+                    logger.warning(
+                        "No observed change in {} for 30 seconds",
+                        path
+                    )
 
 etags: Dict[str, str] = {}
 
@@ -353,34 +483,19 @@ try:
     state, observer = register_pending_downloads_observer(args.output_dir)
     if args.detect is not None:
         await_date_change(args, browser)
-
+    if args.wipe_part_files:
+        clear_part_files()
     for site in sites.sites:
-        if site not in ["https://meta.stackexchange.com", "https://stackapps.com"]:
-            # https://regex101.com/r/kG6nTN/1
-            meta_url = re.sub(
-                r"(https://(?:[^.]+\.(?=stackexchange))?)", r"\1meta.", site)
-
-        main_loaded = utils.is_file_downloaded(args.output_dir, site)
-        meta_loaded = utils.is_file_downloaded(args.output_dir, meta_url)
-
-        if args.skip_loaded and main_loaded and meta_loaded:
-            pass
-        else:
-            logger.info(f"Extracting from {site}...")
-
-            login_or_create(browser, site)
-            download_data_dump(
-                browser,
-                site,
-                meta_url,
-                etags
-            )
+        do_download(site)
 
     if observer:
         pending = state.size()
 
         logger.info(f"Waiting for {pending} download{'s'[:pending^1]} to complete")
+        if args.wipe_part_files:
+            logger.info("Download error recovery is enabled.")
 
+        last_sizes = {}
         while True:
             if state.empty():
                 observer.stop()
@@ -389,6 +504,11 @@ try:
                 utils.cleanup_archive(args.output_dir)
                 break
             else:
+                if args.wipe_part_files:
+                    try_recover_fucked_download(
+                        last_sizes,
+                        state
+                    )
                 sleep(1)
 
     notifications.notify(

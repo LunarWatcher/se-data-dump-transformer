@@ -14,6 +14,8 @@ class SEDDCLIArgs(argparse.Namespace):
     detect: str | None
     unsupervised: bool
 
+    wipe_part_files: bool
+
 
 parser = argparse.ArgumentParser(
     prog="sedd",
@@ -75,6 +77,22 @@ parser.add_argument(
     help=(
         "Enable verbose logging. Only affects selenium and potentially "
         "some other dependencies using Python's `logging` package"
+    )
+)
+
+parser.add_argument(
+    "-N,--no-wipe-part-files",
+    required=False,
+    default=True,
+    action="store_false",
+    dest="wipe_part_files",
+    help=(
+        "When supplied, .part files in the folder won't be wiped. "
+        "By default, wiping part files is enabled, as leaving it interferes "
+        "with a download error recovery mechanism. Supplying this flag "
+        "disables download error recovery, as the system has no way to "
+        "differentiate between a .part file that was there before the "
+        "download started"
     )
 )
 

@@ -23,7 +23,7 @@ def init_ubo_settings(browser: Firefox, config: SEDDConfig, ubo_id: str) -> bool
         ubo_set_advanced_settings(browser, settings)
 
         # idk why, but applyFilterListSelection only works after a delay
-        sleep(1)
+        sleep(3)
 
         ubo_set_selected_filters(browser, settings)
         ubo_set_whitelist(browser, settings)

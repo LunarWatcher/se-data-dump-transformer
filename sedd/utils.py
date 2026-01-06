@@ -82,6 +82,8 @@ def cleanup_archive(base_path: str) -> None:
         traceback.print_exception(sys.exception())
 
 
-def is_file_downloaded(base_path: str, site_or_url: str) -> bool:
+def is_file_downloaded(base_path: str, site_or_url: str | None) -> bool:
+    if (site_or_url is None):
+        return False
     file_name = get_file_name(site_or_url)
     return check_file(base_path, file_name)
