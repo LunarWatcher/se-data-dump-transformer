@@ -391,7 +391,9 @@ def clear_part_files():
 
 def normalize_meta(url: str):
     if (url.startswith("meta.") and url != "meta.stackexchange.com"):
-        return url.replace("meta.", "")
+        return url.replace("meta.", "", 1)
+    elif (".meta." in url):
+        return url.replace(".meta.", "", 1)
     return url
 
 def try_recover_fucked_download(

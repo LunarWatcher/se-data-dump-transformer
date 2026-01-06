@@ -2,6 +2,12 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.4.1 (2026-01-06)
+
+### Fixed
+
+* Error recovery for meta URLs only worked for sites with their own domains, and meta.stackexchange.com, because I forgot `*.stackexchange.com` sites have metas in the form `sitename.meta.stackexchange.com` and not `meta.sitename.stackexchange.com`
+
 ## 2.4.0 (2026-01-06)
 
 ### Added
