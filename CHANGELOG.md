@@ -2,11 +2,12 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
-## 2.4.0 (TBA)
+## 2.4.0 (2026-01-06)
 
 ### Added
 
 * `--no-wipe-part-files` and a system to deal with download error recovery by watching `.part` files. This allows downloads to deal with cloudflare and SE being flaky by retrying the download once it fails. The previous system was unable to detect failures
+* Standalone doc file on error recovery methods and some known failure modes
 
 ## 2.3.0 (2025-08-24)
 
