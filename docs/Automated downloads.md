@@ -1,6 +1,6 @@
-# Automated (ish) downloads [not implemented, spec only]
+# Automated (ish) downloads
 
-As of 2.2.0, `sedd` features an extra `--detect` flag. The `--detect` flag takes a string referring to the **last upload date**, not the expected upload date. This is because the last upload date is set in stone, while the upload of the next data dump can be on any day. Unfortunately, the data dump access page does not specify the data dump version, just the upload date.
+As of 2.2.0, `sedd` features an extra `--detect` flag. The `--detect` flag takes a string referring to the **last upload date**, not the expected upload date. This is because the last upload date is set in stone, while the upload of the next data dump can be on any day. Unfortunately, the data dump access page does not specify the data dump version, just the upload date. The `--detect` flag waits for the last update date to change, and checks the date via the browser rather than via cron scripts. Once the date changes, the data dump download is started as usual.
 
 Suggested shorthands for this flag are:
 * `Jan`
