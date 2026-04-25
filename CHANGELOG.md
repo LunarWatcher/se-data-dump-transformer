@@ -2,6 +2,14 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.4.2 (2026-04-25)
+
+### Fixed
+
+* Explicit logging on ntfy errors
+* Explicit logging on notification provider fallback being used
+* Fix race condition causing error recovery to error out
+
 ## 2.4.1 (2026-01-06)
 
 ### Fixed

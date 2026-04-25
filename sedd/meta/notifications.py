@@ -15,15 +15,16 @@ def native(message: str, _):
     )
 
 def ntfy(message: str, config):
-    requests.post(
+    r = requests.post(
         config["url"],
         headers={
             "Authorization": f"Bearer {config['bearer']}",
             "Title": "Sedd update"
         },
         data=message,
-
     )
+    if r.status_code >= 400:
+        logger.error("Ntfy failure: {}", r.status_code)
 
 notification_providers = {
     "native": native,
@@ -36,7 +37,7 @@ def notify(message: str, config: SEDDConfig):
     provider = config.get_notifications_provider()
 
     if provider is None:
-        logger.info(message)
+        logger.info("Notification (CLI fallback): {}", message)
         return
 
     notification_providers[provider](message, config.notifications)

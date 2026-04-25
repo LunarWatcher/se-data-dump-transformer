@@ -1,3 +1,4 @@
+import traceback
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.common.exceptions import NoSuchElementException
@@ -401,7 +402,7 @@ def try_recover_fucked_download(
         state: DownloadState
 ):
     # TODO: This is a very naive approach. Can we get the information directly
-    # form the webdriver?
+    # from the webdriver?
     for path in state.pending:
         # The path is in the form of the full site URL with the .zip
         # The .part file is in the form `[first path component].[garbage].[rest]`
@@ -507,10 +508,16 @@ try:
                 break
             else:
                 if args.wipe_part_files:
-                    try_recover_fucked_download(
-                        last_sizes,
-                        state
-                    )
+                    try:
+                        try_recover_fucked_download(
+                            last_sizes,
+                            state
+                        )
+                    except Exception as e:
+                        logger.error(
+                            "Failed to error recovery; will continue retrying"
+                        )
+                        logger.error("{}", traceback.format_exc())
                 sleep(1)
 
     notifications.notify(
