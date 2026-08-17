@@ -7,6 +7,7 @@ Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, 
 ### Fixed
 
 * Increased the default uBlock timeout to 120s to avoid errors when reloading ublock filter lists just takes more time than expected
+* Removed links to `communitydatadump.com`, as the domain is down
 
 ## 2.4.2 (2026-04-25)
 

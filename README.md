@@ -41,7 +41,9 @@ While these are preprocessed distributions of the data dump, this project is als
 
 ### Complete data dump archives
 
-A [different project](https://communitydatadump.com/index.html) is currently maintaining a list of both the source data dumps (XML), as well as other distributions. It includes both historical versions of the data dump, as well as new versions uploaded under the new anti-community scheme. In addition, the later data dumps (though exclusively the SE-uploaded ones; not generated variants) [have been uploaded to Academic Torrents](https://academictorrents.com/collection/stack-exchange-data-dumps), which serves as a secondary list.
+A different project used to be maintaining a list of both the source data dumps (XML), as well as other distributions. The only such list left is an [on-site copy](https://meta.stackexchange.com/a/224922/332043). 
+
+In addition, the later data dumps (though exclusively the SE-uploaded ones; not generated variants) [have been uploaded to Academic Torrents](https://academictorrents.com/collection/stack-exchange-data-dumps), which serves as a secondary list.
 
 Note that since someone is uploading an unofficial version to archive.org, you may not need to use the downloader at all. However, to make sure this access continues, I strongly encourage you to download directly from SE anyway if you can -- this helps decrease the chance the uploader is identified and blocked by SE, which will turn into a problem for archival efforts in the long term. It may also decrease the chances SE points to low usage numbers as an excuse to axe the data dump entirely.[^4]
 
@@ -85,7 +87,7 @@ If you get a full-page Cloudflare block, and solving the captcha redirects you r
 
 If you get slapped with a Cloudflare loop, the only option for now is to use a VPN in another country. Switzerland and Norway have both been verified to work at the time of writing. Fascinatingly, using a VPN makes no difference on the looping; it's purely country-based, not anti-VPN-based. The loop has been verified on both a residential IP and a datacenter IP (VPN).
 
-I unfortunately do not (and cannot) write a complete list of countries affected by this bullshit, so you have to test this manually. If you do not have access to a VPN, check https://communitydatadump.com/ or https://academictorrents.com/collection/stack-exchange-data-dumps for archived (unofficial) versions uploaded by the community. They're usually uploaded within a few days to a couple weeks, and unless you're downloading directly from the archive.org version, is significantly faster and more stable than downloading from SE themselves.
+I unfortunately do not (and cannot) write a complete list of countries affected by this bullshit, so you have to test this manually. If you do not have access to a VPN, check https://meta.stackexchange.com/a/224922/332043 or https://academictorrents.com/collection/stack-exchange-data-dumps for archived (unofficial) versions uploaded by the community. They're usually uploaded within a few days to a couple weeks, and unless you're downloading directly from the archive.org version, is significantly faster and more stable than downloading from SE themselves.
 
 #### Download instability, particularly of `stackoverflow.com.7z`
 
