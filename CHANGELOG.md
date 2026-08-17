@@ -2,7 +2,13 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
-## 2.4.3 (2026-08-17)
+## 2.5.0 (2026-08-17)
+
+### Added
+
+* Expanded retry system into doing native browser retries
+  * SE broke the download so hard for the 2026-03-31 download that the download links are now valid for more than literally 30 seconds. They're currently valid for 24 hours, which means we can do a soft retry, and retries in firefox appear to try a `Range` header-like retry, so the downloads don't always have to be fully restarted when Cloudflare is flaky
+  * This is attempted up to 5 times, as the current browser-native retry is not error-sensitive. If it exceeds that failure count, it defaults to redownloading until ~~shareholder value improves~~ Cloudflare/Stack Exchange stops being trash
 
 ### Fixed
 

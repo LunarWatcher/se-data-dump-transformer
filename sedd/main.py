@@ -1,3 +1,4 @@
+from selenium.webdriver import ActionChains
 import traceback
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.webdriver import WebDriver
@@ -37,6 +38,7 @@ sedd_config = load_sedd_config()
 
 output_dir = init_output_dir(args.output_dir)
 
+browser: WebDriver
 browser, ubo_id = init_firefox_driver(
     sedd_config,
     args.disable_undetected,
@@ -318,7 +320,6 @@ def await_date_change(args: SEDDCLIArgs, driver):
             elif not re.match(r'^[a-zA-Z]+ \d{1,2}, \d{1,4}$', elem_content):
                 raise RuntimeError("The date format has changed")
 
-            
             if args.detect in elem_content:
                 logger.debug("Still not ready. Sleeping for approximately 6 hours")
 
@@ -406,7 +407,7 @@ def try_recover_fucked_download(
     for path in state.pending:
         # The path is in the form of the full site URL with the .zip
         # The .part file is in the form `[first path component].[garbage].[rest]`
-        # meta.stackexchange.com.7z would be 
+        # meta.stackexchange.com.7z would be
         # meta.[garbage.]stackexchange.7z.part
         spl = path.split(".", 1)
         matches = glob.glob(
@@ -429,7 +430,12 @@ def try_recover_fucked_download(
 
             last_size = last_sizes.get(
                 path,
-                LastState(monotonic(), 0)
+                LastState(
+                    monotonic(),
+                    0,
+                    monotonic(),
+                    0
+                )
             )
 
             # We only commit the size if it's changing
@@ -454,22 +460,83 @@ def try_recover_fucked_download(
                         path,
                         part_path
                     )
-                    del last_sizes[path]
 
-                    os.remove(part_path)
-                    # TODO: optimally, we'd just call a single function that
-                    # directly downloads the specific site. Unfortunately, the
-                    # system wasn't set up to deal with this, and I don't feel
-                    # like rewriting it when all I want is to download the god
-                    # damn file
-                    # The download system should be split up to allow for this,
-                    # but it'll be a bigger refactor to do it. The current URL
-                    # system is fairly fragile, really
-                    do_download(
-                        "https://" + normalize_meta(
-                            path.replace(".7z", "")
+                    if (
+                        monotonic() - last_sizes[path].last_restart > 3600 * 23
+                        or last_sizes[path].soft_restart_count >= 5
+                    ):
+                        logger.error(
+                            "{} has failed and has fallen outside the retry "
+                            "window: link is invalid or soft retry count "
+                            "exceeds acceptable threshold. Restarting download",
+                            path
                         )
-                    )
+                        os.remove(part_path)
+                        del last_sizes[path]
+                        # TODO: optimally, we'd just call a single function that
+                        # directly downloads the specific site. Unfortunately, the
+                        # system wasn't set up to deal with this, and I don't feel
+                        # like rewriting it when all I want is to download the god
+                        # damn file
+                        # The download system should be split up to allow for this,
+                        # but it'll be a bigger refactor to do it. The current URL
+                        # system is fairly fragile, really
+                        do_download(
+                            "https://" + normalize_meta(
+                                path.replace(".7z", "")
+                            )
+                        )
+                    else:
+                        # As part of the 2026-03-31 download clusterfuck where
+                        # SE broke the stackoverflow.com download, the link was
+                        # expanded from being valid for 30 seconds to 24
+                        # hours. This means we now can use the browser retry to
+                        # restart on failure. Unfortunately, selenium does not
+                        # offer an API for this, so we need to do it ourselves.
+                        logger.info(
+                            "{} is within the 24 hour link validity "
+                            "window. Attempting restart via browser "
+                            "facilities. This is soft restart {} out of max 5",
+                            path,
+                            last_sizes[path].soft_restart_count + 1
+                        )
+                        browser.get("about:downloads")
+                        elems = browser.find_elements(
+                            By.CSS_SELECTOR,
+                            # Last seen in Firefox 153.0.4
+                            # There's also the downloadIconRetry, but not sure
+                            # how stable it is
+                            "button[data-l10n-id=\"downloads-cmd-retry\"]",
+                        )
+                        if len(elems) == 0:
+                            logger.error(
+                                "Download has failed, but no restart buttons "
+                                "available. Triggering soft retry fail "
+                                "condition. The download will now restart."
+                            )
+                            last_sizes[path].soft_restart_count += 5
+                        else:
+                            logger.info("Found {} failed downloads", len(elems))
+                            # Soft restart count is used just in case the
+                            # retries instantly fail. We have to cap the soft
+                            # restart list to avoid infinite failed soft
+                            # retries, and parsing the rest of the page DOM is
+                            # too annoying to bother.
+                            # TODO: can we replace this with some API that I
+                            # couldn't find? We use vAPI for uBlock origin for
+                            # example - does about:downloads or any other part
+                            # of Firefox give us that ability?
+                            last_sizes[path].soft_restart_count += 1
+                            # Invalidate the last observed size so soft retries
+                            # that fail and become hard retries don't cause a
+                            # mess
+                            last_sizes[path].last_observed_size = 0
+                            last_sizes[path].last_observed_change = monotonic()
+                            for elem in elems:
+                                ActionChains(browser) \
+                                    .move_to_element(elem) \
+                                    .click() \
+                                    .perform()
                 elif (
                     # the "and" is to avoid excessive spam. This allows a 2
                     # second window
