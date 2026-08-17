@@ -85,10 +85,18 @@ def ubo_set_user_filters(browser: Firefox, settings: SEDDUboSettings) -> None:
 
 
 def ubo_reload_all_filters(browser: Firefox) -> None:
-    browser.execute_async_script("""
-        const done = arguments[0]
+    old = browser.timeouts.script
+    # The downloads are occasionally slow, so need to allocate a lot more
+    # time than the standard 30000ms for the update to not fail
+    browser.set_script_timeout(120)
+    try:
+        browser.execute_async_script("""
+            const done = arguments[0]
 
-        globalThis.vAPI.messaging.send('dashboard', {
-            what: 'reloadAllFilters',
-        }).then(done)
-    """)
+            globalThis.vAPI.messaging.send('dashboard', {
+                what: 'reloadAllFilters',
+            }).then(done)
+        """,
+        )
+    finally:
+        browser.set_script_timeout(old)

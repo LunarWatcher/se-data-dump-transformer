@@ -2,6 +2,12 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.4.3 (2026-08-17)
+
+### Fixed
+
+* Increased the default uBlock timeout to 120s to avoid errors when reloading ublock filter lists just takes more time than expected
+
 ## 2.4.2 (2026-04-25)
 
 ### Fixed
