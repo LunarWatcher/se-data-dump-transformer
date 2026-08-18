@@ -2,6 +2,12 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.5.1 (2026-08-18)
+
+### Changed
+
+* Improved logging ever so slightly when waiting for downloads to end
+
 ## 2.5.0 (2026-08-17)
 
 ### Added

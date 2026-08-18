@@ -523,6 +523,9 @@ try:
         last_sizes = {}
         while True:
             if state.empty():
+                logger.info(
+                    "All downloads complete!"
+                )
                 observer.stop()
                 browser.quit()
 
@@ -539,7 +542,10 @@ try:
                         logger.error(
                             "Failed to error recovery; will continue retrying"
                         )
-                        logger.error("{}", traceback.format_exc())
+                        logger.error(
+                            "Suppressed error: {}",
+                            traceback.format_exc()
+                        )
                 sleep(1)
 
     notifications.notify(
