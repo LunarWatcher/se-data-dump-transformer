@@ -214,9 +214,7 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str | None, etag
             # "don't care gib data" button (the bypass button).
             bypass = browser.find_element(By.ID, "data-dump-bypass")
             logger.info("Found intermediate dialog! Attempting to use bypass button")
-            ActionChains(browser) \
-                .click(bypass) \
-                .perform()
+            bypass.click()
         except NoSuchElementException:
             logger.info(
                 "No bypass button found. Assuming no intermediate form "
