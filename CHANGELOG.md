@@ -2,6 +2,13 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.6.0 (2026-10-01)
+
+### Fixed
+
+* Handle new intermediate download step required to access the download
+  * This change breaks all prior versions of sedd.
+
 ## 2.5.1 (2026-08-18)
 
 ### Changed

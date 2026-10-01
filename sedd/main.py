@@ -207,7 +207,39 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str | None, etag
             kill_cookie_shit(browser)
 
         try:
+            # 2026-10-01: new intermediate dialog (and 400 more button presses
+            # required for first-time complete data dump downloads). The bypass
+            # press is stored server-side, and only required once at the time
+            # of writing. The form is a standard dark pattern form with a
+            # "don't care gib data" button (the bypass button).
+            bypass = browser.find_element(By.ID, "data-dump-bypass")
+            logger.info("Found intermediate dialog! Attempting to use bypass button")
+            ActionChains(browser) \
+                .click(bypass) \
+                .perform()
+        except NoSuchElementException:
+            logger.info(
+                "No bypass button found. Assuming no intermediate form "
+                "and looking for checkbox directly."
+            )
+
+        try:
             checkbox = browser.find_element(By.ID, "datadump-agree-checkbox")
+            # We need to wait for the checkbox to appear. find_element returns
+            # instantly when it is found, even if it isn't visible. So we need
+            # to give it a few seconds to load past the redundant button press.
+            i = 0
+            while not checkbox.is_displayed():
+                i += 1
+                if (i > 10):
+                    raise RuntimeError(
+                        "datadump-agree-checkbox never became visible! "
+                        "Have the form steps changed?"
+                    )
+                logger.info(
+                    f"Waiting for datadump-agree-checkbox to appear {i}/10"
+                )
+                sleep(1)
             btn = browser.find_element(By.ID, "datadump-download-button")
         except NoSuchElementException:
             raise RuntimeError(f"Bad site: {site}")
