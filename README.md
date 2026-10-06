@@ -4,6 +4,12 @@
 
 **Disclaimer:** This project is not affiliated with Stack Exchange, Inc.
 
+> [!note]
+>
+> On 2026-10-06, we [finally got a single button to download the entire data dump](https://meta.stackexchange.com/questions/419975/the-return-of-the-network-data-dump). However, because the downloads are unusably unstable on larger files, and because implementing manual download recovery with the `Range` header is annoying to do when trying to support multiple concurrent downloads on links that expire after 30 seconds, this tool will continue to grab the individual downloads and use standard retries for the files.
+>
+> This may change in the future, but this'll first require refactoring the entire download system to not use the browser, which is too much effort for me to bother doing. Individual downloads still work at the time of writing.
+
 ## Background
 
 This section contains background on why this project exists. If you know and/or don't care, feel free to skip to the next section.
