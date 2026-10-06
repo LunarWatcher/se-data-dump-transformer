@@ -1,4 +1,3 @@
-from sedd.recovery.browser_retry import native_retry
 from selenium.webdriver import ActionChains
 import traceback
 from selenium.webdriver.common.by import By
@@ -492,36 +491,21 @@ def try_recover_fucked_download(
                         part_path
                     )
 
-                    if (
-                        monotonic() - last_sizes[path].last_restart > 3600 * 23
-                        or last_sizes[path].soft_restart_count >= 5
-                    ):
-                        logger.error(
-                            "{} has failed and has fallen outside the retry "
-                            "window: link is invalid or soft retry count "
-                            "exceeds acceptable threshold. Restarting download",
-                            path
+                    os.remove(part_path)
+                    del last_sizes[path]
+                    # TODO: optimally, we'd just call a single function that
+                    # directly downloads the specific site. Unfortunately, the
+                    # system wasn't set up to deal with this, and I don't feel
+                    # like rewriting it when all I want is to download the god
+                    # damn file
+                    # The download system should be split up to allow for this,
+                    # but it'll be a bigger refactor to do it. The current URL
+                    # system is fairly fragile, really
+                    do_download(
+                        "https://" + normalize_meta(
+                            path.replace(".7z", "")
                         )
-                        os.remove(part_path)
-                        del last_sizes[path]
-                        # TODO: optimally, we'd just call a single function that
-                        # directly downloads the specific site. Unfortunately, the
-                        # system wasn't set up to deal with this, and I don't feel
-                        # like rewriting it when all I want is to download the god
-                        # damn file
-                        # The download system should be split up to allow for this,
-                        # but it'll be a bigger refactor to do it. The current URL
-                        # system is fairly fragile, really
-                        do_download(
-                            "https://" + normalize_meta(
-                                path.replace(".7z", "")
-                            )
-                        )
-                    else:
-                        # If permitted by the last restart param and the soft
-                        # restart count, use about:download instead of a full
-                        # restart.
-                        native_retry(browser, last_sizes, path)
+                    )
                 elif (
                     # the "and" is to avoid excessive spam. This allows a 2
                     # second window

@@ -2,6 +2,12 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.7.0 (2026-10-06)
+
+### Removed
+
+* Removed browser-native retries. The link lifetime has been reduced to 30 seconds, so back to manual retries.
+
 ## 2.6.0 (2026-10-01)
 
 ### Fixed
