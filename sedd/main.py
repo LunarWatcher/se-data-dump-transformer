@@ -212,8 +212,18 @@ def download_data_dump(browser: WebDriver, site: str, meta_url: str | None, etag
             # of writing. The form is a standard dark pattern form with a
             # "don't care gib data" button (the bypass button).
             bypass = browser.find_element(By.ID, "data-dump-bypass")
-            logger.info("Found intermediate dialog! Attempting to use bypass button")
-            bypass.click()
+            logger.info("Found intermediate dialog!")
+            # 2026-10-09: The intermediate dialog is always visible if you
+            # click the bypass button, but in a collapsed section. The
+            # bypass button at this point is hidden, so without this check, the
+            # download fails.
+            if not bypass.is_displayed():
+                logger.warning(
+                    "The form bypass button is invisible. Assuming it has been "
+                    "pressed before and doesn't need to be pressed again. "
+                )
+            else:
+                bypass.click()
         except NoSuchElementException:
             logger.info(
                 "No bypass button found. Assuming no intermediate form "
