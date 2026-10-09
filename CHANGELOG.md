@@ -2,6 +2,12 @@
 
 Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, the releases may contain additional information.
 
+## 2.8.1 (2026-10-09)
+
+### Fixed
+
+* Handle SE randomly timing out during downloads
+
 ## 2.8.0 (2026-10-09)
 
 ### Fixed

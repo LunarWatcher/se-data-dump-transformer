@@ -1,3 +1,4 @@
+from sedd.utils import with_retries
 from selenium.webdriver import ActionChains
 import traceback
 from selenium.webdriver.common.by import By
@@ -123,10 +124,13 @@ def check_cloudflare_intercept(browser: WebDriver):
             sleep(10)
 
 def is_logged_in(browser: WebDriver, site: str):
-    url = f"{site}/users/current"
-    browser.get(url)
-    sleep(1)
-    check_cloudflare_intercept(browser)
+    def load():
+        url = f"{site}/users/current"
+        browser.get(url)
+        sleep(1)
+        check_cloudflare_intercept(browser)
+
+    with_retries(browser, load)
 
     return "/users/" in browser.current_url
 

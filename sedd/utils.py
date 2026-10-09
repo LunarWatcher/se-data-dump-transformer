@@ -1,3 +1,5 @@
+from selenium.webdriver.firefox.webdriver import WebDriver
+from urllib3.exceptions import ReadTimeoutError
 from typing import Dict
 import requests as r
 from urllib.parse import urlparse
@@ -87,3 +89,20 @@ def is_file_downloaded(base_path: str, site_or_url: str | None) -> bool:
         return False
     file_name = get_file_name(site_or_url)
     return check_file(base_path, file_name)
+
+def with_retries(browser: WebDriver, func):
+    i = 0
+    while i < 10:
+        i += 1
+
+        try:
+            func()
+            break
+        except ReadTimeoutError:
+            if (i == 9):
+                raise
+            logger.error("SE timed out: retrying")
+            browser.execute_script("window.stop()");
+    
+
+

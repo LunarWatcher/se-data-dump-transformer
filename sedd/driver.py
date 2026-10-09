@@ -64,4 +64,8 @@ def init_firefox_driver(config: SEDDConfig, disable_undetected: bool, output_dir
 
     init_ubo_settings(browser, config, ubo_internal_uuid)
 
+    # Reduce page load timeout. SO often gets stuck for no reason, and the
+    # default 120s is way too much
+    browser.set_page_load_timeout(30)
+
     return browser, ubo_id
