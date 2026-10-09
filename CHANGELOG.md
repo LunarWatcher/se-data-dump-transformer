@@ -6,7 +6,7 @@ Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, 
 
 ### Fixed
 
-* Re-unfuck the download by ignoring the bypass button if it can't be skipped
+* Re-unfuck the download by ignoring the bypass button if it can't be clicked
   * The intermediate download form is now always visible in a collapsed section if the bypass button is used, so the button is registered as present while also not being clickable. It still blocks access on first download, so this only affects users downloading for a second time (which is currently forced anyway, considering SO and the full data dump can't be downloaded successfully in any less than a TiB of wasted download due to cloudflare being configured agressively enough that it ends up aborting the download mid-way through - thanks, SE)
 
 ## 2.7.0 (2026-10-06)
