@@ -7,6 +7,7 @@ Only 2.2.0 and newer have explicitly recorded changelogs. For earlier versions, 
 ### Fixed
 
 * Handle SE randomly timing out during downloads
+* Set `network.http.response.timeout` to 0 to try to curb download failures
 
 ## 2.8.0 (2026-10-09)
 

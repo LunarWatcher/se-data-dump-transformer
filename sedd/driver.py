@@ -28,6 +28,9 @@ def init_firefox_driver(config: SEDDConfig, disable_undetected: bool, output_dir
     options.set_preference("browser.download.folderList", 2)
     options.set_preference("browser.download.manager.showWhenStarting", False)
     options.set_preference("browser.download.dir", output_dir)
+    # Defaults to 300, the consensus on the internet for the past 21 years
+    # seems to be that it interferes with big downloads
+    options.set_preference("network.http.response.timeout", 0)
     options.set_preference(
         "browser.helperApps.neverAsk.saveToDisk", "application/x-gzip"
     )
