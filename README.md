@@ -83,7 +83,7 @@ Note that it's stongly encouraged that you use a venv. To set one up, run `pytho
 > [!NOTE]
 > You should be running into this less as long as you don't provide the `-g`/`--disable-undetected-geckodriver` flag. See "Captchas and other misc. barriers" for details. If you haven't disabled it (i.e. you haven't specified either of the two flags) and still run into this problem, continue reading this section.
 >
-> If you're a macOS user, leaving undetected-geckodriver enabled will not help. Switch to Windows or Linux (physically or in a VM) and try again there.
+> If you're a macOS user, undetected-geckodriver is never used, as it doesn't support macOS at this time. Switch to Windows or Linux (physically or in a VM) and try again there.
 
 ---
 
@@ -94,16 +94,6 @@ If you get a full-page Cloudflare block, and solving the captcha redirects you r
 If you get slapped with a Cloudflare loop, the only option for now is to use a VPN in another country. Switzerland and Norway have both been verified to work at the time of writing. Fascinatingly, using a VPN makes no difference on the looping; it's purely country-based, not anti-VPN-based. The loop has been verified on both a residential IP and a datacenter IP (VPN).
 
 I unfortunately do not (and cannot) write a complete list of countries affected by this bullshit, so you have to test this manually. If you do not have access to a VPN, check https://meta.stackexchange.com/a/224922/332043 or https://academictorrents.com/collection/stack-exchange-data-dumps for archived (unofficial) versions uploaded by the community. They're usually uploaded within a few days to a couple weeks, and unless you're downloading directly from the archive.org version, is significantly faster and more stable than downloading from SE themselves.
-
-#### Download instability, particularly of `stackoverflow.com.7z`
-
-> TL;DR: If `stackoverflow.com.7z` fails to download:
-> 1. You're on a good connection: consider connecting to a VPN before retrying.
-> 2. You're on a bad connection: consider downloading via the unofficial community torrent instead. It's significantly more resistant to problems caused by bad internet connections.
-
-If you keep running into the download of `stackoverflow.com.7z` failing, you may need to connect to a VPN. For reasons that are not clear (but that are likely down to SE being horrible at implementing things that work), `stackoverflow.com.7z` can just randomly fail. This assumes your device has a stable internet connection for the duration of the download, but arbitrarily fails anyway.
-
-For some reason, connecting with a VPN offers just enough extra stability to avoid whatever causes the failures. This is especially the case if you're on a relatively slow (100Mbps) network, as longer download times increases the chance of failure. If you're on a generally unstable network, a VPN may help, but if it doesn't, it will be significantly easier to download the unofficial community reuploads, as these are always available as torrents. Torrents are generally more resistant to full failure on bad network connections, and can download single missing pieces rather than forcing you to redownload the entire 68+GB thing. 
 
 ### Requirements
 
